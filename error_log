@@ -1,0 +1,25 @@
+[06-Mar-2026 11:05:52 UTC] PHP Warning:  require(/home2/abyzone/public_html/UAT/../vendor/autoload.php): Failed to open stream: No such file or directory in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:05:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/abyzone/public_html/UAT/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/abyzone/public_html/UAT/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:05:53 UTC] PHP Warning:  require(/home2/abyzone/public_html/UAT/../vendor/autoload.php): Failed to open stream: No such file or directory in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:05:53 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/abyzone/public_html/UAT/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/abyzone/public_html/UAT/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:07:47 UTC] PHP Warning:  require(/home2/abyzone/public_html/UAT/../vendor/autoload.php): Failed to open stream: No such file or directory in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:07:47 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/abyzone/public_html/UAT/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/abyzone/public_html/UAT/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:07:49 UTC] PHP Warning:  require(/home2/abyzone/public_html/UAT/../vendor/autoload.php): Failed to open stream: No such file or directory in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:07:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/abyzone/public_html/UAT/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/abyzone/public_html/UAT/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:07:59 UTC] PHP Warning:  require(/home2/abyzone/public_html/UAT/../vendor/autoload.php): Failed to open stream: No such file or directory in /home2/abyzone/public_html/UAT/index.php on line 34
+[06-Mar-2026 11:07:59 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/abyzone/public_html/UAT/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/abyzone/public_html/UAT/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home2/abyzone/public_html/UAT/index.php on line 34
