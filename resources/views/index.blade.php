@@ -1760,7 +1760,7 @@
                                 <div class="testimonial-card">
 
                                     <div class="testimonial-user">
-                                        <img src="assets/images/images/imagec23d.png"
+                                        <img src="assets/images//imagec23d.png"
                                              alt="Mark Reynolds">
                                     </div>
 
@@ -1797,7 +1797,7 @@
                                 <div class="testimonial-card">
 
                                     <div class="testimonial-user">
-                                        <img src="assets/images/images/imagec24e.png"
+                                        <img src="assets/images//imagec24e.png"
                                              alt="Daniel Cooper">
                                     </div>
 
@@ -1833,7 +1833,7 @@
                                 <div class="testimonial-card">
 
                                     <div class="testimonial-user">
-                                        <img src="assets/images/images/imageeddd.png"
+                                        <img src="assets/images//imageeddd.png"
                                              alt="Jason Miller">
                                     </div>
 
@@ -1888,7 +1888,7 @@
 
         <!-- Background Shape -->
         <div class="testimonial__shape">
-            <img src="assets/images/images/image5e41.png" alt="">
+            <img src="assets/images//image5e41.png" alt="">
         </div>
 
     </div>

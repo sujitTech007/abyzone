@@ -694,7 +694,7 @@
 
                         <div class="team-image">
 
-                            <img src="assets/images/images/founder-img.png" alt="Ly Thu Yen">
+                            <img src="assets/images//founder-img.png" alt="Ly Thu Yen">
 
                             <div class="team-overlay"></div>
 
@@ -737,7 +737,7 @@
 
                         <div class="team-image">
 
-                            <img src="assets/images/images/founder2-img.png" alt="Beth Tran">
+                            <img src="assets/images//founder2-img.png" alt="Beth Tran">
 
                             <div class="team-overlay"></div>
 
@@ -803,7 +803,7 @@
 
                             <div class="profile-image">
 
-                                <img src="assets/images/images/founder-img.png" alt="Ly Thu Yen">
+                                <img src="assets/images//founder-img.png" alt="Ly Thu Yen">
 
                             </div>
 
@@ -903,7 +903,7 @@
 
                             <div class="profile-image">
 
-                                <img src="assets/images/images/founder2-img.png" alt="Beth Tran">
+                                <img src="assets/images//founder2-img.png" alt="Beth Tran">
 
                             </div>
 

@@ -4395,3 +4395,174 @@ flex: none;}
 .form-group {
     margin-bottom: 22px;
 }
+.register-page .row{
+    height: 100vh;
+}
+.login-page .row{
+    height: calc(100vh - 78px);
+    align-items: center;
+}
+
+.login-form-width{
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+  .login-left {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+
+        background:
+            linear-gradient(
+                rgba(7, 27, 64, .91),
+                rgba(7, 27, 64, .94)
+            ),
+            url("../assets/images/warehouse-login.jpg")
+            center / cover no-repeat;
+
+        color: #fff;
+        
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 25px;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid rgba(255,255,255,.18);
+        border-radius: 14px;
+
+        background: rgba(255,255,255,.07);
+
+        color: #f5b82e;
+        font-size: 21px;
+    }
+    }
+    .register-page-body .header-top,
+    .login-page-body .header-top,
+    .register-page-body .header_btn,
+        .login-page-body .header_btn
+    {
+        display: none;
+    }
+
+        .register-page-body .login-link,
+   .login-page-body .signup-link {
+    display: block !important;
+    font-size: 14px;
+   }
+
+    
+    
+
+   .role-toggle {
+          position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 220px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+/* Hide radio buttons */
+.role-toggle input {
+    display: none;
+}
+
+/* Sliding background */
+.role-toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    transition: all 0.3s ease;
+}
+
+/* Options */
+.role-option {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    cursor: pointer;
+        font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+    padding: 12px;
+    border-radius: 40px;
+}
+
+/* Active Customer */
+#customer:checked ~ .role-toggle-slider {
+    left: 4px;
+}
+
+#customer:checked ~ .role-option[for="customer"] {
+    color: #111827;
+}
+
+/* Active Vendor */
+#vendor:checked ~ .role-toggle-slider {
+    left: calc(50% + 0px);
+}
+
+#vendor:checked ~ .role-option[for="vendor"] {
+    color: #111827;
+}
+
+#customer:checked ~ .role-toggle-slider,
+#vendor:checked ~ .role-toggle-slider {
+    background: var(--secondary-color);
+    color: var(--black-color);
+}
+
+.role-option i {
+    font-size: 14px;
+}
+
+
+.login-form-width .iti{
+    width: 100%;
+    display: flex;
+    border: 1px solid #dce4ec;
+}
+.login-form-width .iti__country-container {
+    position: static;
+    width: max-content;
+}
+span.iti__country-name{margin-left: 2px;}
+.iti__selected-dial-code,
+.iti__selected-country-primary{
+    font-size: 12px;
+}
+
+section.register-page .login-form-width{
+    max-width: 550px;
+}

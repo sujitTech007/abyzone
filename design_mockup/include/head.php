@@ -11,7 +11,7 @@
     <link rel="preload" as="image" href="assets/images/icon/quote.svg" />
     <link rel="preload" as="image" href="assets/images/icon/work_shape01.svg" />
     <link rel="preload" as="image" href="assets/images/icon/right_arrow.svg" />
-    <link rel="icon" href="assets/images/images/qby-logo.png" type="image/x-icon">
+    <link rel="icon" href="assets/images//qby-logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="assets/css/aaa5c0f168402b6e.css" data-precedence="next" />
     <link rel="stylesheet" href="assets/css/9793277900c9dac9.css" data-precedence="next" />

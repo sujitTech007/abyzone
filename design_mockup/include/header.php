@@ -37,7 +37,7 @@
 					<div class="tgmenu__wrap">
 						<div class="tgmenu__nav-left-side">
 							<div class="offcanvas-toggle"></div>
-							<div class="logo"><a href="index.php"><img alt="Logo" loading="lazy" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/qby-logo.png"></a></div>
+							<div class="logo"><a href="index.php"><img alt="Logo" loading="lazy" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//qby-logo.png"></a></div>
 						</div>
 						<div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
 							<ul class="navigation">
@@ -96,14 +96,14 @@
 		<div class="offCanvas__close-icon menu-close"><button><i class="far fa-window-close"></i></button></div>
 		<div class="offCanvas__logo mb-30"><a href="index.php"><img alt="Logo" loading="lazy" width="142"
 					height="40" decoding="async" data-nimg="1" style="color:transparent"
-					src="assets/images/images/qby-logo.png" /></a></div>
+					src="assets/images//qby-logo.png" /></a></div>
 					<div class="">
 						<div class="tgmobile__menu">
 							<nav class="tgmobile__menu-box">
 								<div class="close-btn"><i class="tg-flaticon-close"></i></div>
 								<div class="nav-logo"><a href="index.php"><img alt="Logo" loading="lazy" width="142"
 											height="40" decoding="async" data-nimg="1" style="color:transparent"
-											src="assets/images/images/qby-logo.png" style="width: 150px;" /></a></div>
+											src="assets/images//qby-logo.png" style="width: 150px;" /></a></div>
 								<div class="tgmobile__search">
 									<form><input type="text" placeholder="Search here..." /><button><i
 												class="fas fa-search"></i></button></form>

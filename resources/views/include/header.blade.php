@@ -2,6 +2,7 @@
 
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
 
@@ -86,7 +87,7 @@
 
             <!-- Logo -->
             <a class="navbar-brand p-0" href="{{ route('home') }}">
-                <img src="{{ asset('assets/images/images/qby-logo.png') }}"
+                <img src="{{ asset('assets/images/abyzone-logo.png') }}"
                      alt="ABYzone"
                      height="60">
             </a>
@@ -160,8 +161,8 @@
                 <!-- RIGHT SIDE -->
                 <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0">
 
-                    <!-- Search Icon -->
-                    <button type="button"
+                    
+                    <!-- <button type="button"
                             class="btn btn-link text-dark text-decoration-none fs-5"
                             data-bs-toggle="modal"
                             data-bs-target="#searchModal"
@@ -169,34 +170,56 @@
 
                         <i class="fa-solid fa-magnifying-glass"></i>
 
-                    </button>
+                    </button> -->
+
+                    <div class="header_btn">
+                        
+                        @if(Auth::check())
+
+                            <a href="{{ route('user.dashboard') }}"
+                            class="btn btn-outline-secondary rounded-pill px-3 text-nowrap">
+                                <i class="fa-regular fa-user me-1"></i>
+                                Dashboard
+                            </a>
+
+                        @else
+
+                            <!-- Login -->
+                            <a href="{{ route('auth.login') }}"
+                            class="btn btn-link text-dark text-decoration-none text-nowrap">
+                                <i class="fa-regular fa-user me-1"></i>
+                                Login
+                            </a>
+
+                            <!-- Get Started -->
+                            <a href="{{ route('auth.register') }}"
+                            class="btn theme_btn">
+                                Get Started
+                                <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+
+                        @endif
+                    </div>
 
 
-                    @if(Auth::check())
+                    <div class="signup-link d-none">
 
-                        <a href="{{ route('user.dashboard') }}"
-                           class="btn btn-outline-secondary rounded-pill px-3 text-nowrap">
-                            <i class="fa-regular fa-user me-1"></i>
-                            Dashboard
+                        Need to create an account?
+
+                        <a href="{{ route('auth.register') }}">
+                            Sign up
                         </a>
 
-                    @else
+                    </div>
+                     <div class="login-link d-none">
 
-                        <!-- Login -->
-                        <a href="{{ route('auth.login') }}"
-                           class="btn btn-link text-dark text-decoration-none text-nowrap">
-                            <i class="fa-regular fa-user me-1"></i>
-                            Login
-                        </a>
+                            Already have an account?
 
-                        <!-- Get Started -->
-                        <a href="{{ route('auth.register') }}"
-                           class="btn theme_btn">
-                            Get Started
-                            <i class="fa-solid fa-arrow-right ms-1"></i>
-                        </a>
+                            <a href="{{ route('auth.login') }}">
+                                Sign in
+                            </a>
 
-                    @endif
+                        </div>
 
                 </div>
 
@@ -222,7 +245,7 @@
                 <div class="d-flex justify-content-between align-items-center py-4 border-bottom">
 
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('assets/images/images/qby-logo.png') }}" alt="ABYzone" height="42">
+                        <img src="{{ asset('assets/images//qby-logo.png') }}" alt="ABYzone" height="42">
                     </a>
 
                     <button type="button" class="btn btn-light rounded-circle" data-bs-dismiss="modal"

@@ -186,7 +186,7 @@
             <div class="col-md-3">
                 <div class="footer-brand">
                     <a href="{{ url('/') }}" class="footer-logo">
-                        <img src="{{ asset('assets/images/images/footer-logo.png') }}"
+                        <img src="{{ asset('assets/images//footer-logo.png') }}"
                              alt="ABYzone">
                     </a>
                 </div>  

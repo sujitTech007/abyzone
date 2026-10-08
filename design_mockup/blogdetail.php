@@ -59,7 +59,7 @@
 								<div class="rc-post-thumb"><a href="blog-details.html"><img alt="img"
 											loading="lazy" width="392" height="260" decoding="async"
 											data-nimg="1" style="color:transparent"
-											src="assets/images/images/blog-sideimg1.png"></a>
+											src="assets/images//blog-sideimg1.png"></a>
 								</div>
 								<div class="rc-post-content"><span class="date"><i
 											class="flaticon-calendar"></i>25 Nov, 2024</span>
@@ -71,7 +71,7 @@
 								<div class="rc-post-thumb"><a href="blog-details.html"><img alt="img"
 											loading="lazy" width="392" height="260" decoding="async"
 											data-nimg="1" style="color:transparent"
-											src="assets/images/images/blog-sideimg2.png"></a>
+											src="assets/images//blog-sideimg2.png"></a>
 								</div>
 								<div class="rc-post-content"><span class="date"><i
 											class="flaticon-calendar"></i>25 Nov, 2024</span>
@@ -83,7 +83,7 @@
 								<div class="rc-post-thumb"><a href="blog-details.html"><img alt="img"
 											loading="lazy" width="392" height="260" decoding="async"
 											data-nimg="1" style="color:transparent"
-											src="assets/images/images/blog-sideimg3.png"></a>
+											src="assets/images//blog-sideimg3.png"></a>
 								</div>
 								<div class="rc-post-content"><span class="date"><i
 											class="flaticon-calendar"></i>25 Nov, 2024</span>
@@ -95,7 +95,7 @@
 								<div class="rc-post-thumb"><a href="blog-details.html"><img alt="img"
 											loading="lazy" width="392" height="260" decoding="async"
 											data-nimg="1" style="color:transparent"
-											src="assets/images/images/blog-sideimg4.png"></a>
+											src="assets/images//blog-sideimg4.png"></a>
 								</div>
 								<div class="rc-post-content"><span class="date"><i
 											class="flaticon-calendar"></i>25 Nov, 2024</span>
@@ -111,13 +111,13 @@
 					<div class="blog__details-wrapper">
 						<div class="blog__details-thumb"><img alt="image" loading="lazy" width="1050"
 								height="510" decoding="async" data-nimg="1" style="color:transparent"
-								src="assets/images/images/blog.jpeg">
+								src="assets/images//blog.jpeg">
 						</div>
 						<div class="blog__details-content">
 							<div class="blog__meta blog__meta-two">
 								<ul class="list-wrap">
 									<li class="author-info">
-										<img src="assets/images/images/blog1.avif" alt="User"
+										<img src="assets/images//blog1.avif" alt="User"
 											class="user-icon">
 										by <a href="mailto:admin@example.com">admin@example.com</a>
 									</li>
@@ -145,13 +145,13 @@
 					<div class="blog__details-wrapper">
 						<div class="blog__details-thumb"><img alt="image" loading="lazy" width="1050"
 								height="510" decoding="async" data-nimg="1" style="color:transparent"
-								src="assets/images/images/blog-detail-img.png">
+								src="assets/images//blog-detail-img.png">
 						</div>
 						<div class="blog__details-content">
 							<div class="blog__meta blog__meta-two">
 								<ul class="list-wrap">
 									<li class="author-info">
-										<img src="assets/images/images/blog-detail-img.png" alt="User"
+										<img src="assets/images//blog-detail-img.png" alt="User"
 											class="user-icon">
 										by <a href="mailto:admin@example.com">admin@example.com</a>
 									</li>

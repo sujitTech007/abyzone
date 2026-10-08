@@ -2,7 +2,7 @@
 
 <div class="container mt-5">
     <div class="col-md-5 offset-md-3 login-box">
-        <img class="" src="assets/images/images/qby-logo.png" alt="" style="height: 50px; margin-left: 165px;">
+        <img class="" src="assets/images//qby-logo.png" alt="" style="height: 50px; margin-left: 165px;">
     <h2 class="text-center mt-2"><u>Reset Password</u></h2>
     <form method="POST" action="{{ route('auth.reset.post') }}">
         @csrf

@@ -88,7 +88,7 @@
 							  
 								<!-- RIGHT: Image (6 cols = half width) -->
 								<div class="col-lg-6 d-flex align-items-center justify-content-center">
-								  <img src="assets/images/images/contactform-img.png" alt="Contact Visual" class="img-fluid rounded">
+								  <img src="assets/images//contactform-img.png" alt="Contact Visual" class="img-fluid rounded">
 								</div>
 							  </div>
 							  
