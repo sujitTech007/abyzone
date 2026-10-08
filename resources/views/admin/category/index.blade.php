@@ -74,16 +74,18 @@
 
                 <td class="text-end d-flex gap-1">
 
-                    <a href="{{ route('admin.category.show', $c->id) }}" class="btn btn-sm btn-info w-50">View</a>
+                    <a href="{{ route('admin.category.show', $c->id) }}" class="btn btn-sm btn-info w-50"><i class="ri-eye-line"></i></a>
 
-                    <a href="{{ route('admin.category.edit', $c->id) }}" class="btn btn-sm btn-warning w-50">Edit</a>
+                    <a href="{{ route('admin.category.edit', $c->id) }}" class="btn btn-sm btn-warning w-50"><i
+                                                            class="ri-pencil-line"></i></a>
 
                     <form action="{{ route('admin.category.destroy', $c->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete category?');">
                         @csrf
 
                         @method('DELETE')
 
-                        <button class="btn btn-sm btn-danger w-100">Delete</button>
+                        <button class="btn btn-sm btn-danger w-100"><i
+                                                                class="ri-delete-bin-line"></i></button>
 
                     </form>
 
