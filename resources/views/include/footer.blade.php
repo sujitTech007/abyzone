@@ -147,7 +147,7 @@
                                    placeholder="Enter your e-mail"
                                    required>
 
-                            <button type="submit">
+                            <button type="submit" class="btn theme_btn">
                                 Subscribe
                                 <i class="fas fa-arrow-right"></i>
                             </button>
