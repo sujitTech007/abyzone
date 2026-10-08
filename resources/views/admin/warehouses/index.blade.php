@@ -82,13 +82,15 @@
                             </span>
                         </td>
                         <td>
-                            <div class="d-flex justify-content-center align-items-center gap-2">
-                            <a href="{{ route('admin.warehouses.show', $warehouse) }}" class="btn btn-sm btn-info">View</a>
-                            <a href="{{ route('admin.warehouses.edit', $warehouse) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <div class="d-flex justify-content-center align-items-center gap-1">
+                            <a href="{{ route('admin.warehouses.show', $warehouse) }}" class="btn btn-sm btn-info"><i class="ri-eye-line"></i></a>
+                            <a href="{{ route('admin.warehouses.edit', $warehouse) }}" class="btn btn-sm btn-warning"><i
+                                                            class="ri-pencil-line"></i></a>
                             <form action="{{ route('admin.warehouses.destroy', $warehouse) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Delete this warehouse?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger">Delete</button>
+                                <button class="btn btn-sm btn-danger"><i
+                                                                class="ri-delete-bin-line"></i></button>
                             </form>
                             </div>
                         </td>

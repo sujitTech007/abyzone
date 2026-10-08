@@ -289,14 +289,15 @@
                     <!-- Notification Dropdown -->
                     <div class="topbar-item position-relative">
                         <div class="dropdown">
-                            <button class="topbar-link dropdown-toggle drop-arrow-none text-dark fs-3"
+                            <button class="topbar-link dropdown-toggle drop-arrow-none text-dark fs-3 position-relative"
                                 data-bs-toggle="dropdown" data-bs-offset="0,25"
                                 type="button" data-bs-auto-close="outside">
 
                                 <i class="ri-notification-4-line"></i>
 
                                 @if($headerNotificationCount > 0)
-                                <span class="noti-icon-badge">
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="font-size: 10px;">
                                     {{ $headerNotificationCount }}
                                 </span>
                                 @endif
