@@ -241,22 +241,22 @@
                                     <div class="mt-3">
 
                                         <div class="small text-muted mb-2">
-                                            <i class="fas fa-shield-alt text-primary me-2"></i>
+                                            <i class="fas fa-shield-alt primary-text-color me-2"></i>
                                             24/7 Security
                                         </div>
 
                                         <div class="small text-muted mb-2">
-                                            <i class="fas fa-temperature-low text-primary me-2"></i>
+                                            <i class="fas fa-temperature-low primary-text-color me-2"></i>
                                             Climate Control
                                         </div>
 
                                         <div class="small text-muted mb-2">
-                                            <i class="fas fa-dolly text-primary me-2"></i>
+                                            <i class="fas fa-dolly primary-text-color me-2"></i>
                                             Forklift Access
                                         </div>
 
                                         <div class="small text-muted">
-                                            <i class="fas fa-truck-loading text-primary me-2"></i>
+                                            <i class="fas fa-truck-loading primary-text-color me-2"></i>
                                             Loading Dock
                                         </div>
 
@@ -287,7 +287,7 @@
 
                                 <div class="d-flex align-items-start gap-3 p-2">
 
-                                    <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                                    <div class="bg-primary-subtle primary-text-color rounded-circle p-3">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
 
@@ -301,7 +301,7 @@
                                         </strong>
 
                                         <a href="#"
-                                           class="small text-primary text-decoration-none">
+                                           class="small primary-text-color text-decoration-none">
                                             View on Map
                                             <i class="fas fa-arrow-right ms-1"></i>
                                         </a>
@@ -317,7 +317,7 @@
 
                                 <div class="d-flex align-items-start gap-3 p-2">
 
-                                    <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                                    <div class="bg-primary-subtle primary-text-color rounded-circle p-3">
                                         <i class="fas fa-warehouse"></i>
                                     </div>
 
@@ -341,7 +341,7 @@
 
                                 <div class="d-flex align-items-start gap-3 p-2">
 
-                                    <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                                    <div class="bg-primary-subtle primary-text-color rounded-circle p-3">
                                         <i class="fas fa-cube"></i>
                                     </div>
 
@@ -380,7 +380,7 @@
 
                                 <div class="d-flex align-items-start gap-3 p-2">
 
-                                    <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                                    <div class="bg-primary-subtle primary-text-color rounded-circle p-3">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
 
@@ -487,7 +487,7 @@
                                     About This Warehouse
                                 </h4>
 
-                                <p class="text-muted lh-lg">
+                                <p>
 
                                     {!! nl2br(e($warehouse->description)) !!}
 
@@ -497,17 +497,17 @@
                                 {{-- BADGES --}}
                                 <div class="d-flex flex-wrap gap-2 mb-4">
 
-                                    <span class="badge bg-primary-subtle text-primary px-3 py-2">
+                                    <span class="badge bg-primary-subtle primary-text-color px-3 py-2">
                                         <i class="fas fa-check me-1"></i>
                                         Flexible space options
                                     </span>
 
-                                    <span class="badge bg-primary-subtle text-primary px-3 py-2">
+                                    <span class="badge bg-primary-subtle primary-text-color px-3 py-2">
                                         <i class="fas fa-check me-1"></i>
                                         Short-term & long-term rentals
                                     </span>
 
-                                    <span class="badge bg-primary-subtle text-primary px-3 py-2">
+                                    <span class="badge bg-primary-subtle primary-text-color px-3 py-2">
                                         <i class="fas fa-check me-1"></i>
                                         24/7 facility access
                                     </span>
@@ -543,7 +543,7 @@
 
                                             <div class="d-flex align-items-center gap-3">
 
-                                                <span class="bg-primary-subtle text-primary rounded-circle p-2">
+                                                <span class="bg-primary-subtle primary-text-color rounded-circle p-2">
 
                                                     <i class="fas fa-check"></i>
 
@@ -576,7 +576,7 @@
                             <div class="tab-pane fade"
                                  id="features">
 
-                                <h4 class="fw-bold mb-4">
+                                <h4 class="fw-bold mb-4 fs-5">
                                     Features & Amenities
                                 </h4>
 
@@ -588,7 +588,7 @@
 
                                             <div class="border rounded-3 p-3 h-100">
 
-                                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                                <i class="fas fa-check-circle primary-text-color me-2"></i>
 
                                                 <span>
                                                     {{ $amenity }}
@@ -617,7 +617,7 @@
                             <div class="tab-pane fade"
                                  id="location">
 
-                                <h4 class="fw-bold mb-3">
+                                <h4 class="fw-bold mb-3 fs-5">
                                     Warehouse Location
                                 </h4>
 
@@ -631,8 +631,8 @@
                                                 Location
                                             </small>
 
-                                            <div class="fw-semibold mt-1">
-                                                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                            <div class="fw-semibold mt-1 fs-14">
+                                                <i class="fas fa-map-marker-alt primary-text-color me-2"></i>
                                                 {{ $warehouse->location }}
                                             </div>
 
@@ -649,7 +649,7 @@
                                                 Address
                                             </small>
 
-                                            <div class="fw-semibold mt-1">
+                                            <div class="fw-semibold mt-1 fs-14">
 
                                                 @if(
                                                     $warehouse->address_street ||
@@ -833,13 +833,13 @@
                     <div class="card border-0 shadow-sm rounded-3 overflow-hidden mb-4"
                          id="bookingForm">
 
-                        <div class="bg-primary text-white p-4">
+                        <div class="bg-color-primary text-white p-4">
 
                             <h4 class="fw-bold mb-2 fs-5">
                                 Book This Warehouse
                             </h4>
 
-                            <p class="small mb-0 opacity-75 text-white">
+                            <p class="small mb-0 opacity-75 text-white fs-10">
                                 Fill out the form below and our team will
                                 get back to you with availability and pricing details.
                             </p>
@@ -864,7 +864,7 @@
 
                                     <label class="form-label fw-semibold">
 
-                                        <i class="fas fa-user text-primary me-1"></i>
+                                        <i class="fas fa-user primary-text-color me-1"></i>
                                         Full Name *
 
                                     </label>
@@ -883,7 +883,7 @@
 
                                     <label class="form-label fw-semibold">
 
-                                        <i class="fas fa-envelope text-primary me-1"></i>
+                                        <i class="fas fa-envelope primary-text-color me-1"></i>
                                         Email Address *
 
                                     </label>
@@ -902,7 +902,7 @@
 
                                     <label class="form-label fw-semibold">
 
-                                        <i class="fas fa-phone text-primary me-1"></i>
+                                        <i class="fas fa-phone primary-text-color me-1"></i>
                                         Phone Number *
 
                                     </label>
@@ -921,7 +921,7 @@
 
                                     <label class="form-label fw-semibold">
 
-                                        <i class="fas fa-calendar-alt text-primary me-1"></i>
+                                        <i class="fas fa-calendar-alt primary-text-color me-1"></i>
                                         Preferred Move-in Date
 
                                     </label>
@@ -952,7 +952,7 @@
 
                                 {{-- SUBMIT --}}
                                 <button type="submit"
-                                        class="btn btn-warning w-100 py-2 fw-semibold rounded-3">
+                                        class="btn theme_btn w-100 fw-bold">
 
                                     Send Request
                                     <i class="fas fa-arrow-right ms-1"></i>
@@ -992,7 +992,7 @@
 
                             <div class="d-flex gap-3 mb-3">
 
-                                <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                                <div class="bg-primary-subtle primary-text-color rounded-circle  contact_icon_box d-flex align-items-center justify-content-center">
 
                                     <i class="fas fa-phone"></i>
 
@@ -1000,18 +1000,18 @@
 
                                 <div>
 
-                                    <small class="text-muted d-block">
+                                    <small class="text-muted d-block fs-12">
                                         Call Us
                                     </small>
 
                                     <a href="tel:+16045550123"
-                                       class="fw-semibold text-dark text-decoration-none">
+                                       class="fw-semibold text-dark text-decoration-none fs-14">
 
                                         +1 (604) 555-0123
 
                                     </a>
 
-                                    <small class="text-muted d-block">
+                                    <small class="text-muted d-block fs-12">
                                         Mon - Fri, 9:00 AM - 6:00 PM
                                     </small>
 
@@ -1022,7 +1022,7 @@
 
                             <div class="d-flex gap-3">
 
-                                <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                                <div class="bg-primary-subtle primary-text-color rounded-circle contact_icon_box d-flex align-items-center justify-content-center">
 
                                     <i class="fas fa-envelope"></i>
 
@@ -1030,18 +1030,18 @@
 
                                 <div>
 
-                                    <small class="text-muted d-block">
+                                    <small class="text-muted d-block fs-12">
                                         Email
                                     </small>
 
                                     <a href="mailto:support@abyzone.ca"
-                                       class="fw-semibold text-dark text-decoration-none">
+                                       class="fw-semibold text-dark text-decoration-none fs-14">
 
                                         support@abyzone.ca
 
                                     </a>
 
-                                    <small class="text-muted d-block">
+                                    <small class="text-muted d-block fs-12">
                                         We'll get back to you within 24 hours.
                                     </small>
 
@@ -1061,7 +1061,7 @@
 
                         <div class="card-body">
 
-                            <h5 class="fw-bold text-dark mb-3">
+                            <h5 class="fw-bold text-dark mb-3 fs-14">
                                 Why Choose This Warehouse?
                             </h5>
 
@@ -1069,7 +1069,7 @@
 
                                 <li class="d-flex gap-2 mb-2">
 
-                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <i class="fas fa-check-circle primary-text-color mt-1"></i>
 
                                     <span class="small">
                                         Prime location
@@ -1079,7 +1079,7 @@
 
                                 <li class="d-flex gap-2 mb-2">
 
-                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <i class="fas fa-check-circle primary-text-color mt-1"></i>
 
                                     <span class="small">
                                         Competitive pricing
@@ -1089,7 +1089,7 @@
 
                                 <li class="d-flex gap-2 mb-2">
 
-                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <i class="fas fa-check-circle primary-text-color mt-1"></i>
 
                                     <span class="small">
                                         Flexible rental terms
@@ -1099,7 +1099,7 @@
 
                                 <li class="d-flex gap-2 mb-2">
 
-                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <i class="fas fa-check-circle primary-text-color mt-1"></i>
 
                                     <span class="small">
                                         Fully equipped & secure
@@ -1109,7 +1109,7 @@
 
                                 <li class="d-flex gap-2">
 
-                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <i class="fas fa-check-circle primary-text-color mt-1"></i>
 
                                     <span class="small">
                                         Trusted ABYzone partner

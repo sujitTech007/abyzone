@@ -185,6 +185,14 @@ ul li{
     color: var(--secondary-color);
 }
 
+.primary-text-color{
+    color: var(--primary-color);
+}
+
+.bg-color-primary{
+    background-color: var(--primary-color);
+}
+
 
 
 /* =========================
@@ -3626,9 +3634,12 @@ margin-left: 10px;
 
 
 .blog-page .blog-image-wrapper{
-height: 200px;
+height: 150px;
 }
 
+.blog-page .blog-card-title {
+    font-size: 15px;
+}
 
 .latest-post-title {
     font-size: 12px;
@@ -4376,4 +4387,44 @@ height: 200px;
 
 .location-dropdown .warehouse-check {
     padding: 6px 0;
+}
+
+.contact_icon_box{
+    width: 35px;
+    height: 35px;
+flex: none;}
+
+
+/* ==============================
+   CONTACT PAGE
+================================ */
+
+
+
+
+/* Main Card */
+
+.contact-card {
+    max-width: 1180px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    /* background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08); */
+}
+
+
+
+/* Form */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 22px;
 }
