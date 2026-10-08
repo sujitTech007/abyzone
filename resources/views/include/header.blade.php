@@ -43,12 +43,12 @@
             <div class="d-flex justify-content-between align-items-center py-2 small">
 
                 <div class="d-flex gap-3">
-                    <span class="d-none d-md-block">
+                    <span class="d-none d-md-block fs-11">
                     Canada's Trusted Warehouse Logistics Platform
                 </span>
 
                 <a href="mailto:connect@abyzone.ca"
-                   class="text-white text-decoration-none">
+                   class="text-white text-decoration-none fs-11">
                     <i class="fa-solid fa-envelope me-1"></i>
                     connect@abyzone.ca
                 </a>
