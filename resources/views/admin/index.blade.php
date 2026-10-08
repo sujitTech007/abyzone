@@ -41,7 +41,7 @@
                     <i class="fas fa-users text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Total Customers</p>
+                    <p class="text-muted  fw-semibold mb-1">Total Customers</p>
                     <h2 class="fw-bold mb-0">{{ $usersCount }}</h2>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     <i class="fas fa-user-check text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Active Customers</p>
+                    <p class="text-muted  fw-semibold mb-1">Active Customers</p>
                     <h2 class="fw-bold mb-0">{{ $ActiveUsersCount }}</h2>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     <i class="fas fa-user-times text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Inactive Customers</p>
+                    <p class="text-muted  fw-semibold mb-1">Inactive Customers</p>
                     <h2 class="fw-bold mb-0">{{ $InactiveUsersCount }}</h2>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     <i class="fas fa-user-tie text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Total Owners</p>
+                    <p class="text-muted  fw-semibold mb-1">Total Owners</p>
                     <h2 class="fw-bold mb-0">{{ $ownersCount }}</h2>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                     <i class="fas fa-user-check text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Active Owners</p>
+                    <p class="text-muted  fw-semibold mb-1">Active Owners</p>
                     <h2 class="fw-bold mb-0">{{ $ActiveOwnersCount }}</h2>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     <i class="fas fa-user-times text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Inactive Owners</p>
+                    <p class="text-muted  fw-semibold mb-1">Inactive Owners</p>
                     <h2 class="fw-bold mb-0">{{ $InactiveOwnersCount }}</h2>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                     <i class="fas fa-warehouse text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Total Warehouses</p>
+                    <p class="text-muted  fw-semibold mb-1">Total Warehouses</p>
                     <h2 class="fw-bold mb-0">{{ $totalWarehousesCount }}</h2>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                     <i class="fas fa-file-alt text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Draft Warehouses</p>
+                    <p class="text-muted  fw-semibold mb-1">Draft Warehouses</p>
                     <h2 class="fw-bold mb-0">{{ $draftWarehousesCount }}</h2>
                 </div>
             </div>
@@ -163,7 +163,7 @@
                     <i class="fas fa-check-circle text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Available Warehouses</p>
+                    <p class="text-muted  fw-semibold mb-1">Available Warehouses</p>
                     <h2 class="fw-bold mb-0">{{ $availableWarehousesCount }}</h2>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     <i class="fas fa-times-circle text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Unavailable Warehouses</p>
+                    <p class="text-muted  fw-semibold mb-1">Unavailable Warehouses</p>
                     <h2 class="fw-bold mb-0">{{ $unavailableWarehousesCount }}</h2>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                     <i class="fas fa-hourglass-half text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Pending Bookings</p>
+                    <p class="text-muted  fw-semibold mb-1">Pending Bookings</p>
                     <h2 class="fw-bold mb-0">{{ $pendingBookingsCount }}</h2>
                 </div>
             </div>
@@ -210,7 +210,7 @@
                     <i class="fas fa-check text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Approved Bookings</p>
+                    <p class="text-muted  fw-semibold mb-1">Approved Bookings</p>
                     <h2 class="fw-bold mb-0">{{ $approvedBookingsCount }}</h2>
                 </div>
             </div>
@@ -224,7 +224,7 @@
                     <i class="fas fa-times text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Declined Bookings</p>
+                    <p class="text-muted  fw-semibold mb-1">Declined Bookings</p>
                     <h2 class="fw-bold mb-0">{{ $declinedBookingsCount }}</h2>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                     <i class="fas fa-calendar-alt text-white"></i>
                 </div>
                 <div>
-                    <p class="text-muted text-uppercase fw-semibold mb-1">Meeting Scheduled</p>
+                    <p class="text-muted  fw-semibold mb-1">Meeting Scheduled</p>
                     <h2 class="fw-bold mb-0">{{ $meetingScheduledBookingsCount }}</h2>
                 </div>
             </div>
