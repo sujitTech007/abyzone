@@ -1,221 +1,26 @@
 @include('include.header')
-
-<main class="fix">
-
-    <section class="breadcrumb__area breadcrumb__bg position-relative"
-
-        style="background-image: url('assets/images/bg/breadcrumb_bg.jpg');">
-
-
-
-        <!-- Gradient Overlay -->
-
-        <div class="breadcrumb-overlay position-absolute top-0 start-0 w-100 h-100"></div>
-
-
-
-        <div class="container position-relative z-1">
-
-            <div class="row">
-
-                <div class="col-12">
-
-                    <div class="breadcrumb__content">
-
-                        <h1 class="title">Blog Detail</h1>
-
-                        <nav class="breadcrumb">
-
-                            <span property="itemListElement" typeof="ListItem"><a
-
-                                    href="{{ route('home') }}">Home</a></span>
-
-                            <span class="breadcrumb-separator"><i class="flaticon-right-arrow"></i></span>
-
-                            <span property="itemListElement" typeof="ListItem">Blog Detail</span>
-
-                        </nav>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-
-
-
-
-    <section class="blog-details-area section-py-120 blog-detailresponsive">
+<section class="hero inner-hero">
 
         <div class="container">
 
-            <div class="row">
+            <div class="hero-content p-0">
 
-
-
-                <div class="col-lg-4">
-
-                    <aside class="blog-sidebar">
-
-                        <div class="blog-widget widget_search">
-
-                            <div class="sidebar-search-form">
-
-                                <form id="blog-search-form">
-
-                                    <input type="text" id="blog-search-input" placeholder="Search here">
-
-                                    <button type="submit">
-
-                                        <i class="flaticon-search"></i>
-
-                                    </button>
-
-                                </form>
-
-                            </div>
-
-                        </div>
-
-                        <div class="blog-widget">
-
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-
-                                <h4 class="widget-title mb-0">Categories</h4>
-
-                                <a href="{{ route('blog') }}"> <u> All </u></a>
-
-                            </div>
-
-                            <div class="shop-cat-list">
-
-                                <ul class="list-wrap">
-
-                                    @foreach($categories as $cat)
-
-                                    <li class="{{ (isset($category) && $category == $cat) ? 'active' : '' }}">
-
-                                        <a href="{{ route('blog', $cat) }}">
-
-                                            {{ $cat }} <span>({{ $categoryCounts[$cat] ?? 0 }})</span>
-
-                                        </a>
-
-                                    </li>
-
-                                    @endforeach
-
-                                </ul>
-
-                            </div>
-
-
-
-                        </div>
-
-                        <div class="blog-widget">
-
-                            <h4 class="widget-title">Latest Post</h4>
-
-                            @foreach($latestBlogs as $latestBlog)
-
-                            <div class="rc-post-item">
-
-                                <div class="rc-post-thumb"><a href="{{ route('blog.details', $latestBlog->id ) }}"><img alt="img"
-
-                                            loading="lazy" width="392" height="260" decoding="async"
-
-                                            data-nimg="1" style="color:transparent"
-
-                                            src="{{ asset($latestBlog->image) }}"></a>
-
-                                </div>
-
-                                <div class="rc-post-content"><span class="date"><i
-
-                                            class="flaticon-calendar"></i> {{ \Carbon\Carbon::parse($latestBlog->created_at)->format('d M, Y') }}</span>
-
-                                    <h4 class="title"><a href="{{ route('blog.details', $latestBlog->id ) }}">{{ $latestBlog->title }}</a></h4>
-
-                                </div>
-
-                            </div>
-
-                            @endforeach
-
-                        </div>
-
-
-
-                    </aside>
-
+                <div class="eyebrow">
+                    Our Blog 
                 </div>
 
-                <div class="col-lg-8">
+                <h1>
+                    Logistics Insights
+        <br>
+        <span>That Move Business Forward</span>
+                </h1>
 
-                    <div class="row">
+                <p class="hero-description text-white">
+                    Stay ahead with expert advice, industry insights, and the latest trends
+        in warehousing, fulfillment, transportation, and supply chain solutions.
+                </p>
 
-                        @foreach($blogs as $blog)
-
-                        <div class="col-xl-6 col-lg-6 col-sm-6">
-
-                            <div class="services__item">
-
-                                <div class="services__thumb-wrap">
-
-                                    <div class="services__thumb">
-
-                                        <img alt="img" loading="lazy" width="1000" height="560" decoding="async" style="color:transparent" src="{{ asset($blog->image)}}">
-
-                                        <a class="btn btn-two border-btn" href="{{ route('blog.details', $blog->id ) }}">Read More<i class="fas fa-arrow-up"></i></a>
-
-                                    </div>
-
-                                    <div class="services__icon"><i class="flaticon-train"></i></div>
-
-                                </div>
-
-                                <div class="services__content">
-
-                                    <h3 class="title"><a href="{{ route('blog.details', $blog->id ) }}">{{ $blog->title }}</a></h3>
-
-                                    <span class="date">
-
-                                        <i class="flaticon-calendar"></i>
-
-                                        {{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}
-
-                                    </span>
-
-                                    <ul class="service-info d-flex flex-wrap mb-2">
-
-                                        <p>{{ \Illuminate\Support\Str::limit($blog->content, 100) }}</p>
-
-                                    </ul>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        @endforeach
-
-
-
-                    </div>
-
-
-
-                </div>
-
+               
             </div>
 
         </div>
@@ -224,116 +29,395 @@
 
 
 
+<section class="py-5 blog-page">
+    <div class="container">
+        <div class="row g-4 g-lg-5">
+
+            {{-- =========================
+                SIDEBAR
+            ========================== --}}
+            <div class="col-lg-4 col-xl-3">
+                <aside class="blog-sidebar">
+
+                    {{-- Search --}}
+                    <div class="blog-widget mb-4">
+                        <h4 class="widget-title">Search</h4>
+
+                        <div class="sidebar-search-form mt-2">
+                            <form id="blog-search-form">
+                                <div class="input-group">
+                                    <input
+                                        type="text"
+                                        id="blog-search-input"
+                                        class="form-control"
+                                        placeholder="Search here"
+                                        autocomplete="off">
+
+                                    <button
+                                        type="submit"
+                                        class="btn theme_btn">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
 
+                    {{-- Categories --}}
+                    <div class="blog-widget mb-4">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="widget-title mb-0">
+                                Categories
+                            </h4>
+
+                            <a href="{{ route('blog') }}" class="blog-all-link">
+                                <u>All</u>
+                            </a>
+                        </div>
+
+                        <div class="shop-cat-list">
+                            <ul class="list-wrap list-unstyled mb-0">
+
+                                @foreach($categories as $cat)
+
+                                    <li class="{{ (isset($category) && $category == $cat) ? 'active' : '' }}">
+                                        <a href="{{ route('blog', $cat) }}"
+                                           class="d-flex justify-content-between align-items-center">
+
+                                            <span>{{ $cat }}</span>
+
+                                            <span class="category-count">
+                                                ({{ $categoryCounts[$cat] ?? 0 }})
+                                            </span>
+
+                                        </a>
+                                    </li>
+
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+                    </div>
 
 
+                    {{-- Latest Posts --}}
+                    <div class="blog-widget">
+
+                        <h4 class="widget-title mb-4">
+                            Latest Post
+                        </h4>
+
+                        @foreach($latestBlogs as $latestBlog)
+
+                            <div class="latest-post-item d-flex gap-3 mb-3">
+
+                                <a
+                                    href="{{ route('blog.details', $latestBlog->id) }}"
+                                    class="latest-post-image flex-shrink-0">
+
+                                    <img
+                                        src="{{ asset($latestBlog->image) }}"
+                                        alt="{{ $latestBlog->title }}"
+                                        loading="lazy">
+                                </a>
+
+                                <div class="latest-post-content">
+
+                                    <span class="latest-post-date fs-10">
+                                        <i class="far fa-calendar-alt me-1"></i>
+                                        {{ \Carbon\Carbon::parse($latestBlog->created_at)->format('d M, Y') }}
+                                    </span>
+
+                                    <h5 class="latest-post-title mb-0">
+                                        <a href="{{ route('blog.details', $latestBlog->id) }}">
+                                            {{ $latestBlog->title }}
+                                        </a>
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+                        @endforeach
+
+                    </div>
+
+                </aside>
+            </div>
 
 
-</main>
+            {{-- =========================
+                BLOG LIST
+            ========================== --}}
+            <div class="col-lg-8 col-xl-9">
+
+                <div id="blog-container" class="row g-4">
+
+                    @foreach($blogs as $blog)
+
+                        <div class="col-md-4">
+
+                            <article class="blog-card h-100">
+
+                                {{-- Image --}}
+                                <div class="blog-image-wrapper">
+
+                                    <a href="{{ route('blog.details', $blog->id) }}">
+                                        <img
+                                            src="{{ asset($blog->image) }}"
+                                            alt="{{ $blog->title }}"
+                                            class="blog-image"
+                                            loading="lazy">
+                                    </a>
+
+                                    <div class="blog-date">
+                                        <i class="far fa-calendar-alt me-1"></i>
+                                        {{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}
+                                    </div>
+
+                                </div>
 
 
+                                {{-- Content --}}
+                                <div class="blog-card-body">
+
+                                    <div class="blog-meta">
+                                        <span>
+                                            <i class="far fa-clock me-1"></i>
+                                            5 Min Read
+                                        </span>
+                                    </div>
+
+                                    <h3 class="blog-card-title">
+                                        <a href="{{ route('blog.details', $blog->id) }}">
+                                            {{ $blog->title }}
+                                        </a>
+                                    </h3>
+
+                                    <p class="blog-excerpt">
+                                        {{ \Illuminate\Support\Str::limit(strip_tags($blog->content), 120) }}
+                                    </p>
+
+                                    <a
+                                        href="{{ route('blog.details', $blog->id) }}"
+                                        class="blog-read-more">
+
+                                        Read More
+
+                                        <span>
+                                            <i class="fas fa-arrow-right"></i>
+                                        </span>
+
+                                    </a>
+
+                                </div>
+
+                            </article>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function () {
 
-        $('#blog-search-form').on('submit', function(e) {
+    $('#blog-search-form').on('submit', function (e) {
 
-            e.preventDefault(); // prevent page reload
+        e.preventDefault();
 
-            let keyword = $('#blog-search-input').val();
+        let keyword = $('#blog-search-input').val().trim();
 
+        let blogContainer = $('#blog-container');
 
+        // Empty search par normal page reload
+        if (keyword === '') {
+            window.location.href = "{{ route('blog') }}";
+            return;
+        }
 
-            $.ajax({
+        // Optional loading
+        blogContainer.html(`
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        `);
 
-                url: "{{ route('blog.search') }}", // route for search
+        $.ajax({
 
-                type: "GET",
+            url: "{{ route('blog.search') }}",
 
-                data: {
-                    keyword: keyword
-                },
+            type: "GET",
 
-                success: function(response) {
+            data: {
+                keyword: keyword
+            },
 
-                    // Clear old blogs
+            success: function (response) {
 
-                    let blogContainer = $('.blog-details-area .row .col-lg-8 .row');
+                blogContainer.empty();
 
-                    blogContainer.empty();
+                if (response.blogs && response.blogs.length > 0) {
 
+                    $.each(response.blogs, function (index, blog) {
 
+                        let imageUrl = "{{ asset('') }}" + blog.image;
 
-                    if (response.blogs.length > 0) {
+                        let detailUrl = "{{ url('/blog-detail') }}/" + blog.id;
 
-                        $.each(response.blogs, function(index, blog) {
+                        let createdDate = formatDate(blog.created_at);
 
-                            let imageUrl = "{{ asset('') }}" + blog.image;
+                        let content = blog.content_short
+                            ? blog.content_short
+                            : '';
 
-                            let blogHtml = `
+                        let blogHtml = `
 
-                        <div class="col-xl-6 col-lg-6 col-sm-6">
+                            <div class="col-md-6">
 
-                            <div class="services__item">
+                                <article class="blog-card h-100">
 
-                                <div class="services__thumb-wrap">
+                                    <div class="blog-image-wrapper">
 
-                                    <div class="services__thumb">
+                                        <a href="${detailUrl}">
+                                            <img
+                                                src="${imageUrl}"
+                                                alt="${escapeHtml(blog.title)}"
+                                                class="blog-image"
+                                                loading="lazy">
+                                        </a>
 
-                                        <img alt="img" loading="lazy" width="1000" height="560" decoding="async" style="color:transparent" src="${imageUrl}">
-
-                                        <a class="btn btn-two border-btn" href="/UAT/public/blog-detail/${blog.id}">Read More<i class="fas fa-arrow-up"></i></a>
+                                        <div class="blog-date">
+                                            <i class="far fa-calendar-alt me-1"></i>
+                                            ${createdDate}
+                                        </div>
 
                                     </div>
 
-                                    <div class="services__icon"><i class="flaticon-train"></i></div>
+                                    <div class="blog-card-body">
 
-                                </div>
+                                        <div class="blog-meta">
+                                            <span>
+                                                <i class="far fa-clock me-1"></i>
+                                                5 Min Read
+                                            </span>
+                                        </div>
 
-                                <div class="services__content">
+                                        <h3 class="blog-card-title">
+                                            <a href="${detailUrl}">
+                                                ${escapeHtml(blog.title)}
+                                            </a>
+                                        </h3>
 
-                                    <h3 class="title"><a href="/UAT/public/blog-detail/${blog.id}">${blog.title}</a></h3>
+                                        <p class="blog-excerpt">
+                                            ${escapeHtml(content)}
+                                        </p>
 
-                                    <span class="date"><i class="flaticon-calendar"></i> ${blog.created_at}</span>
+                                        <a
+                                            href="${detailUrl}"
+                                            class="blog-read-more">
 
-                                    <ul class="service-info d-flex flex-wrap mb-2">
+                                            Read More
 
-                                        <p>${blog.content_short}</p>
+                                            <span>
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
 
-                                    </ul>
+                                        </a>
 
-                                </div>
+                                    </div>
+
+                                </article>
 
                             </div>
 
-                        </div>`;
+                        `;
 
-                            blogContainer.append(blogHtml);
+                        blogContainer.append(blogHtml);
+                    });
 
-                        });
+                } else {
 
-                    } else {
-
-                        blogContainer.append('<p>No blogs found for this search.</p>');
-
-                    }
-
-                },
-
-                error: function() {
-
-                    alert('Something went wrong!');
-
+                    blogContainer.html(`
+                        <div class="col-12">
+                            <div class="text-center py-5">
+                                <h4>No blogs found</h4>
+                                <p class="text-muted mb-0">
+                                    No blogs found for "${escapeHtml(keyword)}".
+                                </p>
+                            </div>
+                        </div>
+                    `);
                 }
+            },
 
-            });
+            error: function () {
 
+                blogContainer.html(`
+                    <div class="col-12">
+                        <div class="alert alert-danger">
+                            Something went wrong. Please try again.
+                        </div>
+                    </div>
+                `);
+            }
         });
-
     });
+
+
+    // Format date
+    function formatDate(dateString) {
+
+        if (!dateString) {
+            return '';
+        }
+
+        let date = new Date(dateString);
+
+        if (isNaN(date.getTime())) {
+            return dateString;
+        }
+
+        let day = String(date.getDate()).padStart(2, '0');
+
+        let monthNames = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+
+        let month = monthNames[date.getMonth()];
+
+        let year = date.getFullYear();
+
+        return `${day} ${month}, ${year}`;
+    }
+
+
+    // Prevent HTML injection in AJAX response
+    function escapeHtml(text) {
+
+        if (!text) {
+            return '';
+        }
+
+        return $('<div>').text(text).html();
+    }
+
+});
 </script>
 
 @include('include.footer')

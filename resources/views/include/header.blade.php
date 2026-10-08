@@ -5,73 +5,29 @@
 
 <head>
 
-    <meta charSet="utf-8" />
+<title>ABYzone | AI-Powered Warehousing & Fulfillment Solutions</title>
+<meta name="description" content="ABYzone provides AI-powered warehousing, flexible storage, fulfillment, and warehouse locator solutions for small and medium businesses across Canada and North America.">
+<meta name="keywords" content="ABYzone, warehousing, warehouse solutions, AI warehouse, warehouse locator, storage solutions, fulfillment, logistics, Canada">
+<meta name="author" content="ABYzone">
+<meta name="robots" content="noindex, nofollow">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.css') }}">
+<link rel="canonical" href="{{ url('/') }}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="{{ asset('assets/images/qby-logo.png') }}" type="image/x-icon">
+<!-- Favicon -->
+<link rel="icon" href="{{ asset('assets/images/icon/favicon.png') }}" type="image/png">
+<link rel="apple-touch-icon" href="{{ asset('assets/images/icon/favicon.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/aaa5c0f168402b6e.css') }}" data-precedence="next" />
+<!-- Theme Color -->
+<meta name="theme-color" content="#ffffff">
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="{{ asset('assets/css/9793277900c9dac9.css') }}" data-precedence="next" />
-
-    <link rel="stylesheet" href="{{ asset('assets/css/a9767450ca923300.css') }}" data-precedence="next" />
-
-    <link rel="stylesheet" href="{{ asset('assets/css/74632f41d41e0b8d.css') }}" data-precedence="next" />
-
-    <link rel="stylesheet" href="{{ asset('assets/css/724120c35b20b244.css') }}" data-precedence="next" />
-
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" data-precedence="next" />
-
-
-    <script src="{{ asset('assets/main.js/4bd1b696-16029bbff0e3804c.js') }}" async=""></script>
-    <script src="{{ asset('assets/main.js/517-47ff303fab14ebda.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/209-8898e30c50bf71bf.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/206-92691ffdb88e0357.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/301-41e567c285cdfdcb.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/188-5eeef9bc2bb7e99d.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/876-cf184394677fb9f1.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/159-b0143b32923895f8.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/43-77a193837de74252.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/main.js/466-af3424d16c27946b.js') }}" async=""></script>
-
-    <script src="{{ asset('assets/app/page-901b5164f695dc82.js') }}" async=""></script>
-    <meta name="description" content="abyzone" />
-    <link rel="icon" href="{{ asset('assets/images/icon/favicon.png') }}" sizes="any" />
-
-    <title>ABYzone</title>
-    <script src="{{ asset('assets/main.js/polyfills-42372ed130431b0a.js') }}" noModule=""></script>
-
-    <script>
-
-        window.addEventListener('scroll', function () {
-
-            const header = document.getElementById('sticky-header');
-
-            if (window.scrollY > 100) {
-
-                header.classList.add('is-sticky');
-
-            } else {
-
-                header.classList.remove('is-sticky');
-
-            }
-
-        });
-
-    </script>
-
-
+<!-- CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 </head>
 
@@ -79,67 +35,243 @@
 
 <body>
 
-    <div class="theme-blue">
+  <header>
 
-        <button class="scroll__top ultra-smooth-scroll" data-target="html">
+    <!-- Top Strip -->
+    <div class="header-top text-white">
+        <div class="container px-3 px-lg-4">
+            <div class="d-flex justify-content-between align-items-center py-2 small">
 
-            <i class="tg-flaticon-arrowhead-up"></i>
+                <div class="d-flex gap-3">
+                    <span class="d-none d-md-block">
+                    Canada's Trusted Warehouse Logistics Platform
+                </span>
 
-        </button>
+                <a href="mailto:connect@abyzone.ca"
+                   class="text-white text-decoration-none">
+                    <i class="fa-solid fa-envelope me-1"></i>
+                    connect@abyzone.ca
+                </a>
+                </div>
 
-        <header>
+                <div class="d-flex gap-3">
+                    <a href="https://www.facebook.com/abyzone.ca"
+                       target="_blank"
+                       class="text-white">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
 
-            <div id="header-fixed-height"></div>
+                    <a href="https://www.instagram.com/abyzone.ca/"
+                       target="_blank"
+                       class="text-white">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
 
+                    <a href="https://www.linkedin.com/company/abyzone/"
+                       target="_blank"
+                       class="text-white">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
 
-
-            <div class="tg-header__top header-banner">
-
-                <div class="container-fluid p-0">
-
-                    <div class="row align-items-center">
-
-                        <div class="col-xl-7">
-
-                            <ul class="tg-header__top-info left-side list-wrap">
-
-                               
-
-                                <li><i class="flaticon-envelope"></i><a
-                                        href="mailto:connect@abyzone.ca">connect@abyzone.ca</a></li>
-
-                            </ul>
-
-                        </div>
-
-                        <div class="col-xl-5">
-
-                            <div class="tg-header__top-right">
+            </div>
+        </div>
+    </div>
 
 
+    <!-- ================= ONE NAVBAR ================= -->
+    <nav class="navbar navbar-expand-xl bg-white shadow-sm sticky-top">
 
-                                <div class="tg-header__top-social">
+        <div class="container px-3 px-lg-4">
 
-                                    <ul class="list-wrap">
+            <!-- Logo -->
+            <a class="navbar-brand p-0" href="{{ route('home') }}">
+                <img src="{{ asset('assets/images/images/qby-logo.png') }}"
+                     alt="ABYzone"
+                     height="60">
+            </a>
 
-                                        <li><a target="_blank" href="https://www.facebook.com/abyzone.ca" class="px-2">
-                                                <i class="fab fa-facebook-f"></i></a>
-                                        </li>
 
-                                        <li><a target="_blank" href="https://www.instagram.com/abyzone.ca/"
-                                                class="px-2">
-                                                <i class="fab fa-instagram"></i></a>
-                                        </li>
+            <!-- Mobile Menu Button -->
+            <button class="navbar-toggler border-0 shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
 
-                                        <li><a target="_blank" href="https://www.linkedin.com/company/abyzone/"
-                                                class="px-2">
-                                                <i class="fab fa-linkedin"></i></a>
-                                        </li>
+                <i class="fa-solid fa-bars fa-lg"></i>
 
-                                    </ul>
+            </button>
+
+
+            <!-- ONE MENU ONLY -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <!-- Navigation -->
+                <ul class="navbar-nav mx-auto align-items-xl-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 {{ request()->routeIs('home') ? 'active' : '' }}"
+                           href="{{ route('home') }}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 {{ request()->routeIs('about') ? 'active' : '' }}"
+                           href="{{ route('about') }}">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 {{ request()->routeIs('services') ? 'active' : '' }}"
+                           href="{{ route('services') }}">
+                            Services
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 {{ request()->routeIs('explore') ? 'active' : '' }}"
+                           href="{{ route('explore') }}">
+                            Explore
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 {{ request()->routeIs('blog') ? 'active' : '' }}"
+                           href="{{ route('blog') }}">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 {{ request()->routeIs('contact') ? 'active' : '' }}"
+                           href="{{ route('contact') }}">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0">
+
+                    <!-- Search Icon -->
+                    <button type="button"
+                            class="btn btn-link text-dark text-decoration-none fs-5"
+                            data-bs-toggle="modal"
+                            data-bs-target="#searchModal"
+                            aria-label="Search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </button>
+
+
+                    @if(Auth::check())
+
+                        <a href="{{ route('user.dashboard') }}"
+                           class="btn btn-outline-secondary rounded-pill px-3 text-nowrap">
+                            <i class="fa-regular fa-user me-1"></i>
+                            Dashboard
+                        </a>
+
+                    @else
+
+                        <!-- Login -->
+                        <a href="{{ route('auth.login') }}"
+                           class="btn btn-link text-dark text-decoration-none text-nowrap">
+                            <i class="fa-regular fa-user me-1"></i>
+                            Login
+                        </a>
+
+                        <!-- Get Started -->
+                        <a href="{{ route('auth.register') }}"
+                           class="btn theme_btn">
+                            Get Started
+                            <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+
+                    @endif
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+<!-- ================= SEARCH MODAL ================= -->
+
+<div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog modal-fullscreen">
+
+        <div class="modal-content bg-white">
+
+            <!-- Close -->
+            <div class="container-fluid px-3 px-lg-5">
+
+                <div class="d-flex justify-content-between align-items-center py-4 border-bottom">
+
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('assets/images/images/qby-logo.png') }}" alt="ABYzone" height="42">
+                    </a>
+
+                    <button type="button" class="btn btn-light rounded-circle" data-bs-dismiss="modal"
+                        aria-label="Close">
+
+                        <i class="fa-solid fa-xmark fs-4"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Search Area -->
+                <div class="row justify-content-center">
+
+                    <div class="col-12 col-lg-8">
+
+                        <div class="text-center mt-5 pt-lg-5">
+
+                            <h2 class="fw-bold mb-2">
+                                Find Your Warehouse
+                            </h2>
+
+                            <p class="text-muted mb-4">
+                                Search warehouses by name, city or location
+                            </p>
+
+
+                            <!-- Search Form -->
+                            <form action="{{ route('explore') }}" method="GET" id="searchForm">
+
+                                <div class="input-group input-group-lg">
+
+                                    <input type="text" name="search" id="popupWarehouseSearch" class="form-control"
+                                        placeholder="Search warehouse..." autocomplete="off" autofocus>
+
+                                    <button type="submit" class="btn theme_btn px-4">
+
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    </button>
 
                                 </div>
 
+                            </form>
+
+
+                            <!-- Dynamic Results -->
+                            <div id="popupSearchResults" class="text-start mt-2">
                             </div>
 
                         </div>
@@ -150,405 +282,50 @@
 
             </div>
 
-            <div id="sticky-header" class="tg-header__area">
+        </div>
 
-                <div class="container-fluid p-0">
+    </div>
 
-                    <div class="row gx-0">
+</div>
 
-                        <div class="col-12">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-                            <div class="tgmenu__wrap">
+    const searchInput = document.getElementById('popupWarehouseSearch');
+    const resultsBox = document.getElementById('popupSearchResults');
 
-                                <div class="tgmenu__nav-left-side">
+    if (!searchInput || !resultsBox) return;
 
-                                    <div class="offcanvas-toggle"></div>
+    let searchTimer;
 
-                                    <div class="logo"><a href="{{ route('home') }}"><img alt="Logo" loading="lazy"
-                                                decoding="async" data-nimg="1" style="color:transparent"
-                                                src="{{ asset('assets/images/images/qby-logo.png') }}"></a></div>
 
-                                </div>
+    searchInput.addEventListener('input', function () {
 
-                                <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
+        clearTimeout(searchTimer);
 
-                                    <ul class="navigation">
+        const keyword = this.value.trim();
 
-                                        <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
+        if (keyword.length < 2) {
 
-                                            <a href="{{ route('home') }}">Home</a>
+            resultsBox.innerHTML = '';
 
-                                        </li>
+            return;
+        }
 
-                                        <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
 
-                                            <a href="{{ route('about') }}">About</a>
+        // 
 
-                                        </li>
+    });
 
-                                        <li class="{{ request()->routeIs('services') ? 'active' : '' }}">
 
-                                            <a href="{{ route('services') }}">Services</a>
+    // Clear search when modal closes
+    document.getElementById('searchModal')
+        .addEventListener('hidden.bs.modal', function () {
 
-                                        </li>
+            searchInput.value = '';
+            resultsBox.innerHTML = '';
 
-                                        <li class="{{ request()->routeIs('explore') ? 'active' : '' }}">
+        });
 
-                                            <a href="{{ route('explore') }}">Explore</a>
-
-                                        </li>
-
-                                        <li class="{{ request()->routeIs('blog') ? 'active' : '' }}">
-
-                                            <a href="{{ route('blog') }}">Blog</a>
-
-                                        </li>
-
-                                        <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
-
-                                            <a href="{{ route('contact') }}">Contact</a>
-
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-
-                                <div class="tgmenu__action d-none d-md-flex">
-
-                                    <ul class="list-wrap d-flex align-items-center gap-3">
-
-                                        @if(!Auth::check())
-
-                                            <li class="header-btn">
-
-                                                <a class="btn" href="{{ route('auth.register') }}">Sign Up</a>
-
-                                            </li>
-
-                                            <li class="header-btn">
-
-                                                <a class="btn btn-outline-light" href="{{ route('auth.login') }}">Login</a>
-
-                                            </li>
-
-                                        @else
-
-                                            <li class="header-btn">
-
-                                                <a class="btn btn-outline-light"
-                                                    href="{{ route('user.dashboard') }}">Dashboard</a>
-
-                                            </li>
-
-                                        @endif
-
-
-                                        <form action="{{ route('explore') }}" method="GET">
-
-                                            <div class="custom-search-box">
-
-                                                <input type="text" name="search" value="{{ $query ?? '' }}"
-                                                    placeholder="Find Warehouse" class="custom-search-input">
-
-                                                <button type="submit" class="custom-search-icon"
-                                                    style="border: 10px;width: 45px;height: 40px;border-radius: 10px;background: #faa31b;color: white;"><i
-                                                        class="flaticon-search"></i></button>
-
-                                            </div>
-
-                                        </form>
-
-
-                                    </ul>
-
-
-
-                                </div>
-
-                                <div class="mobile-nav-toggler"><i class="tg-flaticon-menu-1"></i></div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="offCanvas__info ">
-
-                <div class="offCanvas__close-icon menu-close"><button><i class="far fa-window-close"></i></button></div>
-
-                <div class="offCanvas__logo mb-30"><a href="index.html"><img alt="Logo" loading="lazy" width="142"
-                            height="40" decoding="async" data-nimg="1" style="color:transparent"
-                            src="assets/images/images/qby-logo.png" /></a></div>
-
-                <div class="">
-
-                    <div class="tgmobile__menu">
-
-                        <nav class="tgmobile__menu-box">
-
-                            <div class="close-btn"><i class="tg-flaticon-close"></i></div>
-
-                            <div class="nav-logo"><a href="index.html"><img alt="Logo" loading="lazy" width="142"
-                                        height="40" decoding="async" data-nimg="1" style="color:transparent"
-                                        src="assets/images/images/qby-logo.png" style="width: 150px;" /></a></div>
-
-                            <div class="tgmobile__search">
-
-                                <form><input type="text" placeholder="Search here..." /><button><i
-                                            class="fas fa-search"></i></button></form>
-
-                            </div>
-
-                            <div class="tgmobile__menu-outer">
-
-
-
-
-
-                            </div>
-
-                            <div class="social-links">
-
-                                <ul class="list-wrap">
-
-                                    <li><a target="_blank" href="https://www.facebook.com/abyzone.ca"><i
-                                        class="fab fa-facebook-f"></i></a></li>
-
-                             <li><a target="_blank" href="https://www.linkedin.com/company/abyzone"><i
-                                        class="fab fa-linkedin"></i></a></li> 
-
-
-
-                            <li><a target="_blank" href="https://www.instagram.com/abyzone.ca/"><i
-                                        class="fab fa-instagram"></i></a></li>
-
-
-
-                                </ul>
-
-                            </div>
-
-                        </nav>
-
-                    </div>
-
-                    <div class="tgmobile__menu-backdrop"></div>
-
-                </div>
-
-                <div class="offCanvas__side-info mb-30">
-
-
-
-                    <div class="my-mobile-nav">
-
-                        <div class="tgmobile__search">
-
-                            <form><input type="text" placeholder="Search here..." /><button><i
-                                        class="fas fa-search"></i></button></form>
-
-                        </div>
-
-
-
-                        <ul class="my-mobile-menu">
-
-                            <li class="my-has-children">
-
-                                <a class="active" href="{{ route('home') }}">Home</a>
-
-                            </li>
-
-
-
-                            <li>
-
-                                <a href="{{ route('about') }}">About</a>
-
-                            </li>
-
-
-
-                            <li class="my-has-children">
-
-                                <a href="{{ route('services') }}">Services</a>
-
-
-
-                            </li>
-
-
-
-                            <li class="my-has-children">
-
-                                <a href="{{ route('explore') }}">Explore</a>
-
-                            </li>
-
-
-
-                            <li class="my-has-children">
-
-                                <a href="{{ route('blog') }}">Blog</a>
-
-                            </li>
-
-
-
-                            <li>
-
-                                <a href="{{ route('contact') }}">Contact</a>
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-
-
-
-
-
-
-                </div>
-
-                <div class="offCanvas__social-icon mt-30"><a href="#"><i class="fab fa-facebook-f"></i></a><a
-                        href="#"><i class="fab fa-twitter"></i></a><a href="#"><i
-                            class="fab fa-google-plus-g"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
-
-            </div>
-
-            <div class="offCanvas__overly "></div>
-
-            <div class="search__popup">
-
-                <div class="container">
-
-                    <div class="row">
-
-                        <div class="col-12">
-
-                            <div class="search__wrapper">
-
-                                <div class="search__close"><button type="button" class="search-close-btn"><svg
-                                            width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-
-                                            <path d="M17 1L1 17" stroke="currentColor" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-
-                                            <path d="M1 1L17 17" stroke="currentColor" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-
-                                        </svg></button></div>
-
-                                <div class="search__form">
-
-                                    <form>
-
-                                        <div class="search__input"><input class="search-input-field" type="text"
-                                                placeholder="Type keywords here" value="" /><span
-                                                class="search-focus-border"></span><button><svg width="20" height="20"
-                                                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-                                                    <path
-                                                        d="M9.55 18.1C14.272 18.1 18.1 14.272 18.1 9.55C18.1 4.82797 14.272 1 9.55 1C4.82797 1 1 4.82797 1 9.55C1 14.272 4.82797 18.1 9.55 18.1Z"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-
-                                                    <path d="M19.0002 19.0002L17.2002 17.2002" stroke="currentcolor"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-
-                                                </svg></button></div>
-
-                                    </form>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="search-popup-overlay "></div>
-
-
-
-        </header>
-
-
-
-        <!-- Toast container -->
-
-        <div id="toast-container" style="position:fixed;top:20px;right:20px;z-index:2000"></div>
-
-
-
-        <script>
-
-            (function () {
-
-                function showToast(message, type) {
-
-                    var container = document.getElementById('toast-container');
-
-                    var toast = document.createElement('div');
-
-                    toast.className = 'alert';
-
-                    toast.style.minWidth = '200px';
-
-                    toast.style.marginTop = '10px';
-
-                    toast.style.opacity = '0.95';
-
-                    if (type === 'success') toast.classList.add('alert-success');
-
-                    else if (type === 'error') toast.classList.add('alert-danger');
-
-                    else toast.classList.add('alert-info');
-
-                    toast.innerText = message;
-
-                    container.appendChild(toast);
-
-                    setTimeout(function () { toast.remove(); }, 5000);
-
-                }
-
-
-
-                var flashes = {
-
-                    success: "{{ session('success') ?? '' }}",
-
-                    error: "{{ session('error') ?? '' }}",
-
-                    info: "{{ session('info') ?? '' }}"
-
-                };
-
-
-
-                for (var k in flashes) {
-
-                    if (flashes[k]) showToast(flashes[k], k);
-
-                }
-
-            })();
-
-        </script>
+});
+</script>

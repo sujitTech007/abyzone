@@ -1,113 +1,516 @@
+
 @include('include.header')
 
-        <main class="fix">
 
-            <section class="breadcrumb__area breadcrumb__bg position-relative" style="background-image: url('assets/images/bg/breadcrumb_bg.jpg');">
+    <!-- =========================
+     HERO SECTION
+========================== -->
 
-    
+    <section class="hero inner-hero">
 
-                <!-- Gradient Overlay -->
+        <div class="container">
 
-                <div class="breadcrumb-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+            <div class="hero-content p-0">
+
+                <div class="eyebrow">
+                    Canada's Trusted Warehouse Logistics Platform
+                </div>
+
+                <h1>
+                    Comprehensive Logistics and
+                    <br>
+                    <span> Warehousing Solutions</span>
+                </h1>
+
+                <p class="hero-description text-white">
+                    From storage to fulfillment, ABYZone offers flexible, technology-driven services to help your business grow, scale and succeed.
+                </p>
+
+                <a href="#" class="btn theme_btn">Get a Quote →</a>
+
+               
+            </div>
+
+        </div>
+
+    </section>
+
+  
+<section class="services-section py-5">
+    <div class="container">
+
+        <!-- Section Heading -->
+        <div class="row align-items-end mb-4">
+            <div class="col-lg-7">
+                <div class="section-title">
+                    <span class="sub_title">
+                        Our Services
+                    </span>
+                    <h2>
+                        Comprehensive Logistics Solutions
+                    </h2>
+
+                    <p>
+                       From storage to value-added services, we provide everything you need to
+                    keep your business moving.
+                    </p>
+                </div>
+                
+            </div>
+
+           
+        </div>
+
+
+        <!-- Services -->
+       <div class="row g-3">
+
+    <!-- 01 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="services-card">
+            <div class="service-icon">
+                <i class="fa-solid fa-warehouse"></i>
+            </div>
+
+            <h5>Warehouse Storage</h5>
+
+            <p>
+                Secure and flexible storage solutions for businesses of all sizes.
+                From short-term to long-term, we have you covered.
+            </p>
 
             
+        </div>
+    </div>
 
-                <div class="container position-relative z-1">
 
-                    <div class="row">
+    <!-- 02 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="services-card">
+            <div class="service-icon">
+                <i class="fa-solid fa-box"></i>
+            </div>
 
-                        <div class="col-12">
+            <h5>Fulfillment Services</h5>
 
-                            <div class="breadcrumb__content">
+            <p>
+                Fast, accurate and scalable fulfillment services to keep your
+                customers happy and your business moving.
+            </p>
 
-                                <h1 class="title">Our Services</h1>
+            
+        </div>
+    </div>
 
-                                <nav class="breadcrumb">
 
-                                    <span property="itemListElement" typeof="ListItem"><a href="{{ route('home') }}">Home</a></span>
+    <!-- 03 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="services-card">
+            <div class="service-icon">
+                <i class="fa-solid fa-truck"></i>
+            </div>
 
-                                    <span class="breadcrumb-separator"><i class="flaticon-right-arrow"></i></span>
+            <h5>Transport & Distribution</h5>
 
-                                    <span property="itemListElement" typeof="ListItem">Our Services</span>
+            <p>
+                Reliable transportation and distribution networks to ensure
+                your goods reach their destination on time.
+            </p>
 
-                                </nav>
+            
+        </div>
+    </div>
 
+
+    <!-- 04 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="services-card">
+            <div class="service-icon">
+                <i class="fa-solid fa-box-open"></i>
+            </div>
+
+            <h5>Packaging Solutions</h5>
+
+            <p>
+                Professional packaging services to protect your products
+                and enhance your overall brand experience.
+            </p>
+
+            
+        </div>
+    </div>
+
+
+    <!-- 05 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="services-card">
+            <div class="service-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <h5>Labor & Handling</h5>
+
+            <p>
+                Skilled and trained labor support for loading, unloading,
+                sorting and other warehouse handling requirements.
+            </p>
+
+            
+        </div>
+    </div>
+
+
+    <!-- 06 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="services-card">
+            <div class="service-icon">
+                <i class="fa-solid fa-boxes-stacked"></i>
+            </div>
+
+            <h5>Inventory Management</h5>
+
+            <p>
+                Real-time tracking and smart inventory management to keep
+                your operations organized and always in sync.
+            </p>
+
+            
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</section>
+
+
+
+
+
+
+ 
+
+<section class="abz-process py-5">
+    <div class="container">
+        <div class="row align-items-start">
+
+            <!-- Left Content -->
+            <div class="col-lg-3 col-md-12">
+                <div class="section-title">
+                        <span class="sub_title">
+                            HOW ABYZONE WORKS
+                        </span>
+                        <h2>
+                            From Search to Scale,<br>
+                        in 4 Simple Steps.
+                        </h2>
+
+                        <p>Find the right warehouse, book in minutes, and manage your inventory with ease.</p>
+                    </div>
+                
+            </div>
+
+            <!-- Steps -->
+            <div class="col-lg-9 col-md-12">
+                <div class="abz-process__steps">
+
+                    <!-- Step 1 -->
+                    <div class="abz-process__step">
+                        <div class="abz-process__top">
+                            <div class="abz-process__icon-wrap">
+                                <span class="abz-process__number">1</span>
+                                <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
 
+                            <div class="abz-process__arrow">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
                         </div>
 
+                        <h3>Search</h3>
+
+                        <p>
+                            Explore warehouses across Canada with
+                            real-time availability and detailed filters.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="abz-process__step">
+                        <div class="abz-process__top">
+                            <div class="abz-process__icon-wrap abz-process__icon-wrap--yellow">
+                                <span class="abz-process__number">2</span>
+                                <i class="fa-regular fa-calendar-days"></i>
+                            </div>
+
+                            <div class="abz-process__arrow">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <h3>Compare &amp; Book</h3>
+
+                        <p>
+                            Compare options, check capacity and pricing,
+                            then book instantly online.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="abz-process__step">
+                        <div class="abz-process__top">
+                            <div class="abz-process__icon-wrap abz-process__icon-wrap--red">
+                                <span class="abz-process__number">3</span>
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+
+                            <div class="abz-process__arrow">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <h3>Manage &amp; Scale</h3>
+
+                        <p>
+                            Track shipments, monitor inventory and grow
+                            with our partner network.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="abz-process__step">
+                        <div class="abz-process__top">
+                            <div class="abz-process__icon-wrap abz-process__icon-wrap--blue">
+                                <span class="abz-process__number">4</span>
+                                <i class="fa-regular fa-shield-check"></i>
+                            </div>
+                        </div>
+
+                        <h3>Build Your Network</h3>
+
+                        <p>
+                            Access 3PL services, vendors and logistics
+                            solutions to expand your business.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="wh-network py-5">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-4">
+
+
+            <div class="section-title">
+                        <span class="sub_title">OUR COVERAGE</span>
+                        <h2>Trusted Warehouse Network<br> Across Canada
+                        </h2>
+
+                        <p>From coast to coast, we connect you with verified warehouse spaces, trusted partners and local support.</p>
+            </div>
+                
+
+                <!-- STATS -->
+                <div class="d-flex gap-3 mt-4">
+
+                    <div class="wh-stat">
+                        <div class="wh-stat-icon">
+                            <i class="fa-solid fa-warehouse"></i>
+                        </div>
+                        <div>
+                            <strong>1,250+</strong>
+                            <small>Verified Warehouses</small>
+                        </div>
+                    </div>
+
+                    <div class="wh-stat">
+                        <div class="wh-stat-icon">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <div>
+                            <strong>500+</strong>
+                            <small>Active Partners</small>
+                        </div>
+                    </div>
+
+                    <div class="wh-stat">
+                        <div class="wh-stat-icon">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div>
+                            <strong>10+</strong>
+                            <small>Provinces & Territories</small>
+                        </div>
                     </div>
 
                 </div>
 
-            </section>
+                <button class="btn theme_btn mt-4">
+                    Explore Warehouse Map
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
 
-       
+            </div>
 
 
+            <!-- MAP -->
+            <div class="col-lg-5">
+
+                <div class="wh-map-area">
+
+                    <!-- Replace this with your Canada map -->
+                    <img src="{{ asset('assets/images/map.png') }}"
+                         class="wh-map"
+                         alt="Canada Warehouse Map">
+
+                    <!-- Location Pins -->
+                    <i class="fa-solid fa-location-dot wh-pin wh-p1"></i>
+                    <i class="fa-solid fa-location-dot wh-pin wh-p2"></i>
+                    <i class="fa-solid fa-location-dot wh-pin wh-p3"></i>
+                    <i class="fa-solid fa-location-dot wh-pin wh-p4"></i>
+                    <i class="fa-solid fa-location-dot wh-pin wh-p5"></i>
+                    <i class="fa-solid fa-location-dot wh-pin wh-p6"></i>
+
+                    <!-- City Labels -->
+                    <div class="wh-label wh-vancouver">
+                        Vancouver
+                        <span>BC</span>
+                    </div>
+
+                    <div class="wh-label wh-calgary">
+                        Calgary
+                        <span>AB</span>
+                    </div>
+
+                    <div class="wh-label wh-toronto">
+                        Toronto
+                        <span>ON</span>
+                    </div>
+
+                    <div class="wh-label wh-montreal">
+                        Montreal
+                        <span>QC</span>
+                    </div>
+
+                </div>
+
+            </div>
 
 
+            <!-- FEATURED CITIES -->
+            <div class="col-lg-3">
 
-            <section class="services__area fix">
+                <div class="wh-cities">
 
-                <div class="container">
+                    <div class="wh-cities-title">
+                        Featured Cities
+                    </div>
 
-                    
-
-                    <div class="row gutter-24 justify-content-center">
-
-                        
-
-                        @foreach($services as $service)
-
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-
-                            <div class="services__item">
-
-                                <div class="services__thumb-wrap">
-
-                                    <div class="services__thumb"><img alt="img" loading="lazy" width="1000" height="560" decoding="async" data-nimg="1" style="color:transparent" src="{{ asset($service->image)}}"><a class="btn btn-two border-btn" href="{{ route('service.detail', $service->slug)}}">Read More<i class="fas fa-arrow-up" ></i></a></div>
-
-                                    <div class="services__icon"><i class="flaticon-train"></i></div>
-
-                                </div>
-
-                                <div class="services__content">
-
-                                    <h3 class="title"><a href="{{ route('service.detail', $service->slug)}}">{{ $service->title}}</a>
-
-                                    </h3>
-
-                                    <p>{{  \Illuminate\Support\Str::limit($service->description, 120) }}</p>
-
-                                </div>
-
-                            </div>
-
+                    <div class="wh-city">
+                        <img src="toronto.jpg" alt="Toronto">
+                        <div>
+                            <b>Toronto</b>
+                            <small>1,250+ warehouses</small>
                         </div>
+                    </div>
 
-                        @endforeach
+                    <div class="wh-city">
+                        <img src="vancouver.jpg" alt="Vancouver">
+                        <div>
+                            <b>Vancouver</b>
+                            <small>980+ warehouses</small>
+                        </div>
+                    </div>
 
-                       
+                    <div class="wh-city">
+                        <img src="calgary.jpg" alt="Calgary">
+                        <div>
+                            <b>Calgary</b>
+                            <small>620+ warehouses</small>
+                        </div>
+                    </div>
 
-                        
+                    <div class="wh-city">
+                        <img src="montreal.jpg" alt="Montreal">
+                        <div>
+                            <b>Montreal</b>
+                            <small>550+ warehouses</small>
+                        </div>
+                    </div>
 
+                    <a href="#" class="wh-all">
+                        View All Cities
+                        <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="get-started d-flex align-items-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-8">
+
+            <div class="section-title">
+                    
+                        <span class="sub_title text-white">READY TO GET STARTED?</span>
+                        <h2 class="text-white">Join the Future of Warehousing & Logistics</h2>
+                        <p class="text-white mb-3">
+                    Discover smarter storage and fulfillment solutions built around your business.
+                </p>
+
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="#" class="btn theme_btn px-4 py-2 fw-semibold">
+                        Find a Warehouse
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
+                    <a href="#" class="btn btn theme_btn px-4 py-2 fw-semibold">
+                        Talk to ABYzone
+                    </a>
+                </div>
                     </div>
 
                 
 
-                   
+                
 
-                      
+                
 
-                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                <div class="services__shape-wrap"><img alt="shape" loading="lazy" width="201" height="200" decoding="async" data-nimg="1" class="rotateme" style="color:transparent" src="assets/images/images/image0d9a.png"><img alt="shape" data-aos="fade-right" data-aos-delay="400" loading="lazy" width="191" height="192" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imageb916.png">
 
-                </div>
 
-            </section>
 
-                  </main>
+       
 
-                 @include('include.footer')
+             
+</main>
+
+
+
+
+@include('include.footer')
