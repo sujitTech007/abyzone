@@ -50,7 +50,8 @@
                                @endif
                            
                         </td>
-                        <td class="text-end">
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center gap-2">
                             <a href="{{ route('blog.details', $blog) }}" target="_blank" class="btn btn-sm btn-info">View</a>
                             <a href="{{ route('admin.blog.edit', $blog) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('admin.blog.destroy', $blog) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Delete this warehouse?');">
@@ -58,6 +59,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </form>
+                            </div>
                         </td>
                     </tr>
                 @empty
