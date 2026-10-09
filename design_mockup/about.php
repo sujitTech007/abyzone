@@ -25,7 +25,7 @@
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
 					<div class="col-lg-6 col-md-8">
-						<div class="about__img"><img alt="img" loading="lazy" width="560" height="534" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/image55c5.png"><img alt="img" data-aos="fade-right" data-aos-delay="200" loading="lazy" width="175" height="163" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagea562.png"><img alt="img" data-aos="fade-down" data-aos-delay="400" loading="lazy" width="244" height="285" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/image3501.png">
+						<div class="about__img"><img alt="img" loading="lazy" width="560" height="534" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//image55c5.png"><img alt="img" data-aos="fade-right" data-aos-delay="200" loading="lazy" width="175" height="163" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagea562.png"><img alt="img" data-aos="fade-down" data-aos-delay="400" loading="lazy" width="244" height="285" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//image3501.png">
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -48,7 +48,7 @@
 								</div>
 								<div class="about__review-wrap">
 									<div class="about__review-box">
-										<div class="about__review-author"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagea90d.png"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagea90d.png"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagea90d.png"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagea90d.png">
+										<div class="about__review-author"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagea90d.png"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagea90d.png"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagea90d.png"><img alt="img" loading="lazy" width="138" height="138" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagea90d.png">
 										</div>
 										<div class="review"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span>Clients 4.7 (1,567
 											Reviews)</span>
@@ -58,7 +58,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="shape"><img alt="shape" data-aos="fade-left" data-aos-delay="1000" loading="lazy" width="236" height="235" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagec741.png">
+							<div class="shape"><img alt="shape" data-aos="fade-left" data-aos-delay="1000" loading="lazy" width="236" height="235" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagec741.png">
 							</div>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
 					<div class="col-lg-6 col-md-8">
-						<div class="about__img"><img alt="img" loading="lazy" width="560" height="534" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/founder-img.png">
+						<div class="about__img"><img alt="img" loading="lazy" width="560" height="534" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//founder-img.png">
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -81,7 +81,7 @@
 							<p>With 25 years of executive leadership experience, including 15 years specializing in import/export, supply chain, and logistics industries, this leader brings a wealth of expertise and strategic vision to ABYzone. Currently serving as the Deputy Director of Cross Border Logistics at Best Logistics Technology Vietnam Co., LTD., they oversee operations across land, sea, and air freight while specializing in seamless e-commerce door-to-door logistics solutions.</p>
 <p>As the CEO of ABYzone, they are leveraging their extensive logistics and e-commerce sales experience, along with a vast global supply chain network, to revolutionize the warehousing industry in Canada. Their focus is on providing scalable, AI-driven solutions tailored to the needs of small and medium businesses, ensuring efficiency and growth opportunities for clients. This blend of expertise and innovation positions ABYzone as a leader in modern warehousing solutions.</p>
 							
-							<div class="shape"><img alt="shape" data-aos="fade-left" data-aos-delay="1000" loading="lazy" width="236" height="235" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagec741.png">
+							<div class="shape"><img alt="shape" data-aos="fade-left" data-aos-delay="1000" loading="lazy" width="236" height="235" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagec741.png">
 							</div>
 						</div>
 					</div>
@@ -102,12 +102,12 @@
 <p>Currently, Beth oversees operations at Victoria Kindergarten Joint Stock Company and serves as Deputy General Director of Financing for VIET PHAP International Construction Design Consultant Joint Stocks Company, showcasing her versatile leadership capabilities.</p>
 <p>In her role as COO of ABYzone, Beth focuses on establishing the company’s foundational systems and strategies. This includes designing policies and procedures, implementing financial systems, developing sales strategies, and onboarding beta users and suppliers. Her dedication ensures that ABYzone operates efficiently and is well-positioned to deliver innovative, scalable warehousing solutions for small and medium businesses</p>
 							
-							<div class="shape"><img alt="shape" data-aos="fade-left" data-aos-delay="1000" loading="lazy" width="236" height="235" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imagec741.png">
+							<div class="shape"><img alt="shape" data-aos="fade-left" data-aos-delay="1000" loading="lazy" width="236" height="235" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imagec741.png">
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-8">
-						<div class="about__img"><img alt="img" loading="lazy" width="560" height="534" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/founder2-img.png">
+						<div class="about__img"><img alt="img" loading="lazy" width="560" height="534" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//founder2-img.png">
 						</div>
 					</div>
 				  
@@ -206,7 +206,7 @@
 						<div class="achieved__img"><img alt="img" data-wow-delay=".3s" loading="lazy" width="579"
 								height="566" decoding="async" data-nimg="1" class="wow bounceInDown"
 								style="color:transparent"
-								src="assets/images/images/image0a21.png" />
+								src="assets/images//image0a21.png" />
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -244,7 +244,7 @@
 			</div>
 			<div class="achieved__shape"><img alt="shape" loading="lazy" width="1093" height="547" decoding="async"
 					data-nimg="1" style="color:transparent"
-					src="assets/images/images/image6255.png" />
+					src="assets/images//image6255.png" />
 			</div>
 		</section> -->
 	  
@@ -254,7 +254,7 @@
 				<div class="row justify-content-center">
 					<div class="col-xl-8 col-lg-10">
 						<!-- <div class="testimonial__wrap fix">
-							<div class="testimonial__icon "><img src="assets/images/images/testi-icons.png" alt=""
+							<div class="testimonial__icon "><img src="assets/images//testi-icons.png" alt=""
 									class="injectable injectable" style="
 									width: 60px;
 									height: 44px;
@@ -265,22 +265,22 @@
 										<div class="swiper-slide"><button><img alt="img" loading="lazy" width="138"
 													height="138" decoding="async" data-nimg="1"
 													style="color:transparent"
-													src="assets/images/images/imagea90d.png" /></button>
+													src="assets/images//imagea90d.png" /></button>
 										</div>
 										<div class="swiper-slide"><button><img alt="img" loading="lazy" width="152"
 													height="152" decoding="async" data-nimg="1"
 													style="color:transparent"
-													src="assets/images/images/imagec23d.png" /></button>
+													src="assets/images//imagec23d.png" /></button>
 										</div>
 										<div class="swiper-slide"><button><img alt="img" loading="lazy" width="159"
 													height="158" decoding="async" data-nimg="1"
 													style="color:transparent"
-													src="assets/images/images/image23af.png" /></button>
+													src="assets/images//image23af.png" /></button>
 										</div>
 										<div class="swiper-slide"><button><img alt="img" loading="lazy" width="132"
 													height="132" decoding="async" data-nimg="1"
 													style="color:transparent"
-													src="assets/images/images/imageeddd.png" /></button>
+													src="assets/images//imageeddd.png" /></button>
 										</div>
 									</div>
 								</div>
@@ -369,7 +369,7 @@
 							</div>
 							<div class="slider-wrapper" id="sliderWrapper">
 							  <div class="testimonial">
-								<img src="assets/images/images/imagec23d.png" alt="User 1" />
+								<img src="assets/images//imagec23d.png" alt="User 1" />
 								<h2 class="name">Amit Sharma</h2>
 								<span>CEO, logistex Agency</span>
 								<div class="testimonial__rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>                                    <div class="testimonial__content">
@@ -378,7 +378,7 @@
 							  </div>
 						
 							  <div class="testimonial">
-								<img src="assets/images/images/imagec24e.png" alt="User 2" />
+								<img src="assets/images//imagec24e.png" alt="User 2" />
 								<h2 class="name">Nishant Verma</h2>
 								<span>CEO, logistex Agency</span>
 								<div class="testimonial__rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>                                    <div class="testimonial__content">
@@ -387,7 +387,7 @@
 							</div>
 						
 							  <div class="testimonial">
-								<img src="assets/images/images/imageeddd.png" alt="User 3" />
+								<img src="assets/images//imageeddd.png" alt="User 3" />
 								<h2 class="name">Rahul Singh</h2>
 								<span>CEO, logistex Agency</span>
 								<div class="testimonial__rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>                                    <div class="testimonial__content">
@@ -404,7 +404,7 @@
 				</div>
 				<div class="testimonial__shape"><img alt="img" loading="lazy" width="1209" height="605"
 						decoding="async" data-nimg="1" style="color:transparent"
-						src="assets/images/images/image5e41.png" />
+						src="assets/images//image5e41.png" />
 				</div>
 			</div>
 		</section>
@@ -417,43 +417,43 @@
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="140" height="40"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/image791e.png" />
+									src="assets/images//image791e.png" />
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="141" height="42"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/imagefcef.png" />
+									src="assets/images//imagefcef.png" />
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="132" height="54"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/imagee744.png" />
+									src="assets/images//imagee744.png" />
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="172" height="55"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/image34b9.png" />
+									src="assets/images//image34b9.png" />
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="97" height="44"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/imageba83.png" />
+									src="assets/images//imageba83.png" />
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="156" height="46"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/image51f0.png" />
+									src="assets/images//image51f0.png" />
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="brand__item"><img alt="img" loading="lazy" width="172" height="55"
 									decoding="async" data-nimg="1" style="color:transparent"
-									src="assets/images/images/image34b9.png" />
+									src="assets/images//image34b9.png" />
 							</div>
 						</div>
 						

@@ -14,7 +14,7 @@
                     {{-- ABYzone Logo --}}
                     <div class="logo">
                         <img
-                            src="{{ asset('assets/images/images/qby-logo.png') }}"
+                            src="{{ asset('assets/images//qby-logo.png') }}"
                             alt="ABYzone Logo"
                             width="132"
                         >

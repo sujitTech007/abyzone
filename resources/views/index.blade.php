@@ -1,10 +1,5 @@
 @include('include.header')
 
-
-    <!-- =========================
-     HERO SECTION
-========================== -->
-
     <section class="hero">
 
         <div class="container">
@@ -50,7 +45,7 @@
                 <!-- Search -->
                 <div class="search-wrapper">
 
-                    <form id="warehouseSearch">
+                    <form id="" action="{{ route('explore') }}" method="GET">
 
                         <div class="search-box">
 
@@ -62,7 +57,7 @@
                                     Location
                                 </div>
 
-                                <input type="text" id="location" placeholder="e.g. Toronto, Vancouver, Calgary...">
+                                <input type="text" id="location" name="location" placeholder="e.g. Toronto, Vancouver, Calgary...">
 
                             </div>
 
@@ -74,7 +69,7 @@
                                     Storage Type
                                 </div>
 
-                                <select id="storageType">
+                                <select id="storageType" name="storage_type">
 
                                     <option value="">
                                         Select storage type
@@ -108,7 +103,7 @@
                                     Capacity
                                 </div>
 
-                                <select id="capacity">
+                                <select id="capacity" name="min_size">
 
                                     <option value="">
                                         e.g. 1,000 sq ft
@@ -146,10 +141,10 @@
                 <!-- Features -->
                 <div class="feature-bar">
 
-                    <div class="row g-0">
+                    <div class="row gx-4">
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="feature">
+                        <div class="col border-right">
+                            <div class="feature d-flex align-items-center gap-2 text-white">
 
                                 <div class="feature-icon">
                                     <i class="fa-solid fa-warehouse"></i>
@@ -168,8 +163,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="feature">
+                        <div class="col border-right">
+                            <div class="feature d-flex align-items-center gap-2 text-white">
 
                                 <div class="feature-icon">
                                     <i class="fa-solid fa-boxes-stacked"></i>
@@ -188,8 +183,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="feature">
+                        <div class="col border-right">
+                            <div class="feature d-flex align-items-center gap-2 text-white">
 
                                 <div class="feature-icon">
                                     <i class="fa-solid fa-lock"></i>
@@ -208,8 +203,8 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="feature">
+                        <div class="col border-right">
+                            <div class="feature d-flex align-items-center gap-2 text-white">
 
                                 <div class="feature-icon">
                                     <i class="fa-solid fa-headset"></i>
@@ -577,338 +572,133 @@
             <div class="swiper-wrapper">
 
                 <!-- Card 1 -->
-                <div class="swiper-slide">
+                        @forelse($warehouses as $warehouse)
 
-                    <div class="warehouse-swiper-card">
+            <div class="swiper-slide">
 
-                        <div class="warehouse-image-wrap position-relative">
+                <div class="warehouse-swiper-card">
 
-                            <img src="{{ asset('assets/images/warehouses/warehouses-thumb-1.jpg') }}"
-                                 class="warehouse-img d-block object-fit-cover w-100"
-                                 alt="Toronto Warehouse">
+                    {{-- Warehouse Image --}}
+                    <div class="warehouse-image-wrap position-relative">
 
+                        <img
+                            src="{{ $warehouse->image
+                                ? asset('storage/' . $warehouse->image)
+                                : asset('assets/images/warehouses/warehouses-thumb-1.jpg') }}"
+                            class="warehouse-img d-block object-fit-cover w-100"
+                            alt="{{ $warehouse->name }}"
+                        >
+
+                        @if($warehouse->is_verified)
                             <span class="verified">
                                 <i class="fa-solid fa-circle-check"></i>
                                 Verified
                             </span>
+                        @endif
 
+                    </div>
+
+
+                    {{-- Warehouse Content --}}
+                    <div class="warehouse-content position-relative p-2">
+
+                        {{-- Location --}}
+                        <div class="location">
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            {{ $warehouse->city }}, {{ $warehouse->state }}
                         </div>
 
-                        <div class="warehouse-content position-relative p-2">
 
-                            <div class="location">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Toronto, ON
-                            </div>
+                        {{-- Name --}}
+                        <div class="warehouse-name">
+                            {{ $warehouse->name }}
+                        </div>
 
-                            <div class="warehouse-name">
-                                Downtown Toronto Warehouse
-                            </div>
 
-                            <div class="features">
+                        {{-- Features --}}
+                        <div class="features">
 
+                            {{-- Size --}}
+                            @if($warehouse->size)
                                 <span>
                                     <i class="fa-regular fa-building"></i>
-                                    25,000 sq ft
+                                    {{ number_format($warehouse->size) }} sq ft
                                 </span>
+                            @endif
 
+
+                            {{-- Storage Type --}}
+                            @if($warehouse->storage_type)
                                 <span>
                                     <i class="fa-regular fa-calendar"></i>
-                                    Dry Storage
+                                    {{ $warehouse->storage_type }}
                                 </span>
+                            @endif
 
+
+                            {{-- Access --}}
+                            @if($warehouse->access_type)
                                 <span>
                                     <i class="fa-regular fa-clock"></i>
-                                    24/7 Access
+                                    {{ $warehouse->access_type }}
                                 </span>
-
-                            </div>
-
-                            <div class="price">
-                                $12/sq ft / month
-                            </div>
-
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <strong>4.8</strong> (124)
-                            </div>
-
-                            <div class="arrow-btn">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
+                            @endif
 
                         </div>
+
+
+                        {{-- Price --}}
+                        @if($warehouse->price)
+                            <div class="price">
+                                ${{ number_format($warehouse->price, 2) }}
+                                /sq ft / month
+                            </div>
+                        @endif
+
+
+                        {{-- Rating --}}
+                        <div class="rating">
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <strong>
+                                {{ number_format($warehouse->rating ?? 0, 1) }}
+                            </strong>
+
+                            ({{ $warehouse->reviews_count ?? 0 }})
+
+                        </div>
+
+
+                        {{-- Arrow --}}
+                        <a
+                            href="{{ route('warehouse.details', $warehouse->id) }}"
+                            class="arrow-btn"
+                        >
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
                     </div>
 
                 </div>
 
+            </div>
 
-                <!-- Card 2 -->
-                <div class="swiper-slide">
+        @empty
 
-                    <div class="warehouse-swiper-card">
-
-                        <div class="warehouse-image-wrap position-relative">
-
-                            <img src="{{ asset('assets/images/warehouses/warehouses-thumb-2.jpg') }}"
-                                 class="warehouse-img d-block object-fit-cover w-100"
-                                 alt="Vancouver Distribution Center">
-
-                            <span class="verified">
-                                <i class="fa-solid fa-circle-check"></i>
-                                Verified
-                            </span>
-
-                        </div>
-
-                        <div class="warehouse-content position-relative p-2">
-
-                            <div class="location">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Vancouver, BC
-                            </div>
-
-                            <div class="warehouse-name">
-                                Vancouver Distribution Center
-                            </div>
-
-                            <div class="features">
-
-                                <span>
-                                    <i class="fa-regular fa-building"></i>
-                                    50,000 sq ft
-                                </span>
-
-                                <span>
-                                    <i class="fa-solid fa-temperature-low"></i>
-                                    Refrigerated
-                                </span>
-
-                                <span>
-                                    <i class="fa-regular fa-clock"></i>
-                                    24/7 Access
-                                </span>
-
-                            </div>
-
-                            <div class="price">
-                                $15/sq ft / month
-                            </div>
-
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <strong>4.7</strong> (98)
-                            </div>
-
-                            <div class="arrow-btn">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-
-                        </div>
-                    </div>
-
+            <div class="swiper-slide">
+                <div class="text-center py-5">
+                    <p>No warehouses available at the moment.</p>
                 </div>
+            </div>
+
+        @endforelse
 
 
-                <!-- Card 3 -->
-                <div class="swiper-slide">
-
-                    <div class="warehouse-swiper-card">
-
-                        <div class="warehouse-image-wrap position-relative">
-
-                            <img src="{{ asset('assets/images/warehouses/warehouses-thumb-3.jpg') }}"
-                                 class="warehouse-img d-block object-fit-cover w-100"
-                                 alt="Calgary Logistics Hub">
-
-                            <span class="verified">
-                                <i class="fa-solid fa-circle-check"></i>
-                                Verified
-                            </span>
-
-                        </div>
-
-                        <div class="warehouse-content position-relative p-2">
-
-                            <div class="location">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Calgary, AB
-                            </div>
-
-                            <div class="warehouse-name">
-                                Calgary Logistics Hub
-                            </div>
-
-                            <div class="features">
-
-                                <span>
-                                    <i class="fa-regular fa-building"></i>
-                                    35,000 sq ft
-                                </span>
-
-                                <span>
-                                    <i class="fa-regular fa-calendar"></i>
-                                    Dry Storage
-                                </span>
-
-                                <span>
-                                    <i class="fa-solid fa-truck"></i>
-                                    Dock Access
-                                </span>
-
-                            </div>
-
-                            <div class="price">
-                                $11/sq ft / month
-                            </div>
-
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <strong>4.6</strong> (76)
-                            </div>
-
-                            <div class="arrow-btn">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
+                
 
 
-                <!-- Card 4 -->
-                <div class="swiper-slide">
-
-                    <div class="warehouse-swiper-card">
-
-                        <div class="warehouse-image-wrap position-relative">
-
-                            <img src="{{ asset('assets/images/warehouses/warehouses-thumb-4.jpg') }}"
-                                 class="warehouse-img d-block object-fit-cover w-100"
-                                 alt="Montreal Flex Space">
-
-                            <span class="verified">
-                                <i class="fa-solid fa-circle-check"></i>
-                                Verified
-                            </span>
-
-                        </div>
-
-                        <div class="warehouse-content position-relative p-2">
-
-                            <div class="location">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Montreal, QC
-                            </div>
-
-                            <div class="warehouse-name">
-                                Montreal Flex Space
-                            </div>
-
-                            <div class="features">
-
-                                <span>
-                                    <i class="fa-regular fa-building"></i>
-                                    20,000 sq ft
-                                </span>
-
-                                <span>
-                                    <i class="fa-solid fa-layer-group"></i>
-                                    Multi-Temp
-                                </span>
-
-                                <span>
-                                    <i class="fa-regular fa-clock"></i>
-                                    24/7 Access
-                                </span>
-
-                            </div>
-
-                            <div class="price">
-                                $10/sq ft / month
-                            </div>
-
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <strong>4.5</strong> (62)
-                            </div>
-
-                            <div class="arrow-btn">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-- Card 5 -->
-                <div class="swiper-slide">
-
-                    <div class="warehouse-swiper-card">
-
-                        <div class="warehouse-image-wrap position-relative">
-
-                            <img src="{{ asset('assets/images/warehouses/warehouses-thumb-5.jpg') }}"
-                                 class="warehouse-img d-block object-fit-cover w-100"
-                                 alt="Edmonton Warehouse">
-
-                            <span class="verified">
-                                <i class="fa-solid fa-circle-check"></i>
-                                Verified
-                            </span>
-
-                        </div>
-
-                        <div class="warehouse-content position-relative p-2">
-
-                            <div class="location">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Edmonton, AB
-                            </div>
-
-                            <div class="warehouse-name">
-                                Edmonton Storage Hub
-                            </div>
-
-                            <div class="features">
-
-                                <span>
-                                    <i class="fa-regular fa-building"></i>
-                                    42,000 sq ft
-                                </span>
-
-                                <span>
-                                    <i class="fa-regular fa-calendar"></i>
-                                    Dry Storage
-                                </span>
-
-                                <span>
-                                    <i class="fa-solid fa-truck"></i>
-                                    Dock Access
-                                </span>
-
-                            </div>
-
-                            <div class="price">
-                                $13/sq ft / month
-                            </div>
-
-                            <div class="rating">
-                                <i class="fa-solid fa-star"></i>
-                                <strong>4.8</strong> (91)
-                            </div>
-
-                            <div class="arrow-btn">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
 
             </div>
 
@@ -1965,7 +1755,7 @@
                                 <div class="testimonial-card">
 
                                     <div class="testimonial-user">
-                                        <img src="assets/images/images/imagec23d.png"
+                                        <img src="assets/images//imagec23d.png"
                                              alt="Mark Reynolds">
                                     </div>
 
@@ -2002,7 +1792,7 @@
                                 <div class="testimonial-card">
 
                                     <div class="testimonial-user">
-                                        <img src="assets/images/images/imagec24e.png"
+                                        <img src="assets/images//imagec24e.png"
                                              alt="Daniel Cooper">
                                     </div>
 
@@ -2038,7 +1828,7 @@
                                 <div class="testimonial-card">
 
                                     <div class="testimonial-user">
-                                        <img src="assets/images/images/imageeddd.png"
+                                        <img src="assets/images//imageeddd.png"
                                              alt="Jason Miller">
                                     </div>
 
@@ -2093,7 +1883,7 @@
 
         <!-- Background Shape -->
         <div class="testimonial__shape">
-            <img src="assets/images/images/image5e41.png" alt="">
+            <img src="assets/images//image5e41.png" alt="">
         </div>
 
     </div>

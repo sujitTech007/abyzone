@@ -147,7 +147,7 @@
                                    placeholder="Enter your e-mail"
                                    required>
 
-                            <button type="submit">
+                            <button type="submit" class="btn theme_btn">
                                 Subscribe
                                 <i class="fas fa-arrow-right"></i>
                             </button>
@@ -186,7 +186,7 @@
             <div class="col-md-3">
                 <div class="footer-brand">
                     <a href="{{ url('/') }}" class="footer-logo">
-                        <img src="{{ asset('assets/images/images/footer-logo.png') }}"
+                        <img src="{{ asset('assets/images//footer-logo.png') }}"
                              alt="ABYzone">
                     </a>
                 </div>  
@@ -295,7 +295,7 @@
 
                 <div class="col-md-5">
 
-                    <p class="copyright mb-0 w-100 text-end"><a href="#" class="footer-legal-link"> Privacy Policy </a> <span class="footer-separator">|</span> <a href="#" class="footer-legal-link"> Terms & Conditions </a> </p>
+                    <p class="copyright mb-0 w-100 text-end"><a href="{{ route('privacy.policy') }}" class="footer-legal-link"> Privacy Policy </a> <span class="footer-separator">|</span> <a href="{{ route('terms') }}" class="footer-legal-link"> Terms &amp; Conditions </a> </p>
 
                 </div>
 

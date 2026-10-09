@@ -144,7 +144,7 @@
 			   
 				  
 			</div>
-			<div class="services__shape-wrap"><img alt="shape" loading="lazy" width="201" height="200" decoding="async" data-nimg="1" class="rotateme" style="color:transparent" src="assets/images/images/image0d9a.png"><img alt="shape" data-aos="fade-right" data-aos-delay="400" loading="lazy" width="191" height="192" decoding="async" data-nimg="1" style="color:transparent" src="assets/images/images/imageb916.png">
+			<div class="services__shape-wrap"><img alt="shape" loading="lazy" width="201" height="200" decoding="async" data-nimg="1" class="rotateme" style="color:transparent" src="assets/images//image0d9a.png"><img alt="shape" data-aos="fade-right" data-aos-delay="400" loading="lazy" width="191" height="192" decoding="async" data-nimg="1" style="color:transparent" src="assets/images//imageb916.png">
 			</div>
 		</section>
 	</main>

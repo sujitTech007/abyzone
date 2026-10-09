@@ -225,9 +225,21 @@ class PagesController extends Controller
             });
         }
 
-        /* ================= LOCATION FILTER ================= */
-        if ($request->location) {
-            $warehouses->whereIn('location', $request->location);
+        /* ================= HOME SEARCH FILTERS ================= */
+        if ($request->filled('location')) {
+            $location = $request->input('location');
+            if (is_array($location)) {
+                $warehouses->whereIn('location', $location);
+            } else {
+                $warehouses->where('location', 'like', '%' . trim($location) . '%');
+            }
+        }
+
+        $storageType = $request->input('storage_type');
+        if (is_array($storageType) && $storageType !== []) {
+            $warehouses->whereIn('storage_type', $storageType);
+        } elseif (is_string($storageType) && trim($storageType) !== '') {
+            $warehouses->where('storage_type', 'like', '%' . trim($storageType) . '%');
         }
 
         /* ================= AMENITIES FILTER (JSON) ================= */
@@ -238,7 +250,20 @@ class PagesController extends Controller
         }
 
         /* ================= CAPACITY FILTER ================= */
-        if ($request->filled('capacity')) {
+        if (is_scalar($request->input('min_size')) && $request->filled('min_size')) {
+            $minimumSize = (int) $request->input('min_size');
+            if (in_array($minimumSize, [1000, 5000, 10000], true)) {
+                $warehouses->where(function ($query) use ($minimumSize) {
+                    $query->where('size_sqft', '>=', $minimumSize)
+                        ->orWhere(function ($query) use ($minimumSize) {
+                            $query->where('capacity_unit', 'SQFT')
+                                ->where('capacity_quantity', '>=', $minimumSize);
+                        });
+                });
+            }
+        }
+
+        if (is_array($request->input('capacity')) && $request->filled('capacity')) {
             $warehouses->where(function ($q) use ($request) {
                 foreach ($request->capacity as $range) {
                     if ($range === '300+') {

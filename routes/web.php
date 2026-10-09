@@ -44,6 +44,8 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/services', [PagesController::class, 'services'])->name('services');
+Route::view('/terms-and-conditions', 'terms-and-conditions')->name('terms');
+Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 Route::post('/subscribe/store', [PagesController::class, 'subscribeStore'])->name('subscribe.store');
 Route::get('/warehousing-detail', [PagesController::class, 'warehousingDetail'])->name('warehousing.detail');
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
@@ -324,4 +326,3 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
     Route::post('/notifications/{id}/mark-read', [OwnerPagesController::class, 'markAsRead'])->name('notifications.mark-read');
     Route::delete('/notifications/{id}', [OwnerPagesController::class, 'deleteNotification'])->name('notifications.delete');
 });
-

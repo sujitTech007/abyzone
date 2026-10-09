@@ -3,7 +3,7 @@
 <div class="container mt-5">
 <div class="col-md-5 offset-md-3 login-box">
 
-<img src="{{ asset('assets/images/images/qby-logo.png') }}" style="height:50px; margin-left:165px;">
+<img src="{{ asset('assets/images//qby-logo.png') }}" style="height:50px; margin-left:165px;">
 
 <h2 class="text-center mt-2"><u>Enter OTP</u></h2>
 
