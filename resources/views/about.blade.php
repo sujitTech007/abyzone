@@ -1,226 +1,225 @@
-
 @include('include.header')
 
 
-    <!-- =========================
-     HERO SECTION
-========================== -->
 
-    <section class="hero inner-hero">
+<section class="hero inner-hero">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="hero-content p-0">
+        <div class="hero-content p-0">
 
-                <div class="eyebrow">
-                    Canada's Trusted Warehouse Logistics Platform
-                </div>
-
-                <h1>
-                    Find the Right Warehouse
-                    <br>
-                    <span>for Your Business</span>
-                </h1>
-
-                <p class="hero-description text-white">
-                    Discover, compare and book verified warehouses across Canada.
-                    Flexible storage, real-time availability, and complete supply
-                    chain support – all in one place.
-                </p>
-
-               
+            <div class="eyebrow">
+                Canada's Trusted Warehouse Logistics Platform
             </div>
 
-        </div>
+            <h1>
+                Find the Right Warehouse
+                <br>
+                <span>for Your Business</span>
+            </h1>
 
-    </section>
+            <p class="hero-description text-white">
+                Discover, compare and book verified warehouses across Canada.
+                Flexible storage, real-time availability, and complete supply
+                chain support – all in one place.
+            </p>
 
-<main class="fix ">
 
-    <section class="warehouse-section py-5">
-        <div class="container">
-            <div class="row align-items-center g-4 warehouse-content">
-
-                <!-- Left Content -->
-                <div class="col-lg-5">
-                    <div class="section-title">
-                        <span class="sub_title">
-                            ABOUT ABYZONE
-                        </span>
-                        <h2>
-                            Revolutionizing Warehouse
-                            Logistics <span>in Canada</span>
-                        </h2>
-
-                        <p>
-                            ABYzone is a next-generation logistics platform that connects
-                            businesses with verified warehouse spaces, enabling smarter
-                            storage, faster operations and greater supply chain efficiency.
-                        </p>
-                        <p>ABYzone is a next-generation logistics platform that connects businesses with verified warehouse spaces, enabling smarter storage, faster operations and greater supply chain efficiency.
-
-</p>
-                    </div>
-                    <div class="row align-items-center justify-content-between">
-
-        <!-- Item 1 -->
-        <div class="col-md-4 d-flex align-items-center gap-2">
-            <div class="bg-primary text-white rounded-4 d-flex align-items-center justify-content-center about_icon">
-                <i class="fa-solid fa-brain fa-lg"></i>
-            </div>
-
-            <div class="fw-semibold text-primary small fs-12">
-                AI-Driven<br>
-                Technology
-            </div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="col-md-4 d-flex align-items-center gap-2">
-            <div class="bg-warning text-white rounded-4 d-flex align-items-center justify-content-center about_icon">
-                <i class="fa-solid fa-cube fa-lg"></i>
-            </div>
-
-            <div class="fw-semibold text-primary small fs-12">
-                Flexible
-                Storage Solutions
-            </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="col-md-4 d-flex align-items-center gap-2">
-            <div class="bg-primary text-white rounded-4 d-flex align-items-center justify-content-center about_icon">
-                <i class="fa-solid fa-chart-column fa-lg"></i>
-            </div>
-
-            <div class="fw-semibold text-primary small fs-12">
-                Scalable for
-                Growing Businesses
-            </div>
         </div>
 
     </div>
 
+</section>
 
-                   
+
+<section class="warehouse-section py-5">
+    <div class="container">
+        <div class="row align-items-center g-4 warehouse-content">
+
+            <!-- Left Content -->
+            <div class="col-lg-5">
+                <div class="section-title">
+                    <span class="sub_title">
+                        ABOUT ABYZONE
+                    </span>
+                    <h2>
+                        Revolutionizing Warehouse
+                        Logistics <span>in Canada</span>
+                    </h2>
+
+                    <p>
+                        ABYzone is a next-generation logistics platform that connects
+                        businesses with verified warehouse spaces, enabling smarter
+                        storage, faster operations and greater supply chain efficiency.
+                    </p>
+                    <p>ABYzone is a next-generation logistics platform that connects businesses with verified warehouse
+                        spaces, enabling smarter storage, faster operations and greater supply chain efficiency.
+
+                    </p>
                 </div>
+                <div class="row align-items-center justify-content-between">
 
-                <!-- Right Image -->
-                <div class="col-lg-7">
-                    <div class="warehouse-media">
-
-                        <!-- Replace this image with your warehouse image -->
-                         
-                        <img src="{{ asset('assets/images/about-thumb.jpg') }}" alt="Warehouse Logistics">
-
-                        <!-- Video Button -->
-                        <button type="button" class="video-btn" data-bs-toggle="modal" data-bs-target="#warehouseVideo">
-
-                            <i class="fa-solid fa-play"></i>
-
-                            <span>
-                                Watch Our Story
-                                <small>2:14</small>
-                            </span>
-                        </button>
-
-                        <!-- Stats -->
-                        <div class="warehouse-stats">
-
-                            <div class="stat-item">
-                                <div class="stat-icon">
-                                    <i class="fa-regular fa-building"></i>
-                                </div>
-
-                                <div>
-                                    <span class="stat-number">1,250+</span>
-                                    <span class="stat-label">
-                                        Verified Warehouses
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="stat-item">
-                                <div class="stat-icon">
-                                    <i class="fa-solid fa-boxes-stacked"></i>
-                                </div>
-
-                                <div>
-                                    <span class="stat-number">500+</span>
-                                    <span class="stat-label">
-                                        Active Partners
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="stat-item">
-                                <div class="stat-icon">
-                                    <i class="fa-solid fa-map-location-dot"></i>
-                                </div>
-
-                                <div>
-                                    <span class="stat-number">10+</span>
-                                    <span class="stat-label">
-                                        Provinces & Territories
-                                    </span>
-                                </div>
-                            </div>
-
+                    <!-- Item 1 -->
+                    <div class="col-md-4 d-flex align-items-center gap-2">
+                        <div
+                            class="bg-primary text-white rounded-4 d-flex align-items-center justify-content-center about_icon">
+                            <i class="fa-solid fa-brain fa-lg"></i>
                         </div>
 
-                        <div class="orange-arrow"></div>
-
+                        <div class="fw-semibold primary-text-color small fs-12">
+                            AI-Driven<br>
+                            Technology
+                        </div>
                     </div>
+
+                    <!-- Item 2 -->
+                    <div class="col-md-4 d-flex align-items-center gap-2">
+                        <div
+                            class="bg-warning text-white rounded-4 d-flex align-items-center justify-content-center about_icon">
+                            <i class="fa-solid fa-cube fa-lg"></i>
+                        </div>
+
+                        <div class="fw-semibold primary-text-color small fs-12">
+                            Flexible
+                            Storage Solutions
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="col-md-4 d-flex align-items-center gap-2">
+                        <div
+                            class="bg-primary text-white rounded-4 d-flex align-items-center justify-content-center about_icon">
+                            <i class="fa-solid fa-chart-column fa-lg"></i>
+                        </div>
+
+                        <div class="fw-semibold primary-text-color small fs-12">
+                            Scalable for
+                            Growing Businesses
+                        </div>
+                    </div>
+
                 </div>
+
+
 
             </div>
-        </div>
-    </section>
 
+            <!-- Right Image -->
+            <div class="col-lg-7">
+                <div class="warehouse-media">
 
-    <!-- Video Modal -->
-    <div class="modal fade video-modal" id="warehouseVideo" tabindex="-1" aria-hidden="true">
+                    <!-- Replace this image with your warehouse image -->
 
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <img src="{{ asset('assets/images/about-thumb.jpg') }}" alt="Warehouse Logistics">
 
-            <div class="modal-content">
+                    <!-- Video Button -->
+                    <button type="button" class="video-btn" data-bs-toggle="modal" data-bs-target="#warehouseVideo">
 
-                <div class="modal-header py-2">
-                    <h6 class="modal-title">
-                        Our Story
-                    </h6>
+                        <i class="fa-solid fa-play"></i>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span>
+                            Watch Our Story
+                            <small>2:14</small>
+                        </span>
                     </button>
+
+                    <!-- Stats -->
+                    <div class="warehouse-stats">
+
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fa-regular fa-building"></i>
+                            </div>
+
+                            <div>
+                                <span class="stat-number">1,250+</span>
+                                <span class="stat-label">
+                                    Verified Warehouses
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </div>
+
+                            <div>
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">
+                                    Active Partners
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+
+                            <div>
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">
+                                    Provinces & Territories
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="orange-arrow"></div>
+
                 </div>
+            </div>
 
-                <div class="modal-body p-0">
+        </div>
+    </div>
+</section>
 
-                    <!-- YouTube Video -->
-                    <iframe class="video-frame" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="ABYzone Story"
-                        allow="autoplay; encrypted-media" allowfullscreen>
-                    </iframe>
 
-                </div>
+<!-- Video Modal -->
+<div class="modal fade video-modal" id="warehouseVideo" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header py-2">
+                <h6 class="modal-title">
+                    Our Story
+                </h6>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+
+            <div class="modal-body p-0">
+
+                <!-- YouTube Video -->
+                <iframe class="video-frame" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="ABYzone Story"
+                    allow="autoplay; encrypted-media" allowfullscreen>
+                </iframe>
+
             </div>
         </div>
     </div>
+</div>
 
 
 
 
 
-    <section class="logistics-section py-5">
+<section class="logistics-section py-5">
     <div class="container">
         <div class="row align-items-center g-4">
 
             <!-- Left Content -->
             <div class="col-lg-4">
                 <div class="section-title">
-                    
-                        <span class="sub_title">WHAT WE DO</span>
-                        
-                    
+
+                    <span class="sub_title">WHAT WE DO</span>
+
+
 
                     <h2>End-to-End Logistics Solutions</h2>
 
@@ -313,11 +312,8 @@
 
         <!-- Image -->
         <div class="col-lg-6 p-0">
-            <img
-                src="{{ asset('assets/images/about-thumb.jpg') }}"
-                alt="Warehouse"
-                class="img-fluid w-100 h-100 object-fit-cover"
-            >
+            <img src="{{ asset('assets/images/about-thumb.jpg') }}" alt="Warehouse"
+                class="img-fluid w-100 h-100 object-fit-cover">
         </div>
 
         <!-- Content -->
@@ -329,45 +325,45 @@
                     <div class="section-title">
                         <span class="sub_title">OUR VISION</span>
                         <h2 class="fw-bold mb-3">
-                        Making Warehousing Smarter,<br>
-                        Simpler &amp; More Accessible
-                    </h2>
-                    <p class="mb-0">
-                        Our vision is to create a connected logistics ecosystem
-                        where businesses can discover the right space, manage
-                        their operations and access value-added services through
-                        one intelligent platform.
-                    </p>
-                    <ul class="list-unstyled mb-0 primary-text-color mt-3">
+                            Making Warehousing Smarter,<br>
+                            Simpler &amp; More Accessible
+                        </h2>
+                        <p class="mb-0">
+                            Our vision is to create a connected logistics ecosystem
+                            where businesses can discover the right space, manage
+                            their operations and access value-added services through
+                            one intelligent platform.
+                        </p>
+                        <ul class="list-unstyled mb-0 primary-text-color mt-3">
 
-                        <li class="d-flex align-items-center mb-2">
-                            <i class="fa-solid fa-circle-check text-info me-2"></i>
-                            <span>More access</span>
-                        </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fa-solid fa-circle-check text-info me-2"></i>
+                                <span>More access</span>
+                            </li>
 
-                        <li class="d-flex align-items-center mb-2">
-                            <i class="fa-solid fa-circle-check text-info me-2"></i>
-                            <span>More efficiency</span>
-                        </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fa-solid fa-circle-check text-info me-2"></i>
+                                <span>More efficiency</span>
+                            </li>
 
-                        <li class="d-flex align-items-center mb-2">
-                            <i class="fa-solid fa-circle-check text-info me-2"></i>
-                            <span>More opportunities</span>
-                        </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <i class="fa-solid fa-circle-check text-info me-2"></i>
+                                <span>More opportunities</span>
+                            </li>
 
-                        <li class="d-flex align-items-center">
-                            <i class="fa-solid fa-circle-check text-info me-2"></i>
-                            <span>For every business</span>
-                        </li>
+                            <li class="d-flex align-items-center">
+                                <i class="fa-solid fa-circle-check text-info me-2"></i>
+                                <span>For every business</span>
+                            </li>
 
-                    </ul>
+                        </ul>
                     </div>
 
-                   
 
-                    
 
-                    
+
+
+
 
                 </div>
 
@@ -380,7 +376,7 @@
 
 
 
- 
+
 
 <section class="abz-process py-5">
     <div class="container">
@@ -389,17 +385,17 @@
             <!-- Left Content -->
             <div class="col-lg-3 col-md-12">
                 <div class="section-title">
-                        <span class="sub_title">
-                            HOW ABYZONE WORKS
-                        </span>
-                        <h2>
-                            From Search to Scale,<br>
+                    <span class="sub_title">
+                        HOW ABYZONE WORKS
+                    </span>
+                    <h2>
+                        From Search to Scale,<br>
                         in 4 Simple Steps.
-                        </h2>
+                    </h2>
 
-                        <p>Find the right warehouse, book in minutes, and manage your inventory with ease.</p>
-                    </div>
-                
+                    <p>Find the right warehouse, book in minutes, and manage your inventory with ease.</p>
+                </div>
+
             </div>
 
             <!-- Steps -->
@@ -505,14 +501,15 @@
             <div class="col-lg-4">
 
 
-            <div class="section-title">
-                        <span class="sub_title">OUR COVERAGE</span>
-                        <h2>Trusted Warehouse Network<br> Across Canada
-                        </h2>
+                <div class="section-title">
+                    <span class="sub_title">OUR COVERAGE</span>
+                    <h2>Trusted Warehouse Network<br> Across Canada
+                    </h2>
 
-                        <p>From coast to coast, we connect you with verified warehouse spaces, trusted partners and local support.</p>
-            </div>
-                
+                    <p>From coast to coast, we connect you with verified warehouse spaces, trusted partners and local
+                        support.</p>
+                </div>
+
 
                 <!-- STATS -->
                 <div class="d-flex gap-3 mt-4">
@@ -549,10 +546,10 @@
 
                 </div>
 
-                <button class="btn theme_btn mt-4">
-                    Explore Warehouse Map
+                <a href="{{ route('explore') }}" class="btn theme_btn mt-4">
+                    Explore Warehouse
                     <i class="fa-solid fa-arrow-right ms-2"></i>
-                </button>
+                </a>
 
             </div>
 
@@ -563,9 +560,7 @@
                 <div class="wh-map-area">
 
                     <!-- Replace this with your Canada map -->
-                    <img src="{{ asset('assets/images/map.png') }}"
-                         class="wh-map"
-                         alt="Canada Warehouse Map">
+                    <img src="{{ asset('assets/images/map.png') }}" class="wh-map" alt="Canada Warehouse Map">
 
                     <!-- Location Pins -->
                     <i class="fa-solid fa-location-dot wh-pin wh-p1"></i>
@@ -655,114 +650,112 @@
     </div>
 </section>
 
- <!-- ================================
+<!-- ================================
          OUR TEAM SECTION
     ================================= -->
 
-    <section class="team-section py-5">
+<section class="team-section py-5">
 
-        <div class="container">
+    <div class="container">
 
-            <!-- Heading -->
-            <div class="section-title text-center d-flex align-items-center flex-column">
+        <!-- Heading -->
+        <div class="section-title text-center d-flex align-items-center flex-column">
 
-                <span class="sub_title">
-                    Executive Leadership
-                </span>
+            <span class="sub_title">
+                Executive Leadership
+            </span>
 
-                <h2>Our Team</h2>
+            <h2>Our Team</h2>
 
-                <p>
-                    Meet the experienced leaders behind ABYzone,
-                    bringing expertise, innovation and strategic vision
-                    to modern warehousing solutions.
-                </p>
+            <p>
+                Meet the experienced leaders behind ABYzone,
+                bringing expertise, innovation and strategic vision
+                to modern warehousing solutions.
+            </p>
 
-            </div>
-
-
-            <div class="row g-4 justify-content-center mt-3">
+        </div>
 
 
-                <!-- =================================
+        <div class="row g-4 justify-content-center mt-3">
+
+
+            <!-- =================================
                      MEMBER 1
                 ================================== -->
 
-                <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4">
 
-                    <div class="team-card" data-bs-toggle="modal" data-bs-target="#profileModal1">
+                <div class="team-card" data-bs-toggle="modal" data-bs-target="#profileModal1">
 
-                        <div class="team-image">
+                    <div class="team-image">
 
-                            <img src="assets/images//founder-img.png" alt="Ly Thu Yen">
+                        <img src="assets/images//founder-img.png" alt="Ly Thu Yen">
 
-                            <div class="team-overlay"></div>
+                        <div class="team-overlay"></div>
 
-                            <div class="btn theme_btn">
-                                View Full Profile
-                                <i class="fa-solid fa-arrow-right ms-2"></i>
-                            </div>
-
+                        <div class="btn theme_btn">
+                            View Full Profile
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
                         </div>
 
-                        <div class="team-content">
+                    </div>
 
-                            <h3>
-                                LY THU YEN (CONNY)
-                            </h3>
+                    <div class="team-content">
 
-                            <p class="designation">
-                                <strong>Co-Founder & CEO</strong><br>
-                                ABYzone
-                            </p>
+                        <h3>
+                            LY THU YEN (CONNY)
+                        </h3>
 
-                            <div class="team-arrow">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
+                        <p class="designation">
+                            <strong>Co-Founder & CEO</strong><br>
+                            ABYzone
+                        </p>
 
+                        <div class="team-arrow">
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
 
                     </div>
 
                 </div>
 
+            </div>
 
-                <!-- =================================
+
+            <!-- =================================
                      MEMBER 2
                 ================================== -->
 
-                <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4">
 
-                    <div class="team-card" data-bs-toggle="modal" data-bs-target="#profileModal2">
+                <div class="team-card" data-bs-toggle="modal" data-bs-target="#profileModal2">
 
-                        <div class="team-image">
+                    <div class="team-image">
 
-                            <img src="assets/images//founder2-img.png" alt="Beth Tran">
+                        <img src="assets/images//founder2-img.png" alt="Beth Tran">
 
-                            <div class="team-overlay"></div>
+                        <div class="team-overlay"></div>
 
-                            <div class="btn theme_btn">
-                                View Full Profile
-                                <i class="fa-solid fa-arrow-right ms-2"></i>
-                            </div>
-
+                        <div class="btn theme_btn">
+                            View Full Profile
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
                         </div>
 
-                        <div class="team-content">
+                    </div>
 
-                            <h3>
-                                Beth Tran
-                            </h3>
+                    <div class="team-content">
 
-                            <p class="designation">
-                                <strong>Co-Founder & COO</strong><br>
-                                ABYzone
-                            </p>
+                        <h3>
+                            Beth Tran
+                        </h3>
 
-                            <div class="team-arrow">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
+                        <p class="designation">
+                            <strong>Co-Founder & COO</strong><br>
+                            ABYzone
+                        </p>
 
+                        <div class="team-arrow">
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
 
                     </div>
@@ -773,96 +766,96 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ==========================================
+<!-- ==========================================
          PROFILE MODAL 1
     =========================================== -->
 
-    <div class="modal fade profile-modal" id="profileModal1" tabindex="-1" aria-hidden="true">
+<div class="modal fade profile-modal" id="profileModal1" tabindex="-1" aria-hidden="true">
 
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <button type="button" class="modal-close" data-bs-dismiss="modal">
+            <button type="button" class="modal-close" data-bs-dismiss="modal">
 
-                    <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-xmark"></i>
 
-                </button>
+            </button>
 
 
-                <div class="modal-body">
+            <div class="modal-body">
 
-                    <div class="row g-0">
+                <div class="row g-0">
 
-                        <!-- Image -->
+                    <!-- Image -->
 
-                        <div class="col-lg-5">
+                    <div class="col-lg-5">
 
-                            <div class="profile-image">
+                        <div class="profile-image">
 
-                                <img src="assets/images//founder-img.png" alt="Ly Thu Yen">
-
-                            </div>
+                            <img src="assets/images//founder-img.png" alt="Ly Thu Yen">
 
                         </div>
 
-
-                        <!-- Content -->
-
-                        <div class="col-lg-7">
-
-                            <div class="section-title p-3 p-md-5">
-
-                                <span class="sub_title">
-                                    Executive Leadership
-                                </span>
-
-                                <h2 class="mb-o">
-                                    LY THU YEN (CONNY)
-                                </h2>
-
-                                 <h5 class="fs-14 secondary-text-color mb-3">
-                                    Co-Founder & CEO — ABYzone
-                                </h5>
+                    </div>
 
 
-                                <p>
-                                    With 25 years of executive leadership
-                                    experience, including 15 years specializing
-                                    in import/export, supply chain, and logistics
-                                    industries, this leader brings a wealth of
-                                    expertise and strategic vision to ABYzone.
-                                </p>
+                    <!-- Content -->
 
-                                <p>
-                                    Currently serving as the Deputy Director of
-                                    Cross Border Logistics at Best Logistics
-                                    Technology Vietnam Co., LTD., they oversee
-                                    operations across land, sea, and air freight
-                                    while specializing in seamless e-commerce
-                                    door-to-door logistics solutions.
-                                </p>
+                    <div class="col-lg-7">
 
-                                <p>
-                                    As the CEO of ABYzone, they leverage extensive
-                                    logistics and e-commerce sales experience,
-                                    along with a vast global supply chain network,
-                                    to revolutionize the warehousing industry in
-                                    Canada.
-                                </p>
+                        <div class="section-title p-3 p-md-5">
 
-                                <p>
-                                    Their focus is on providing scalable,
-                                    AI-driven solutions tailored to the needs of
-                                    small and medium businesses, ensuring
-                                    efficiency and growth opportunities for
-                                    clients.
-                                </p>
-                            </div>
+                            <span class="sub_title">
+                                Executive Leadership
+                            </span>
 
+                            <h2 class="mb-o">
+                                LY THU YEN (CONNY)
+                            </h2>
+
+                            <h5 class="fs-14 secondary-text-color mb-3">
+                                Co-Founder & CEO — ABYzone
+                            </h5>
+
+
+                            <p>
+                                With 25 years of executive leadership
+                                experience, including 15 years specializing
+                                in import/export, supply chain, and logistics
+                                industries, this leader brings a wealth of
+                                expertise and strategic vision to ABYzone.
+                            </p>
+
+                            <p>
+                                Currently serving as the Deputy Director of
+                                Cross Border Logistics at Best Logistics
+                                Technology Vietnam Co., LTD., they oversee
+                                operations across land, sea, and air freight
+                                while specializing in seamless e-commerce
+                                door-to-door logistics solutions.
+                            </p>
+
+                            <p>
+                                As the CEO of ABYzone, they leverage extensive
+                                logistics and e-commerce sales experience,
+                                along with a vast global supply chain network,
+                                to revolutionize the warehousing industry in
+                                Canada.
+                            </p>
+
+                            <p>
+                                Their focus is on providing scalable,
+                                AI-driven solutions tailored to the needs of
+                                small and medium businesses, ensuring
+                                efficiency and growth opportunities for
+                                clients.
+                            </p>
                         </div>
 
                     </div>
@@ -875,97 +868,97 @@
 
     </div>
 
-    <!-- ==========================================
+</div>
+
+<!-- ==========================================
          PROFILE MODAL 2
     =========================================== -->
 
-    <div class="modal fade profile-modal" id="profileModal2" tabindex="-1" aria-hidden="true">
+<div class="modal fade profile-modal" id="profileModal2" tabindex="-1" aria-hidden="true">
 
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <button type="button" class="modal-close" data-bs-dismiss="modal">
+            <button type="button" class="modal-close" data-bs-dismiss="modal">
 
-                    <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-xmark"></i>
 
-                </button>
-
-
-                <div class="modal-body">
-
-                    <div class="row g-0">
+            </button>
 
 
-                        <!-- Image -->
+            <div class="modal-body">
 
-                        <div class="col-lg-5">
+                <div class="row g-0">
 
-                            <div class="profile-image">
 
-                                <img src="assets/images//founder2-img.png" alt="Beth Tran">
+                    <!-- Image -->
 
-                            </div>
+                    <div class="col-lg-5">
+
+                        <div class="profile-image">
+
+                            <img src="assets/images//founder2-img.png" alt="Beth Tran">
 
                         </div>
 
-
-                        <!-- Content -->
-
-                        <div class="col-lg-7">
-
-                            <div class="section-title p-3 p-md-5">
-
-                                <span class="sub_title">
-                                    Executive Leadership
-                                </span>
-
-                                <h2 class="mb-0">
-                                    Beth Tran
-                                </h2>
-
-                                <h5 class="fs-14 secondary-text-color mb-3">
-                                    Co-Founder & COO — ABYzone
-                                </h5>
+                    </div>
 
 
-                                <p>
-                                    Beth Tran, Co-Founder and Chief Operating
-                                    Officer (COO) of ABYzone, brings over 19 years
-                                    of entrepreneurial expertise across financial
-                                    management, process optimization, and human
-                                    resources.
-                                </p>
+                    <!-- Content -->
 
-                                <p>
-                                    Her experience spans technology, education,
-                                    recruitment, and accounting, equipping her
-                                    with the skills to navigate complex
-                                    organizational challenges and drive
-                                    operational excellence.
-                                </p>
+                    <div class="col-lg-7">
 
-                                <p>
-                                    Currently, Beth oversees operations at
-                                    Victoria Kindergarten Joint Stock Company
-                                    and serves as Deputy General Director of
-                                    Financing for VIET PHAP International
-                                    Construction Design Consultant Joint Stocks
-                                    Company.
-                                </p>
+                        <div class="section-title p-3 p-md-5">
 
-                                <p>
-                                    As COO of ABYzone, Beth focuses on establishing
-                                    the company's foundational systems and
-                                    strategies, including policies, procedures,
-                                    financial systems, sales strategies and
-                                    onboarding beta users and suppliers.
-                                </p>
+                            <span class="sub_title">
+                                Executive Leadership
+                            </span>
+
+                            <h2 class="mb-0">
+                                Beth Tran
+                            </h2>
+
+                            <h5 class="fs-14 secondary-text-color mb-3">
+                                Co-Founder & COO — ABYzone
+                            </h5>
 
 
-                               
+                            <p>
+                                Beth Tran, Co-Founder and Chief Operating
+                                Officer (COO) of ABYzone, brings over 19 years
+                                of entrepreneurial expertise across financial
+                                management, process optimization, and human
+                                resources.
+                            </p>
 
-                            </div>
+                            <p>
+                                Her experience spans technology, education,
+                                recruitment, and accounting, equipping her
+                                with the skills to navigate complex
+                                organizational challenges and drive
+                                operational excellence.
+                            </p>
+
+                            <p>
+                                Currently, Beth oversees operations at
+                                Victoria Kindergarten Joint Stock Company
+                                and serves as Deputy General Director of
+                                Financing for VIET PHAP International
+                                Construction Design Consultant Joint Stocks
+                                Company.
+                            </p>
+
+                            <p>
+                                As COO of ABYzone, Beth focuses on establishing
+                                the company's foundational systems and
+                                strategies, including policies, procedures,
+                                financial systems, sales strategies and
+                                onboarding beta users and suppliers.
+                            </p>
+
+
+
 
                         </div>
 
@@ -978,6 +971,8 @@
         </div>
 
     </div>
+
+</div>
 
 
 
@@ -986,44 +981,31 @@
         <div class="row">
             <div class="col-lg-7 col-md-8">
 
-            <div class="section-title">
-                    
-                        <span class="sub_title text-white">READY TO GET STARTED?</span>
-                        <h2 class="text-white">Join the Future of Warehousing & Logistics</h2>
-                        <p class="text-white mb-3">
-                    Discover smarter storage and fulfillment solutions built around your business.
-                </p>
+                <div class="section-title">
 
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="#" class="btn theme_btn px-4 py-2 fw-semibold">
-                        Find a Warehouse
-                        <i class="fa-solid fa-arrow-right ms-2"></i>
-                    </a>
+                    <span class="sub_title text-white">READY TO GET STARTED?</span>
+                    <h2 class="text-white">Join the Future of Warehousing & Logistics</h2>
+                    <p class="text-white mb-3">
+                        Discover smarter storage and fulfillment solutions built around your business.
+                    </p>
 
-                    <a href="#" class="btn btn theme_btn px-4 py-2 fw-semibold">
-                        Talk to ABYzone
-                    </a>
-                </div>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ route('explore') }}" class="btn theme_btn px-4 py-2 fw-semibold">
+                            Find a Warehouse
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+
+                        <a href="{{ route('contact') }}" class="btn btn theme_btn px-4 py-2 fw-semibold">
+                            Talk to ABYzone
+                        </a>
                     </div>
-
-                
-
-                
-
-                
-
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 
-
-
-       
-
-             
-</main>
 
 
 

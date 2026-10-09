@@ -6,34 +6,34 @@
      HERO SECTION
 ========================== -->
 
-    <section class="hero inner-hero">
+<section class="hero inner-hero">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="hero-content p-0">
+        <div class="hero-content p-0">
 
-                <div class="eyebrow">
-                    Canada's Trusted Warehouse Logistics Platform
-                </div>
-
-                <h1>
-                    Comprehensive Logistics and
-                    <br>
-                    <span> Warehousing Solutions</span>
-                </h1>
-
-                <p class="hero-description text-white">
-                    From storage to fulfillment, ABYZone offers flexible, technology-driven services to help your business grow, scale and succeed.
-                </p>
-
-                <a href="#" class="btn theme_btn">Get a Quote →</a>
-
-               
+            <div class="eyebrow">
+                Canada's Trusted Warehouse Logistics Platform
             </div>
 
+            <h1>
+                Comprehensive Logistics and
+                <br>
+                <span> Warehousing Solutions</span>
+            </h1>
+
+            <p class="hero-description text-white">
+                From storage to fulfillment, ABYZone offers flexible, technology-driven services to help your business grow, scale and succeed.
+            </p>
+
+            <a href="#" class="btn theme_btn">Get a Quote →</a>
+
+            
         </div>
 
-    </section>
+    </div>
+
+</section>
 
   
 <section class="services-section py-5">
@@ -464,39 +464,30 @@
 </section>
 
 
-
-
 <section class="get-started d-flex align-items-center py-4">
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-md-8">
 
-            <div class="section-title">
-                    
-                        <span class="sub_title text-white">READY TO GET STARTED?</span>
-                        <h2 class="text-white">Join the Future of Warehousing & Logistics</h2>
-                        <p class="text-white mb-3">
-                    Discover smarter storage and fulfillment solutions built around your business.
-                </p>
+                <div class="section-title">
 
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="#" class="btn theme_btn px-4 py-2 fw-semibold">
-                        Find a Warehouse
-                        <i class="fa-solid fa-arrow-right ms-2"></i>
-                    </a>
+                    <span class="sub_title text-white">READY TO GET STARTED?</span>
+                    <h2 class="text-white">Join the Future of Warehousing & Logistics</h2>
+                    <p class="text-white mb-3">
+                        Discover smarter storage and fulfillment solutions built around your business.
+                    </p>
 
-                    <a href="#" class="btn btn theme_btn px-4 py-2 fw-semibold">
-                        Talk to ABYzone
-                    </a>
-                </div>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ route('explore') }}" class="btn theme_btn px-4 py-2 fw-semibold">
+                            Find a Warehouse
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+
+                        <a href="{{ route('contact') }}" class="btn btn theme_btn px-4 py-2 fw-semibold">
+                            Talk to ABYzone
+                        </a>
                     </div>
-
-                
-
-                
-
-                
-
+                </div>
             </div>
         </div>
     </div>
@@ -507,9 +498,7 @@
 
        
 
-             
-</main>
-
+            
 
 
 

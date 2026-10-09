@@ -283,7 +283,7 @@
                         </p>
                     </div>
 
-                    <a href="#" class="btn theme_btn">
+                    <a href="{{ route('about') }}" class="btn theme_btn">
                         Learn More
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -416,7 +416,7 @@
             </div>
 
             <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
-                <a href="#" class="learn-more">
+                <a href="{{ route('services') }}" class="learn-more">
                     View All Services
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -440,7 +440,7 @@
                         Flexible and secure storage solutions for all business sizes.
                     </p>
 
-                    <a href="#" class="learn-more">
+                    <a href="{{ route('services') }}" class="learn-more">
                         Learn More
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -461,7 +461,7 @@
                         Fast and reliable order fulfillment across Canada.
                     </p>
 
-                    <a href="#" class="learn-more">
+                    <a href="{{ route('services') }}" class="learn-more">
                         Learn More
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -482,7 +482,7 @@
                         Seamless cross-docking and cargo handling services.
                     </p>
 
-                    <a href="#" class="learn-more">
+                    <a href="{{ route('services') }}" class="learn-more">
                         Learn More
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -503,7 +503,7 @@
                         Kitting, labeling, packaging and more.
                     </p>
 
-                    <a href="#" class="learn-more">
+                    <a href="{{ route('services') }}" class="learn-more">
                         Learn More
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -524,7 +524,7 @@
                         Reliable freight and last-mile logistics solutions.
                     </p>
 
-                    <a href="#" class="learn-more">
+                    <a href="{{ route('services') }}" class="learn-more">
                         Learn More
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -558,7 +558,7 @@
             </div>
 
             <div class="col-md-4 text-md-end mt-2 mt-md-0">
-                <a href="#" class="learn-more">
+                <a href="{{ route('services') }}" class="learn-more">
                     View All Warehouses
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -881,10 +881,10 @@
 
                 </div>
 
-                <button class="btn theme_btn mt-4">
-                    Explore Warehouse Map
+                <a href="{{ route('explore') }}" class="btn theme_btn mt-4">
+                    Explore Warehouse   
                     <i class="fa-solid fa-arrow-right ms-2"></i>
-                </button>
+                </a>
 
             </div>
 
@@ -974,7 +974,7 @@
                         </div>
                     </div>
 
-                    <a href="#" class="wh-all">
+                    <a href="{{ route('services') }}" class="wh-all">
                         View All Cities
                         <i class="fa-solid fa-arrow-right ms-1"></i>
                     </a>
@@ -1112,10 +1112,10 @@
 
                     </ul>
 
-                    <button class="btn theme_btn">
+                    <a href="{{ route('auth.login') }}" class="btn theme_btn">
                         See Platform Demo
                         <i class="fa-solid fa-arrow-right ms-2"></i>
-                    </button>
+                    </a>
 
                 </div>
 
@@ -1247,11 +1247,6 @@
                           
             </div>
 
-              <button class="btn theme_btn">
-                            Learn More
-                            <i class="fa-solid fa-arrow-right ms-1"></i>
-                        </button>
-                        
 
                         
 

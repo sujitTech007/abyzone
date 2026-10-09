@@ -1,18 +1,37 @@
 @include('include.header')
+
+
+
+<section class="hero inner-hero">
+
+    <div class="container">
+
+        <div class="hero-content p-0">
+
+            <div class="eyebrow">
+               CONTACT US
+            </div>
+
+            <h1>
+                Let’s connect <span>constellations.</span>
+            </h1>
+
+            <p class="hero-description text-white">
+                 We’re here to help with your warehousing, fulfillment,
+                and logistics needs.
+            </p>
+
+
+        </div>
+
+    </div>
+
+</section>
+
 <section class="contact-page py-5">
     <div class="container">
 
-        <!-- Header -->
-        <div class="contact-intro text-center">
-           <div class="section-title d-flex flex-column text-center align-items-center">
-             <span class="sub_title">CONTACT US</span>
-            <h1>Let’s connect <span>constellations.</span></h1>
-            <p>
-                We’re here to help with your warehousing, fulfillment,
-                and logistics needs.
-            </p>
-           </div>
-        </div>
+       
 
         <!-- Main Contact Card -->
         <div class="contact-card">
@@ -51,7 +70,7 @@
     </div>
 
     <!-- Phone -->
-    <div class="contact-detail d-flex align-items-center gap-3 mb-4">
+    <!-- <div class="contact-detail d-flex align-items-center gap-3 mb-4">
         <div class="contact-icon flex-shrink-0">
             <i class="fa-solid fa-phone"></i>
         </div>
@@ -66,7 +85,7 @@
                 +1 XXX XXX XXXX
             </a>
         </div>
-    </div>
+    </div> -->
 
     <!-- Location -->
     <div class="contact-detail d-flex align-items-center gap-3">
@@ -156,7 +175,7 @@
                         </div>
 
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn theme_btn fw-bold">
                                 Send Message
                                 <span aria-hidden="true">→</span>
                             </button>
