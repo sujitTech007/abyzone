@@ -40,6 +40,15 @@
                 <aside class="warehouse-filter">
 
                     <form id="warehouseFilterForm">
+                        @if(is_string(request('location')) && request('location') !== '')
+                            <input type="hidden" name="home_location" id="homeLocationFilter" value="{{ request('location') }}">
+                        @endif
+                        @if(is_string(request('storage_type')) && request('storage_type') !== '')
+                            <input type="hidden" name="home_storage_type" id="homeStorageTypeFilter" value="{{ request('storage_type') }}">
+                        @endif
+                        @if(is_string(request('min_size')) && request('min_size') !== '')
+                            <input type="hidden" name="home_min_size" id="homeMinSizeFilter" value="{{ request('min_size') }}">
+                        @endif
 
                         {{-- Filter Heading --}}
                         <div class="d-flex align-items-center gap-2 mb-2">
@@ -229,9 +238,10 @@
                             <select class="form-select form-select-sm mb-3"
                                     name="price_select">
 
-                                <option value="">$500 - $10,000 / month</option>
+                                <option value="">Any price</option>
                                 <option value="0-20000">Below $20k</option>
                                 <option value="20000-50000">$20k – $50k</option>
+                                <option value="50000+">$50k+</option>
 
                             </select>
 
@@ -256,6 +266,18 @@
 
                                 <label class="form-check-label" for="price2">
                                     $20k – $50k
+                                </label>
+                            </div>
+
+                            <div class="form-check warehouse-check">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       name="price[]"
+                                       value="50000+"
+                                       id="price3">
+
+                                <label class="form-check-label" for="price3">
+                                    $50k+
                                 </label>
                             </div>
 
@@ -354,14 +376,14 @@
 
 
                         {{-- CLEAR FILTER --}}
-                        <button type="button"
-                                id="clearWarehouseFilters"
+                        <a href="{{ route('explore') }}"
+                            
                                 class="btn theme_btn w-100 rounded-pill mt-2">
 
                             <i class="fas fa-sync-alt me-1"></i>
                             Clear Filters
 
-                        </button>
+                        </a>
 
                     </form>
 
@@ -387,7 +409,7 @@
                         </h2>
 
                         <p>
-                            We found {{ $warehouses->count() }}
+                            We found <span id="warehouseResultCount">{{ $warehouses->count() }}</span>
                             warehouses matching your search criteria.
                         </p>
                     </div>
@@ -674,7 +696,29 @@ $(document).ready(function () {
        FILTER CHANGE
     ========================================= */
 
-    $('#warehouseFilterForm input').on('change', function () {
+    let warehouseRequest;
+
+    $('#warehouseFilterForm').on('change', 'input, select', function () {
+        if (this.name === 'location_select') {
+            const location = this.value;
+            $('#locationFilters input[name="location[]"]')
+                .prop('checked', false)
+                .filter(function () {
+                    return this.value === location;
+                })
+                .prop('checked', Boolean(location));
+        }
+
+        if (this.name === 'location_select' || this.name === 'location[]') {
+            $('#homeLocationFilter').remove();
+        }
+        if (this.name === 'storage_type[]') {
+            $('#homeStorageTypeFilter').remove();
+        }
+        if (this.name === 'size_select' || this.name === 'size[]') {
+            $('#homeMinSizeFilter').remove();
+        }
+
         fetchWarehouses();
     });
 
@@ -702,37 +746,24 @@ $(document).ready(function () {
        LOCATION SELECT
     ========================================= */
 
-    $('select[name="location_select"]').on('change', function () {
-
-        let location = $(this).val();
-
-        if (!location) {
-            return;
-        }
-
-        $('#locationFilters input[name="location[]"]').prop('checked', false);
-
-        $('#locationFilters input[name="location[]"][value="' + location + '"]')
-            .prop('checked', true);
-
-        fetchWarehouses();
-
-    });
-
-
     /* =========================================
        AJAX FILTER
     ========================================= */
 
     function fetchWarehouses() {
 
-        $.ajax({
+        if (warehouseRequest) {
+            warehouseRequest.abort();
+        }
+
+        warehouseRequest = $.ajax({
 
             url: "{{ route('explore') }}",
 
             type: "GET",
 
-            data: $('#warehouseFilterForm').serialize(),
+            data: $('#warehouseFilterForm').serialize() +
+                '&sort=' + encodeURIComponent($('#warehouseSort').val()),
 
             beforeSend: function () {
 
@@ -757,12 +788,16 @@ $(document).ready(function () {
                 if (response.html) {
 
                     $('#warehouseResults').html(response.html);
+                    $('#warehouseResultCount').text(response.count);
 
                 }
 
             },
 
-            error: function () {
+            error: function (xhr, status) {
+                if (status === 'abort') {
+                    return;
+                }
 
                 $('#warehouseResults').html(`
                     <div class="col-12">
@@ -779,6 +814,8 @@ $(document).ready(function () {
 
     }
 
+    $('#warehouseSort').on('change', fetchWarehouses);
+
 
     /* =========================================
        CLEAR FILTERS
@@ -787,6 +824,7 @@ $(document).ready(function () {
     $('#clearWarehouseFilters').on('click', function () {
 
         $('#warehouseFilterForm')[0].reset();
+        $('#warehouseSort').val('relevant');
 
         $('#locationFilters .warehouse-check').show();
 
@@ -794,29 +832,6 @@ $(document).ready(function () {
 
     });
 
-
-    /* =========================================
-       SORT UI
-       Only visual unless backend supports sorting
-    ========================================= */
-
-    $('#warehouseSort').on('change', function () {
-
-        let sort = $(this).val();
-
-        /*
-         * Agar aapke controller me sort functionality hai,
-         * to yahan:
-         *
-         * data: {
-         *     ...$('#warehouseFilterForm').serialize(),
-         *     sort: sort
-         * }
-         *
-         * bhej sakte hain.
-         */
-
-    });
 
 });
 

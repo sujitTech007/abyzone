@@ -189,60 +189,119 @@ class PagesController extends Controller
     {
         $warehouses = Warehouse::where('status', 'available');
 
-        /* ================= SIZE FILTER ================= */
-        if ($request->size) {
-            $warehouses->where(function ($q) use ($request) {
-                foreach ($request->size as $size) {
-                    match ($size) {
-                        '500-1000'   => $q->orWhereBetween('size_sqft', [500, 1000]),
-                        '1000-5000'  => $q->orWhereBetween('size_sqft', [1000, 5000]),
-                        '5000-10000' => $q->orWhereBetween('size_sqft', [5000, 10000]),
-                        '10000+'     => $q->orWhere('size_sqft', '>=', 10000),
-                    };
+        $sizeRanges = $request->input('size', []);
+        $sizeRanges = is_array($sizeRanges)
+            ? array_values(array_filter($sizeRanges, 'is_string'))
+            : [];
+        $selectedSize = $request->input('size_select');
+        if (is_string($selectedSize) && $selectedSize !== '') {
+            $sizeRanges[] = $selectedSize;
+        }
+
+        $validSizeRanges = ['500-1000', '1000-5000', '5000-10000', '10000-50000', '10000+'];
+        $sizeRanges = array_values(array_intersect($validSizeRanges, $sizeRanges));
+        if ($sizeRanges !== []) {
+            $warehouses->where(function ($query) use ($sizeRanges) {
+                foreach ($sizeRanges as $range) {
+                    $query->orWhere(function ($rangeQuery) use ($range) {
+                        $applyRange = static function ($columnQuery, string $column) use ($range) {
+                            match ($range) {
+                                '500-1000' => $columnQuery->whereBetween($column, [500, 1000]),
+                                '1000-5000' => $columnQuery->whereBetween($column, [1000, 5000]),
+                                '5000-10000' => $columnQuery->whereBetween($column, [5000, 10000]),
+                                '10000-50000' => $columnQuery->whereBetween($column, [10000, 50000]),
+                                '10000+' => $columnQuery->where($column, '>=', 10000),
+                            };
+                        };
+
+                        $rangeQuery->where(function ($sizeQuery) use ($applyRange) {
+                            $applyRange($sizeQuery, 'size_sqft');
+                        })->orWhere(function ($capacityQuery) use ($applyRange) {
+                            $capacityQuery->where('capacity_unit', 'SQFT');
+                            $applyRange($capacityQuery, 'capacity_quantity');
+                        });
+                    });
                 }
             });
         }
 
-        /* ================= PRICE FILTER ================= */
-        if ($request->price) {
-            $warehouses->where(function ($q) use ($request) {
-                foreach ($request->price as $price) {
-                    match ($price) {
-                        '0-20000'     => $q->orWhereBetween('price_per_month', [0, 20000]),
-                        '20000-50000' => $q->orWhereBetween('price_per_month', [20000, 50000]),
-                        '50000+'      => $q->orWhere('price_per_month', '>=', 50000),
-                    };
+        $priceRanges = $request->input('price', []);
+        $priceRanges = is_array($priceRanges)
+            ? array_values(array_filter($priceRanges, 'is_string'))
+            : [];
+        $selectedPrice = $request->input('price_select');
+        if (is_string($selectedPrice) && $selectedPrice !== '') {
+            $priceRanges[] = $selectedPrice;
+        }
+        $validPriceRanges = ['0-20000', '20000-50000', '50000+'];
+        $priceRanges = array_values(array_intersect($validPriceRanges, $priceRanges));
+        if ($priceRanges !== []) {
+            $warehouses->where(function ($query) use ($priceRanges) {
+                foreach ($priceRanges as $range) {
+                    $query->orWhere(function ($rangeQuery) use ($range) {
+                        match ($range) {
+                            '0-20000' => $rangeQuery->whereRaw('COALESCE(price_value, price_per_month) BETWEEN ? AND ?', [0, 20000]),
+                            '20000-50000' => $rangeQuery->whereRaw('COALESCE(price_value, price_per_month) BETWEEN ? AND ?', [20000, 50000]),
+                            '50000+' => $rangeQuery->whereRaw('COALESCE(price_value, price_per_month) >= ?', [50000]),
+                        };
+                    });
                 }
             });
         }
 
-        /* ================= HOME SEARCH FILTERS ================= */
         if ($request->filled('location')) {
             $location = $request->input('location');
             if (is_array($location)) {
-                $warehouses->whereIn('location', $location);
-            } else {
+                $locations = array_values(array_filter($location, 'is_string'));
+                if ($locations !== []) {
+                    $warehouses->whereIn('location', $locations);
+                }
+            } elseif (is_string($location)) {
                 $warehouses->where('location', 'like', '%' . trim($location) . '%');
             }
         }
 
-        $storageType = $request->input('storage_type');
-        if (is_array($storageType) && $storageType !== []) {
-            $warehouses->whereIn('storage_type', $storageType);
+        if (is_string($request->input('home_location')) && trim($request->input('home_location')) !== '') {
+            $warehouses->where('location', 'like', '%' . trim($request->input('home_location')) . '%');
+        }
+
+        $storageType = $request->input('storage_type', []);
+        if (is_array($storageType)) {
+            $storageTypes = array_values(array_filter($storageType, 'is_string'));
+            if ($storageTypes !== []) {
+                $warehouses->where(function ($query) use ($storageTypes) {
+                    foreach ($storageTypes as $type) {
+                        $storageLabel = str_replace(' Storage', '', $type);
+
+                        $query->orWhere(function ($typeQuery) use ($storageLabel, $type) {
+                            $typeQuery->where('storage_type', 'like', '%' . $storageLabel . '%');
+
+                            if ($type === 'Dry Storage') {
+                                $typeQuery->orWhereNull('storage_type')
+                                    ->orWhere('storage_type', '');
+                            }
+                        });
+                    }
+                });
+            }
         } elseif (is_string($storageType) && trim($storageType) !== '') {
             $warehouses->where('storage_type', 'like', '%' . trim($storageType) . '%');
         }
 
-        /* ================= AMENITIES FILTER (JSON) ================= */
-        if ($request->amenities) {
-            foreach ($request->amenities as $amenity) {
+        if (is_string($request->input('home_storage_type')) && trim($request->input('home_storage_type')) !== '') {
+            $warehouses->where('storage_type', 'like', '%' . trim($request->input('home_storage_type')) . '%');
+        }
+
+        $amenitiesFilter = $request->input('amenities', []);
+        if (is_array($amenitiesFilter)) {
+            foreach (array_filter($amenitiesFilter, 'is_string') as $amenity) {
                 $warehouses->whereJsonContains('amenities', $amenity);
             }
         }
 
-        /* ================= CAPACITY FILTER ================= */
-        if (is_scalar($request->input('min_size')) && $request->filled('min_size')) {
-            $minimumSize = (int) $request->input('min_size');
+        $minimumSizeValue = $request->input('min_size', $request->input('home_min_size'));
+        if (is_scalar($minimumSizeValue) && $minimumSizeValue !== '') {
+            $minimumSize = (int) $minimumSizeValue;
             if (in_array($minimumSize, [1000, 5000, 10000], true)) {
                 $warehouses->where(function ($query) use ($minimumSize) {
                     $query->where('size_sqft', '>=', $minimumSize)
@@ -254,9 +313,14 @@ class PagesController extends Controller
             }
         }
 
-        if (is_array($request->input('capacity')) && $request->filled('capacity')) {
-            $warehouses->where(function ($q) use ($request) {
-                foreach ($request->capacity as $range) {
+        $capacityRanges = $request->input('capacity', []);
+        $validCapacityRanges = ['0-50', '50-100', '100-300', '300+'];
+        $capacityRanges = is_array($capacityRanges)
+            ? array_values(array_intersect($validCapacityRanges, array_filter($capacityRanges, 'is_string')))
+            : [];
+        if ($capacityRanges !== []) {
+            $warehouses->where(function ($q) use ($capacityRanges) {
+                foreach ($capacityRanges as $range) {
                     if ($range === '300+') {
                         $q->orWhere('capacity_units', '>=', 300);
                     } else {
@@ -267,7 +331,11 @@ class PagesController extends Controller
             });
         }
 
-
+        if ($request->input('sort') === 'price_low') {
+            $warehouses->orderByRaw('COALESCE(price_value, price_per_month) ASC');
+        } elseif ($request->input('sort') === 'price_high') {
+            $warehouses->orderByRaw('COALESCE(price_value, price_per_month) DESC');
+        }
 
         $warehouses = $warehouses->get();
 
@@ -291,7 +359,8 @@ class PagesController extends Controller
         /* ================= AJAX RESPONSE ================= */
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('explore-list', compact('warehouses'))->render()
+                'html' => view('explore-list', compact('warehouses'))->render(),
+                'count' => $warehouses->count(),
             ]);
         }
 
