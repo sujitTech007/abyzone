@@ -21,7 +21,7 @@
             <div class="col-lg-10">
 
                 <div class="text-center mb-5">
-                    <h1 class="fw-bold text-black">Privacy Policy</h1>
+                    <h1 class="fw-semibold text-black">Privacy Policy</h1>
                     <p class="text-muted mb-2">
                         Your privacy matters to us.
                     </p>
@@ -41,7 +41,7 @@
                         marketplace services.
                     </p>
 
-                    <h4 class="fw-bold mt-4">1. Information We Collect</h4>
+                    <h4 class="fw-semibold mt-4">1. Information We Collect</h4>
                     <p class="mt-3 ms-3">Depending on how you use ABYzone, we may collect the following information:</p>
                     <ul>
                         <li><strong>Account information:</strong> Name, email address, phone number, login details, and account role.</li>
@@ -53,7 +53,7 @@
                         <li><strong>Support communications:</strong> Information you provide when contacting our team.</li>
                     </ul>
 
-                    <h4 class="fw-bold mt-4">2. How We Collect Information</h4>
+                    <h4 class="fw-semibold mt-4">2. How We Collect Information</h4>
                     <p class="mt-3 ms-3">Information may be collected when you:</p>
                     <ul>
                         <li>Create or update an account.</li>
@@ -68,7 +68,7 @@
                         providers or business partners where permitted by law.
                     </p>
 
-                    <h4 class="fw-bold mt-4">3. How We Use Your Information</h4>
+                    <h4 class="fw-semibold mt-4">3. How We Use Your Information</h4>
                     <p class="mt-3 ms-3">We may use information to:</p>
                     <ul>
                         <li>Create and manage user accounts.</li>
@@ -83,7 +83,7 @@
                         <li>Send service-related notifications and, where permitted, marketing communications.</li>
                     </ul>
 
-                    <h4 class="fw-bold mt-4">4. How Information Is Shared</h4>
+                    <h4 class="fw-semibold mt-4">4. How Information Is Shared</h4>
                     <p class="mt-3 ms-3">
                         We may share relevant information with the following
                         categories of recipients, as necessary and permitted by law:
@@ -101,7 +101,7 @@
                         legal requirements.
                     </p>
 
-                    <h4 class="fw-bold mt-4">5. Payments and Financial Information</h4>
+                    <h4 class="fw-semibold mt-4">5. Payments and Financial Information</h4>
                     <p class="mt-3 ms-3">
                         Where online payments are available, transactions may
                         be processed by third-party payment providers. Their
@@ -116,7 +116,7 @@
                         details through ordinary contact forms.
                     </p>
 
-                    <h4 class="fw-bold mt-4">6. Cookies and Similar Technologies</h4>
+                    <h4 class="fw-semibold mt-4">6. Cookies and Similar Technologies</h4>
                     <p class="mt-3 ms-3">
                         Our website may use cookies or similar technologies
                         to support essential functions, maintain sessions,
@@ -130,7 +130,7 @@
                         appropriate notice or obtain consent.
                     </p>
 
-                    <h4 class="fw-bold mt-4">7. Data Storage and Security</h4>
+                    <h4 class="fw-semibold mt-4">7. Data Storage and Security</h4>
                     <p class="mt-3 ms-3">
                         We use reasonable administrative, technical, and
                         organizational measures intended to protect information
@@ -144,7 +144,7 @@
                         if they suspect unauthorized account activity.
                     </p>
 
-                    <h4 class="fw-bold mt-4">8. Data Retention</h4>
+                    <h4 class="fw-semibold mt-4">8. Data Retention</h4>
                     <p class="mt-3 ms-3">
                         We retain personal information for as long as reasonably
                         necessary to provide services, maintain accounts and
@@ -157,7 +157,7 @@
                         retained where required or permitted by law.
                     </p>
 
-                    <h4 class="fw-bold mt-4">9. Your Privacy Rights</h4>
+                    <h4 class="fw-semibold mt-4">9. Your Privacy Rights</h4>
                     <p class="mt-3 ms-3">
                         Depending on the laws applicable to you, you may have
                         rights to:
@@ -176,7 +176,7 @@
                         certain records to comply with applicable law.
                     </p>
 
-                    <h4 class="fw-bold mt-4">10. Marketing Communications</h4>
+                    <h4 class="fw-semibold mt-4">10. Marketing Communications</h4>
                     <p class="mt-3 ms-3">
                         Where permitted, we may send updates about ABYzone
                         services, features, or relevant offers. You can opt out
@@ -189,7 +189,7 @@
                         to our terms and policies.
                     </p>
 
-                    <h4 class="fw-bold mt-4">11. Third-Party Websites</h4>
+                    <h4 class="fw-semibold mt-4">11. Third-Party Websites</h4>
                     <p class="mt-3 ms-3">
                         Our website may contain links to third-party websites
                         or services. ABYzone does not control their privacy
@@ -197,7 +197,7 @@
                         before providing information to those services.
                     </p>
 
-                    <h4 class="fw-bold mt-4">12. International Data Processing</h4>
+                    <h4 class="fw-semibold mt-4">12. International Data Processing</h4>
                     <p class="mt-3 ms-3">
                         Depending on the service providers we use, information
                         may be processed or stored in Canada or other
@@ -206,7 +206,7 @@
                         will apply.
                     </p>
 
-                    <h4 class="fw-bold mt-4">13. Children's Privacy</h4>
+                    <h4 class="fw-semibold mt-4">13. Children's Privacy</h4>
                     <p class="mt-3 ms-3">
                         ABYzone is intended for business users and is not
                         designed for children. We do not knowingly collect
@@ -215,7 +215,7 @@
                         improperly, please contact us.
                     </p>
 
-                    <h4 class="fw-bold mt-4">14. Changes to This Privacy Policy</h4>
+                    <h4 class="fw-semibold mt-4">14. Changes to This Privacy Policy</h4>
                     <p class="mt-3 ms-3">
                         We may update this Privacy Policy as our services,
                         practices, or legal obligations change. Updates will
@@ -224,7 +224,7 @@
                         where required by law.
                     </p>
 
-                    <h4 class="fw-bold mt-4">15. Contact Us</h4>
+                    <h4 class="fw-semibold mt-4">15. Contact Us</h4>
                     <p class="mt-3 ms-3">
                         If you have questions, privacy concerns, or a request
                         regarding your personal information, please contact
