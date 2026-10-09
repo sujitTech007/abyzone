@@ -53,7 +53,7 @@ Route::post('/contact/store', [PagesController::class, 'contactStore'])->name('c
 Route::get('/blog{category?}', [PagesController::class, 'blog'])->name('blog');
 Route::get('/blog/search', [PagesController::class, 'search'])->name('blog.search');
 Route::get('/terms', [PagesController::class, 'terms'])->name('terms');
-Route::get('/terms', [PagesController::class, 'privacy'])->name('privacy');
+Route::get('/privacy', [PagesController::class, 'privacy'])->name('privacy');
 
 
 Route::get('/blog-detail/{id}', [PagesController::class, 'blogDetail'])->name('blog.details');
