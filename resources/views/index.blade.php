@@ -1,10 +1,5 @@
 @include('include.header')
 
-
-    <!-- =========================
-     HERO SECTION
-========================== -->
-
     <section class="hero">
 
         <div class="container">
@@ -50,7 +45,7 @@
                 <!-- Search -->
                 <div class="search-wrapper">
 
-                    <form id="warehouseSearch">
+                    <form id="" action="{{ route('explore') }}" method="GET">
 
                         <div class="search-box">
 
@@ -62,7 +57,7 @@
                                     Location
                                 </div>
 
-                                <input type="text" id="location" placeholder="e.g. Toronto, Vancouver, Calgary...">
+                                <input type="text" id="location" name="location" placeholder="e.g. Toronto, Vancouver, Calgary...">
 
                             </div>
 
@@ -74,7 +69,7 @@
                                     Storage Type
                                 </div>
 
-                                <select id="storageType">
+                                <select id="storageType" name="storage_type">
 
                                     <option value="">
                                         Select storage type
@@ -108,7 +103,7 @@
                                     Capacity
                                 </div>
 
-                                <select id="capacity">
+                                <select id="capacity" name="min_size">
 
                                     <option value="">
                                         e.g. 1,000 sq ft
