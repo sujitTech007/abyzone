@@ -190,7 +190,7 @@
 
                             <select class="form-select form-select-sm mb-3"
                                     name="size_select">
-
+                                <option value="">0 - 500 sq ft</option>
                                 <option value="">500 - 50,000 sq ft</option>
                                 <option value="500-1000">500 - 1,000 sq ft</option>
                                 <option value="1000-5000">1,000 - 5,000 sq ft</option>
@@ -284,64 +284,7 @@
                         </div>
 
 
-                        {{-- ================= CAPACITY ================= --}}
-                        <div class="filter-group">
-
-                            <h6 class="filter-title">
-                                <i class="fas fa-boxes"></i>
-                                Capacity
-                            </h6>
-
-                            <div class="form-check warehouse-check">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="capacity[]"
-                                       value="0-50"
-                                       id="capacity1">
-
-                                <label class="form-check-label" for="capacity1">
-                                    Up to 50
-                                </label>
-                            </div>
-
-                            <div class="form-check warehouse-check">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="capacity[]"
-                                       value="50-100"
-                                       id="capacity2">
-
-                                <label class="form-check-label" for="capacity2">
-                                    50 – 100
-                                </label>
-                            </div>
-
-                            <div class="form-check warehouse-check">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="capacity[]"
-                                       value="100-300"
-                                       id="capacity3">
-
-                                <label class="form-check-label" for="capacity3">
-                                    100 – 300
-                                </label>
-                            </div>
-
-                            <div class="form-check warehouse-check">
-                                <input class="form-check-input"
-                                       type="checkbox"
-                                       name="capacity[]"
-                                       value="300+"
-                                       id="capacity4">
-
-                                <label class="form-check-label" for="capacity4">
-                                    300+
-                                </label>
-                            </div>
-
-                        </div>
-
+                      
 
                         {{-- ================= AMENITIES ================= --}}
                         <div class="filter-group">
@@ -680,11 +623,40 @@
 
 
 
+<section class="get-started d-flex align-items-center py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-8">
+
+                <div class="section-title">
+
+                    <span class="sub_title text-white">READY TO GET STARTED?</span>
+                    <h2 class="text-white">Join the Future of Warehousing & Logistics</h2>
+                    <p class="text-white mb-3">
+                        Discover smarter storage and fulfillment solutions built around your business.
+                    </p>
+
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ route('explore') }}" class="btn theme_btn px-4 py-2 fw-semibold">
+                            Find a Warehouse
+                            <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+
+                        <a href="{{ route('contact') }}" class="btn btn theme_btn px-4 py-2 fw-semibold">
+                            Talk to ABYzone
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 {{-- =========================================================
     JQUERY
 ========================================================= --}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <script>

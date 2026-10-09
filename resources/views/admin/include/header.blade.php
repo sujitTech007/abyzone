@@ -304,7 +304,7 @@
                             </button>
 
                             <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg"
-                                style="min-height:300px;">
+                                style="min-height:180px;">
 
                                 <div class="p-2 border-bottom border-dashed">
                                     <h6 class="m-0 fs-16 fw-semibold text-dark">Notifications</h6>

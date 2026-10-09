@@ -1,3 +1,145 @@
+
+
+ const warehouseSwiper = new Swiper(".warehouse-swiper", {
+
+        slidesPerView: 4,
+        spaceBetween: 18,
+
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        loop: false,
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+        breakpoints: {
+
+            576: {
+                slidesPerView: 2,
+                spaceBetween: 18
+            },
+
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 18
+            },
+
+            1200: {
+                slidesPerView: 4,
+                spaceBetween: 18
+            }
+
+        }
+
+    });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+        const testimonialSwiper = new Swiper(".testimonialSwiper", {
+
+            slidesPerView: 1,
+
+            spaceBetween: 30,
+
+            speed: 700,
+
+            loop: true,
+
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+
+            effect: "slide",
+
+            navigation: {
+                nextEl: ".testimonial-button-next",
+                prevEl: ".testimonial-button-prev",
+            },
+
+            pagination: {
+                el: ".testimonial-pagination",
+                clickable: true,
+            },
+
+            keyboard: {
+                enabled: true,
+            },
+
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+
+                768: {
+                    slidesPerView: 1,
+                },
+
+                1200: {
+                    slidesPerView: 1,
+                }
+            }
+
+        });
+
+    });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const blogSwiper = new Swiper('.blogSwiper', {
+
+        slidesPerView: 3,
+        spaceBetween: 24,
+
+        loop: true,
+
+        speed: 700,
+        grabCursor: true,
+
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+
+        pagination: {
+            el: '.blogSwiper .swiper-pagination',
+            clickable: true,
+        },
+
+        navigation: {
+            nextEl: '.blog-next',
+            prevEl: '.blog-prev',
+        },
+
+        breakpoints: {
+
+            576: {
+                slidesPerView: 1.5,
+                spaceBetween: 20,
+            },
+
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 28,
+            }
+
+        }
+
+    });
+
+});
+
 // document.addEventListener('DOMContentLoaded', function () {
 
 //     const searchInput = document.getElementById('popupWarehouseSearch');
@@ -404,145 +546,4 @@
 
 
 
-
-
- const warehouseSwiper = new Swiper(".warehouse-swiper", {
-
-        slidesPerView: 4,
-        spaceBetween: 18,
-
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        loop: false,
-
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-
-        breakpoints: {
-
-            576: {
-                slidesPerView: 2,
-                spaceBetween: 18
-            },
-
-            992: {
-                slidesPerView: 3,
-                spaceBetween: 18
-            },
-
-            1200: {
-                slidesPerView: 4,
-                spaceBetween: 18
-            }
-
-        }
-
-    });
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-        const testimonialSwiper = new Swiper(".testimonialSwiper", {
-
-            slidesPerView: 1,
-
-            spaceBetween: 30,
-
-            speed: 700,
-
-            loop: true,
-
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-
-            effect: "slide",
-
-            navigation: {
-                nextEl: ".testimonial-button-next",
-                prevEl: ".testimonial-button-prev",
-            },
-
-            pagination: {
-                el: ".testimonial-pagination",
-                clickable: true,
-            },
-
-            keyboard: {
-                enabled: true,
-            },
-
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                },
-
-                768: {
-                    slidesPerView: 1,
-                },
-
-                1200: {
-                    slidesPerView: 1,
-                }
-            }
-
-        });
-
-    });
-
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    const blogSwiper = new Swiper('.blogSwiper', {
-
-        slidesPerView: 1,
-        spaceBetween: 24,
-
-        loop: false,
-
-        speed: 700,
-        grabCursor: true,
-
-        autoplay: {
-            delay: 4500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-        },
-
-        pagination: {
-            el: '.blogSwiper .swiper-pagination',
-            clickable: true,
-        },
-
-        navigation: {
-            nextEl: '.blog-next',
-            prevEl: '.blog-prev',
-        },
-
-        breakpoints: {
-
-            576: {
-                slidesPerView: 1.5,
-                spaceBetween: 20,
-            },
-
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 24,
-            },
-
-            992: {
-                slidesPerView: 3,
-                spaceBetween: 28,
-            }
-
-        }
-
-    });
-
-});
 
