@@ -1,4 +1,22 @@
 @include('include.header')
+@php
+    $hasStructuredAddress = $warehouse->address_street
+        || $warehouse->address_city
+        || $warehouse->address_state
+        || $warehouse->address_postal;
+
+    $mapAddress = $hasStructuredAddress
+        ? implode(', ', array_filter([
+            $warehouse->address_street,
+            $warehouse->address_city,
+            $warehouse->address_state,
+            $warehouse->address_postal,
+            $warehouse->location,
+        ]))
+        : ($warehouse->address ?: $warehouse->location);
+
+    $googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($mapAddress);
+@endphp
     <section class="hero inner-hero">
 
         <div class="container">
@@ -300,7 +318,9 @@
                                             {{ $warehouse->location }}
                                         </strong>
 
-                                        <a href="#"
+                                        <a href="{{ $googleMapsUrl }}"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
                                            class="small primary-text-color text-decoration-none">
                                             View on Map
                                             <i class="fas fa-arrow-right ms-1"></i>
@@ -760,23 +780,9 @@
 
                 <div class="location-item mt-3">
                     <span class="location-icon">⌖</span>
-                    <span>123 Logistics Drive, Toronto, ON M5V 1A8, Canada</span>
+                    <span>{{ $mapAddress ?: 'Location not provided' }}</span>
                 </div>
 
-                <div class="location-item">
-                    <span class="location-icon">♣</span>
-                    <span>5 mins to Highway 400</span>
-                </div>
-
-                <div class="location-item">
-                    <span class="location-icon">♜</span>
-                    <span>15 mins to Downtown Toronto</span>
-                </div>
-
-                <div class="location-item">
-                    <span class="location-icon">♜</span>
-                    <span>30 mins to Pearson Airport</span>
-                </div>
             </div>
 
             <!-- Right Map -->
@@ -784,22 +790,30 @@
                 <div class="map-wrapper">
 
                     <!-- Map Image -->
-                    <img src="images/map.png"
-                         alt="Riverside Logistics Centre Location"
-                         class="map-image">
+                    <a href="{{ $googleMapsUrl }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Open {{ $warehouse->name }} in Google Maps">
+                        <img src="{{ asset('assets/images/map.png') }}"
+                             alt="Map showing {{ $warehouse->name }} location"
+                             class="map-image">
+                    </a>
 
                     <!-- Location Marker -->
                     <div class="map-marker">
                         <span class="marker-pin">●</span>
 
                         <div class="marker-label">
-                            <strong>Riverside Logistics Centre</strong>
-                            <span>Toronto, ON</span>
+                            <strong>{{ $warehouse->name }}</strong>
+                            <span>{{ $warehouse->location }}</span>
                         </div>
                     </div>
 
                     <!-- Button -->
-                    <a href="#" class="map-button">
+                    <a href="{{ $googleMapsUrl }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="map-button">
                         View Larger Map
                         <span>→</span>
                     </a>
