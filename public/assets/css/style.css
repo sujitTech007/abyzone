@@ -331,6 +331,10 @@ form textarea.form-control {
     }
 }
 
+.header_btn a.btn.btn-link{
+    font-size: 13px;
+    font-weight: bold;
+}
 
 
 .section-title .sub_title {
@@ -4565,4 +4569,10 @@ span.iti__country-name{margin-left: 2px;}
 
 section.register-page .login-form-width{
     max-width: 550px;
+}
+
+.privacy-policy-page h4{
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }

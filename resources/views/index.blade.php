@@ -1392,7 +1392,7 @@
                 <!-- FEATURES -->
                 <div class="row features g-0">
 
-                    <div class="col-4 feature">
+                    <div class="col-4 feature flex-column gap-0">
                         <div class="feature-icon">
                             <i class="fa-solid fa-stopwatch"></i>
                         </div>
@@ -1400,7 +1400,7 @@
                         <div class="feature-text">Within 24 hours</div>
                     </div>
 
-                    <div class="col-4 feature ps-0 ps-md-3">
+                    <div class="col-4 feature flex-column gap-0 ps-0 ps-md-3">
                         <div class="feature-icon">
                             <i class="fa-solid fa-headset"></i>
                         </div>
@@ -1408,7 +1408,7 @@
                         <div class="feature-text">Real people, real help</div>
                     </div>
 
-                    <div class="col-4 feature ps-0 ps-md-3">
+                    <div class="col-4 feature flex-column gap-0 ps-0 ps-md-3 border-0">
                         <div class="feature-icon">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
