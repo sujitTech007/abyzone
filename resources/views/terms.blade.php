@@ -84,7 +84,7 @@
                     </p>
 
                     <h4 class=" mt-4">7. Warehouse Provider Responsibilities</h4>
-                    <ul class="mt-3 ms-3">
+                    <ul class="mt-3">
                         <li>Maintain accurate warehouse information.</li>
                         <li>Keep availability and pricing information updated.</li>
                         <li>Comply with applicable laws and safety requirements.</li>
@@ -93,7 +93,7 @@
                     </ul>
 
                     <h4 class=" mt-4">8. Customer Responsibilities</h4>
-                    <ul class="mt-3 ms-3">
+                    <ul class="mt-3">
                         <li>Provide accurate information about stored goods.</li>
                         <li>Disclose relevant handling and storage requirements.</li>
                         <li>Comply with warehouse rules and safety instructions.</li>
