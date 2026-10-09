@@ -295,7 +295,7 @@
 
                 <div class="col-md-5">
 
-                    <p class="copyright mb-0 w-100 text-end"><a href="{{ route('privacy.policy') }}" class="footer-legal-link"> Privacy Policy </a> <span class="footer-separator">|</span> <a href="{{ route('terms') }}" class="footer-legal-link"> Terms &amp; Conditions </a> </p>
+                    <p class="copyright mb-0 w-100 text-end"><a href="{{ route('privacy') }}" class="footer-legal-link"> Privacy Policy </a> <span class="footer-separator">|</span> <a href="{{ route('terms') }}" class="footer-legal-link"> Terms &amp; Conditions </a> </p>
 
                 </div>
 
