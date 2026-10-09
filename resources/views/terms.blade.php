@@ -70,9 +70,8 @@
                         confirming your booking.
                     </p>
 
-                    <h4 class=" mt-4">7. Warehouse Provider Responsibilities</h4>
-                    <ul class="mt-3">
-                    <h4> Warehouse Provider Responsibilities</h4>
+                    <h4 class=" mt-4">Warehouse Provider Responsibilities</h4>
+                   
                     <ul>
                         <li>Maintain accurate warehouse information.</li>
                         <li>Keep availability and pricing information updated.</li>
@@ -81,9 +80,8 @@
                         <li>Handle customer information responsibly.</li>
                     </ul>
 
-                    <h4 class=" mt-4">8. Customer Responsibilities</h4>
-                    <ul class="mt-3">
-                    <h4> Customer Responsibilities</h4>
+                    <h4 class=" mt-4">Customer Responsibilities</h4>
+                   
                     <ul>
                         <li>Provide accurate information about stored goods.</li>
                         <li>Disclose relevant handling and storage requirements.</li>
