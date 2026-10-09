@@ -178,7 +178,7 @@
                         @if(Auth::check())
 
                             <a href="{{ route('user.dashboard') }}"
-                            class="btn btn-outline-secondary rounded-pill px-3 text-nowrap">
+                            class="btn secondary-text-color  rounded-pill px-3 text-nowrap">
                                 <i class="fa-regular fa-user me-1"></i>
                                 Dashboard
                             </a>

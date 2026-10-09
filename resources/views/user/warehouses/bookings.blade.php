@@ -12,6 +12,15 @@
     @include('includes.alerts')
 
     <div class="card shadow-sm border-0">
+                    <div class="card-header bg-color-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <h5 class="mb-0">Recent Booking Requests</h5>
+                            <small class="text-muted">Track status and meeting schedules.</small>
+                        </div>
+                       
+                    </div>
+
+    <div class="card-body">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
                 <thead>
@@ -65,6 +74,7 @@
         <div class="card-footer bg-white">
             {{ $bookings->links() }}
         </div>
+    </div>
     </div>
 </div>
 </div>

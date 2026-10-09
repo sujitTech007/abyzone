@@ -4580,3 +4580,10 @@ section.register-page .login-form-width{
 .text-danger{
     font-size: 12px;
 }
+
+.otp-inputs input{
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    text-align: center;
+}

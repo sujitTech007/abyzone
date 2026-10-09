@@ -1,18 +1,132 @@
 @include('include.header')
 
-<div class="container mt-5">
-<div class="col-md-5 offset-md-3 login-box">
+<section class="login-page">
 
-<img src="{{ asset('assets/images//qby-logo.png') }}" style="height:50px; margin-left:165px;">
+    <div class="container-fluid p-0">
 
-<h2 class="text-center mt-2"><u>Enter OTP</u></h2>
+        <div class="row g-0">
 
+            {{-- ================= LEFT SIDE ================= --}}
+            <div class="col-lg-6 login-left">
+
+                <div class="login-form-width">
+
+                  
+
+
+                    {{-- Hero Content --}}
+                    <div class="hero-contents">
+
+                        <div class="section-title">
+                            <span class="sub_title text-white">SECURE SIGN-IN</span>
+                            <h2 class="text-white fs-3">
+                            Find Space.
+                            Store <span>Smarter.</span><br>
+                            Grow <strong>Faster.</strong>
+                        </h2>
+                        <p class="hero-text">
+                            Access verified warehouses, flexible storage,
+                            and smart fulfillment solutions from one
+                            secure platform.
+                        </p>
+
+                        </div>
+
+
+                        
+
+                        
+
+
+                        {{-- Feature 1 --}}
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+
+                            <div>
+                                <h5 class="fs-14">Verified Warehouses</h5>
+                                <p class="fs-12">
+                                    Find trusted warehouse providers
+                                    for your business.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        {{-- Feature 2 --}}
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </div>
+
+                            <div>
+                                 <h5 class="fs-14">Flexible Storage</h5>
+                                <p class="fs-12">
+                                    Choose storage solutions that
+                                    fit your business needs.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        {{-- Feature 3 --}}
+                        <div class="feature-item">
+
+                            <div class="feature-icon">
+                                <i class="bi bi-stars"></i>
+                            </div>
+
+                            <div>
+                                 <h5 class="fs-14">Easy Booking & Management</h5>
+                                <p class="fs-12">
+                                    Manage your warehouse operations
+                                    from one secure platform.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {{-- ================= RIGHT SIDE ================= --}}
+            <div class="col-lg-6">
+                <div class="p-5 login-right">
+
+               
+
+                <div class="login-form-width">
+
+                    {{-- Sign In Badge --}}
+                    <div class="section-title">
+                        <span class="sub_title">VERIFY ACCOUNT</span>
+
+                    <h2>Enter OTP Login
+                    </h2>
+
+
+                 
+                    </div>
+
+
+                    {{-- ================= EXISTING FORM ================= --}}
+
+                   
 @php
 $email = session('forgot_otp_email');
 $masked = substr($email,0,3) . '******' . strstr($email,'@');
 @endphp
 
-<p class="text-center">OTP sent to {{ $masked }}</p>
+<p>OTP sent to {{ $masked }}</p>
 
 @if(session('success'))
 <div class="alert alert-success text-center">
@@ -50,15 +164,29 @@ Didn't receive OTP?
 </div>
 
 <div class="text-center">
-<button type="submit" class="btn btn-primary">
+<button type="submit" class="btn theme_btn">
 Verify OTP
 </button>
 </div>
 
-</form>
+</form> 
 
-</div>
-</div>
+                  
+
+
+                    
+
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 
 <script>
 
@@ -103,22 +231,4 @@ hidden.value = otp;
 
 </script>
 
-<style>
-
-.otp-box{
-width:50px;
-height:50px;
-text-align:center;
-font-size:20px;
-border-radius:8px;
-border:1px solid #ddd;
-}
-
-.otp-box:focus{
-border-color:#0d6efd;
-outline:none;
-}
-
-</style>
-
-@include('include.footer')
+<script>document.querySelector('.login-page')?.closest('body')?.classList.add('login-page-body');</script>

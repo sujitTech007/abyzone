@@ -231,7 +231,7 @@
 
                             <div class="d-flex gap-2">
                                 <input
-                                    class="form-control"
+                                    class="form-control border-0"
                                     name="phone"
                                     id="phone"
                                     type="tel"
