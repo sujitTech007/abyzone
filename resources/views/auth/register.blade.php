@@ -196,7 +196,7 @@
                             <label
                                 for="email"
                                 class="form-label">
-                                EMAIL (OPTIONAL)
+                                EMAIL
                             </label>
 
                             <input
@@ -205,7 +205,7 @@
                                 id="email"
                                 name="email"
                                 value="{{ old('email') }}"
-                            >
+                            required>
 
                             @error('email')
                                 <div class="text-danger small mt-1">
@@ -231,20 +231,31 @@
 
                             <div class="d-flex gap-2">
                                 <input
-                                    class="form-control border-0"
+                                    class="form-control"
                                     name="phone"
                                     id="phone"
                                     type="tel"
-                                    placeholder="e.g. +1 234 567 8900"
+                                    placeholder="e.g. 416 555 0123"
                                     value="{{ old('phone') }}"
                                     inputmode="numeric"
                                     autocomplete="tel"
                                     required
                                 >
-
                             </div>
+                            <input
+                                type="hidden"
+                                name="phone_code"
+                                id="country_code"
+                                value="{{ old('phone_code', '+1') }}"
+                            >
+                            <div id="phone-validation-error" class="text-danger small mt-1" role="alert" hidden></div>
 
                             @error('phone')
+                                <div class="text-danger small mt-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @error('phone_code')
                                 <div class="text-danger small mt-1">
                                     {{ $message }}
                                 </div>
@@ -355,109 +366,77 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/css/intlTelInput.css">
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js"></script>
+<style>
+    .register-page .iti {
+        width: 100%;
+    }
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
     const phoneInput = document.querySelector('#phone');
     const countryCodeInput = document.querySelector('#country_code');
+    const phoneError = document.querySelector('#phone-validation-error');
 
     if (!phoneInput) return;
 
-    // Initialize intlTelInput
+    if (typeof window.intlTelInput !== 'function') {
+        phoneError.textContent = 'The phone country selector could not be loaded. Please refresh the page and try again.';
+        phoneError.hidden = false;
+        phoneInput.setAttribute('aria-describedby', 'phone-validation-error');
+        return;
+    }
+
     const iti = window.intlTelInput(phoneInput, {
         initialCountry: "ca",
         separateDialCode: true,
         nationalMode: true,
-        autoPlaceholder: "aggressive",
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/utils.js"
     });
 
-    // Number only
-    phoneInput.addEventListener('input', function () {
-        this.value = this.value.replace(/\D/g, '');
-
-        // Maximum 15 digits
-        if (this.value.length > 15) {
-            this.value = this.value.slice(0, 15);
-        }
-    });
-
-    // Inject country name next to flag
-    function updateCountryNameDisplay() {
-
+    function updateCountryCode() {
         const countryData = iti.getSelectedCountryData();
-        const primary = document.querySelector('.iti__selected-country-primary');
-
-        if (!primary) return;
-
-        let nameSpan = primary.querySelector('.iti__country-name');
-
-        if (!nameSpan) {
-            nameSpan = document.createElement('span');
-            nameSpan.className = 'iti__country-name';
-
-            const arrow = primary.querySelector('.iti__arrow');
-
-            if (arrow) {
-                primary.insertBefore(nameSpan, arrow);
-            } else {
-                primary.appendChild(nameSpan);
-            }
-        }
-
-        nameSpan.textContent = countryData.name
-            .split('(')[0]
-            .trim();
-
-        // Country code field
-        if (countryCodeInput) {
+        if (countryData.dialCode) {
             countryCodeInput.value = '+' + countryData.dialCode;
         }
     }
 
-    // Initial country
-    updateCountryNameDisplay();
+    updateCountryCode();
+    phoneInput.addEventListener('countrychange', updateCountryCode);
+    phoneInput.addEventListener('input', function () {
+        phoneInput.classList.remove('is-invalid');
+        phoneError.hidden = true;
+    });
 
-    // When country changes
-    phoneInput.addEventListener(
-        'countrychange',
-        updateCountryNameDisplay
-    );
-
-    // Form validation
     const form = phoneInput.closest('form');
 
     if (form) {
-
         form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            updateCountryCode();
 
-            const phoneNumber = phoneInput.value.trim();
+            const enteredPhone = phoneInput.value.trim();
+            const phoneDigits = enteredPhone.replace(/\D/g, '');
+            const isInternational = enteredPhone.startsWith('+');
+            const dialCode = iti.getSelectedCountryData().dialCode;
+            const nationalDigits = isInternational && phoneDigits.startsWith(dialCode)
+                ? phoneDigits.slice(dialCode.length)
+                : phoneDigits;
+            const internationalLength = nationalDigits.length + dialCode.length;
 
-            // Minimum 10 digits
-            if (phoneNumber.length < 10) {
-                e.preventDefault();
-
+            if (!dialCode || internationalLength < 7 || internationalLength > 15 || !nationalDigits) {
                 phoneInput.classList.add('is-invalid');
+                phoneError.textContent = 'Enter a phone number with 7 to 15 digits, including the country code.';
+                phoneError.hidden = false;
                 phoneInput.focus();
-
-                return;
-            }
-
-            // intlTelInput validation
-            if (!iti.isValidNumber()) {
-                e.preventDefault();
-
-                phoneInput.classList.add('is-invalid');
-                phoneInput.focus();
-
                 return;
             }
 
             phoneInput.classList.remove('is-invalid');
-
-            // Save complete international number
-            phoneInput.value = iti.getNumber();
+            phoneError.hidden = true;
+            phoneInput.value = nationalDigits;
+            form.submit();
         });
     }
 

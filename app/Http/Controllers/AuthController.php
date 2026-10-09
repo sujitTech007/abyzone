@@ -49,15 +49,24 @@ class AuthController extends Controller
 
     {
 
-  
+        $rawPhone = trim((string) $request->input('phone'));
+        $phoneDigits = preg_replace('/\D+/', '', $rawPhone);
+        $phoneCodeDigits = preg_replace('/\D+/', '', (string) $request->input('phone_code'));
+        if (str_starts_with($rawPhone, '+') && $phoneCodeDigits !== '' && str_starts_with($phoneDigits, $phoneCodeDigits)) {
+            $phoneDigits = substr($phoneDigits, strlen($phoneCodeDigits));
+        }
+
+        $request->merge([
+            'phone' => $phoneDigits,
+            'phone_code' => '+' . $phoneCodeDigits,
+        ]);
+
         $validator = Validator::make($request->all(), [
 
             'name' => 'required|string|max:255',
-
-            'email' => 'nullable|email|max:255|unique:users,email',
-
-            'phone' => 'required|string|max:30|unique:users,phone',
-
+            'email' => 'required|email|max:255|unique:users,email',
+            'phone' => ['required', 'string', 'regex:/^\d{4,15}$/', 'unique:users,phone'],
+            'phone_code' => ['required', 'string', 'regex:/^\+[1-9]\d{0,2}$/'],
             'password' => 'required|string|min:6|confirmed',
 
             'role' => 'nullable|in:customer,vendor',
@@ -1052,4 +1061,3 @@ public function resendOtp()
     
 
 }
-
