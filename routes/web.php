@@ -52,6 +52,9 @@ Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contact/store', [PagesController::class, 'contactStore'])->name('contact.store');
 Route::get('/blog{category?}', [PagesController::class, 'blog'])->name('blog');
 Route::get('/blog/search', [PagesController::class, 'search'])->name('blog.search');
+Route::get('/terms', [PagesController::class, 'terms'])->name('terms');
+Route::get('/privacy', [PagesController::class, 'privacy'])->name('privacy');
+
 
 Route::get('/blog-detail/{id}', [PagesController::class, 'blogDetail'])->name('blog.details');
 Route::get('/explore', [PagesController::class, 'explore'])->name('explore');
