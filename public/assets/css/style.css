@@ -4576,3 +4576,7 @@ section.register-page .login-form-width{
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
+.text-danger{
+    font-size: 12px;
+}
