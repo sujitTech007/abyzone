@@ -583,7 +583,7 @@
 
                         <img
                             src="{{ $warehouse->image
-                                ? asset('storage/' . $warehouse->image)
+                                ? asset( $warehouse->image)
                                 : asset('assets/images/warehouses/warehouses-thumb-1.jpg') }}"
                             class="warehouse-img d-block object-fit-cover w-100"
                             alt="{{ $warehouse->name }}"
