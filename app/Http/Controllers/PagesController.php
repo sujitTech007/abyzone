@@ -7,6 +7,7 @@ use App\Models\Subscribe;
 use App\Models\Blog;
 use App\Models\Service;
 use App\Models\Warehouse;
+use App\Models\terms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUsMail;
@@ -29,6 +30,14 @@ class PagesController extends Controller
     public function about()
     {
         return view('about');
+    }
+    public function terms()
+    {
+        return view('terms');
+    }
+    public function privacy()
+    {
+        return view('privacy');
     }
 
     public function services()
