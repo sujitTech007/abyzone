@@ -6,7 +6,13 @@
      HERO SECTION
 ========================== -->
 
-    
+    <style>
+        h4{
+            font-size: 20px;
+            color: black;
+            font-weight: 600 !important;
+        }
+    </style>
              
 <section class="py-5 bg-light">
     <div class="container">
