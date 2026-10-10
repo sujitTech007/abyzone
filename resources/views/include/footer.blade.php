@@ -226,7 +226,7 @@
             <div class="col-md-5">
                 <div class="contact-item">
 
-                        <div class="contact-icon">
+                        <div class="contact-icon text-white">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
 
@@ -249,7 +249,7 @@
 
                     <div class="contact-item">
 
-                        <div class="contact-icon">
+                        <div class="contact-icon text-white">
                             <i class="fas fa-envelope"></i>
                         </div>
 

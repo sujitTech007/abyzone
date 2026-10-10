@@ -273,7 +273,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label class="form-label">City / Province</label>
                                                 <input type="text"
                                                        name="address_city"
@@ -284,7 +284,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label class="form-label">State / Territory</label>
                                                 <input type="text"
                                                        name="address_state"
@@ -295,7 +295,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <label class="form-label">Postal Code</label>
                                                 <input type="text"
                                                        name="address_postal"
@@ -351,11 +351,11 @@
                                 {{-- Actions --}}
                                 <div class="d-flex flex-wrap justify-content-end gap-2 mb-4">
                                     <a href="{{ route('user.profile') }}"
-                                       class="btn btn-light border px-4">
+                                       class="btn btn-danger px-3   ">
                                         Cancel
                                     </a>
 
-                                    <button type="submit" class="btn theme_btn px-4">
+                                    <button type="submit" class="btn theme_btn px-3 fw-bold">
                                         <i class="fa-solid fa-check me-2"></i>Save Changes
                                     </button>
                                 </div>

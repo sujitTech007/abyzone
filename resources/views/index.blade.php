@@ -572,128 +572,224 @@
             <div class="swiper-wrapper">
 
                 <!-- Card 1 -->
-                        @forelse($warehouses as $warehouse)
+                   @forelse($warehouses as $warehouse)
 
-            <div class="swiper-slide">
+                        <div class="swiper-slide">
 
-                <div class="warehouse-swiper-card">
+                            <div class="warehouse-card h-100">
 
-                    {{-- Warehouse Image --}}
-                    <div class="warehouse-image-wrap position-relative">
+                                {{-- IMAGE --}}
+                                <div class="warehouse-image">
 
-                        <img
-                            src="{{ $warehouse->image
-                                ? asset( $warehouse->image)
-                                : asset('assets/images/warehouses/warehouses-thumb-1.jpg') }}"
-                            class="warehouse-img d-block object-fit-cover w-100"
-                            alt="{{ $warehouse->name }}"
-                        >
+                                    @if(
+                                        !empty($warehouse->images) &&
+                                        is_array($warehouse->images) &&
+                                        file_exists(public_path($warehouse->images[0]))
+                                    )
 
-                        @if($warehouse->is_verified)
-                            <span class="verified">
-                                <i class="fa-solid fa-circle-check"></i>
-                                Verified
-                            </span>
-                        @endif
+                                        <img src="{{ asset($warehouse->images[0]) }}"
+                                             alt="{{ $warehouse->name }}">
 
-                    </div>
+                                    @elseif(
+                                        !empty($warehouse->image) &&
+                                        file_exists(public_path($warehouse->image))
+                                    )
 
+                                        <img src="{{ asset($warehouse->image) }}"
+                                             alt="{{ $warehouse->name }}">
 
-                    {{-- Warehouse Content --}}
-                    <div class="warehouse-content position-relative p-2">
+                                    @else
 
-                        {{-- Location --}}
-                        <div class="location">
-                            <i class="fa-solid fa-location-dot"></i>
+                                        <img src="{{ asset('assets/images/placeholder.jpg') }}"
+                                             alt="{{ $warehouse->name }}">
 
-                            {{ $warehouse->city }}, {{ $warehouse->state }}
-                        </div>
+                                    @endif
 
 
-                        {{-- Name --}}
-                        <div class="warehouse-name">
-                            {{ $warehouse->name }}
-                        </div>
+                                    {{-- VERIFIED --}}
+                                    <span class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        Verified
+                                    </span>
 
 
-                        {{-- Features --}}
-                        <div class="features">
+                                    {{-- HEART --}}
+                                    <button type="button"
+                                            class="warehouse-favorite">
 
-                            {{-- Size --}}
-                            @if($warehouse->size)
-                                <span>
-                                    <i class="fa-regular fa-building"></i>
-                                    {{ number_format($warehouse->size) }} sq ft
-                                </span>
-                            @endif
+                                        <i class="far fa-heart"></i>
 
+                                    </button>
 
-                            {{-- Storage Type --}}
-                            @if($warehouse->storage_type)
-                                <span>
-                                    <i class="fa-regular fa-calendar"></i>
-                                    {{ $warehouse->storage_type }}
-                                </span>
-                            @endif
+                                </div>
 
 
-                            {{-- Access --}}
-                            @if($warehouse->access_type)
-                                <span>
-                                    <i class="fa-regular fa-clock"></i>
-                                    {{ $warehouse->access_type }}
-                                </span>
-                            @endif
+                                {{-- CONTENT --}}
+                                <div class="warehouse-content p-3">
 
-                        </div>
+                                    <h3 class="warehouse-title">
+                                        {{ $warehouse->name }}
+                                    </h3>
 
 
-                        {{-- Price --}}
-                        @if($warehouse->price)
-                            <div class="price">
-                                ${{ number_format($warehouse->price, 2) }}
-                                /sq ft / month
+                                    {{-- LOCATION --}}
+                                    <div class="warehouse-meta mb-2 pb-2">
+
+                                        <span>
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            {{ Str::limit($warehouse->location, 30) }}
+                                        </span>
+
+                                    </div>
+
+
+                                    {{-- TYPE + SIZE --}}
+                                    <div class="row g-2 warehouse-info">
+
+                                        <div class="col-6">
+
+                                            <span>
+                                                <i class="fas fa-cube"></i>
+
+                                                {{ $warehouse->storage_type ?? 'Dry Storage' }}
+
+                                            </span>
+
+                                        </div>
+
+                                        <div class="col-6">
+
+                                            <span>
+                                                <i class="fas fa-expand-arrows-alt"></i>
+
+                                                @if($warehouse->size_sqft)
+
+                                                    {{ number_format($warehouse->size_sqft, 0) }}
+                                                    sq ft
+
+                                                @elseif($warehouse->capacity_units)
+
+                                                    {{ number_format($warehouse->capacity_units) }}
+                                                    units
+
+                                                @else
+
+                                                    N/A
+
+                                                @endif
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    {{-- PRICE + RATING --}}
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+
+                                        <div class="warehouse-price">
+
+
+                                            @if($warehouse->price_value)
+
+                                                ${{ number_format($warehouse->price_value, 2) }}
+
+                                                <small>
+                                                    /{{ Str::afterLast($warehouse->price_unit, '/') }}
+                                                </small>
+
+                                            @else
+
+                                                ${{ number_format($warehouse->price_per_month ?? 0, 0) }}
+
+                                                <small>/month</small>
+
+                                            @endif
+
+                                        </div>
+
+
+                                        <div class="warehouse-rating">
+
+                                            <i class="fas fa-star"></i>
+
+                                            <strong>
+                                                4.9
+                                            </strong>
+
+                                            <small>
+                                                ({{ $warehouse->reviews_count ?? 0 }})
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    {{-- AMENITIES --}}
+                                    <div class="warehouse-features mt-3">
+
+                                        <span>
+                                            <i class="fas fa-shield-alt"></i>
+                                            24/7 Security
+                                        </span>
+
+                                        <span>
+                                            <i class="fas fa-truck-loading"></i>
+                                            Loading Dock
+                                        </span>
+
+                                        <span>
+                                            <i class="fas fa-forklift"></i>
+                                            Forklift Access
+                                        </span>
+
+                                    </div>
+
+
+                                    {{-- BUTTON --}}
+                                    <div class="mt-3">
+
+                                        <a href="{{ route('warehouse.details', $warehouse->slug) }}"
+                                           class="btn btn-outline-primary warehouse-details-btn">
+
+                                            View Details
+
+                                            <i class="fas fa-arrow-right ms-1"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
                             </div>
-                        @endif
-
-
-                        {{-- Rating --}}
-                        <div class="rating">
-
-                            <i class="fa-solid fa-star"></i>
-
-                            <strong>
-                                {{ number_format($warehouse->rating ?? 0, 1) }}
-                            </strong>
-
-                            ({{ $warehouse->reviews_count ?? 0 }})
 
                         </div>
 
+                    @empty
 
-                        {{-- Arrow --}}
-                        <a
-                            href="{{ route('warehouse.details', $warehouse->id) }}"
-                            class="arrow-btn"
-                        >
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
+                        <div class="col-12">
 
-                    </div>
+                            <div class="alert alert-light text-center py-5">
 
-                </div>
+                                <i class="fas fa-warehouse fa-2x text-muted mb-3"></i>
 
-            </div>
+                                <h5>
+                                    No warehouses found
+                                </h5>
 
-        @empty
+                                <p class="text-muted mb-0">
+                                    Try changing your filters.
+                                </p>
 
-            <div class="swiper-slide">
-                <div class="text-center py-5">
-                    <p>No warehouses available at the moment.</p>
-                </div>
-            </div>
+                            </div>
 
-        @endforelse
+                        </div>
+
+                    @endforelse
+                    
 
 
                 
@@ -941,9 +1037,10 @@
                     <div class="wh-cities-title">
                         Featured Cities
                     </div>
+                    
 
                     <div class="wh-city">
-                        <img src="toronto.jpg" alt="Toronto">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Toronto</b>
                             <small>1,250+ warehouses</small>
@@ -951,7 +1048,7 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="vancouver.jpg" alt="Vancouver">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Vancouver</b>
                             <small>980+ warehouses</small>
@@ -959,7 +1056,7 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="calgary.jpg" alt="Calgary">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Calgary</b>
                             <small>620+ warehouses</small>
@@ -967,17 +1064,14 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="montreal.jpg" alt="Montreal">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Montreal</b>
                             <small>550+ warehouses</small>
                         </div>
                     </div>
 
-                    <a href="{{ route('services') }}" class="wh-all">
-                        View All Cities
-                        <i class="fa-solid fa-arrow-right ms-1"></i>
-                    </a>
+                    
 
                 </div>
 
@@ -1007,69 +1101,7 @@
                         ↘
                     </div>
 
-                    <div>
-                        <div class="laptop">
-
-                            <div class="screen">
-
-                                <div class="screen-top">
-                                    <strong style="font-size:10px;">
-                                        <i class="fa-solid fa-cube text-warning"></i>
-                                        4DStore
-                                    </strong>
-                                </div>
-
-                                <div class="dashboard">
-
-                                    <div class="sidebar">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-
-                                    <div class="dash-content">
-
-                                        <div class="dash-title"></div>
-
-                                        <div class="dash-boxes">
-                                            <div class="dash-box"></div>
-                                            <div class="dash-box"></div>
-                                            <div class="dash-box"></div>
-                                        </div>
-
-                                        <div class="dash-boxes mt-2">
-                                            <div class="dash-box"></div>
-                                            <div class="dash-box"></div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="laptop-base"></div>
-                    </div>
-
-                    <!-- Mobile -->
-                    <div class="mobile">
-                        <div class="mobile-screen">
-                            <i class="fa-solid fa-cube text-warning"
-                               style="font-size:10px;"></i>
-
-                            <div></div>
-                            <div style="width:70%;"></div>
-                            <div style="height:25px;background:#e8f0f7;"></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
-
+                  <img src="{{ asset('assets/images/warehouse-dashbard-img.png') }}" alt="">
                 </div>
 
             </div>

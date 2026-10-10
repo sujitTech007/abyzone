@@ -20,100 +20,100 @@
         </a>
     </div>
 
-        <div class="page-container">
-            @include('includes.alerts')
+    <div class="page-container">
+        @include('includes.alerts')
 
-            <div class="row">
+        <div class="row">
 
-                {{-- Available Warehouses --}}
-                <div class="col-md-3">
-                    <div class="card customer-stat-card stat-blue">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between">
-                                <div>
-                                    <p class="stat-label mb-0">Available Warehouses</p>
-                                    <h2 class="stat-number mb-0">{{ $availableWarehouses }}</h2>
-                                    <span class="stat-description">Currently published spaces</span>
-                                </div>
-                                <div class="stat-icon">
-                                    <i class="fa-solid fa-warehouse"></i>
-                                </div>
+            {{-- Available Warehouses --}}
+            <div class="col-md-3">
+                <div class="card customer-stat-card stat-blue">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Available Warehouses</p>
+                                <h2 class="stat-number mb-0">{{ $availableWarehouses }}</h2>
+                                <span class="stat-description">Currently published spaces</span>
                             </div>
-                            <div class="stat-footer">
-                                <i class="fa-solid fa-circle-check me-1"></i>
-                                Explore storage spaces
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-warehouse"></i>
                             </div>
+                        </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-circle-check me-1"></i>
+                            Explore storage spaces
                         </div>
                     </div>
                 </div>
-
-                {{-- Pending Requests --}}
-                <div class="col-md-3">
-                    <div class="card customer-stat-card stat-orange">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between">
-                                <div>
-                                    <p class="stat-label mb-0">Pending Requests</p>
-                                    <h2 class="stat-number mb-0">{{ $pendingBookings }}</h2>
-                                    <span class="stat-description">Awaiting owner response</span>
-                                </div>
-                                <div class="stat-icon">
-                                    <i class="fa-regular fa-clock"></i>
-                                </div>
-                            </div>
-                            <div class="stat-footer">
-                                <i class="fa-solid fa-hourglass-half me-1"></i>
-                                Requests under review
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Approved Requests --}}
-                <div class="col-md-3">
-                    <div class="card customer-stat-card stat-green">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between">
-                                <div>
-                                    <p class="stat-label mb-0">Approved Requests</p>
-                                    <h2 class="stat-number mb-0">{{ $approvedBookings }}</h2>
-                                    <span class="stat-description">Confirmed reservations</span>
-                                </div>
-                                <div class="stat-icon">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                </div>
-                            </div>
-                            <div class="stat-footer">
-                                <i class="fa-solid fa-check me-1"></i>
-                                Requests approved
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Meetings Scheduled --}}
-                <div class="col-md-3">
-                    <div class="card customer-stat-card stat-purple">
-                        <div class="card-body">
-                            <div class="d-flex align-items-start justify-content-between">
-                                <div>
-                                    <p class="stat-label mb-0">Meetings Scheduled</p>
-                                    <h2 class="stat-number mb-0">{{ $meetingScheduled }}</h2>
-                                    <span class="stat-description">Upcoming walkthroughs</span>
-                                </div>
-                                <div class="stat-icon">
-                                    <i class="fa-regular fa-calendar-check"></i>
-                                </div>
-                            </div>
-                            <div class="stat-footer">
-                                <i class="fa-solid fa-calendar-days me-1"></i>
-                                Your scheduled meetings
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            {{-- Pending Requests --}}
+            <div class="col-md-3">
+                <div class="card customer-stat-card stat-orange">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Pending Requests</p>
+                                <h2 class="stat-number mb-0">{{ $pendingBookings }}</h2>
+                                <span class="stat-description">Awaiting owner response</span>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-hourglass-half me-1"></i>
+                            Requests under review
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Approved Requests --}}
+            <div class="col-md-3">
+                <div class="card customer-stat-card stat-green">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Approved Requests</p>
+                                <h2 class="stat-number mb-0">{{ $approvedBookings }}</h2>
+                                <span class="stat-description">Confirmed reservations</span>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-check me-1"></i>
+                            Requests approved
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Meetings Scheduled --}}
+            <div class="col-md-3">
+                <div class="card customer-stat-card stat-purple">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Meetings Scheduled</p>
+                                <h2 class="stat-number mb-0">{{ $meetingScheduled }}</h2>
+                                <span class="stat-description">Upcoming walkthroughs</span>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-calendar-days me-1"></i>
+                            Your scheduled meetings
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         
 
 

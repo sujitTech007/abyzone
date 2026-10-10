@@ -92,23 +92,23 @@
             </a>
         </li>
 
-        <li class="side-nav-item">
+        <!-- <li class="side-nav-item">
             <a href="{{ route('user.wishlist') }}"
                 class="side-nav-link {{ request()->routeIs('user.wishlist') ? 'active' : '' }}">
                 <span class="menu-icon"><i class="fa-solid fa-heart"></i></span>
                 <span class="menu-text">Wishlist</span>
             </a>
-        </li>
+        </li> -->
 
         <li class="side-nav-title">ACCOUNT</li>
 
-        <li class="side-nav-item">
+        <!-- <li class="side-nav-item">
             <a href="{{ route('user.support') }}"
                 class="side-nav-link {{ request()->routeIs('user.support') ? 'active' : '' }}">
                 <span class="menu-icon"><i class="fa-solid fa-headset"></i></span>
                 <span class="menu-text">Support</span>
             </a>
-        </li>
+        </li> -->
 
         <li class="side-nav-item">
             <a href="{{ route('user.reviews') }}"

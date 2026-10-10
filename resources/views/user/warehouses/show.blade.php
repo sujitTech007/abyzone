@@ -1,7 +1,7 @@
 @include('user.include.header')
 
 <div class="page-content warehouse-detail-page">
-    <div class="container py-4">
+    <div class="container">
 
         {{-- Back link --}}
         

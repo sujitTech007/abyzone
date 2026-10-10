@@ -419,7 +419,7 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="toronto.jpg" alt="Toronto">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Toronto</b>
                             <small>1,250+ warehouses</small>
@@ -427,7 +427,7 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="vancouver.jpg" alt="Vancouver">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Vancouver</b>
                             <small>980+ warehouses</small>
@@ -435,7 +435,7 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="calgary.jpg" alt="Calgary">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Calgary</b>
                             <small>620+ warehouses</small>
@@ -443,7 +443,7 @@
                     </div>
 
                     <div class="wh-city">
-                        <img src="montreal.jpg" alt="Montreal">
+                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
                         <div>
                             <b>Montreal</b>
                             <small>550+ warehouses</small>

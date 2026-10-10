@@ -26,6 +26,7 @@ use App\Http\Controllers\Owner\BusinessProfileController as OwnerBusinessProfile
 use App\Http\Controllers\Owner\PaymentController as OwnerPaymentController;
 use App\Http\Controllers\Owner\WarehouseController as OwnerWarehouseController;
 use App\Http\Controllers\User\WarehouseController as UserWarehouseController; 
+use App\Http\Controllers\Owner\ConfirmedBookingController as OwnerConfirmedBookingController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -306,6 +307,15 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
         'show' => 'warehouse-bookings.show',
         'update' => 'warehouse-bookings.update',
     ]);
+
+    Route::resource('confirmed-booking', OwnerConfirmedBookingController::class)->only(['index', 'show', 'update'])->names([
+        'index' => 'confirmed-booking.index',
+        'show' => 'confirmed-booking.show',
+        'update' => 'confirmed-booking.update',
+    ]);
+
+
+    
     
     // Owner payments resource
     Route::resource('payments', OwnerPaymentController::class)->only(['index', 'show'])->names([

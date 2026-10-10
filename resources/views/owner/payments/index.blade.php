@@ -1,79 +1,248 @@
 @include('owner.include.header')
+<div class="page-content earnings-page">
 
-
-
-
-<div class="page-content">
     <div class="page-title-head d-flex align-items-center gap-2">
         <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-2">Payment Transactions</h4>
-        </div>                
+            <h4 class="fs-18 fw-bold mb-1 py-2">Earnings & Payments</h4>
+            <p class="text-muted small mb-2">
+                Track payment transactions and monitor your warehouse business payments.
+            </p>
+        </div>
     </div>
 
     <div class="page-container">
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
+        @include('includes.alerts')
+
+        {{-- Summary Cards --}}
+        <div class="row g-3 mb-4">
+
+            {{-- Total Transactions --}}
+            <div class="col-md-4">
+                <div class="card customer-stat-card stat-blue">
                     <div class="card-body">
-                       
-
-                        <div class="row  mb-3">
-                            <div class="col-sm-12 col-md-6 d-flex align-items-center">
-                                <h4 class="header-title">Payment Transactions</h4>
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Total Transactions</p>
+                                <h2 class="stat-number mb-0">{{ $payments->total() }}</h2>
+                                <span class="stat-description">
+                                    Payment records
+                                </span>
                             </div>
-                          
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-money-bill-transfer"></i>
+                            </div>
                         </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-receipt me-1"></i>
+                            All listed transactions
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            {{-- Current Page --}}
+            <div class="col-md-4">
+                <div class="card customer-stat-card stat-green">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Page Transactions</p>
+                                <h2 class="stat-number mb-0">{{ $payments->count() }}</h2>
+                                <span class="stat-description">
+                                    Records on this page
+                                </span>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-list-check me-1"></i>
+                            Current page results
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    @include('includes.alerts')
+            {{-- Payment Overview --}}
+            <div class="col-md-4">
+                <div class="card customer-stat-card stat-orange">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <p class="stat-label mb-0">Payment Records</p>
+                                <h2 class="stat-number mb-0">
+                                    {{ $payments->count() }}
+                                </h2>
+                                <span class="stat-description">
+                                    Recent transaction entries
+                                </span>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <i class="fa-solid fa-clock me-1"></i>
+                            Current page overview
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <table class="table table-bordered">
+        </div>
 
-        <thead>
+        {{-- Transactions Table --}}
+        <div class="card border-0 shadow-sm earnings-table-card">
 
-            <tr><th>ID</th><th>Order #</th><th>User</th><th>Amount</th><th>Payment Status</th><th>Date</th><th>Actions</th></tr>
+            <div class="card-body p-3 p-lg-4">
 
-        </thead>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                    <div>
+                        <h5 class="fw-bold mb-1">Payment Transactions</h5>
+                        <p class="text-muted small mb-0">
+                            Review transaction details and payment status.
+                        </p>
+                    </div>
 
-        <tbody>
+                    <span class="badge bg-light text-dark border py-2 px-3">
+                        <i class="fa-solid fa-shield-halved me-1"></i>
+                        Transaction History
+                    </span>
+                </div>
 
-            @foreach($payments as $p)
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle earnings-table mb-0">
 
-            <tr>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Order Number</th>
+                                <th>User</th>
+                                <th>Amount</th>
+                                <th>Payment Status</th>
+                                <th>Date</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
 
-                <td>{{ $p->id }}</td>
+                        <tbody>
+                            @forelse($payments as $p)
+                                <tr>
 
-                <td>{{ $p->order_number }}</td>
+                                    <td>
+                                        <span class="text-muted fw-semibold">
+                                            #{{ $p->id }}
+                                        </span>
+                                    </td>
 
-                <td>{{ $p->user?->name ?? 'N/A' }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="payment-order-icon">
+                                                <i class="fa-solid fa-file-invoice"></i>
+                                            </span>
+                                            <span class="fw-semibold">
+                                                {{ $p->order_number ?? '—' }}
+                                            </span>
+                                        </div>
+                                    </td>
 
-                <td>{{ $p->total_amount }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="payment-user-icon">
+                                                <i class="fa-solid fa-user"></i>
+                                            </span>
+                                            <span>
+                                                {{ $p->user?->name ?? 'N/A' }}
+                                            </span>
+                                        </div>
+                                    </td>
 
-                <td>{{ $p->payment_status }}</td>
+                                    <td>
+                                        <span class="fw-bold text-dark">
+                                            {{ number_format((float) $p->total_amount, 2) }}
+                                        </span>
+                                    </td>
 
-                <td>{{ $p->created_at->format('Y-m-d') }}</td>
+                                    <td>
+                                        @php
+                                            $paymentStatus = strtolower(str_replace(' ', '_', $p->payment_status ?? 'unknown'));
 
-                <td>
+                                            $paymentStatusClass = match($paymentStatus) {
+                                                'paid', 'completed', 'success', 'successful' => 'payment-success',
+                                                'pending', 'processing' => 'payment-pending',
+                                                'failed', 'declined', 'cancelled', 'canceled' => 'payment-failed',
+                                                'refunded' => 'payment-refunded',
+                                                default => 'payment-unknown',
+                                            };
+                                        @endphp
 
-                    <a href="{{ route('owner.payments.show', $p->id) }}" class="btn btn-sm btn-info">View</a>
+                                        <span class="payment-status-badge {{ $paymentStatusClass }}">
+                                            <span class="payment-status-dot"></span>
+                                            {{ ucfirst(str_replace('_', ' ', $p->payment_status ?? 'Unknown')) }}
+                                        </span>
+                                    </td>
 
-                </td>
+                                    <td>
+                                        <div class="small fw-semibold">
+                                            {{ $p->created_at?->format('d M Y') ?? '—' }}
+                                        </div>
+                                        <small class="text-muted">
+                                            {{ $p->created_at?->format('h:i A') }}
+                                        </small>
+                                    </td>
 
-            </tr>
+                                    <td class="text-end">
+                                        <a href="{{ route('owner.payments.show', $p->id) }}"
+                                           class="btn btn-sm btn-payment-view">
+                                            <i class="fa-solid fa-eye me-1"></i>
+                                            View
+                                        </a>
+                                    </td>
 
-            @endforeach
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center py-5">
+                                        <div class="payment-empty-state">
+                                            <div class="payment-empty-icon">
+                                                <i class="fa-solid fa-receipt"></i>
+                                            </div>
+                                            <h6 class="fw-bold mt-3 mb-1">
+                                                No transactions found
+                                            </h6>
+                                            <p class="text-muted small mb-0">
+                                                Payment records will appear here when available.
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
 
-        </tbody>
+                    </table>
+                </div>
 
-    </table>
+            </div>
 
-    {{ $payments->links() }}
+            {{-- Pagination --}}
+            @if($payments->hasPages())
+                <div class="card-footer bg-white border-top px-3 px-lg-4 py-3">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <small class="text-muted">
+                            Showing {{ $payments->firstItem() }}–{{ $payments->lastItem() }}
+                            of {{ $payments->total() }} transactions
+                        </small>
 
-</div>
-</div>
-</div>
-</div>
+                        {{ $payments->links() }}
+                    </div>
+                </div>
+            @endif
+
+        </div>
+
+    </div>
 </div>
 
 

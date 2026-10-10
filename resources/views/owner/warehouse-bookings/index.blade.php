@@ -1,58 +1,126 @@
 @include('owner.include.header')
 
-<div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-1">Booking Requests</h4>
-            <p class="text-muted mb-0">Manage all customer enquiries in one place.</p>
+<div class="page-content booking-page">
+
+    <div class="welcome-header">
+            <div class="welcome-content">
+                <h4>Bookings & Calenda</h4>
+                <p>Manage all customer enquiries in one place.</p>
+            </div>
+
+            <a href="{{ url()->current() }}" class="btn theme_btn fw-bold">
+                
+                     <i class="fa-regular fa-calendar me-1"></i> View Calendar
+            </a>
         </div>
-    </div>
+
 
     <div class="page-container">
         @include('includes.alerts')
 
-        <div class="card shadow-sm border-0">
+        <div class="booking-tabs mb-4">
+            <a href="{{ request()->fullUrlWithQuery(['status' => null]) }}"
+               class="booking-tab {{ !request('status') ? 'active' : '' }}">
+                <i class="ri-list-check me-1"></i> All Bookings
+            </a>
+
+            <a href="{{ request()->fullUrlWithQuery(['status' => 'upcoming']) }}"
+               class="booking-tab {{ request('status') === 'upcoming' ? 'active' : '' }}">
+                <i class="ri-calendar-event-line me-1"></i> Upcoming
+            </a>
+
+            <a href="{{ request()->fullUrlWithQuery(['status' => 'pending']) }}"
+               class="booking-tab {{ request('status') === 'pending' ? 'active' : '' }}">
+                <i class="ri-time-line me-1"></i> Pending
+            </a>
+
+            <a href="{{ request()->fullUrlWithQuery(['status' => 'completed']) }}"
+               class="booking-tab {{ request('status') === 'completed' ? 'active' : '' }}">
+                <i class="ri-checkbox-circle-line me-1"></i> Completed
+            </a>
+        </div>
+
+        <div class="card booking-card">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+                    <table class="table booking-table mb-0">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Warehouse</th>
+                                <th class="serial-col">#</th>
                                 <th>Customer</th>
+                                <th>Warehouse</th>
                                 <th>Dates</th>
                                 <th>Status</th>
-                                <th class="text-end">Actions</th>
+                                <th class="text-end action-col">Actions</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             @forelse($bookings as $booking)
                                 <tr>
-                                    <td>{{ $booking->id }}</td>
-                                    <td>{{ $booking->warehouse->name }}</td>
-                                    <td>{{ $booking->customer->name }}</td>
-                                    <td>
-                                        @if($booking->start_date)
-                                            {{ $booking->start_date->format('d M') }}
-                                            @if($booking->end_date)
-                                                – {{ $booking->end_date->format('d M') }}
-                                            @endif
-                                        @else
-                                            —
-                                        @endif
+                                    <td class="serial-col">
+                                        {{ $bookings->firstItem() + $loop->index }}
                                     </td>
+
                                     <td>
-                                        <span class="badge bg-{{ $booking->status === 'approved' ? 'success' : ($booking->status === 'declined' ? 'secondary' : ($booking->status === 'meeting_scheduled' ? 'info' : 'warning text-dark')) }}">
+                                        <div class="customer-name">
+                                            {{ $booking->customer->name }}
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="warehouse-name">
+                                            {{ $booking->warehouse->name }}
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="booking-dates">
+                                            @if($booking->start_date)
+                                                {{ $booking->start_date->format('M d') }}
+
+                                                @if($booking->end_date)
+                                                    - {{ $booking->end_date->format('M d') }}
+                                                @endif
+                                            @else
+                                                —
+                                            @endif
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        @php
+                                            $statusClass = match($booking->status) {
+                                                'approved' => 'status-approved',
+                                                'confirmed' => 'status-confirmed',
+                                                'declined' => 'status-declined',
+                                                'meeting_scheduled' => 'status-meeting',
+                                                'pending' => 'status-pending',
+                                                default => 'status-default',
+                                            };
+                                        @endphp
+
+                                        <span class="booking-status {{ $statusClass }}">
+                                            <span class="status-dot"></span>
                                             {{ str_replace('_', ' ', ucfirst($booking->status)) }}
                                         </span>
                                     </td>
-                                    <td class="text-end">
-                                        <a href="{{ route('owner.warehouse-bookings.show', $booking) }}" class="btn btn-sm btn-outline-primary">View</a>
+
+                                    <td class="text-end action-col">
+                                        <a href="{{ route('owner.warehouse-bookings.show', $booking) }}"
+                                           class="view-booking-btn">
+                                            View
+                                            <i class="ri-arrow-right-line ms-1"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted py-4">No booking requests yet.</td>
+                                    <td colspan="6" class="text-center text-muted py-5">
+                                        <i class="ri-inbox-line empty-icon"></i>
+                                        <div class="mt-2 fw-semibold">No booking requests yet.</div>
+                                        <small>New booking requests will appear here.</small>
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -60,12 +128,13 @@
                 </div>
             </div>
 
-            <div class="card-footer bg-white">
+            <div class="card-footer booking-footer">
                 {{ $bookings->links() }}
             </div>
         </div>
     </div>
 </div>
+
 
 @include('owner.include.footer')
 

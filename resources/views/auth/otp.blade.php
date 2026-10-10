@@ -202,7 +202,7 @@
 
                             @error('otp')
 
-                                <div class="text-danger text-center mt-3">
+                                <div class="text-danger text-start mt-3">
                                     {{ $message }}
                                 </div>
 

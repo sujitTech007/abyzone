@@ -1,34 +1,24 @@
 
 
-    <!-- Vendor js -->
+    
 
-    <script src="{{ asset('assets/admin/js/vendor.min.js') }}"></script>
-
-
-
+    
     <!-- App js -->
-
     <script src="{{ asset('assets/admin/js/app.js') }}"></script>
 
-
-
     <!-- Apex Chart js -->
-
     <script src="{{ asset('assets/admin/js/apexcharts.min.js') }}"></script>
 
-
-
     <!-- Projects Analytics Dashboard App js -->
-
     <script src="{{ asset('assets/admin/js/dashboard.js') }}"></script>
 
+    <script src="{{ asset('assets/admin/js/toastr.min.js') }}"></script>
 
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Toastr JS (for session toasts) -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
+    
+   <script>
 
         if (typeof toastr !== 'undefined') {
 
@@ -38,10 +28,7 @@
 
     </script>
 
-
-
 </body>
 
-
-
 </html>
+
