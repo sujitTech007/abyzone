@@ -1,254 +1,372 @@
 @include('admin.include.header')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
- <style>
-    .icon-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #282660;
-    flex-shrink: 0;
-}
-.icon-circle i {
-    font-size: 20px;
-}
-
- </style>
+<!-- 
 <div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-1">Admin Dashboard</h4>
-            <p class="text-muted mb-0">Manage your users and warehouses.</p>
+    <div class="welcome-header">
+        <div class="welcome-content">
+            <h4>Admin Dashboard</h4>
+            <p>Manage your users and warehouses.</p>
         </div>
-        <div>
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add User</a>
-        </div>
-    </div>
 
+        <a href="{{ route('admin.users.create') }}" class="btn theme_btn fw-bold">Add User</a>
+    </div>
+    
     <div class="page-container">
     @include('includes.alerts')
 
-    <!-- USERS Section -->
-    <!-- USERS Section -->
-<h5 class="mt-4 mb-2">Users</h5>
-<div class="row row-cols-xxl-3 row-cols-md-2 row-cols-1 g-3">
+    <div class="card">
+        <div class="card-header bg-color-primary">
+        <h5 class="fs-4 text-white m-0">Users Overview</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
 
-    <!-- Total Customers -->
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-users text-white"></i>
+    {{-- Total Customers --}}
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-blue">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Total Customers</p>
+                        <h2 class="stat-number mb-0">{{ $usersCount }}</h2>
+                        <span class="stat-description">Registered customers</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Total Customers</p>
-                    <h2 class="fw-bold mb-0">{{ $usersCount }}</h2>
+                <div class="stat-footer">
+                    <i class="fas fa-users me-1"></i>
+                    All registered customers
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Active Customers -->
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-user-check text-white"></i>
+    {{-- Active Customers --}}
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-green">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Active Customers</p>
+                        <h2 class="stat-number mb-0">{{ $ActiveUsersCount }}</h2>
+                        <span class="stat-description">Currently active</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Active Customers</p>
-                    <h2 class="fw-bold mb-0">{{ $ActiveUsersCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inactive Customers -->
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-user-times text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Inactive Customers</p>
-                    <h2 class="fw-bold mb-0">{{ $InactiveUsersCount }}</h2>
+                <div class="stat-footer">
+                    <i class="fas fa-circle-check me-1"></i>
+                    Active customer accounts
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Total Owners -->
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-user-tie text-white"></i>
+    {{-- Inactive Customers --}}
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-orange">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Inactive Customers</p>
+                        <h2 class="stat-number mb-0">{{ $InactiveUsersCount }}</h2>
+                        <span class="stat-description">Currently inactive</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-user-times"></i>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Total Owners</p>
-                    <h2 class="fw-bold mb-0">{{ $ownersCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Active Owners -->
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-user-check text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Active Owners</p>
-                    <h2 class="fw-bold mb-0">{{ $ActiveOwnersCount }}</h2>
+                <div class="stat-footer">
+                    <i class="fas fa-user-clock me-1"></i>
+                    Inactive customer accounts
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Inactive Owners -->
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-user-times text-white"></i>
+    {{-- Total Owners --}}
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-purple">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Total Owners</p>
+                        <h2 class="stat-number mb-0">{{ $ownersCount }}</h2>
+                        <span class="stat-description">Registered owners</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Inactive Owners</p>
-                    <h2 class="fw-bold mb-0">{{ $InactiveOwnersCount }}</h2>
+                <div class="stat-footer">
+                    <i class="fas fa-building me-1"></i>
+                    All registered owners
                 </div>
             </div>
         </div>
+    </div>
+
+    {{-- Active Owners --}}
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-green">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Active Owners</p>
+                        <h2 class="stat-number mb-0">{{ $ActiveOwnersCount }}</h2>
+                        <span class="stat-description">Currently active</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fas fa-circle-check me-1"></i>
+                    Active owner accounts
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Inactive Owners --}}
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-orange">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Inactive Owners</p>
+                        <h2 class="stat-number mb-0">{{ $InactiveOwnersCount }}</h2>
+                        <span class="stat-description">Currently inactive</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fas fa-user-clock me-1"></i>
+                    Inactive owner accounts
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    </div>
+    </div>
+
+
+
+
+    
+<div class="card mt-4">
+    <div class="card-header bg-color-primary">
+        <h5 class="fs-4 text-white m-0">Warehouses</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-blue h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Total Warehouses</p>
+                        <h2 class="stat-number mb-0">{{ $totalWarehousesCount }}</h2>
+                        <span class="stat-description">All registered warehouses</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-warehouse"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-building me-1"></i>
+                    Warehouse overview
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-orange h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Draft Warehouses</p>
+                        <h2 class="stat-number mb-0">{{ $draftWarehousesCount }}</h2>
+                        <span class="stat-description">Unpublished warehouse listings</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-pen-to-square me-1"></i>
+                    Draft listings
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-green h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Available Warehouses</p>
+                        <h2 class="stat-number mb-0">{{ $availableWarehousesCount }}</h2>
+                        <span class="stat-description">Currently available spaces</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-check me-1"></i>
+                    Active listings
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-purple h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Unavailable Warehouses</p>
+                        <h2 class="stat-number mb-0">{{ $unavailableWarehousesCount }}</h2>
+                        <span class="stat-description">Currently unavailable spaces</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-circle-exclamation me-1"></i>
+                    Unavailable listings
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    </div>
+</div>
+ 
+
+
+
+<div class="card mt-4">
+    <div class="card-header bg-color-primary">
+        <h5 class="fs-4 text-white m-0">Bookings</h5>
+    </div>
+    <div class="card-body">
+        
+<div class="row g-3">
+
+    
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-orange h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Pending Bookings</p>
+                        <h2 class="stat-number mb-0">{{ $pendingBookingsCount }}</h2>
+                        <span class="stat-description">Awaiting owner response</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-hourglass-half me-1"></i>
+                    Bookings under review
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-green h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Approved Bookings</p>
+                        <h2 class="stat-number mb-0">{{ $approvedBookingsCount }}</h2>
+                        <span class="stat-description">Confirmed reservations</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-check me-1"></i>
+                    Bookings approved
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-blue h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Declined Bookings</p>
+                        <h2 class="stat-number mb-0">{{ $declinedBookingsCount }}</h2>
+                        <span class="stat-description">Rejected booking requests</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-ban me-1"></i>
+                    Bookings declined
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-xl-3 col-md-6 col-12">
+        <div class="card customer-stat-card stat-purple h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div>
+                        <p class="stat-label mb-0">Meetings Scheduled</p>
+                        <h2 class="stat-number mb-0">{{ $meetingScheduledBookingsCount }}</h2>
+                        <span class="stat-description">Scheduled walkthroughs</span>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <i class="fa-solid fa-calendar-days me-1"></i>
+                    Scheduled meetings
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
     </div>
 </div>
 
-<!-- WAREHOUSES Section -->
-<h5 class="mt-4 mb-2">Warehouses</h5>
-<div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1 g-3">
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-warehouse text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Total Warehouses</p>
-                    <h2 class="fw-bold mb-0">{{ $totalWarehousesCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-file-alt text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Draft Warehouses</p>
-                    <h2 class="fw-bold mb-0">{{ $draftWarehousesCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-check-circle text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Available Warehouses</p>
-                    <h2 class="fw-bold mb-0">{{ $availableWarehousesCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-times-circle text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Unavailable Warehouses</p>
-                    <h2 class="fw-bold mb-0">{{ $unavailableWarehousesCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- BOOKINGS Section -->
-<h5 class="mt-4 mb-2">Bookings</h5>
-<div class="row row-cols-xxl-4 row-cols-md-2 row-cols-1 g-3">
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-hourglass-half text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Pending Bookings</p>
-                    <h2 class="fw-bold mb-0">{{ $pendingBookingsCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-check text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Approved Bookings</p>
-                    <h2 class="fw-bold mb-0">{{ $approvedBookingsCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-times text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Declined Bookings</p>
-                    <h2 class="fw-bold mb-0">{{ $declinedBookingsCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card shadow-sm border-0">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-circle d-flex justify-content-center align-items-center">
-                    <i class="fas fa-calendar-alt text-white"></i>
-                </div>
-                <div>
-                    <p class="text-muted  fw-semibold mb-1">Meeting Scheduled</p>
-                    <h2 class="fw-bold mb-0">{{ $meetingScheduledBookingsCount }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
-<!-- Graphs -->
+
+
+
+
 
 <div class="row mt-4">
     <div class="col-md-6">
@@ -317,6 +435,7 @@
     });
 </script>
 
+-->
 
     @include('admin.include.footer')
 

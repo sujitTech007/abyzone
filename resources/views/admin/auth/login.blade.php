@@ -3,107 +3,363 @@
 @section('title', 'Admin Login')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow-lg mt-5">
-                <div class="card-header bg-dark text-white">
-                    <h3 class="mb-0">Admin Login</h3>
+
+<style>
+     
+    .admin-login-wrapper {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 35px 15px;
+        position: relative;
+        overflow: hidden;
+       
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 450px;
+        background: #fff;
+        border: 1px solid rgba(226, 232, 240, .85);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(30, 41, 59, .10);
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-header {
+        padding: 20px;
+        text-align: center;
+        color: #000;
+        background: #c1b6ff;
+        position: relative;
+         background:
+            radial-gradient(circle at 10% 10%, rgba(59, 130, 246, .13), transparent 30%),
+            radial-gradient(circle at 90% 90%, rgba(99, 102, 241, .13), transparent 30%),
+            #f5f7fc;
+    }
+
+   
+
+    .login-header h3 {
+        font-size: 27px;
+        font-weight: 750;
+        letter-spacing: -.7px;
+        margin-bottom: 9px;
+    }
+
+    .login-header p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, .82);
+        margin: 0;
+    }
+
+    .login-body {
+        padding: 25px;
+    }
+
+    .login-label {
+        display: block;
+        margin-bottom: 9px;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+    .login-input-group {
+        position: relative;
+    }
+
+    .login-input {
+        width: 100%;
+        height: 53px;
+        padding: 12px 15px 12px 45px;
+        border: 1px solid #dce3ee;
+        border-radius: 11px;
+        background: #fbfcff;
+        color: #1e293b;
+        font-size: 14px;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    .login-input::placeholder {
+        color: #9aa6b8;
+    }
+
+    .login-input:focus {
+        background: #fff;
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 4px rgba(79, 70, 229, .10);
+    }
+
+    .login-input.is-invalid {
+        border-color: #dc3545;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #94a3b8;
+        font-size: 17px;
+        pointer-events: none;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 5px;
+        border: 0;
+        background: transparent;
+        color: #64748b;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .password-toggle:hover {
+        color: #4338ca;
+    }
+
+    .login-check {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        accent-color: #4338ca;
+    }
+
+    .login-check-label {
+        color: #64748b;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+   
+
+    .login-footer {
+        padding: 19px 15px;
+        border-top: 1px solid #eef2f7;
+        background: #fcfdff;
+        text-align: center;
+        color: #64748b;
+        font-size: 12px;
+    }
+
+    .security-note {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        color: #64748b;
+        font-size: 12px;
+    }
+
+    .security-dot {
+        width: 7px;
+        height: 7px;
+        background: #22c55e;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .login-copyright {
+        margin-top: 22px;
+        color: #94a3b8;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .login-copyright strong {
+        color: #64748b;
+    }
+
+    .fs-12{
+        font-size:12px
+    }
+    .fs-16{
+        font-size:16px
+    }
+</style>
+
+<div class="admin-login-wrapper">
+    <div class="w-100" style="max-width: 450px;">
+
+        <div class="login-card">
+
+            <!-- Header -->
+            <div class="login-header">
+                <div class="login-logo">
+                     <img src="{{ asset('assets/images/abyzone-logo.png') }}" alt="ABYzone" height="50">
                 </div>
-                <div class="card-body p-4">
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Login Failed!</strong>
-                            @foreach ($errors->all() as $error)
-                                <div>{{ $error }}</div>
-                            @endforeach
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
 
-                    <form method="POST" action="{{ route('admin.login.post') }}">
-                        @csrf
+                <h3 class="fs-5 mt-3 mb-0"> Welcome Back!</h3>
+                <p class="text-dark fs-12">Sign in to access your admin dashboard.</p>
+            </div>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input 
-                                type="email" 
-                                class="form-control @error('email') is-invalid @enderror" 
-                                id="email" 
-                                name="email" 
-                                value="{{ old('email') }}" 
-                                placeholder="Enter your email"
+            <!-- Login Form -->
+            <div class="login-body">
+
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show rounded-3"
+                         role="alert">
+                        <strong>
+                            <i class="fa-solid fa-circle-xmark input-icon text-danger"></i>
+                            Login Failed!
+                        </strong>
+
+                        @foreach ($errors->all() as $error)
+                            <div class="small mt-1">{{ $error }}</div>
+                        @endforeach
+
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('admin.login.post') }}">
+                    @csrf
+
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <label for="email" class="login-label">
+                            Email Address
+                        </label>
+
+                        <div class="login-input-group">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+
+                            <input
+                                type="email"
+                                class="login-input @error('email') is-invalid @enderror"
+                                id="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                placeholder="Enter your email address"
+                                autocomplete="username"
                                 required
                                 autofocus
                             >
-                            @error('email')
-                                <span class="invalid-feedback d-block">{{ $message }}</span>
-                            @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input 
-                                type="password" 
-                                class="form-control @error('password') is-invalid @enderror" 
-                                id="password" 
-                                name="password" 
+                        @error('email')
+                            <div class="text-danger small mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="login-label">
+                            Password
+                        </label>
+
+                        <div class="login-input-group">
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                class="login-input @error('password') is-invalid @enderror"
+                                id="password"
+                                name="password"
                                 placeholder="Enter your password"
+                                autocomplete="current-password"
+                                style="padding-right: 65px;"
                                 required
                             >
-                            @error('password')
-                                <span class="invalid-feedback d-block">{{ $message }}</span>
-                            @enderror
-                        </div>
 
-                        <div class="mb-3 form-check">
-                            <input 
-                                type="checkbox" 
-                                class="form-check-input" 
-                                id="remember" 
-                                name="remember"
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
                             >
-                            <label class="form-check-label" for="remember">
-                                Remember Me
-                            </label>
+                                Show
+                            </button>
                         </div>
 
-                        <button type="submit" class="btn btn-dark w-100">
-                            Login
-                        </button>
-                    </form>
+                        @error('password')
+                            <div class="text-danger small mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
 
-                    <hr>
+                    <!-- Remember Me -->
+                    <div class="d-flex align-items-center mb-4">
+                        <input
+                            class="login-check me-2"
+                            type="checkbox"
+                            id="remember"
+                            name="remember"
+                            value="1"
+                            {{ old('remember') ? 'checked' : '' }}
+                        >
 
-                    <p class="text-center text-muted mb-0">
-                        <small>Demo Credentials: admin@abyzone.com / admin123456</small>
-                    </p>
+                        <label class="login-check-label" for="remember">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn theme_btn w-100 fs-16 fw-bold">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>
+                        Sign In to Dashboard
+                    </button>
+                </form>
+
+                <div class="security-note mt-4">
+                    <i class="fa-solid fa-shield-check text-success"></i>
+                    Secure Admin Access
+                    <span class="security-dot"></span>
+                    Protected Login
                 </div>
             </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <i class="bi bi-lock-fill me-1"></i>
+                Your credentials are protected.
+            </div>
         </div>
+
+        <div class="login-copyright">
+            &copy; {{ date('Y') }} <strong>Abyzone</strong>.
+            All rights reserved.
+        </div>
+
     </div>
 </div>
 
-<style>
-    body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-    
-    .card {
-        border: none;
-        border-radius: 10px;
-    }
-    
-    .card-header {
-        border-radius: 10px 10px 0 0;
-    }
-    
-    .btn-dark:hover {
-        background-color: #495057;
-        border-color: #495057;
-    }
-</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('togglePassword');
+
+        if (passwordInput && toggleButton) {
+            toggleButton.addEventListener('click', function () {
+                const isPassword = passwordInput.type === 'password';
+
+                passwordInput.type = isPassword ? 'text' : 'password';
+                toggleButton.textContent = isPassword ? 'Hide' : 'Show';
+                toggleButton.setAttribute(
+                    'aria-label',
+                    isPassword ? 'Hide password' : 'Show password'
+                );
+            });
+        }
+    });
+</script>
+
+
 @endsection

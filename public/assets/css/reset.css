@@ -1,0 +1,317 @@
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('In../fonts/ter24pt-Black.woff2') format('woff2'),
+        url('../fonts/Inter24pt-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('../fonts/Inter24pt-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Inter24pt-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('../fonts/Inter24pt-Bold.woff2') format('woff2'),
+        url('../fonts/Inter24pt-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('../fonts/Inter24pt-ExtraLight.woff2') format('woff2'),
+        url('../fonts/Inter24pt-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('../fonts/Inter24pt-Medium.woff2') format('woff2'),
+        url('../fonts/Inter24pt-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('../fonts/Inter24pt-Light.woff2') format('woff2'),
+        url('../fonts/Inter24pt-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url('../fonts/Inter24pt-Regular.woff2') format('woff2'),
+        url('../fonts/Inter24pt-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter 24pt';
+    src: url('../fonts/Inter24pt-Thin.woff2') format('woff2'),
+        url('../fonts/Inter24pt-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+:root{
+	--primary-color				: #282660;
+	--secondary-color			: #faa31b;
+	--text-color				: #707070;
+	--accent-color				: #3396EC;
+	--accent-secondary-color	: #3396EC;
+	--white-color				: #FFFFFF;
+    --black-color				: #000000;
+	--divider-color				: #EEEEEE;
+	--dark-divider-color		: #FFFFFF1A;
+	--error-color				: rgb(230, 87, 87);
+	--default-font				: "Inter-Regular", sans-serif;
+}
+
+/************************************/
+/*** 	   02. General css		  ***/
+/************************************/
+
+
+.btn-primary {
+background-color: var(--primary-color);
+border-color: var(--primary-color);
+}
+
+
+
+body{
+	font-family: var(--default-font);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1em;
+	background-color: var(--white-color);
+	color: var(--text-color);
+}
+
+p{
+            font-size: 14px;
+            line-height: 1.2;
+            font-family: var(--default-font);
+            font-weight: normal;
+            color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	margin :0;
+	font-weight: 600;
+	line-height: 1.2em;
+}
+
+figure{
+	margin: 0;
+}
+
+img{
+	max-width: 100%;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+	outline: 0;
+}
+
+a:focus{
+	text-decoration: none;
+	outline: 0;
+}
+
+html,
+body{
+	width: 100%;
+	overflow-x: clip;
+}
+
+::-webkit-scrollbar-track{
+	background-color: var(--white-color);
+	border-left: 1px solid var(--white-color);
+}
+::-webkit-scrollbar{
+	width: 7px;
+	background-color: var(--white-color);
+}
+::-webkit-scrollbar-thumb{
+	background: linear-gradient(90deg, var(--accent-color) 0.18%, var(--accent-secondary-color) 100.18%);
+}
+
+ul li{
+    font-size: 14px;
+}
+.primary-text-color{
+    color: var(--text-color);
+}
+.fs-10{
+    font-size: 10px;
+}
+.fs-11{
+    font-size: 11px;
+}
+.fs-12{
+    font-size: 12px;
+}
+.fs-14{
+    font-size: 14px;
+}
+.secondary-text-color{
+    color: var(--secondary-color);
+}
+
+.primary-text-color{
+    color: var(--primary-color);
+}
+
+.bg-color-primary{
+    background-color: var(--primary-color);
+}
+
+
+
+/* =========================
+   FORM LABEL
+========================= */
+
+form label {
+   display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #526477;
+    margin: 10px 0 5px;
+}
+
+
+/* =========================
+   INPUT / SELECT
+========================= */
+
+form .form-control,
+form .form-select {
+
+    width: 100%;
+    padding: 10px !important;
+    font-size: 13px !important;
+    color: #777;
+    background-color: #fff;
+    border: 1px solid #dce4ec;
+    border-radius: 3px;
+    box-shadow: none;
+
+}
+
+form .form-control::placeholder {
+    color: #a1aab4;
+    opacity: 1;
+}
+
+
+/* =========================
+   FOCUS
+========================= */
+
+form .form-control:focus,
+form .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(40, 38, 96, 0.08);
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+form textarea.form-control {
+    height: 42px;
+    min-height: 42px;
+    resize: none;
+}
+
+
+.container{
+	max-width: 1170px;
+	padding: 0 10px;
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+
+
+
+.header-top{
+    background: var(--primary-color);
+}
+
+.navbar .nav-link {
+    color: var(--black-color);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--secondary-color);
+}
+
+.navbar .nav-link.active {
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.theme_btn {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    font-size: 13px;
+    padding: 10px;
+    color: var(--black-color);
+    border-radius: 10px;
+
+    
+    transition: 0.3s ease;
+}
+
+.theme_btn:hover {
+    background-color: #e9950d;
+    border-color: #e9950d;
+    color: var(--primary-color);
+    transform: translateX(2px);
+}
+
