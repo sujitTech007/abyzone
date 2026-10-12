@@ -13,3 +13,264 @@
   width: 100% !important;
   height: 310px ;
 }
+
+
+/* Booking Detail Page */
+.booking-detail-page {
+    padding-bottom: 25px;
+}
+
+.booking-header-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #eeefff;
+    color: #282660;
+    font-size: 17px;
+}
+
+.booking-detail-card {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.booking-detail-card .card-header {
+    padding-bottom: 18px !important;
+}
+
+.booking-section-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.booking-icon-blue {
+    background: #eeefff;
+    color: #282660;
+}
+
+.booking-icon-orange {
+    background: #fff1db;
+    color: #d98400;
+}
+
+.booking-highlight-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    border: 1px solid #e7e7f5;
+    border-radius: 12px;
+    background: #f8f8ff;
+    overflow-wrap: anywhere;
+}
+
+.booking-info-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 11px;
+    background: #282660;
+    color: #fff;
+    font-size: 19px;
+}
+
+.booking-info-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #77788b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.booking-info-label i {
+    color: #282660;
+}
+
+.booking-highlight-box h6 {
+    color: #282660;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.booking-info-box {
+    padding: 16px;
+    border: 1px solid #e9eaf1;
+    border-radius: 11px;
+    background: #fff;
+    overflow-wrap: anywhere;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.booking-info-box:hover {
+    background: #fafaff;
+    border-color: #d9d8f0;
+}
+
+.booking-info-value {
+    color: #292944;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.booking-notes-box {
+    padding: 16px;
+    border-radius: 11px;
+    border: 1px solid #f0e6d6;
+    background: #fffbf5;
+}
+
+.booking-notes-text {
+    color: #626274;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.booking-tip-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #f4e2bf;
+    background: #fffaf1;
+}
+
+.booking-tip-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #faa31b;
+    color: #fff;
+}
+
+.booking-tip-box h6 {
+    color: #282660;
+}
+
+.booking-tip-box p {
+    color: #707080;
+    line-height: 1.7;
+}
+
+.booking-update-card {
+    position: relative;
+}
+
+.booking-form-label {
+    display: block;
+    color: #34344f;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.booking-form-control {
+    min-height: 44px;
+    border-radius: 9px;
+    border-color: #dedfe8;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.booking-form-control:focus {
+    border-color: #282660;
+    box-shadow: 0 0 0 3px rgba(40, 38, 96, .08);
+}
+
+textarea.booking-form-control {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.booking-form-divider {
+    border-top: 1px solid #eeeef3;
+}
+
+
+/* Add / Edit Blog Form */
+.blog-edit-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.blog-edit-card .card-header {
+    padding: 20px 24px;
+}
+
+.blog-edit-card .card-header h5 {
+    color: #282660;
+    font-weight: 600;
+}
+
+.blog-edit-card .card-header h5 i {
+    color: #faa31b;
+}
+
+.blog-edit-card .card-body {
+    background: #fff;
+}
+
+.blog-form-control {
+    min-height: 46px;
+    border: 1px solid #dfe3eb;
+    border-radius: 7px;
+    padding: 10px 13px;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+textarea.blog-form-control {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.blog-form-control:focus {
+    border-color: #282660;
+    box-shadow: 0 0 0 3px rgba(40, 38, 96, 0.08);
+}
+
+.blog-edit-card .form-label {
+    color: #34364a;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.blog-edit-card .btn-primary {
+    background-color: #282660;
+    border-color: #282660;
+}
+
+.blog-edit-card .btn-primary:hover {
+    background-color: #1e1c4d;
+    border-color: #1e1c4d;
+}
+
+.blog-edit-card .btn-light {
+    background-color: #fff;
+}
+
+button.mark-read-btn {
+    width: max-content;
+    font-size: 12px;
+    background: #fff;
+}

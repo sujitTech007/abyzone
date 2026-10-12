@@ -1,81 +1,127 @@
 @include('admin.include.header')
 
 <div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-2">Quote Requests</h4>
-        </div>
-    </div>
- <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-      
-     <div class="col-sm-12 col-md-12 d-flex justify-content-end">
-                                    <div class="gridjs-head">
-                                        <div class="gridjs-search d-flex align-items-center gap-1">
-        <input type="search" id="category-search" placeholder="Type a keyword..."
-    aria-label="Type a keyword..." class="gridjs-input gridjs-search-input" value="">
-     <a href="{{ route('admin.quote.request') }}" class="btn btn-success">Reset</a>
-    </div>
-    </div>
-    </div>
-    </div>
     <div class="page-container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title mb-2">Quote Request Data Table</h4>
 
-                        @include('includes.alerts')
+        {{-- Page Header --}}
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+            <div>
+                <h4 class="fs-18 fw-bold mb-1">Quote Requests</h4>
+                <p class="text-muted mb-0">
+                    View and manage customer warehouse quote requests.
+                </p>
+            </div>
 
-                        <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                            <div class="row">
-                                <div class="col-sm-12">
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                <input
+                    type="search"
+                    id="category-search"
+                    placeholder="Search quote requests..."
+                    aria-label="Search quote requests"
+                    class="form-control"
+                    style="width: 240px;"
+                >
 
-                                    <table id="basic-datatable"
-                                        class="table dt-responsive nowrap w-100 dataTable no-footer dtr-inline">
+                <a href="{{ route('admin.quote.request') }}"
+                   class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
+                </a>
+            </div>
+        </div>
 
-                                        <thead>
-                                            <tr>
-                                                <th>S No.</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Industry Type</th>
-                                                <th>Business Size</th>
-                                                <th>Space Needed</th>
-                                                <th>Warehouse Location</th>
-                                                <th>Estimated</th>
-                                                <th>Need Warehouse</th>
-                                            </tr>
-                                        </thead>
+        @include('includes.alerts')
 
-                                        <tbody>
-                                            @foreach($quotes as $q)
-                                            <tr>
-                                                <td>{{ $q->id }}</td>
-                                                <td>{{ $q->name }}</td>
-                                                <td>{{ $q->email }}</td>
-                                                <td>{{ $q->phone }}</td>
-                                                <td>{{ $q->industry_type }}</td>
-                                                <td>{{ $q->business_size }}</td>
-                                                <td>{{ $q->space_needed }}</td>
-                                                <td>{{ $q->warehouse_location }}</td>
-                                                <td>{{ $q->estimated }}</td>
-                                                <td>{{ $q->need_warehouse }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
+        {{-- Quote Requests Table --}}
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-file-invoice me-2"></i>
+                    Quote Request Data Table
+                </h5>
+            </div>
 
-                                    </table>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table
+                        id="basic-datatable"
+                        class="table table-striped align-middle w-100"
+                    >
+                        <thead class="table-light">
+                            <tr>
+                                <th>S. No.</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Industry Type</th>
+                                <th>Business Size</th>
+                                <th>Space Needed</th>
+                                <th>Warehouse Location</th>
+                                <th>Estimated</th>
+                                <th>Need Warehouse</th>
+                            </tr>
+                        </thead>
 
-                                </div>
-                            </div>
-                        </div>
+                        <tbody>
+                            @forelse($quotes as $q)
+                                <tr>
+                                    <td>{{ $q->id }}</td>
 
-                    </div>
+                                    <td class="fw-semibold">
+                                        {{ $q->name }}
+                                    </td>
+
+                                    <td>
+                                        <a href="mailto:{{ $q->email }}"
+                                           class="text-decoration-none">
+                                            {{ $q->email }}
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        @if($q->phone)
+                                            <a href="tel:{{ $q->phone }}"
+                                               class="text-decoration-none">
+                                                {{ $q->phone }}
+                                            </a>
+                                        @else
+                                            <span class="text-muted">N/A</span>
+                                        @endif
+                                    </td>
+
+                                    <td>{{ $q->industry_type ?: 'N/A' }}</td>
+
+                                    <td>{{ $q->business_size ?: 'N/A' }}</td>
+
+                                    <td>{{ $q->space_needed ?: 'N/A' }}</td>
+
+                                    <td>{{ $q->warehouse_location ?: 'N/A' }}</td>
+
+                                    <td>{{ $q->estimated ?: 'N/A' }}</td>
+
+                                    <td>
+                                        @if($q->need_warehouse)
+                                            <span class="badge bg-success-subtle text-success px-2 py-2">
+                                                {{ $q->need_warehouse }}
+                                            </span>
+                                        @else
+                                            <span class="text-muted">N/A</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="10" class="text-center py-4 text-muted">
+                                        <i class="fa-solid fa-file-circle-question fs-3 d-block mb-2"></i>
+                                        No quote requests found.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

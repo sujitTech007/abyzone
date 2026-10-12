@@ -1,73 +1,115 @@
 @include('admin.include.header')
 
 <div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-2">Meeting Requests</h4>
-        </div>
-    </div>
-<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-      
-     <div class="col-sm-12 col-md-12 d-flex justify-content-end">
-                                    <div class="gridjs-head">
-                                        <div class="gridjs-search d-flex align-items-center gap-1">
-        <input type="search" id="category-search" placeholder="Type a keyword..."
-    aria-label="Type a keyword..." class="gridjs-input gridjs-search-input" value="">
-     <a href="{{ route('admin.meeting.request') }}" class="btn btn-success">Reset</a>
-    </div>
-    </div>
-    </div>
-    </div>
     <div class="page-container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title mb-2">Meeting Request Data Table</h4>
 
-                        @include('includes.alerts')
+        {{-- Page Header --}}
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+            <div>
+                <h4 class="fs-18 fw-bold mb-1">Meeting Requests</h4>
+                <p class="text-muted mb-0">
+                    View and manage customer meeting requests.
+                </p>
+            </div>
 
-                        <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                            <div class="row">
-                                <div class="col-sm-12">
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                <input
+                    type="search"
+                    id="category-search"
+                    placeholder="Search meeting requests..."
+                    aria-label="Search meeting requests"
+                    class="form-control"
+                    style="width: 240px;"
+                >
 
-                                    <table id="basic-datatable"
-                                        class="table dt-responsive nowrap w-100 dataTable no-footer dtr-inline">
+                <a href="{{ route('admin.meeting.request') }}"
+                   class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
+                </a>
+            </div>
+        </div>
 
-                                        <thead>
-                                            <tr>
-                                                <th>S No.</th>
-                                                <th>Full Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Preferred Date</th>
-                                                <th>Message</th>
-                                            </tr>
-                                        </thead>
+        @include('includes.alerts')
 
-                                        <tbody>
-                                            @foreach($meetings as $m)
-                                            <tr>
-                                                <td>{{ $m->id }}</td>
-                                                <td>{{ $m->full_name }}</td>
-                                                <td>{{ $m->email }}</td>
-                                                <td>{{ $m->phone }}</td>
-                                                <td>{{ $m->preferred_date }}</td>
-                                                <td>{{ $m->message }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
+        {{-- Meeting Requests Table --}}
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-calendar-check me-2"></i>
+                    Meeting Request Data Table
+                </h5>
+            </div>
 
-                                    </table>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table
+                        id="basic-datatable"
+                        class="table table-striped align-middle w-100"
+                    >
+                        <thead class="table-light">
+                            <tr>
+                                <th>S. No.</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Preferred Date</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
 
-                                </div>
-                            </div>
-                        </div>
+                        <tbody>
+                            @forelse($meetings as $m)
+                                <tr>
+                                    <td>{{ $m->id }}</td>
 
-                    </div>
+                                    <td class="fw-semibold">
+                                        {{ $m->full_name }}
+                                    </td>
+
+                                    <td>
+                                        <a href="mailto:{{ $m->email }}"
+                                           class="text-decoration-none">
+                                            {{ $m->email }}
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        @if($m->phone)
+                                            <a href="tel:{{ $m->phone }}"
+                                               class="text-decoration-none">
+                                                {{ $m->phone }}
+                                            </a>
+                                        @else
+                                            <span class="text-muted">N/A</span>
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @if($m->preferred_date)
+                                            {{ $m->preferred_date }}
+                                        @else
+                                            <span class="text-muted">N/A</span>
+                                        @endif
+                                    </td>
+
+                                    <td style="min-width: 220px; white-space: normal;">
+                                        {{ $m->message ?: 'N/A' }}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-muted">
+                                        <i class="fa-regular fa-calendar-xmark fs-3 d-block mb-2"></i>
+                                        No meeting requests found.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

@@ -118,7 +118,7 @@
         </li>
 
         {{-- Service Categories --}}
-        <li class="side-nav-item">
+        <!-- <li class="side-nav-item">
             <a href="{{ route('admin.category') }}"
                class="side-nav-link {{ request()->routeIs('admin.category*') ? 'active' : '' }}">
                 <span class="menu-icon">
@@ -126,7 +126,7 @@
                 </span>
                 <span class="menu-text">Service Categories</span>
             </a>
-        </li>
+        </li> -->
 
         {{-- Services --}}
         <li class="side-nav-item">

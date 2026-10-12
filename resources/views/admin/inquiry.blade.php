@@ -1,91 +1,114 @@
 @include('admin.include.header')
 
 
-
 <div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-2">Inquiry</h4>
-        </div>
-        
-    </div>
-     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-      
-     <div class="col-sm-12 col-md-12 d-flex justify-content-end">
-                                    <div class="gridjs-head">
-                                        <div class="gridjs-search d-flex align-items-center gap-1">
-        <input type="search" id="category-search" placeholder="Type a keyword..."
-    aria-label="Type a keyword..." class="gridjs-input gridjs-search-input" value="">
-     <a href="{{ route('admin.inquiry') }}" class="btn btn-success">Reset</a>
-    </div>
-    </div>
-    </div>
-    </div>
     <div class="page-container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title mb-2">Inquiry Data Table</h4>
-                        <div id="basic-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                           
-                            @include('includes.alerts')
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table id="basic-datatable"  id="basic-datatable"
-                                        class="table dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                        aria-describedby="basic-datatable_info">
 
-                                        <thead>
-                                            <tr>
-                                                <th class="gridjs-th">S no.</th>
-                                                <th class="gridjs-th">Name</th>
-                                                <th class="gridjs-th">Email</th>
-                                                <th class="gridjs-th">phone</th>
-                                                <th class="gridjs-th">Message</th>
-                                            </tr>
+        {{-- Page Header --}}
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+            <div>
+                <h4 class="fs-18 fw-bold mb-1">Inquiries</h4>
+                <p class="text-muted mb-0">View and manage customer inquiries.</p>
+            </div>
 
-                                        </thead>
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                <input
+                    type="search"
+                    id="category-search"
+                    placeholder="Search inquiries..."
+                    aria-label="Search inquiries"
+                    class="form-control"
+                    style="width: 240px;"
+                >
 
-                                        <tbody>
-                                            @php
-                                             $i = 1;
+                <a href="{{ route('admin.inquiry') }}" class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
+                </a>
+            </div>
+        </div>
 
-                                            @endphp
-                                            @foreach($inquiries as $u)
+        @include('includes.alerts')
 
-                                            <tr>
+        {{-- Inquiry Table --}}
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-envelope-open-text me-2"></i>
+                    Inquiry Data Table
+                </h5>
+            </div>
 
-                                                <td>{{ $i++ }}</td>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table
+                        id="basic-datatable"
+                        class="table table-striped align-middle w-100"
+                    >
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 80px;">S. No.</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
 
-                                                <td>{{ $u->name }}</td>
+                        <tbody>
+                            @php
+                                $i = ($inquiries->currentPage() - 1) * $inquiries->perPage() + 1;
+                            @endphp
 
-                                                <td>{{ $u->email }}</td>
+                            @forelse($inquiries as $u)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
 
-                                                <td>{{ $u->phone }}</td>
+                                    <td class="fw-semibold">
+                                        {{ $u->name }}
+                                    </td>
 
-                                              <td>{{ \Illuminate\Support\Str::limit($u->message, 50) }}</td>
+                                    <td>
+                                        <a href="mailto:{{ $u->email }}" class="text-decoration-none">
+                                            {{ $u->email }}
+                                        </a>
+                                    </td>
 
-                                                
+                                    <td>
+                                        @if($u->phone)
+                                            <a href="tel:{{ $u->phone }}" class="text-decoration-none">
+                                                {{ $u->phone }}
+                                            </a>
+                                        @else
+                                            <span class="text-muted">N/A</span>
+                                        @endif
+                                    </td>
 
-                                            </tr>
+                                    <td style="min-width: 220px; white-space: normal;">
+                                        {{ \Illuminate\Support\Str::limit($u->message, 50) }}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center py-4 text-muted">
+                                        <i class="fa-regular fa-envelope fs-3 d-block mb-2"></i>
+                                        No inquiries found.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
 
-                                            @endforeach
-
-                                        </tbody>
-
-                                    </table>
-                                    {{ $inquiries->links('pagination::bootstrap-5') }}
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                {{-- Pagination --}}
+                <div class="d-flex justify-content-end mt-3">
+                    {{ $inquiries->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {

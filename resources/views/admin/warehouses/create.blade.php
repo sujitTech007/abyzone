@@ -1,7 +1,10 @@
 @include('admin.include.header')
 <div class="page-content">
-<div class="container p-4">
-    <h2 class="mb-3">Add Warehouse</h2>
+<div class="page-container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <h4 class="fs-18 fw-bold mb-0">Add Warehouse</h4>           
+    </div>
+
 
     @include('includes.alerts')
 
@@ -9,11 +12,11 @@
         @csrf
         <div class="row g-3">
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Warehouse Images<span class="text-danger">*</span></label>
             
                 <div id="image-wrapper">
-                    <input type="file" name="images[]" class="form-control mb-2 image-input" accept="image/*">
+                    <input type="file" name="images[]" class="form-control mb-2 image-input w-auto" accept="image/*">
                 </div>
             
                 <small class="text-muted">Max 3 images allowed. Each image must be less than 200KB.</small>
@@ -22,7 +25,7 @@
                 @error('images.*')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Select User<span class="text-danger">*</span></label>
                 <select name="user_id" class="form-select">
                     @foreach($users as $user)
@@ -32,33 +35,33 @@
                 @error('user_id')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Name<span class="text-danger">*</span></label>
                 <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                 @error('name')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Warehouse Code</label>
                 <input type="text" name="code" class="form-control" value="{{ old('code') }}">
                 <small class="text-muted">Leave blank to auto-generate.</small>
                 @error('code')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Location</label>
                 <input type="text" name="location" class="form-control" value="{{ old('location') }}">
                 <small class="text-muted">(please fill country, 1st-level administrative unit such as region/state/city/province/territory)</small>
                 @error('location')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label class="form-label">Size (sqft)</label>
                 <input type="number" step="0.01" name="size_sqft" class="form-control" value="{{ old('size_sqft') }}">
                 @error('size_sqft')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label class="form-label">Status<span class="text-danger">*</span></label>
                 <select name="status" class="form-select">
                     @foreach(['draft' => 'Draft', 'available' => 'Available', 'unavailable' => 'Unavailable'] as $value => $label)
@@ -68,13 +71,13 @@
                 @error('status')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <!--<div class="col-md-6">-->
+            <!--<div class="col-md-3">-->
             <!--    <label class="form-label">Available from:</label>-->
             <!--    <input type="date" name="available_from" class="form-control" value="{{ old('available_from') }}">-->
             <!--    @error('available_from')<div class="text-danger small">{{ $message }}</div>@enderror-->
             <!--</div>-->
             
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label class="form-label">Available From: <span class="text-danger">*</span></label>
                 <input type="date" name="available_from" class="form-control" value="{{ old('available_from') }}" required>
                 
@@ -84,7 +87,7 @@
             </div>
 
 
-            <div class="col-md-6">
+            <div class="col-md-3">
     <label class="form-label">Types of Warehouse</label>
 
     <select name="warehouse_type" id="warehouse_type" class="form-select">
@@ -143,31 +146,31 @@
 
 </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Street Address</label>
                 <input type="text" name="address_street" class="form-control" value="{{ old('address_street') }}">
                 @error('address_street')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">City/ Province</label>
                 <input type="text" name="address_city" class="form-control" value="{{ old('address_city') }}">
                 @error('address_city')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">State/ Territory</label>
                 <input type="text" name="address_state" class="form-control" value="{{ old('address_state') }}">
                 @error('address_state')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">Postal code</label>
                 <input type="text" name="address_postal" class="form-control" value="{{ old('address_postal') }}">
                 @error('address_postal')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">Capacity (Chargeable Unit)</label>
                 <div class="input-group">
                     <input type="number" name="capacity_quantity" class="form-control" value="{{ old('capacity_quantity') }}">
@@ -184,7 +187,7 @@
                 @error('capacity_unit')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">Price</label>
                 <div class="input-group">
                     <input type="number" step="0.01" name="price_value" class="form-control" value="{{ old('price_value') }}">
@@ -212,7 +215,7 @@
                         ];
                     @endphp
                     @foreach($items as $item)
-                        <div class="col-md-3">
+                        <div class="col-md-3 py-1">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="infra_amenities[]" value="{{ $item }}"
                                     @checked(is_array(old('infra_amenities')) && in_array($item, old('infra_amenities')))>
@@ -240,9 +243,9 @@
 
         <div class="mt-4 d-flex gap-2">
 
-            <button class="btn btn-success">Save Warehouse</button>
+            <button class="btn theme_btn px-3 fw-bold rounded-2">Save Warehouse</button>
 
-            <a href="{{ route('admin.warehouses') }}" class="btn btn-link">Cancel</a>
+            <a href="{{ route('admin.warehouses') }}" class="btn btn-danger">Cancel</a>
 
         </div>
 

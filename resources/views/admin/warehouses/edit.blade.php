@@ -1,7 +1,12 @@
 @include('admin.include.header')
-<div class="page-content">
-<div class="container p-4">
-    <h2 class="mb-3">Edit Warehouse</h2>
+
+
+    <div class="page-content">
+<div class="page-container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <h4 class="fs-18 fw-bold mb-0">Edit Warehouse</h4>           
+    </div>
+
 
     @include('includes.alerts')
 
@@ -10,7 +15,7 @@
         @method('PUT')
 
         <div class="row g-3">
-            <div class="col-md-6">
+            <div class="col-md-12">
     <label class="form-label">Current Images</label>
 
     <div class="row">
@@ -18,7 +23,7 @@
 
             @foreach($warehouse->images as $key => $img)
 
-                <div class="col-md-4 mb-3 text-center">
+                <div class="col mb-3 text-start">
 
                     <img src="{{ asset($img) }}" class="img-fluid rounded shadow mb-1" style="height:90px; object-fit:cover;">
 
@@ -67,7 +72,7 @@ Maximum 3 images allowed. Each image must be less than 200KB.
 ✅ Ad
 </div>
 
-<div class="col-md-6">
+<div class="col-md-4">
                 <label class="form-label">Select User<span class="text-danger">*</span></label>
                 <select name="user_id" class="form-select">
                     @foreach($users as $user)
@@ -77,33 +82,33 @@ Maximum 3 images allowed. Each image must be less than 200KB.
                 @error('user_id')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Name<span class="text-danger">*</span></label>
                 <input type="text" name="name" class="form-control" value="{{ old('name', $warehouse->name) }}" required>
                 @error('name')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Warehouse Code</label>
                 <input type="text" name="code" class="form-control" value="{{ old('code', $warehouse->code) }}">
                 <small class="text-muted">Leave blank to keep current or auto-generate.</small>
                 @error('code')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Location</label>
                 <input type="text" name="location" class="form-control" value="{{ old('location', $warehouse->location) }}">
                 <small class="text-muted">(please fill country, 1st-level administrative unit such as region/state/city/province/territory)</small>
                 @error('location')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label class="form-label">Size (sqft)</label>
                 <input type="number" step="0.01" name="size_sqft" class="form-control" value="{{ old('size_sqft', $warehouse->size_sqft) }}">
                 @error('size_sqft')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label class="form-label">Status<span class="text-danger">*</span></label>
                 <select name="status" class="form-select">
                     @foreach(['draft' => 'Draft', 'available' => 'Available', 'unavailable' => 'Unavailable'] as $value => $label)
@@ -113,7 +118,7 @@ Maximum 3 images allowed. Each image must be less than 200KB.
                 @error('status')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-           <div class="col-md-6">
+           <div class="col-md-3">
     <label class="form-label">Available From: <span class="text-danger">*</span></label>
 
     <input 
@@ -130,7 +135,7 @@ Maximum 3 images allowed. Each image must be less than 200KB.
     @enderror
 </div>
 
-           <div class="col-md-6">
+           <div class="col-md-3">
     <label class="form-label">Types of Warehouse</label>
 
     <select name="warehouse_type" id="warehouse_type" class="form-select">
@@ -177,31 +182,31 @@ Maximum 3 images allowed. Each image must be less than 200KB.
     @enderror
 </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Street Address</label>
                 <input type="text" name="address_street" class="form-control" value="{{ old('address_street', $warehouse->address_street) }}">
                 @error('address_street')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">City/ Province</label>
                 <input type="text" name="address_city" class="form-control" value="{{ old('address_city', $warehouse->address_city) }}">
                 @error('address_city')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">State/ Territory</label>
                 <input type="text" name="address_state" class="form-control" value="{{ old('address_state', $warehouse->address_state) }}">
                 @error('address_state')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">Postal code</label>
                 <input type="text" name="address_postal" class="form-control" value="{{ old('address_postal', $warehouse->address_postal) }}">
                 @error('address_postal')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">Capacity (Chargeable Unit)</label>
                 <div class="input-group">
                     <input type="number" name="capacity_quantity" class="form-control" value="{{ old('capacity_quantity', $warehouse->capacity_quantity) }}">
@@ -218,7 +223,7 @@ Maximum 3 images allowed. Each image must be less than 200KB.
                 @error('capacity_unit')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
-            <div class="col-md-6">
+            <div class="col">
                 <label class="form-label">Price</label>
                 <div class="input-group">
                     <input type="number" step="0.01" name="price_value" class="form-control" value="{{ old('price_value', $warehouse->price_value) }}">
@@ -246,7 +251,7 @@ Maximum 3 images allowed. Each image must be less than 200KB.
                         ];
                     @endphp
                     @foreach($items as $item)
-                        <div class="col-md-3">
+                        <div class="col-md-3 py-1">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="infra_amenities[]" value="{{ $item }}"
                                     @checked(is_array(old('infra_amenities', $warehouse->infra_amenities ?? [])) && in_array($item, old('infra_amenities', $warehouse->infra_amenities ?? [])))>
@@ -279,8 +284,8 @@ Maximum 3 images allowed. Each image must be less than 200KB.
         </div>
 
         <div class="mt-4 d-flex gap-2">
-            <button class="btn btn-success">Update Warehouse</button>
-            <a href="{{ route('admin.warehouses') }}" class="btn btn-link">Cancel</a>
+            <button class="btn theme_btn fw-bold px-3 rounded-2">Update Warehouse</button>
+            <a href="{{ route('admin.warehouses') }}" class="btn btn-danger">Cancel</a>
         </div>
     </form>
 </div>

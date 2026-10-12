@@ -1,5 +1,5 @@
 @include('owner.include.header')
-```blade
+
 <div class="page-content warehouse-detail-page">
     <div class="container">
 
