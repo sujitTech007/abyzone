@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/admin/css/toastr.min.css') }}" rel="stylesheet" type="text/css" id="app-style">
     <link href="{{ asset('assets/admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style">
     <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/admin/css/admin-style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>

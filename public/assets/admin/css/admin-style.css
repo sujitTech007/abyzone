@@ -1,0 +1,15 @@
+   .chart-filter {
+      padding: 7px 10px;
+      border: 1px solid #dce5f2;
+      border-radius: 5px;
+      background: #fff;
+      color: #52627b;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+
+    .chart_container {
+  width: 100% !important;
+  height: 310px ;
+}

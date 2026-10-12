@@ -386,42 +386,383 @@
 
 
 
+
 <div class="row mt-4">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="card shadow-sm border-0">
-            <div class="card-header">
-                <strong>Booking Status Chart</strong>
+            <div class="card-header bg-color-primary text-white py-2 d-flex justify-content-between align-items-center">
+                <h5 class="m-0">Platform Growth</h5>
+                  <select id="chartFilter" class="chart-filter">
+        <option value="6">Last 6 Months</option>
+        <option value="3">Last 3 Months</option>
+      </select>
+            </div>         
+
+
+            <div class="card-body">
+                <div class="chart_container">
+  <canvas id="growthChart"></canvas>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-color-primary text-white py-3">
+                <h5 class="m-0">Booking Status Chart</h5>
             </div>
             <div class="card-body">
-                <div style="width: 400px;">
+                <div class="w-100">
+                    <div style="height: 300px; position: relative;">
     <canvas id="bookingChart"></canvas>
 </div>
-
-<div style="width: 400px;">
-    <canvas id="warehouseChart"></canvas>
-</div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="col-md-6">
         <div class="card shadow-sm border-0">
-            <div class="card-header">
-                <strong>Warehouse Status Chart</strong>
+            <div class="card-header bg-color-primary text-white py-3 ">
+                <h5 class="m-0">Warehouse Status Chart</h5>
             </div>
             <div class="card-body">
-                <canvas id="warehouseChart"></canvas>
+                <div class="w-100">
+                    <canvas id="warehouseChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="col-md-3">
+        {{-- QUICK ACTIONS --}}
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-color-primary text-white py-3">
+                        <h5 class="mb-0">
+                            <i class="fa-solid fa-bolt me-2"></i>
+                            Quick Actions
+                        </h5>
+                    </div>
 
+                    <div class="card-body p-3">
+                        <div class="quick-card">
 
+                            <a href="{{ route('admin.users.create') }}"
+                               class="action-item">
+                                <span class="icon-circle icon-blue">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                </span>
+                                <span class="action-text">Add New User</span>
+                                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                            </a>
 
-        
+                            {{-- Replace # with your actual warehouse creation route --}}
+                            <a href="#"
+                               class="action-item">
+                                <span class="icon-circle icon-green">
+                                    <i class="fa-solid fa-warehouse"></i>
+                                </span>
+                                <span class="action-text">Add Warehouse</span>
+                                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                            </a>
 
-        
+                            {{-- Replace # with your actual booking management route --}}
+                            <a href="#"
+                               class="action-item">
+                                <span class="icon-circle icon-orange">
+                                    <i class="fa-regular fa-calendar-check"></i>
+                                </span>
+                                <span class="action-text">View Bookings</span>
+                                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                            </a>
+
+                            {{-- Replace # with your actual reports route --}}
+                            <a href="#"
+                               class="action-item">
+                                <span class="icon-circle icon-purple">
+                                    <i class="fa-solid fa-chart-column"></i>
+                                </span>
+                                <span class="action-text">View Reports</span>
+                                <i class="fa-solid fa-arrow-right action-arrow"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
     </div>
+     <div class="col-md-3">
+        {{-- RECENT ACTIVITY --}}
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-color-primary text-white py-3">
+                        <h5 class="mb-0">
+                            <i class="fa-regular fa-clock me-2"></i>
+                            Recent Activity
+                        </h5>
+                    </div>
+
+                    <div class="card-body p-3">
+
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                            <div class="activity-icon blue">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="activity-text">New customer registered</div>
+                                <div class="activity-time">Recently registered customer</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                            <div class="activity-icon green">
+                                <i class="fa-solid fa-warehouse"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="activity-text">Warehouse overview</div>
+                                <div class="activity-time">
+                                    {{ $totalWarehousesCount }} registered warehouses
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                            <div class="activity-icon orange">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="activity-text">Booking requests</div>
+                                <div class="activity-time">
+                                    {{ $pendingBookingsCount }} requests pending
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                            <div class="activity-icon purple">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="activity-text">Owner accounts</div>
+                                <div class="activity-time">
+                                    {{ $ownersCount }} registered owners
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="activity-icon cyan">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="activity-text">Dashboard overview</div>
+                                <div class="activity-time">
+                                    Updated {{ now()->format('d M Y') }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+     </div>
+
+
+        
+
+      
+{{-- Latest Bookings & Top Warehouses --}}
+<div class="row mt-3">
+
+    {{-- Latest Bookings --}}
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-header bg-color-primary
+                        d-flex justify-content-between align-items-center py-3">
+                <h5 class="text-white mb-0 fw-bold">
+                    <i class="fas fa-calendar-alt me-2"></i>
+                    Latest Bookings
+                </h5>
+
+                <a href="#" class="text-white text-decoration-none fw-semibold">
+                    View All <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Warehouse</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="fw-semibold">Central Storage</td>
+                                <td>Rahul Sharma</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2">
+                                        Approved
+                                    </span>
+                                </td>
+                                <td class="text-nowrap">10 Oct 2026</td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td class="fw-semibold">North Warehouse</td>
+                                <td>Priya Verma</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-warning-subtle text-warning-emphasis px-3 py-2">
+                                        Pending
+                                    </span>
+                                </td>
+                                <td class="text-nowrap">09 Oct 2026</td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td class="fw-semibold">City Logistics Hub</td>
+                                <td>Amit Kumar</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-info-subtle text-info px-3 py-2">
+                                        Meeting Scheduled
+                                    </span>
+                                </td>
+                                <td class="text-nowrap">08 Oct 2026</td>
+                            </tr>
+
+                            <tr>
+                                <td>4</td>
+                                <td class="fw-semibold">East Side Storage</td>
+                                <td>Neha Singh</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2">
+                                        Confirmed
+                                    </span>
+                                </td>
+                                <td class="text-nowrap">07 Oct 2026</td>
+                            </tr>
+
+                            <tr>
+                                <td>5</td>
+                                <td class="fw-semibold">Premium Warehouse</td>
+                                <td>Vikas Gupta</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-danger-subtle text-danger px-3 py-2">
+                                        Declined
+                                    </span>
+                                </td>
+                                <td class="text-nowrap">06 Oct 2026</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- Top Warehouses --}}
+    <div class="col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-header bg-color-primary
+                        d-flex justify-content-between align-items-center py-3">
+                <h5 class="text-white mb-0 fw-bold">
+                    <i class="fas fa-warehouse me-2"></i>
+                    Top Warehouses
+                </h5>
+
+                <a href="#" class="text-white text-decoration-none fw-semibold">
+                    View All <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Warehouse</th>
+                                <th>City</th>
+                                <th>Bookings</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="fw-semibold">Central Storage</td>
+                                <td class="text-nowrap">Delhi</td>
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">
+                                        125
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td class="fw-semibold">North Warehouse</td>
+                                <td class="text-nowrap">Noida</td>
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">
+                                        98
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td class="fw-semibold">City Logistics Hub</td>
+                                <td class="text-nowrap">Gurugram</td>
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">
+                                        84
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>4</td>
+                                <td class="fw-semibold">East Side Storage</td>
+                                <td class="text-nowrap">Ghaziabad</td>
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">
+                                        67
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>5</td>
+                                <td class="fw-semibold">Premium Warehouse</td>
+                                <td class="text-nowrap">Faridabad</td>
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">
+                                        52
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -429,7 +770,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Booking Chart
+    // Booking Status Chart
     const bookingCanvas = document.getElementById('bookingChart');
 
     if (bookingCanvas) {
@@ -454,17 +795,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         '#28a745',
                         '#dc3545',
                         '#0d6efd'
-                    ]
+                    ],
+                    borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: true
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
             }
         });
     }
 
-    // Warehouse Chart
+    // Warehouse Status Chart
     const warehouseCanvas = document.getElementById('warehouseChart');
 
     if (warehouseCanvas) {
@@ -504,6 +852,138 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
+  <script>
+    const labels = ["Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
+
+    const chartData = {
+      users: [650, 870, 1050, 1290, 1480, 1680],
+      warehouses: [400, 570, 730, 880, 1080, 1200],
+      bookings: [160, 290, 410, 510, 660, 730]
+    };
+
+    const ctx = document.getElementById("growthChart");
+
+    const growthChart = new Chart(ctx, {
+      type: "line",
+
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "Users",
+            data: chartData.users,
+            borderColor: "#2680eb",
+            backgroundColor: "rgba(38, 128, 235, 0.10)",
+            pointBackgroundColor: "#2680eb",
+            pointRadius: 3,
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          },
+          {
+            label: "Warehouses",
+            data: chartData.warehouses,
+            borderColor: "#18a985",
+            backgroundColor: "rgba(24, 169, 133, 0.09)",
+            pointBackgroundColor: "#18a985",
+            pointRadius: 3,
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          },
+          {
+            label: "Bookings",
+            data: chartData.bookings,
+            borderColor: "#ff8b24",
+            backgroundColor: "rgba(255, 139, 36, 0.10)",
+            pointBackgroundColor: "#ff8b24",
+            pointRadius: 3,
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          }
+        ]
+      },
+
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        interaction: {
+          mode: "index",
+          intersect: false
+        },
+
+        plugins: {
+          legend: {
+            position: "top",
+            align: "start",
+            labels: {
+              usePointStyle: true,
+              pointStyle: "circle",
+              boxWidth: 8,
+              padding: 22,
+              color: "#52627b",
+              font: {
+                size: 12
+              }
+            }
+          },
+
+          tooltip: {
+            backgroundColor: "#142b4e",
+            padding: 12,
+            cornerRadius: 8
+          }
+        },
+
+        scales: {
+          x: {
+            grid: {
+              color: "#edf2f8"
+            },
+            ticks: {
+              color: "#71829c"
+            },
+            border: {
+              color: "#dce5f0"
+            }
+          },
+
+          y: {
+            min: 0,
+            max: 2000,
+            ticks: {
+              stepSize: 500,
+              color: "#71829c"
+            },
+            grid: {
+              color: "#edf2f8"
+            },
+            border: {
+              color: "#dce5f0"
+            }
+          }
+        }
+      }
+    });
+
+    document.getElementById("chartFilter").addEventListener("change", function () {
+      const count = Number(this.value);
+      const start = labels.length - count;
+
+      growthChart.data.labels = labels.slice(start);
+
+      growthChart.data.datasets[0].data = chartData.users.slice(start);
+      growthChart.data.datasets[1].data = chartData.warehouses.slice(start);
+      growthChart.data.datasets[2].data = chartData.bookings.slice(start);
+
+      growthChart.update();
+    });
+  </script>
+
 
     @include('admin.include.footer')
+
+
 
