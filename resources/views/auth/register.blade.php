@@ -6,7 +6,7 @@
         <div class="row g-0 min-vh-100">
 
             {{-- ================= LEFT SIDE ================= --}}
-            <div class="col-lg-6 login-left">
+            <div class="col-lg-6 login-left d-none d-md-block">
 
                 <div class="login-form-width">
 
@@ -89,7 +89,7 @@
                
 
 
-                <div class="login-form-width p-5">
+                <div class="login-form-width p-3 p-md-5">
 
                 <div class="section-title">
                       <span class="sub_title">CREATE ACCOUNT</span>            

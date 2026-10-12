@@ -738,6 +738,16 @@ form textarea.form-control {
             }
         }
 
+        @media(max-width:767px){
+             .feature {
+                    margin-bottom: 10px;
+                    border-right: 0;
+                    width: max-content;
+                    max-width: 150px;
+                    border:0 !important
+            }
+        }
+
         @media (max-width: 576px) {
 
             .hero-content {
@@ -2331,8 +2341,8 @@ form textarea.form-control {
     }
 
     .testimonial-slider {
-        padding: 75px 30px 60px;
-        border-radius: 20px;
+        padding:0 20px;
+        border-radius: 0;
     }
 
     .testimonial-button {
@@ -2363,25 +2373,6 @@ form textarea.form-control {
 
 }
 
-@media (max-width: 480px) {
-
-    .testimonial-slider {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-    .testimonial-user {
-        width: 80px;
-        height: 80px;
-    }
-
-    .testimonial-button {
-        width: 38px;
-        height: 38px;
-        font-size: 13px;
-    }
-
-}
 
 /* =========================================
    BLOG SECTION
@@ -3134,8 +3125,8 @@ margin-left: 10px;
 
 
     .footer-features {
-        flex-wrap: wrap;
-        gap: 20px;
+     display: flex;
+        justify-content: space-between;
     }
 
     .footer-feature {
@@ -3149,40 +3140,6 @@ margin-left: 10px;
 
     .social-links {
         justify-content: center;
-    }
-
-}
-
-
-@media (max-width: 575px) {
-
-    .newsletter-input {
-        height: auto;
-        padding: 8px;
-        flex-wrap: wrap;
-    }
-
-    .newsletter-input > i {
-        margin-left: 10px;
-    }
-
-    .newsletter-input input {
-        height: 42px;
-    }
-
-    .newsletter-input button {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .footer-features {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .footer-feature {
-        border-right: 0;
-        padding-right: 0;
     }
 
 }
@@ -4587,4 +4544,42 @@ section.register-page .login-form-width{
     height: 45px;
     border-radius: 10px;
     text-align: center;
+}
+
+@media (max-width:767px){
+    .hero-dashboard {
+    .product-area {
+        min-height: auto;
+        
+    }
+    
+}
+.contact-item {
+    text-align: center;
+    padding: 20px 0 10px;
+    align-items: center;
+    justify-content: center;
+}
+.contact-item .contact-icon{
+        display: none;
+    }
+    .copyright{
+        text-align: center !important;
+    }
+    section.custom-section .feature {
+    padding: 10px 7px;
+    margin: 0 auto;
+}
+.warehouse-content .primary-text-color br{
+    display: none;
+}
+.contact-card{
+    display: block;
+}
+.contact-form-box{
+    margin-top: 30px;
+}
+.login-left{
+    display: none;
+}
 }

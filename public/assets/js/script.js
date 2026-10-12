@@ -2,7 +2,7 @@
 
  const warehouseSwiper = new Swiper(".warehouse-swiper", {
 
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 18,
 
         navigation: {
@@ -19,7 +19,7 @@
         breakpoints: {
 
             576: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 18
             },
 
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const blogSwiper = new Swiper('.blogSwiper', {
 
-        slidesPerView: 3,
+        slidesPerView: 1,
         spaceBetween: 24,
 
         loop: true,
@@ -547,3 +547,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+    

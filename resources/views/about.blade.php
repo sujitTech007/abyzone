@@ -57,7 +57,7 @@
 
                     </p>
                 </div>
-                <div class="row align-items-center justify-content-between">
+                <div class="row align-items-center justify-content-between gap-3 gap-md-0">
 
                     <!-- Item 1 -->
                     <div class="col-md-4 d-flex align-items-center gap-2">
@@ -321,7 +321,7 @@
             <div class="row h-100 align-items-center py-4 px-3 px-lg-5">
 
                 <!-- Main Text -->
-                <div class="col-md-8 py-5">
+                <div class="col-md-8 py-0 py-md-5">
                     <div class="section-title">
                         <span class="sub_title">OUR VISION</span>
                         <h2 class="fw-bold mb-3">

@@ -1,17 +1,35 @@
 @include('admin.include.header')
 
-<!-- 
 <div class="page-content">
-    <div class="welcome-header">
-        <div class="welcome-content">
-            <h4>Admin Dashboard</h4>
-            <p>Manage your users and warehouses.</p>
-        </div>
-
-        <a href="{{ route('admin.users.create') }}" class="btn theme_btn fw-bold">Add User</a>
-    </div>
-    
     <div class="page-container">
+        @include('includes.alerts')
+
+        {{-- Dashboard Header --}}
+        <div class="welcome-header d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+            <div class="welcome-content">
+                <h4 class="mb-1">
+                    <i class="fa-solid fa-shield-halved me-2"></i>
+                    Admin Dashboard
+                </h4>
+                <p class="mb-0">Manage your users, warehouses and bookings.</p>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <span class="text-muted small">
+                    <i class="fa-regular fa-calendar-days me-1"></i>
+                    {{ now()->format('d M Y') }}
+                </span>
+
+                <a href="{{ route('admin.users.create') }}"
+                   class="btn theme_btn fw-bold">
+                    <i class="fa-solid fa-user-plus me-1"></i>
+                    Add User
+                </a>
+            </div>
+        </div>
+        
+
+        
     @include('includes.alerts')
 
     <div class="card">
@@ -375,7 +393,13 @@
                 <strong>Booking Status Chart</strong>
             </div>
             <div class="card-body">
-                <canvas id="bookingChart"></canvas>
+                <div style="width: 400px;">
+    <canvas id="bookingChart"></canvas>
+</div>
+
+<div style="width: 400px;">
+    <canvas id="warehouseChart"></canvas>
+</div>
             </div>
         </div>
     </div>
@@ -403,39 +427,83 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+
     // Booking Chart
-    new Chart(document.getElementById('bookingChart'), {
-        type: 'pie',
-        data: {
-            labels: ['Pending', 'Approved', 'Declined', 'Meeting Scheduled'],
-            datasets: [{
-                data: [
-                    {{ $pendingBookingsCount }},
-                    {{ $approvedBookingsCount }},
-                    {{ $declinedBookingsCount }},
-                    {{ $meetingScheduledBookingsCount }}
-                ]
-            }]
-        }
-    });
+    const bookingCanvas = document.getElementById('bookingChart');
+
+    if (bookingCanvas) {
+        new Chart(bookingCanvas, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Pending',
+                    'Approved',
+                    'Declined',
+                    'Meeting Scheduled'
+                ],
+                datasets: [{
+                    data: [
+                        {{ (int) $pendingBookingsCount }},
+                        {{ (int) $approvedBookingsCount }},
+                        {{ (int) $declinedBookingsCount }},
+                        {{ (int) $meetingScheduledBookingsCount }}
+                    ],
+                    backgroundColor: [
+                        '#ffc107',
+                        '#28a745',
+                        '#dc3545',
+                        '#0d6efd'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+    }
 
     // Warehouse Chart
-    new Chart(document.getElementById('warehouseChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Draft', 'Available', 'Unavailable'],
-            datasets: [{
-                data: [
-                    {{ $draftWarehousesCount }},
-                    {{ $availableWarehousesCount }},
-                    {{ $unavailableWarehousesCount }}
-                ]
-            }]
-        }
-    });
+    const warehouseCanvas = document.getElementById('warehouseChart');
+
+    if (warehouseCanvas) {
+        new Chart(warehouseCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['Draft', 'Available', 'Unavailable'],
+                datasets: [{
+                    label: 'Total Warehouses',
+                    data: [
+                        {{ (int) $draftWarehousesCount }},
+                        {{ (int) $availableWarehousesCount }},
+                        {{ (int) $unavailableWarehousesCount }}
+                    ],
+                    backgroundColor: [
+                        '#6c757d',
+                        '#28a745',
+                        '#dc3545'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+});
 </script>
 
--->
+
 
     @include('admin.include.footer')
 

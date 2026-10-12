@@ -7,7 +7,7 @@
         <div class="row g-0">
 
             {{-- ================= LEFT SIDE ================= --}}
-            <div class="col-lg-6 login-left">
+            <div class="col-lg-6 login-left d-none d-md-block">
 
                 <div class="login-form-width">
 
@@ -100,7 +100,7 @@
 
             {{-- ================= RIGHT SIDE ================= --}}
             <div class="col-lg-6">
-                <div class="p-5 login-right">
+                <div class="p-3 p-md-5 login-right">
 
                
 
