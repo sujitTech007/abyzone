@@ -15,8 +15,8 @@
 <link rel="canonical" href="{{ url('/') }}">
 
 <!-- Favicon -->
-<link rel="icon" href="{{ asset('assets/images/icon/favicon.png') }}" type="image/png">
-<link rel="apple-touch-icon" href="{{ asset('assets/images/icon/favicon.png') }}">
+<link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/png">
+<link rel="apple-touch-icon" href="{{ asset('assets/images/favicon.png') }}">
 
 <!-- Theme Color -->
 <meta name="theme-color" content="#ffffff">

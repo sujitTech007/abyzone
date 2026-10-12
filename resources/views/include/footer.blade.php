@@ -9,6 +9,10 @@
         <div class="row gy-5">
             <div class="col-xl-3 col-lg-3 col-md-6">
                 <div class="footer-brand">
+                   <a href="{{ url('/') }}" class="footer-logo">
+                        <img src="{{ asset('assets/images//footer-logo.png') }}"
+                             alt="ABYzone">
+                    </a>
                     
                     <p class="footer-description">
                         ABYzone is an AI-driven platform revolutionizing warehousing
@@ -184,12 +188,7 @@
 
             <div class="row footer-bottom py-4 align-items-center mt-5">
             <div class="col-md-3">
-                <div class="footer-brand">
-                    <a href="{{ url('/') }}" class="footer-logo">
-                        <img src="{{ asset('assets/images//footer-logo.png') }}"
-                             alt="ABYzone">
-                    </a>
-                </div>  
+                 
                 <div class="social-links">
 
                         <a href="https://www.facebook.com/abyzone.ca"
@@ -226,7 +225,7 @@
             <div class="col-md-5">
                 <div class="contact-item">
 
-                        <div class="contact-icon text-white">
+                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
 
@@ -249,7 +248,7 @@
 
                     <div class="contact-item">
 
-                        <div class="contact-icon text-white">
+                        <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
 
