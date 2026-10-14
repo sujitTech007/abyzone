@@ -1,7 +1,7 @@
 @include('user.include.header')
 
 <div class="page-content warehouse-detail-page">
-    <div class="container">
+    <div class="container-fluid">
 
         {{-- Back link --}}
         
@@ -19,7 +19,7 @@
                                 <span class="text-primary small fw-semibold text-uppercase">
                                     <i class="fa-solid fa-warehouse me-1"></i> Warehouse Details
                                 </span>
-                                <h2 class="fw-bold mt-2 mb-2">{{ $warehouse->name }}</h2>
+                                <h3 class="fw-bold mt-2 mb-2">{{ $warehouse->name }}</h3>
 
                                 <p class="text-muted mb-2">
                                     <i class="fa-solid fa-location-dot text-primary me-1"></i>

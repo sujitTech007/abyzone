@@ -1,14 +1,15 @@
 @include('user.include.header')
 
 <div class="page-content">
+    <div class="welcome-header">
+            <div class="welcome-content">
+                 <h4>Booking Details</h4>
+            </div>
+        </div>
 
 
 
 <div class="page-container">
-<div class="container-fluid px-3 px-md-4 py-4">
-
-    <!-- Page Heading -->
-    <h2 class="fw-bold mb-4 fs-3">Booking Details</h2>
 
     <!-- Booking Summary -->
     <div class="booking-card p-3 mb-3">
@@ -270,8 +271,7 @@
     {{ $orders->links() }} -->
 
 </div>
-</div>
-</div>
+
 
 
 

@@ -295,7 +295,7 @@
 
                         <!-- Replace this image with your warehouse image -->
                          
-                        <img src="{{ asset('assets/images/about-thumb.jpg') }}" alt="Warehouse Logistics">
+                        <img src="{{ asset('assets/images/about-thumb.webp') }}" alt="Warehouse Logistics">
 
                         <!-- Video Button -->
                         <button type="button" class="video-btn" data-bs-toggle="modal" data-bs-target="#warehouseVideo">
@@ -844,9 +844,7 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
 
-                            <div class="abz-process__arrow">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
+                            
                         </div>
 
                         <h3>Search</h3>
@@ -865,9 +863,7 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                             </div>
 
-                            <div class="abz-process__arrow">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
+                            
                         </div>
 
                         <h3>Compare &amp; Book</h3>
@@ -886,9 +882,7 @@
                                 <i class="fa-solid fa-chart-line"></i>
                             </div>
 
-                            <div class="abz-process__arrow">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </div>
+                            
                         </div>
 
                         <h3>Manage &amp; Scale</h3>
@@ -930,7 +924,7 @@
         <div class="row align-items-center">
 
             <!-- LEFT CONTENT -->
-            <div class="col-lg-4">
+            <div class="col-lg-6">
 
 
             <div class="section-title">
@@ -986,7 +980,7 @@
 
 
             <!-- MAP -->
-            <div class="col-lg-5">
+            <div class="col-lg-6">
 
                 <div class="wh-map-area">
 
@@ -1029,53 +1023,7 @@
             </div>
 
 
-            <!-- FEATURED CITIES -->
-            <div class="col-lg-3">
-
-                <div class="wh-cities">
-
-                    <div class="wh-cities-title">
-                        Featured Cities
-                    </div>
-                    
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Toronto</b>
-                            <small>1,250+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Vancouver</b>
-                            <small>980+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Calgary</b>
-                            <small>620+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Montreal</b>
-                            <small>550+ warehouses</small>
-                        </div>
-                    </div>
-
-                    
-
-                </div>
-
-            </div>
+           
 
         </div>
     </div>
@@ -1300,7 +1248,7 @@
 
                             <div>
                                 <h5>Verified & Trusted Partners</h5>
-                                <p>
+                                <p class="m-0">
                                     Work with vetted warehouse owners
                                     and service providers.
                                 </p>
@@ -1317,7 +1265,7 @@
 
                             <div>
                                 <h5>Transparent Pricing</h5>
-                                <p>
+                                <p class="m-0">
                                     No hidden fees. Clear and
                                     competitive rates.
                                 </p>
@@ -1334,7 +1282,7 @@
 
                             <div>
                                 <h5>Real-Time Availability</h5>
-                                <p>
+                                <p class="m-0">
                                     Instant access to warehouse space
                                     and booking status.
                                 </p>
@@ -1351,7 +1299,7 @@
 
                             <div>
                                 <h5>Flexible Plans</h5>
-                                <p>
+                                <p class="m-0">
                                     Short or long-term storage
                                     options to fit your needs.
                                 </p>
@@ -1368,7 +1316,7 @@
 
                             <div>
                                 <h5>Dedicated Support</h5>
-                                <p>
+                                <p class="m-0">
                                     Our team is always here
                                     to help.
                                 </p>
@@ -1385,7 +1333,7 @@
 
                             <div>
                                 <h5>Secure & Compliant</h5>
-                                <p>
+                                <p class="m-0">
                                     Data protection and
                                     industry standards.
                                 </p>
@@ -1408,7 +1356,7 @@
             <div class="col-lg-5">
 
             <div class="section-title">
-                        <span class="sub_title text-danger">REQUEST A QUOTE</span>
+                        <span class="sub_title text-white">REQUEST A QUOTE</span>
                         <h2 class="text-white">Need a Custom Solution?</h2>
 
                         <p class="text-white">Tell us what you're looking for and our team will get back to you with the best options.</p>
@@ -1419,7 +1367,7 @@
                 <!-- FEATURES -->
                 <div class="row features g-0">
 
-                    <div class="col-4 feature flex-column gap-0">
+                    <div class="col-4 feature flex-column gap-0 align-items-start">
                         <div class="feature-icon">
                             <i class="fa-solid fa-stopwatch"></i>
                         </div>
@@ -1427,7 +1375,7 @@
                         <div class="feature-text">Within 24 hours</div>
                     </div>
 
-                    <div class="col-4 feature flex-column gap-0 ps-0 ps-md-3">
+                    <div class="col-4 feature flex-column gap-0 align-items-start ps-0 ps-md-3">
                         <div class="feature-icon">
                             <i class="fa-solid fa-headset"></i>
                         </div>
@@ -1435,7 +1383,7 @@
                         <div class="feature-text">Real people, real help</div>
                     </div>
 
-                    <div class="col-4 feature flex-column gap-0 ps-0 ps-md-3 border-0">
+                    <div class="col-4 feature flex-column gap-0 align-items-start ps-0 ps-md-3 border-0">
                         <div class="feature-icon">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
@@ -1500,7 +1448,7 @@
 
                 @csrf
 
-                <div class="row g-2">
+                <div class="row g-3">
 
                     <!-- Name -->
                     <div class="col-md-6">
@@ -1531,7 +1479,7 @@
 
 
                     <!-- Phone -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label>
                             Phone <span class="text-danger">*</span>
                         </label>
@@ -1545,7 +1493,7 @@
 
 
                     <!-- Industry Type -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label>
                             Industry Type <span class="text-danger">*</span>
                         </label>
@@ -1559,7 +1507,7 @@
 
 
                     <!-- Business Size -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label>
                             Business Size <span class="text-danger">*</span>
                         </label>
@@ -1573,7 +1521,7 @@
 
 
                     <!-- Space Needed -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label>
                             Space Needed <span class="text-danger">*</span>
                         </label>
@@ -1587,7 +1535,7 @@
 
 
                     <!-- Warehouse Location -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label>
                             Warehouse Location <span class="text-danger">*</span>
                         </label>
@@ -1601,7 +1549,7 @@
 
 
                     <!-- Estimated -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label>
                             Estimated <span class="text-danger">*</span>
                         </label>
@@ -1631,7 +1579,7 @@
                     <!-- Submit -->
                     <div class="col-12">
                         <button type="submit"
-                                class="btn theme_btn w-100">
+                                class="btn theme_btn w-100 fw-bold">
                             Request a Quote
                             <i class="fa-solid fa-arrow-right ms-1"></i>
                         </button>

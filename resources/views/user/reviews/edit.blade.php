@@ -2,15 +2,15 @@
 
 
 <div class="page-content">
-
-
-            <div class="page-title-head d-flex align-items-center gap-2">
-                <div class="flex-grow-1">
-                    <h4 class="fs-18 fw-bold mb-0 py-2">Edit Review</h4>
-                </div>
-
-                
+      <div class="welcome-header">
+            <div class="welcome-content">
+                 <h4>Edit Review</h4>
             </div>
+        </div>
+
+
+
+       
 
             <div class="page-container">
 

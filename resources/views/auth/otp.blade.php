@@ -9,7 +9,7 @@
             {{-- ================= LEFT SIDE ================= --}}
             <div class="col-lg-6 login-left">
 
-                <div class="login-form-width">
+                <div class="login-form-width d-flex align-items-center h-100">
 
                   
 
@@ -38,56 +38,27 @@
                         
 
 
-                        {{-- Feature 1 --}}
-                        <div class="feature-item">
+                        {{-- Feature 1 --}} <div class="feature-item">
 
-                            <div class="feature-icon">
-                                <i class="bi bi-box-seam"></i>
-                            </div>
+                        <div class="feature-icon"> <i class="fa-solid fa-warehouse"></i> </div>
 
-                            <div>
-                                <h5 class="fs-14">Verified Warehouses</h5>
-                                <p class="fs-12">
-                                    Find trusted warehouse providers
-                                    for your business.
-                                </p>
-                            </div>
+                        <div> <h5 class="fs-14">Verified Warehouses</h5> <p class="fs-12"> Find trusted warehouse providers for your business. </p> </div>
 
                         </div>
 
+                        {{-- Feature 2 --}} <div class="feature-item">
 
-                        {{-- Feature 2 --}}
-                        <div class="feature-item">
+                        <div class="feature-icon"> <i class="fa-solid fa-boxes-stacked"></i> </div>
 
-                            <div class="feature-icon">
-                                <i class="bi bi-file-earmark-text"></i>
-                            </div>
-
-                            <div>
-                                 <h5 class="fs-14">Flexible Storage</h5>
-                                <p class="fs-12">
-                                    Choose storage solutions that
-                                    fit your business needs.
-                                </p>
-                            </div>
+                        <div> <h5 class="fs-14">Flexible Storage</h5> <p class="fs-12"> Choose storage solutions that fit your business needs. </p> </div>
 
                         </div>
 
+                        {{-- Feature 3 --}} <div class="feature-item">
 
-                        {{-- Feature 3 --}}
-                        <div class="feature-item">
+                        <div class="feature-icon"> <i class="fa-solid fa-list-check"></i> </div>
 
-                            <div class="feature-icon">
-                                <i class="bi bi-stars"></i>
-                            </div>
-
-                            <div>
-                                 <h5 class="fs-14">Easy Booking & Management</h5>
-                                <p class="fs-12">
-                                    Manage your warehouse operations
-                                    from one secure platform.
-                                </p>
-                            </div>
+                        <div> <h5 class="fs-14">Easy Booking & Management</h5> <p class="fs-12"> Manage your warehouse operations from one secure platform. </p> </div>
 
                         </div>
 

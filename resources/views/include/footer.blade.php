@@ -43,8 +43,13 @@
                     </div>
 
                     <ul class="footer-links">
+                    <li><a href="{{ route('services') }}">Warehouse Storage</a></li>
+                    <li><a href="{{ route('services') }}">Fulfillment & Distribution</a></li>
+                    <li><a href="{{ route('services') }}">Transloading</a></li>
+                    <li><a href="{{ route('services') }}">Value-Added Services</a></li>
+                    <li><a href="{{ route('services') }}">Transportation</a></li>
 
-                        @foreach($services as $service)
+                        <!-- @foreach($services as $service)
 
                             <li>
                                 <a href="{{ route('service.detail', $service->slug) }}">
@@ -54,7 +59,7 @@
                                 </a>
                             </li>
 
-                        @endforeach
+                        @endforeach -->
 
                     </ul>
 
@@ -143,7 +148,7 @@
 
                         <div class="newsletter-input">
 
-                            <i class="far fa-envelope"></i>
+                            <i class="far fa-envelope text-white"></i>
 
                             <input type="email"
                                    name="email"

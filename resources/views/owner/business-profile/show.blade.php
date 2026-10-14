@@ -1,13 +1,17 @@
 @include('owner.include.header')
 
 <div class="page-content profile-page">
-    <div class="container-fluid px-3 px-lg-4 py-3">
+     <div class="welcome-header">
+        <div class="welcome-content">
+             <h4>Business Profile</h4>
+            <p class="text-muted mb-0">Manage your account and business information.</p>
+        </div>
+    </div>
+
 
         {{-- Page Heading --}}
         <div class="mb-4">
-            <h3 class="fw-semibold mb-1">Business Profile</h3>
-            <p class="text-muted mb-0">Manage your account and business information.</p>
-        </div>
+           
 
         @include('includes.alerts')
 

@@ -1,19 +1,16 @@
 @include('owner.include.header')
 <div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-2">Notifications</h4>
+     <div class="welcome-header">
+        <div class="welcome-content">
+            <h4>Notifications</h4>
         </div>
-        <div>
             <a href="{{ route('owner.notifications.mark-all-read') }}" class="btn btn-sm btn-primary">Mark All Read</a>
         </div>
-    </div>
-
     <div class="page-container">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         @if($notifications->count() > 0)
                             <div class="table-responsive">
                                 <table class="table table-hover">
@@ -46,12 +43,12 @@
                                                 <td class="text-center">
                                                     <div class="d-flex align-items-center justify-content-center gap-1">
                                                         @if(!$notification->is_read)
-                                                            <button onclick="markAsRead({{ $notification->id }})" class="btn btn-sm btn-outline-success">
+                                                            <button onclick="markAsRead({{ $notification->id }})" class="btn btn-sm btn-outline-success fs-12">
                                                                 <i class="ri-eye-line"></i> Mark Read
                                                             </button>
                                                         @endif
                                                         <button onclick="deleteNotification({{ $notification->id }})" class="btn btn-sm btn-outline-danger">
-                                                            <i class="ri-delete-bin-line"></i>
+                                                            <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </div>
                                                 </td>

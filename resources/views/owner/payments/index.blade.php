@@ -1,12 +1,15 @@
 @include('owner.include.header')
 <div class="page-content earnings-page">
+    
+    <div class="welcome-header">
+        <div class="welcome-content">
 
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-1 py-2">Earnings & Payments</h4>
+        <h4>Earnings & Payments</h4>
             <p class="text-muted small mb-2">
                 Track payment transactions and monitor your warehouse business payments.
             </p>
+    
+            
         </div>
     </div>
 

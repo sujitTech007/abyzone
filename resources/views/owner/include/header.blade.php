@@ -193,11 +193,11 @@
             </a>
 
             {{-- Sidebar Toggle --}}
-            <button type="button"
+            <!-- <button type="button"
                     class="sidenav-toggle-button btn px-2"
                     aria-label="Toggle sidebar">
                 <i class="fa-solid fa-bars fs-5"></i>
-            </button>
+            </button> -->
 
             {{-- Top Navigation Toggle --}}
             <button type="button"

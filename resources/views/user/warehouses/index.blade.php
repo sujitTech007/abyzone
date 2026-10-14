@@ -1,13 +1,12 @@
 @include('user.include.header')
 
 <div class="page-content warehouse-page">
-    <div class="container py-4">
-
-        {{-- Page Heading --}}
-        <div class="warehouse-heading mb-4">
-            <h2>Find Storage</h2>
+    <div class="welcome-header">
+        <div class="welcome-content">
+            <h4>Find Storage</h4>
             <p>Discover the best warehouses for your business needs.</p>
         </div>
+    </div>
 
         @include('includes.alerts')
 

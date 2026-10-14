@@ -1,13 +1,12 @@
 @include('user.include.header')
 <div class="page-content">
-<div class="container py-4">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-        <div>
-            <h2 class="mb-1">My Warehouse Requests</h2>
-            <p class="text-muted mb-0">Track approvals and meeting schedules (Steps 5 & 6).</p>
+        <div class="welcome-header">
+            <div class="welcome-content">
+                <h4 class="mb-1">My Warehouse Requests</h4>
+                 <p class="text-muted mb-0">Track approvals and meeting schedules (Steps 5 & 6).</p>
+            </div>
+            <a href="{{ route('user.warehouses.index') }}" class="btn btn-outline-primary">Find more warehouses</a>
         </div>
-        <a href="{{ route('user.warehouses.index') }}" class="btn btn-outline-primary">Find more warehouses</a>
-    </div>
 
     @include('includes.alerts')
 

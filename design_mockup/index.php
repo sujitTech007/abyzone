@@ -7,7 +7,7 @@
 <?php include('include/header.php'); ?>
 	<main class="fix ">
 		<section class="banner__area banner__bg banner-custom"
-			style="background-image: url('assets/images/banner/home-banner.png');">
+			style="background-image: url('assets/images/banner/home-banner.webp');">
 			<!-- Blue Left Half Overlay with Image -->
 			<div class="left-overlay">
 				<img src="assets/images/banner/overimage-homebanner.png" alt="Overlay Image">

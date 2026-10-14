@@ -1,24 +1,23 @@
 @include('user.include.header')
 
     <div class="page-content">
-
         <div class="welcome-header">
-        <div class="welcome-content">
-            <h4>Welcome back, {{ auth()->user()->name }}!</h4>
-            <p>Here's what's happening with your storage and bookings today.</p>
-        </div>
-
-        <a href="{{ route('user.warehouses.index') }}" class="warehouse-btn">
-            <div class="warehouse-text">
-                <span class="warehouse-title">Find a Warehouse</span>
-                <span class="warehouse-subtitle">Search from 100+ locations</span>
+            <div class="welcome-content">
+                <h4>Welcome back, {{ auth()->user()->name }}!</h4>
+                <p>Here's what's happening with your storage and bookings today.</p>
             </div>
 
-            <span class="warehouse-icon">
-                <i class="fa-solid fa-arrow-right"></i>
-            </span>
-        </a>
-    </div>
+            <a href="{{ route('user.warehouses.index') }}" class="warehouse-btn">
+                <div class="warehouse-text">
+                    <span class="warehouse-title">Find a Warehouse</span>
+                    <span class="warehouse-subtitle">Search from 100+ locations</span>
+                </div>
+
+                <span class="warehouse-icon">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </a>
+        </div>
 
     <div class="page-container">
         @include('includes.alerts')

@@ -7,18 +7,16 @@ display:none;
 </style>
 
 <div class="page-content">
-<div class="container">
 
-<div class="welcome-header mt-2">
-            <div class="welcome-content">
-                <h4>Edit Warehouse</h4>
-                
-            </div>
-
-            <a href="{{ route('owner.warehouses.index') }}" class="text-decoration-none d-inline-flex align-items-center gap-2 text-dark">
-                <i class="fa-solid fa-arrow-left"></i> Back to List
-            </a>
+    <div class="welcome-header">
+        <div class="welcome-content">
+            <h4>Edit Warehouse</h4>                
         </div>
+
+        <a href="{{ route('owner.warehouses.index') }}" class="text-decoration-none d-inline-flex align-items-center gap-2 text-dark">
+            <i class="fa-solid fa-arrow-left"></i> Back to List
+        </a>
+    </div>
 
 
 

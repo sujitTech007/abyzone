@@ -1,13 +1,18 @@
 @include('user.include.header')
 <div class="page-content profile-page">
-    <div class="container-fluid px-3 px-lg-4 py-3">
-
-        {{-- Page Heading --}}
-        <div class="mb-4">
-            <h3 class="fw-semibold mb-1">Profile</h3>
+    <div class="welcome-header">
+        <div class="welcome-content">
+             <h3 class="fw-semibold mb-1">Profile</h3>
             <p class="text-muted mb-0">Manage your account and business information.</p>
         </div>
+    </div>
+    
 
+
+    <div class="page-container">
+
+        {{-- Page Heading --}}
+       
         @include('includes.alerts')
 
         <div class="row g-4">

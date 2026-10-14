@@ -2,12 +2,10 @@
 
 <div class="page-content confirmed-bookings-page">
 
-    <div class="container-fluid px-3 px-lg-4 py-4">
-
-        {{-- Page Header --}}
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
-            <div>
-                <div class="d-flex align-items-center gap-2 mb-2">
+    
+    <div class="welcome-header">
+        <div class="welcome-content">
+            <div class="d-flex align-items-center gap-2 mb-2">
                     <span class="booking-header-icon">
                         <i class="fa-solid fa-calendar-check"></i>
                     </span>
@@ -21,12 +19,16 @@
                     Manage your confirmed warehouse bookings and completed reservations.
                 </p>
             </div>
-
             <div class="booking-header-badge">
                 <i class="fa-solid fa-shield-check me-2"></i>
                 Booking Management
             </div>
         </div>
+
+
+    <div class="container-fluid">
+
+       
 
         @include('includes.alerts')
 

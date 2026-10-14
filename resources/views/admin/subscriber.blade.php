@@ -3,9 +3,11 @@
 
 
 <div class="page-content">
-    <div class="page-title-head d-flex align-items-center gap-2">
-        <div class="flex-grow-1">
-            <h4 class="fs-18 fw-bold mb-0 py-2">Subscribers</h4>
+    <div class="welcome-header d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+            <div class="welcome-content">
+<h4>Subscribers</h4>
+    
+            
         </div>
     </div>
     <div class="page-container">

@@ -110,7 +110,7 @@
 
                     <!-- Replace this image with your warehouse image -->
 
-                    <img src="{{ asset('assets/images/about-thumb.jpg') }}" alt="Warehouse Logistics">
+                    <img src="{{ asset('assets/images/about-thumb.webp') }}" alt="Warehouse Logistics">
 
                     <!-- Video Button -->
                     <button type="button" class="video-btn" data-bs-toggle="modal" data-bs-target="#warehouseVideo">
@@ -312,7 +312,7 @@
 
         <!-- Image -->
         <div class="col-lg-6 p-0">
-            <img src="{{ asset('assets/images/about-thumb.jpg') }}" alt="Warehouse"
+            <img src="{{ asset('assets/images/about-thumb.webp') }}" alt="Warehouse"
                 class="img-fluid w-100 h-100 object-fit-cover">
         </div>
 
@@ -498,7 +498,7 @@
         <div class="row align-items-center">
 
             <!-- LEFT CONTENT -->
-            <div class="col-lg-4">
+            <div class="col-lg-6">
 
 
                 <div class="section-title">
@@ -555,7 +555,7 @@
 
 
             <!-- MAP -->
-            <div class="col-lg-5">
+            <div class="col-lg-6">
 
                 <div class="wh-map-area">
 
@@ -596,56 +596,7 @@
             </div>
 
 
-            <!-- FEATURED CITIES -->
-            <div class="col-lg-3">
-
-                <div class="wh-cities">
-
-                    <div class="wh-cities-title">
-                        Featured Cities
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="toronto.jpg" alt="Toronto">
-                        <div>
-                            <b>Toronto</b>
-                            <small>1,250+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="vancouver.jpg" alt="Vancouver">
-                        <div>
-                            <b>Vancouver</b>
-                            <small>980+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="calgary.jpg" alt="Calgary">
-                        <div>
-                            <b>Calgary</b>
-                            <small>620+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="montreal.jpg" alt="Montreal">
-                        <div>
-                            <b>Montreal</b>
-                            <small>550+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <a href="#" class="wh-all">
-                        View All Cities
-                        <i class="fa-solid fa-arrow-right ms-1"></i>
-                    </a>
-
-                </div>
-
-            </div>
-
+         
         </div>
     </div>
 </section>

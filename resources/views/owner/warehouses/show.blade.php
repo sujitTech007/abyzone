@@ -1,7 +1,8 @@
 @include('owner.include.header')
 
 <div class="page-content warehouse-detail-page">
-    <div class="container">
+    <div class="container-fluid">
+    
 
         {{-- Page Header --}}
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
@@ -421,105 +422,6 @@
     </div>
 </div>
 
-<style>
-    .warehouse-detail-page .card {
-        border-radius: 14px;
-    }
 
-    .warehouse-gallery-img {
-        height: 190px;
-        object-fit: cover;
-        background: #f5f7fb;
-        border: 1px solid #edf0f5;
-        transition: transform .25s ease;
-    }
-
-    .warehouse-gallery-img:hover {
-        transform: translateY(-2px);
-    }
-
-    .warehouse-icon {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #eef2ff;
-        color: #4f46e5;
-        border-radius: 12px;
-        font-size: 17px;
-    }
-
-    .warehouse-info-box {
-        padding: 18px;
-        border: 1px solid #edf0f5;
-        border-radius: 12px;
-        background: #f9faff;
-    }
-
-    .warehouse-price-box {
-        padding: 20px;
-        background: #f6f8ff;
-        border: 1px solid #e8ecff;
-        border-radius: 12px;
-    }
-
-    .amenity-chip {
-        display: inline-flex;
-        align-items: center;
-        padding: 9px 13px;
-        background: #f7f9fc;
-        border: 1px solid #e9edf4;
-        border-radius: 8px;
-        color: #344054;
-        font-size: 13px;
-    }
-
-    .warehouse-empty-image {
-        min-height: 180px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        background: #f7f9fc;
-        border: 1px dashed #d5dbe5;
-        border-radius: 12px;
-        color: #98a2b3;
-    }
-
-    .warehouse-empty-image i {
-        font-size: 38px;
-    }
-
-    .warehouse-description {
-        line-height: 1.8;
-        white-space: normal;
-        overflow-wrap: anywhere;
-    }
-
-    .warehouse-booking-sticky {
-        position: sticky;
-        top: 90px;
-    }
-
-    @media (max-width: 991.98px) {
-        .warehouse-booking-sticky {
-            position: static;
-        }
-    }
-
-    @media (max-width: 575.98px) {
-        .warehouse-gallery-img {
-            height: 140px;
-        }
-
-        .warehouse-detail-page .card-body {
-            padding: 18px !important;
-        }
-    }
-</style>
-```
 
 @include('owner.include.footer')

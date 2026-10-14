@@ -393,7 +393,7 @@ form textarea.form-control {
                     rgba(5, 47, 91, 0.94) 37%,
                     rgba(4, 50, 91, 0.70) 58%,
                     rgba(3, 43, 76, 0.35) 100%),
-                url("../images/banner/home-banner.png") center right / cover no-repeat;
+                url("../images/banner/home-banner.webp") center right / cover no-repeat;
                 
 
             color: #fff;
@@ -586,7 +586,7 @@ form textarea.form-control {
 
         .feature-text {
             font-size: 12px;
-            color: #a9bfd8;
+            color: #fff;
         }
 
         /* =========================
@@ -1477,62 +1477,7 @@ form textarea.form-control {
         .wh-p5 { left: 65%; top: 48%; }
         .wh-p6 { left: 72%; top: 59%; }
 
-        .wh-cities {
-            background: #fff;
-            border-radius: 8px;
-            padding: 9px 12px;
-            box-shadow: 0 3px 15px #d3e3ed;
-        }
-
-        .wh-cities-title {
-            color: var(--primary-color);
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 7px;
-        }
-
-        .wh-city {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            margin-bottom: 6px;
-        }
-
-        .wh-city img {
-            width: 37px;
-            height: 27px;
-            border-radius: 3px;
-            object-fit: cover;
-        }
-
-        .wh-city b {
-            display: block;
-            color: #185187;
-            font-size: 12px;
-        }
-
-        .wh-city small {
-            color: #8aa0b4;
-            font-size: 10px;
-        }
-
-        .wh-all {
-            color: #185187;
-            font-size: 7px;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        @media(max-width: 991px) {
-            .wh-map-area {
-                margin-top: 20px;
-            }
-
-            .wh-cities {
-                margin-top: 20px;
-            }
-        }
-
+       
 
 
 
@@ -1924,8 +1869,8 @@ form textarea.form-control {
             background: #fff;
             border: 1px solid #edf1f6;
             border-radius: 8px;
-            min-height: 110px;
-            padding: 22px 20px;
+            min-height: 125px;
+            padding: 15px;
             display: flex;
             gap: 16px;
             box-shadow: 0 2px 8px rgba(20, 55, 100, .025);
@@ -1952,6 +1897,8 @@ form textarea.form-control {
         }
 
      
+
+     
         @media (max-width: 991px) {
             .intro-box {
                 padding: 35px;
@@ -1974,8 +1921,14 @@ form textarea.form-control {
             }
         }
           .custom-section {
-            background: linear-gradient(135deg, #123d70, #07346a);
+          background:   linear-gradient(
+            90deg,
+            rgba(10, 40, 60, 0.65),
+            rgba(40, 100, 130, 0.15)
+        ),
+        url("../images/quote-bg.webp") center/cover no-repeat;;
         }
+       
 
         .small-title {
             color: #ff9f1c;
@@ -3213,7 +3166,7 @@ margin-left: 10px;
                 linear-gradient(90deg, rgba(4, 35, 91, .98) 0%,
                 rgba(4, 35, 91, .90) 48%,
                 rgba(4, 35, 91, .15) 100%),
-                url("../images/about-thumb.jpg") center/cover no-repeat;
+                url("../images/about-thumb.webp") center/cover no-repeat;
         }
 
 
@@ -4037,9 +3990,9 @@ height: 150px;
     .nav-tabs .nav-link {
         border: 0;
         color: #60758c;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 600;
-        padding: 14px 18px;
+        padding: 15px;
     }
 
     .nav-tabs .nav-link.active {
@@ -4367,6 +4320,7 @@ flex: none;}
 .login-form-width{
     max-width: 450px;
     margin: 0 auto;
+        height: 100%;
 }
 
   .login-left {
@@ -4581,4 +4535,13 @@ section.register-page .login-form-width{
 .login-left{
     display: none;
 }
+}
+section.services__details-area .tab-content p {
+    line-height: 1.6;
+}
+section.services__details-area .tab-content .bg-primary-subtle {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+    line-height: 0;
 }

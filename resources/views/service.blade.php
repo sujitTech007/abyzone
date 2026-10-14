@@ -310,7 +310,7 @@
         <div class="row align-items-center">
 
             <!-- LEFT CONTENT -->
-            <div class="col-lg-4">
+            <div class="col-lg-6">
 
 
             <div class="section-title">
@@ -366,7 +366,7 @@
 
 
             <!-- MAP -->
-            <div class="col-lg-5">
+            <div class="col-lg-6">
 
                 <div class="wh-map-area">
 
@@ -409,55 +409,7 @@
             </div>
 
 
-            <!-- FEATURED CITIES -->
-            <div class="col-lg-3">
-
-                <div class="wh-cities">
-
-                    <div class="wh-cities-title">
-                        Featured Cities
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Toronto</b>
-                            <small>1,250+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Vancouver</b>
-                            <small>980+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Calgary</b>
-                            <small>620+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <div class="wh-city">
-                        <img src="{{ asset('assets/images/blog-sideimg2.png') }}" alt="Toronto">
-                        <div>
-                            <b>Montreal</b>
-                            <small>550+ warehouses</small>
-                        </div>
-                    </div>
-
-                    <a href="#" class="wh-all">
-                        View All Cities
-                        <i class="fa-solid fa-arrow-right ms-1"></i>
-                    </a>
-
-                </div>
-
-            </div>
+           
 
         </div>
     </div>
