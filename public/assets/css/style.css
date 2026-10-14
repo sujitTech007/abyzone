@@ -944,10 +944,22 @@ form textarea.form-control {
             border: 0;
             background: #000;
             color: #fff;
+            padding: 0;
+            
         }
 
+        .modal-body video{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    vertical-align: top;
+}
         .video-modal .btn-close {
             filter: invert(1);
+            position: absolute;
+    z-index: 999;
+    right: 10px;
+    top: 10px;
         }
 
         .video-frame {
@@ -991,6 +1003,9 @@ form textarea.form-control {
                 height: 22px;
                 font-size: 9px;
             }
+              .modal-body video{
+    height: 003px;
+}
         }
 
         @media (max-width: 480px) {
@@ -2821,7 +2836,7 @@ form textarea.form-control {
 
 .footer-feature i {
     font-size: 20px;
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .footer-feature span {
@@ -3051,10 +3066,10 @@ margin-left: 10px;
 .social-links a:hover {
     background: var(--primary-color);
     border-color: var(--primary-color);
+    color: var(--secondary-color);
 
     transform: translateY(-4px);
 
-    box-shadow: 0 8px 25px rgba(51, 150, 236, 0.25);
 }
 
 
@@ -4545,3 +4560,4 @@ section.services__details-area .tab-content .bg-primary-subtle {
     font-size: 12px;
     line-height: 0;
 }
+

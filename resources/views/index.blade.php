@@ -369,10 +369,8 @@
 
             <div class="modal-content">
 
-                <div class="modal-header py-2">
-                    <h6 class="modal-title">
-                        Our Story
-                    </h6>
+                <div class="modal-header">
+                  
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
@@ -380,10 +378,10 @@
 
                 <div class="modal-body p-0">
 
-                    <!-- YouTube Video -->
-                    <iframe class="video-frame" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="ABYzone Story"
-                        allow="autoplay; encrypted-media" allowfullscreen>
-                    </iframe>
+                    <video autoplay muted loop playsinline>
+        <source src="{{ asset('assets/images/banner/warehouse.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
                 </div>
             </div>
