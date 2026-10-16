@@ -120,7 +120,7 @@
                                         <i class="fas fa-info-circle me-2"></i>Current Status
                                     </span>
                                     <div class="mt-2">
-                                        <span class="badge rounded-pill px-3 py-2 bg-{{ $booking->status === 'approved' ? 'success' : ($booking->status === 'declined' ? 'secondary' : ($booking->status === 'meeting_scheduled' ? 'info' : 'warning text-dark')) }}">
+                                        <span class="badge rounded-pill px-3 py-2 bg-{{ $booking->status === 'approved' ? 'success' : ($booking->status === 'declined' ? 'secondary' : ($booking->status === 'cancelled' ? 'dark' : ($booking->status === 'meeting_scheduled' ? 'info' : 'warning text-dark'))) }}">
                                             {{ str_replace('_', ' ', ucfirst($booking->status)) }}
                                         </span>
                                     </div>
@@ -142,6 +142,8 @@
                         </div>
                     </div>
                 </div>
+
+                @include('warehouses.booking-timeline', ['booking' => $booking])
 
                 {{-- Helpful Information --}}
                 <div class="booking-tip-box">
@@ -258,4 +260,3 @@
 
 
 @include('admin.include.footer')
-

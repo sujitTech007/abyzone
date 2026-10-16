@@ -1,4 +1,5 @@
 @include('include.header')
+@include('includes.alerts')
 
 <section class="login-page">
 
@@ -97,16 +98,6 @@
                         <strong class="secondary-text-color">{{ $masked }}</strong>
                     </p>
 
-
-                    {{-- Success Message --}}
-
-                    @if(session('success'))
-
-                        <div class="alert alert-success text-center fs-12">
-                            {{ session('success') }}
-                        </div>
-
-                    @endif
 
                     </div>
 

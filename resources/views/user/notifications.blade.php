@@ -172,21 +172,30 @@
     }
 
     function deleteNotification(id) {
-        if (!confirm('Are you sure you want to delete this notification?')) return;
+        window.confirmAppDelete('Are you sure you want to delete this notification?')
+            .then(function (confirmed) {
+                if (!confirmed) return;
 
-        fetch(`{{ route('user.notifications.delete', ':id') }}`.replace(':id', id), {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            }
-        });
+                return fetch(`{{ route('user.notifications.delete', ':id') }}`.replace(':id', id), {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.error('Unable to confirm notification deletion.', error);
+                if (window.showAppToast) {
+                    window.showAppToast('error', 'Could not open the delete confirmation. Please refresh and try again.');
+                }
+            });
     }
 </script>
 

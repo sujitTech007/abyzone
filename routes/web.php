@@ -27,6 +27,7 @@ use App\Http\Controllers\Owner\PaymentController as OwnerPaymentController;
 use App\Http\Controllers\Owner\WarehouseController as OwnerWarehouseController;
 use App\Http\Controllers\User\WarehouseController as UserWarehouseController; 
 use App\Http\Controllers\Owner\ConfirmedBookingController as OwnerConfirmedBookingController; 
+use App\Http\Controllers\User\WarehousePaymentController as UserWarehousePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -221,6 +222,10 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
     Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
     Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/documents', [UserProfileController::class, 'uploadDocuments'])->name('profile.documents.store');
+    Route::get('/profile/documents/{document}/view', [UserProfileController::class, 'viewDocument'])->name('profile.documents.view');
+    Route::get('/profile/documents/{document}', [UserProfileController::class, 'downloadDocument'])->name('profile.documents.download');
+    Route::delete('/profile/documents/{document}', [UserProfileController::class, 'deleteDocument'])->name('profile.documents.destroy');
     
     // user orders resource
     Route::resource('orders', UserOrderController::class)->only(['index','create','store','show'])->names([
@@ -268,6 +273,13 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
     Route::get('/warehouses/{warehouse:slug}', [UserWarehouseController::class, 'show'])->name('warehouses.show');
     Route::post('/warehouses/{warehouse:slug}/book', [UserWarehouseController::class, 'book'])->name('warehouses.book');
     Route::get('/warehouse-requests', [UserWarehouseBookingController::class, 'index'])->name('warehouses.requests');
+    Route::post('/warehouse-requests/{warehouseBooking}/cancel', [UserWarehouseBookingController::class, 'cancel'])
+        ->name('warehouses.requests.cancel');
+    Route::get('/warehouse-payments/{payment}', [UserWarehousePaymentController::class, 'show'])->name('warehouse-payments.show');
+    Route::get('/warehouse-payments/{payment}/invoice', [UserWarehousePaymentController::class, 'invoice'])->name('warehouse-payments.invoice');
+    Route::post('/warehouse-payments/{payment}/checkout', [UserWarehousePaymentController::class, 'checkout'])->name('warehouse-payments.checkout');
+    Route::get('/warehouse-payments/{payment}/success', [UserWarehousePaymentController::class, 'success'])->name('warehouse-payments.success');
+    Route::post('/warehouse-payments/{payment}/refund/retry', [UserWarehousePaymentController::class, 'retryRefund'])->name('warehouse-payments.refund.retry');
 });
 
 // ============================================================
@@ -275,6 +287,7 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
 // ============================================================
 Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/dashboard', [OwnerPagesController::class, 'index'])->name('dashboard');
+    Route::get('/reports', [OwnerPagesController::class, 'reports'])->name('reports');
     
     // Owner business profile routes
     Route::get('/business-profile', [OwnerBusinessProfileController::class, 'show'])->name('business.profile');
@@ -307,12 +320,18 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
         'show' => 'warehouse-bookings.show',
         'update' => 'warehouse-bookings.update',
     ]);
+    Route::get('/warehouse-payments/{payment}/invoice', [OwnerWarehouseBookingController::class, 'invoice'])
+        ->name('warehouse-payments.invoice');
+    Route::post('/warehouse-bookings/{warehouseBooking}/cancel', [OwnerWarehouseBookingController::class, 'cancel'])
+        ->name('warehouse-bookings.cancel');
 
     Route::resource('confirmed-booking', OwnerConfirmedBookingController::class)->only(['index', 'show', 'update'])->names([
         'index' => 'confirmed-booking.index',
         'show' => 'confirmed-booking.show',
         'update' => 'confirmed-booking.update',
-    ]);
+    ])->parameters(['confirmed-booking' => 'warehouseBooking']);
+    Route::post('/confirmed-booking/{warehouseBooking}/cancel', [OwnerConfirmedBookingController::class, 'cancel'])
+        ->name('confirmed-booking.cancel');
 
 
     

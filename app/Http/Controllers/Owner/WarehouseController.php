@@ -6,23 +6,38 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Warehouse;
 use App\Models\Notification;
+use App\Mail\NewWarehouseMail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class WarehouseController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $ownerId = $this->requireOwnerId();
+        $filters = $request->validate([
+            'name' => 'nullable|string|max:100',
+            'location' => 'nullable|string|max:100',
+            'availability' => 'nullable|in:draft,available,unavailable',
+        ]);
+        $filters = array_merge(['name' => '', 'location' => '', 'availability' => ''], $filters);
+        $filters = array_map(fn ($value) => trim($value ?? ''), $filters);
 
         $warehouses = Warehouse::query()
             ->where('user_id', $ownerId)
+            ->when($filters['name'] !== '', fn ($query) => $query->where('name', 'like', '%'.$filters['name'].'%'))
+            ->when($filters['location'] !== '', fn ($query) => $query->where('location', 'like', '%'.$filters['location'].'%'))
+            ->when($filters['availability'] !== '', fn ($query) => $query->where('status', $filters['availability']))
             ->orderByDesc('id')
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
 
-        return view('owner.warehouses.index', compact('warehouses'));
+        return view('owner.warehouses.index', compact('warehouses', 'filters'));
     }
 
     public function create(): View
@@ -62,7 +77,7 @@ class WarehouseController extends Controller
             $data['service_template'] = 'uploads/service-templates/' . $name;
         }
 
-        Warehouse::create($data);
+        $warehouse = Warehouse::create($data);
         
         Notification::create([
             'user_id' => 1, // Default admin ID
@@ -73,9 +88,49 @@ class WarehouseController extends Controller
             'is_read' => 0,
         ]);
 
+        $mailFailures = 0;
+        $mailSent = 0;
+        if ($warehouse->status === 'available') {
+            User::query()
+                ->where('role', 'customer')
+                ->whereNotNull('email')
+                ->where('email', '<>', '')
+                ->select(['id', 'email'])
+                ->orderBy('id')
+                ->chunkById(50, function ($customers) use ($warehouse, &$mailFailures, &$mailSent) {
+                    $recipients = $customers->pluck('email')->unique()->values()->all();
+                    if ($recipients === []) {
+                        return;
+                    }
+
+                    $recipientCount = count($recipients);
+                    try {
+                        Mail::to(array_shift($recipients))
+                            ->bcc($recipients)
+                            ->send(new NewWarehouseMail($warehouse));
+                        $mailSent += $recipientCount;
+                    } catch (TransportExceptionInterface $exception) {
+                        $mailFailures += $recipientCount;
+                        Log::error('New warehouse notification email failed.', [
+                            'warehouse_id' => $warehouse->id,
+                            'recipient_count' => $recipientCount,
+                            'exception' => $exception->getMessage(),
+                        ]);
+                    }
+                });
+        }
+
+        if ($mailFailures > 0) {
+            return redirect()
+                ->route('owner.warehouses.index')
+                ->with('warning', "Warehouse created. {$mailSent} customer(s) notified; {$mailFailures} email(s) could not be sent. Please check the mail configuration and application logs.");
+        }
+
         return redirect()
             ->route('owner.warehouses.index')
-            ->with('success', 'Warehouse created successfully.');
+            ->with('success', $warehouse->status === 'available'
+                ? "Warehouse created and {$mailSent} customer(s) notified."
+                : 'Warehouse created successfully. Customers will be notified when it is made available.');
     }
 
     public function show(Warehouse $warehouse): View
@@ -96,7 +151,7 @@ class WarehouseController extends Controller
     {
         $this->authorizeWarehouse($warehouse);
 
-        $data = $this->validatedData($request);
+        $data = $this->validatedData($request, true);
 
         if ($warehouse->name !== $data['name']) {
             $data['slug'] = Str::slug($data['name']).'-'.Str::random(5);
@@ -194,7 +249,7 @@ $data['images'] = array_values($existingImages);
             ->with('success', 'Warehouse deleted successfully.');
     }
 
-    protected function validatedData(Request $request): array
+    protected function validatedData(Request $request, bool $isUpdate = false): array
     {
         return $request->validate([
             'name' => 'required|string|max:255',
@@ -205,6 +260,7 @@ $data['images'] = array_values($existingImages);
             'address_street' => 'nullable|string|max:255',
             'address_city' => 'nullable|string|max:255',
             'address_state' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
             'address_postal' => 'nullable|string|max:50',
 
             'available_from' => 'nullable|date',
@@ -231,7 +287,7 @@ $data['images'] = array_values($existingImages);
             'description' => 'nullable|string',
 
             // image uploads
-            'images' => 'required|array|max:3',
+            'images' => [$isUpdate ? 'nullable' : 'required', 'array', 'max:3'],
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:200', // 200KB
         ]);
     }

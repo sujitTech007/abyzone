@@ -34,7 +34,7 @@
                             <p class="stat-label mb-0">Published Warehouses</p>
                             <h2 class="stat-number mb-0">{{ $warehousesCount }}</h2>
                             <span class="stat-description">
-                                Spaces visible to customers
+                                Spaces currently visible to customers
                             </span>
                         </div>
 
@@ -138,11 +138,11 @@
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-color-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
                     <div>
-                        <h5 class="mb-0">Earnings Overview</h5>
-                        <small class="text-muted">Track your revenue and occupancy performance</small>
+                        <h5 class="mb-0">Booking Requests</h5>
+                        <small class="text-muted">Real booking requests received for your warehouses.</small>
                     </div>
                     <select class="period-select" id="vendorEarningsPeriod"
-                            aria-label="Select earnings period">
+                            aria-label="Select booking request period">
                         <option value="month">This Month</option>
                         <option value="lastMonth">Last Month</option>
                         <option value="week">Last 7 Days</option>
@@ -158,12 +158,14 @@
 
 <script>
 (function () {
+    const bookingPeriods = @json($bookingActivityPeriods);
+
     function initVendorEarningsChart() {
         const chartElement = document.getElementById('vendorEarningsChart');
         const periodElement = document.getElementById('vendorEarningsPeriod');
 
         if (!chartElement || !periodElement || typeof ApexCharts === 'undefined') {
-            console.error('Earnings chart: ApexCharts library or chart element missing.');
+            console.error('Booking chart: ApexCharts library or chart element missing.');
             return;
         }
 
@@ -171,40 +173,11 @@
         if (chartElement.dataset.initialized === 'true') return;
         chartElement.dataset.initialized = 'true';
 
-        const earningsPeriods = {
-            month: {
-                labels: [
-                    'Apr 1', 'Apr 2', 'Apr 3', 'Apr 4',
-                    'Apr 5', 'Apr 6', 'Apr 7', 'Apr 10',
-                    'Apr 11', 'Apr 12', 'Apr 13', 'Apr 15',
-                    'Apr 16', 'Apr 17', 'Apr 18', 'Apr 20',
-                    'Apr 21', 'Apr 22', 'Apr 23', 'Apr 24',
-                    'Apr 25', 'Apr 27', 'Apr 28', 'Apr 30'
-                ],
-                data: [
-                    250, 410, 520, 500, 490, 690, 870, 1000,
-                    920, 740, 620, 660, 770, 930, 1100, 1040,
-                    880, 970, 1200, 1120, 1070, 1260, 1500, 1750
-                ]
-            },
-            lastMonth: {
-                labels: Array.from({ length: 24 }, (_, i) => 'Mar ' + (i + 1)),
-                data: [
-                    180, 320, 280, 480, 430, 650, 720, 590,
-                    810, 760, 950, 870, 1050, 980, 1150, 1020,
-                    1300, 1210, 1450, 1600, 1500, 1720, 1580, 1850
-                ]
-            },
-            week: {
-                labels: ['Oct 4', 'Oct 5', 'Oct 6', 'Oct 7', 'Oct 8', 'Oct 9', 'Oct 10'],
-                data: [620, 740, 680, 980, 870, 1250, 1750]
-            }
-        };
-
-        const earningsOptions = {
+        const selectedPeriod = bookingPeriods[periodElement.value] || bookingPeriods.month;
+        const bookingOptions = {
             series: [{
-                name: 'Earnings',
-                data: earningsPeriods.month.data
+                name: 'Booking requests',
+                data: selectedPeriod.data
             }],
 
             chart: {
@@ -252,7 +225,7 @@
             },
 
             xaxis: {
-                categories: earningsPeriods.month.labels,
+                categories: selectedPeriod.labels,
                 axisBorder: { show: true, color: '#dfe7f2' },
                 axisTicks: { show: false },
                 tickAmount: 6,
@@ -266,19 +239,17 @@
 
             yaxis: {
                 min: 0,
-                max: 2000,
-                tickAmount: 4,
                 labels: {
                     minWidth: 48,
-                    formatter: value => '$' + Math.round(value).toLocaleString('en-US'),
+                    formatter: value => Math.round(value).toLocaleString('en-US'),
                     style: { fontSize: '11px', colors: '#637b9d' }
                 }
             },
 
             tooltip: {
                 y: {
-                    formatter: value => '$' + value.toLocaleString('en-US'),
-                    title: { formatter: () => 'Earnings: ' }
+                    formatter: value => value.toLocaleString('en-US'),
+                    title: { formatter: () => 'Requests: ' }
                 }
             },
 
@@ -300,11 +271,11 @@
             }]
         };
 
-        const vendorChart = new ApexCharts(chartElement, earningsOptions);
+        const vendorChart = new ApexCharts(chartElement, bookingOptions);
 
         vendorChart.render().then(function () {
             periodElement.addEventListener('change', function () {
-                const selectedPeriod = earningsPeriods[this.value] || earningsPeriods.month;
+                const selectedPeriod = bookingPeriods[this.value] || bookingPeriods.month;
 
                 vendorChart.updateOptions({
                     xaxis: {
@@ -313,13 +284,13 @@
                 });
 
                 vendorChart.updateSeries([{
-                    name: 'Earnings',
+                    name: 'Booking requests',
                     data: selectedPeriod.data
                 }]);
             });
         }).catch(function (error) {
             chartElement.dataset.initialized = 'false';
-            console.error('Unable to render earnings chart:', error);
+            console.error('Unable to render booking chart:', error);
         });
     }
 
@@ -337,7 +308,7 @@
                             <h5 class="mb-0">Recent Booking Requests</h5>
                             <small class="text-muted">Track status and meeting schedules.</small>
                         </div>
-                        <a href="{{ route('user.warehouses.requests') }}" class="btn btn-sm btn-outline-primary">View all</a>
+                        <a href="{{ route('owner.warehouse-bookings.index') }}" class="btn btn-sm btn-outline-primary">View all</a>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -357,12 +328,12 @@
                                         <tr>
                                             {{-- Warehouse --}}
                                             <td>
-                                                {{ $booking->warehouse->name }}
+                                                {{ $booking->warehouse->name ?? 'Warehouse unavailable' }}
                                             </td>
 
                                             {{-- Customer --}}
                                             <td>
-                                                {{ $booking->customer->name }}
+                                                {{ $booking->customer->name ?? 'Customer unavailable' }}
                                             </td>
 
                                             {{-- Desired Dates --}}
@@ -427,7 +398,7 @@
 
            
 
-                            <a href="#" class="action-item">
+                            <a href="{{ route('owner.warehouses.create') }}" class="action-item">
                                 <span class="icon-circle icon-blue">
                                     <i class="fa-solid fa-plus"></i>
                                 </span>
@@ -435,7 +406,7 @@
                                 <i class="fa-solid fa-chevron-right action-arrow"></i>
                             </a>
 
-                            <a href="#" class="action-item">
+                            <a href="{{ route('owner.warehouse-bookings.index') }}" class="action-item">
                                 <span class="icon-circle icon-green">
                                     <i class="fa-regular fa-calendar-check"></i>
                                 </span>
@@ -443,19 +414,19 @@
                                 <i class="fa-solid fa-chevron-right action-arrow"></i>
                             </a>
 
-                            <a href="#" class="action-item">
+                            <a href="{{ route('owner.confirmed-booking.index') }}" class="action-item">
                                 <span class="icon-circle icon-orange">
                                     <i class="fa-solid fa-box"></i>
                                 </span>
-                                <span class="action-text">Check Orders</span>
+                                <span class="action-text">Confirmed Bookings</span>
                                 <i class="fa-solid fa-chevron-right action-arrow"></i>
                             </a>
 
-                            <a href="#" class="action-item">
+                            <a href="{{ route('owner.business.profile.edit') }}" class="action-item">
                                 <span class="icon-circle icon-purple">
                                     <i class="fa-solid fa-cube"></i>
                                 </span>
-                                <span class="action-text">Update Inventory</span>
+                                <span class="action-text">Update Business Profile</span>
                                 <i class="fa-solid fa-chevron-right action-arrow"></i>
                             </a>
 
@@ -472,62 +443,23 @@
                         </div>
                     </div>
                     <div class="card-body p-2 py-3">
-                        <!-- Activity 1 -->
-        <div class="d-flex align-items-center gap-3 mb-3">
-            <div class="activity-icon blue">
-                <i class="fa-regular fa-calendar-days"></i>
-            </div>
-            <div>
-                <div class="activity-text">New booking request from ABC Traders</div>
-                <div class="activity-time">2 hours ago</div>
-            </div>
-        </div>
-
-        <!-- Activity 2 -->
-        <div class="d-flex align-items-center gap-3 mb-3">
-            <div class="activity-icon green">
-                <i class="fa-solid fa-box"></i>
-            </div>
-            <div>
-                <div class="activity-text">Order #ORD-1024 completed</div>
-                <div class="activity-time">5 hours ago</div>
-            </div>
-        </div>
-
-        <!-- Activity 3 -->
-        <div class="d-flex align-items-center gap-3 mb-3">
-            <div class="activity-icon purple">
-                <i class="fa-solid fa-sack-dollar"></i>
-            </div>
-            <div>
-                <div class="activity-text">Payment received: $1,200</div>
-                <div class="activity-time">1 day ago</div>
-            </div>
-        </div>
-
-        <!-- Activity 4 -->
-        <div class="d-flex align-items-center gap-3 mb-3">
-            <div class="activity-icon orange">
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <div>
-                <div class="activity-text">New review received (4 stars)</div>
-                <div class="activity-time">1 day ago</div>
-            </div>
-        </div>
-
-        <!-- Activity 5 -->
-        <div class="d-flex align-items-center gap-3">
-            <div class="activity-icon cyan">
-                <i class="fa-solid fa-cube"></i>
-            </div>
-            <div>
-                <div class="activity-text">Inventory updated for Warehouse #WH-003</div>
-                <div class="activity-time">2 days ago</div>
-            </div>
-        </div>
-
-                        
+                        @forelse($latestBookings as $booking)
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="activity-icon {{ $booking->status === 'approved' ? 'green' : 'blue' }}">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                </div>
+                                <div>
+                                    <div class="activity-text">
+                                        {{ $booking->customer->name ?? 'A customer' }}
+                                        {{ $booking->status === 'pending' ? 'requested' : 'updated' }}
+                                        {{ $booking->warehouse->name ?? 'a warehouse' }}
+                                    </div>
+                                    <div class="activity-time">{{ $booking->created_at->diffForHumans() }}</div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-muted mb-0">No recent booking activity.</p>
+                        @endforelse
                     </div>
                 </div>
             </div>            
@@ -648,10 +580,15 @@
     </div>
 </div>
 <script>
+(function () {
     const calendar = document.getElementById("calendar");
     const weekLabel = document.getElementById("weekLabel");
     const selectedDateText = document.getElementById("selectedDate");
     const statusSelect = document.getElementById("statusSelect");
+
+    if (!calendar || !weekLabel || !selectedDateText || !statusSelect) {
+        return;
+    }
 
     const statusNames = {
         available: "Available",
@@ -667,12 +604,6 @@
 
     // Example status data. Replace this with API/database data.
     const availability = {};
-
-    // Initial demo statuses for the current week
-    const demoStatuses = [
-        "available", "booked", "available",
-        "booked", "available", "maintenance", "maintenance"
-    ];
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -694,20 +625,8 @@
         return date.toLocaleDateString("en-GB", options);
     }
 
-    function getStatus(key, index) {
-        if (availability[key]) {
-            return availability[key];
-        }
-
-        // Demo pattern applies only to the initial current week.
-        const isInitialWeek = index !== undefined &&
-            weekStart.getTime() === getMonday(today).getTime();
-
-        if (isInitialWeek) {
-            return demoStatuses[index];
-        }
-
-        return "available";
+    function getStatus(key) {
+        return availability[key] || "available";
     }
 
     function getMonday(date) {
@@ -735,7 +654,7 @@
             date.setDate(weekStart.getDate() + i);
 
             const key = dateKey(date);
-            const status = getStatus(key, i);
+            const status = getStatus(key);
 
             const day = document.createElement("div");
             day.className = "day";
@@ -810,8 +729,8 @@
     });
 
     renderCalendar();
+})();
 </script>
 
 
 @include('owner.include.footer')
-

@@ -117,6 +117,16 @@
             </a>
         </li>
 
+        <li class="side-nav-item">
+            <a href="{{ route('owner.reports') }}"
+               class="side-nav-link {{ request()->routeIs('owner.reports') ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </span>
+                <span class="menu-text">Booking Reports</span>
+            </a>
+        </li>
+
         {{-- Business Profile --}}
         
 

@@ -88,15 +88,32 @@ class PagesController extends Controller
         return view('admin.report');
     }
     
-    public function inquiry()
+    public function inquiry(Request $request)
     {
-        $inquiries = Contact::paginate('10');
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
+        $inquiries = Contact::query()
+            ->when(isset($filters['name']), fn ($query) => $query->where('name', 'like', "%{$filters['name']}%"))
+            ->when(isset($filters['email']), fn ($query) => $query->where('email', 'like', "%{$filters['email']}%"))
+            ->when(isset($filters['phone']), fn ($query) => $query->where('phone', 'like', "%{$filters['phone']}%"))
+            ->paginate(10)
+            ->withQueryString();
         return view('admin.inquiry', compact('inquiries') );
     }
     
-    public function subscribe()
+    public function subscribe(Request $request)
     {
-        $subscribes = Subscribe::paginate('10');
+        $validated = $request->validate([
+            'email' => 'nullable|string|max:255',
+        ]);
+        $subscribes = Subscribe::query()
+            ->when(filled($validated['email'] ?? null), fn ($query) => $query->where('email', 'like', '%' . $validated['email'] . '%'))
+            ->paginate(10)
+            ->withQueryString();
         return view('admin.subscriber', compact('subscribes') );
     }
     
@@ -117,14 +134,34 @@ class PagesController extends Controller
         ]);
     }
     
-    public function quote()
+    public function quote(Request $request)
     {
-        $quotes = QuoteRequest::all();
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
+        $quotes = QuoteRequest::query()
+            ->when(isset($filters['name']), fn ($query) => $query->where('name', 'like', "%{$filters['name']}%"))
+            ->when(isset($filters['email']), fn ($query) => $query->where('email', 'like', "%{$filters['email']}%"))
+            ->when(isset($filters['phone']), fn ($query) => $query->where('phone', 'like', "%{$filters['phone']}%"))
+            ->get();
         return view('admin.request-qoute', compact('quotes') );
     }
-    public function meeting()
+    public function meeting(Request $request)
     {
-        $meetings = MeetingRequest::all();
+        $validated = $request->validate([
+            'full_name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
+        $meetings = MeetingRequest::query()
+            ->when(isset($filters['full_name']), fn ($query) => $query->where('full_name', 'like', "%{$filters['full_name']}%"))
+            ->when(isset($filters['email']), fn ($query) => $query->where('email', 'like', "%{$filters['email']}%"))
+            ->when(isset($filters['phone']), fn ($query) => $query->where('phone', 'like', "%{$filters['phone']}%"))
+            ->get();
         return view('admin.request-meeting', compact('meetings') );
     }
 

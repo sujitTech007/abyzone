@@ -190,7 +190,7 @@ $(document).on('click', '.mark-read-btn', function () {
         },
         error: function (xhr) {
             console.error(xhr.responseText);
-            alert('Something went wrong');
+            window.showAppToast('error', 'Something went wrong');
         }
     });
 });

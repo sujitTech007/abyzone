@@ -11,21 +11,25 @@
                 <p class="text-muted mb-0">View and manage customer inquiries.</p>
             </div>
 
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <input
-                    type="search"
-                    id="category-search"
-                    placeholder="Search inquiries..."
-                    aria-label="Search inquiries"
-                    class="form-control"
-                    style="width: 240px;"
-                >
-
-                <a href="{{ route('admin.inquiry') }}" class="btn btn-outline-secondary">
-                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
-                </a>
-            </div>
         </div>
+
+        <form method="GET" action="{{ route('admin.inquiry') }}" class="row g-2 align-items-end mb-3">
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="name" value="{{ request('name') }}" placeholder="Name" aria-label="Filter by name" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="email" value="{{ request('email') }}" placeholder="Email" aria-label="Filter by email" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="phone" value="{{ request('phone') }}" placeholder="Phone" aria-label="Filter by phone" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass me-1"></i> Search</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('admin.inquiry') }}" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-1"></i> Reset</a>
+            </div>
+        </form>
 
         @include('includes.alerts')
 
@@ -108,21 +112,5 @@
 
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
-
 
 @include('admin.include.footer')

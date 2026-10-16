@@ -108,10 +108,11 @@
                                         <div>
                                             <div class="small text-muted mb-1">Full Address</div>
                                             <div class="fw-semibold">
-                                                @if($warehouse->address_street || $warehouse->address_city || $warehouse->address_state || $warehouse->address_postal)
+                                                @if($warehouse->address_street || $warehouse->address_city || $warehouse->address_state || $warehouse->address_country || $warehouse->address_postal)
                                                     {{ $warehouse->address_street ?? '' }}<br>
                                                     {{ $warehouse->address_city ?? '' }}
-                                                    {{ $warehouse->address_state ?? '' }}<br>
+                                                    {{ $warehouse->address_state ?? '' }}
+                                                    {{ $warehouse->address_country ?? '' }}<br>
                                                     {{ $warehouse->address_postal ?? '' }}
                                                 @elseif($warehouse->address)
                                                     {{ $warehouse->address }}

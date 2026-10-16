@@ -198,6 +198,23 @@ class PagesController extends Controller
     {
         $warehouses = Warehouse::where('status', 'available');
 
+        if ($search = trim((string) $request->input('search', ''))) {
+            $warehouses->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('location', 'like', '%' . $search . '%');
+            });
+        }
+
+        $availability = $request->input('availability');
+        if ($availability === 'now') {
+            $warehouses->where(function ($query) {
+                $query->whereNull('available_from')
+                    ->orWhereDate('available_from', '<=', now()->toDateString());
+            });
+        } elseif ($availability === 'upcoming') {
+            $warehouses->whereDate('available_from', '>', now()->toDateString());
+        }
+
         $sizeRanges = $request->input('size', []);
         $sizeRanges = is_array($sizeRanges)
             ? array_values(array_filter($sizeRanges, 'is_string'))
@@ -258,16 +275,21 @@ class PagesController extends Controller
             });
         }
 
-        if ($request->filled('location')) {
-            $location = $request->input('location');
-            if (is_array($location)) {
-                $locations = array_values(array_filter($location, 'is_string'));
-                if ($locations !== []) {
-                    $warehouses->whereIn('location', $locations);
-                }
-            } elseif (is_string($location)) {
-                $warehouses->where('location', 'like', '%' . trim($location) . '%');
-            }
+        $selectedLocations = $request->input('location', []);
+        $selectedLocations = is_array($selectedLocations)
+            ? array_values(array_filter($selectedLocations, 'is_string'))
+            : (is_string($selectedLocations) && trim($selectedLocations) !== '' ? [trim($selectedLocations)] : []);
+        $selectedLocation = $request->input('location_select');
+        if (is_string($selectedLocation) && trim($selectedLocation) !== '') {
+            $selectedLocations[] = trim($selectedLocation);
+        }
+        $selectedLocations = array_values(array_unique($selectedLocations));
+        if ($selectedLocations !== []) {
+            $warehouses->whereIn('location', $selectedLocations);
+        }
+
+        if (is_string($request->input('type')) && trim($request->input('type')) !== '') {
+            $warehouses->where('warehouse_type', trim($request->input('type')));
         }
 
         if (is_string($request->input('home_location')) && trim($request->input('home_location')) !== '') {
@@ -340,10 +362,14 @@ class PagesController extends Controller
             });
         }
 
-        if ($request->input('sort') === 'price_low') {
+        if ($request->input('sort') === 'name') {
+            $warehouses->orderBy('name');
+        } elseif ($request->input('sort') === 'price_low') {
             $warehouses->orderByRaw('COALESCE(price_value, price_per_month) ASC');
         } elseif ($request->input('sort') === 'price_high') {
             $warehouses->orderByRaw('COALESCE(price_value, price_per_month) DESC');
+        } else {
+            $warehouses->orderByDesc('id');
         }
 
         $warehouses = $warehouses->get();
@@ -394,7 +420,19 @@ class PagesController extends Controller
 
     public function warehouseDetail($slug)
     {
-        $warehouse = Warehouse::where('slug', $slug)->first();
-        return view('warehousedetail', compact('warehouse'));
+        $warehouse = Warehouse::where('slug', $slug)
+            ->where('status', 'available')
+            ->firstOrFail();
+
+        $bookedDateRanges = $warehouse->confirmedBookings()
+            ->whereNotNull('start_date')
+            ->get(['start_date', 'end_date'])
+            ->map(fn ($booking) => [
+                'start' => $booking->start_date->toDateString(),
+                'end' => ($booking->end_date ?? $booking->start_date)->toDateString(),
+            ])
+            ->values();
+
+        return view('warehousedetail', compact('warehouse', 'bookedDateRanges'));
     }
 }

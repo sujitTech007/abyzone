@@ -10,9 +10,25 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('id','desc')->paginate(10);
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'role' => 'nullable|in:customer,vendor,admin,super_admin',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
+
+        $users = User::query()
+            ->when(isset($filters['name']), fn ($query) => $query->where('name', 'like', "%{$filters['name']}%"))
+            ->when(isset($filters['email']), fn ($query) => $query->where('email', 'like', "%{$filters['email']}%"))
+            ->when(isset($filters['phone']), fn ($query) => $query->where('phone', 'like', "%{$filters['phone']}%"))
+            ->when(isset($filters['role']), fn ($query) => $query->where('role', $filters['role']))
+            ->orderByDesc('id')
+            ->paginate(10)
+            ->withQueryString();
+
         return view('admin.users.index', compact('users'));
     }
 

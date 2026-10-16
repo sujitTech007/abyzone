@@ -26,8 +26,7 @@ class BookingRequestMail extends Mailable
      */
     public function build()
     {
-        $subject = "New warehouse booking request: {$this->booking->warehouse->name}";
-        return $this->subject($subject)
-                    ->view('emails.booking-request');
+        return $this->subject("New booking request #{$this->booking->id} | ABYzone")
+            ->view('emails.booking-request');
     }
 }

@@ -54,11 +54,11 @@
             @error('business_name')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
 
-        <!--<div class="mb-3">-->
-        <!--    <label>Business Type</label>-->
-        <!--    <input type="text" name="business_type" class="form-control" value="{{ old('business_type', $user->business_type) }}">-->
-        <!--    @error('business_type')<div class="text-danger">{{ $message }}</div>@enderror-->
-        <!--</div>-->
+        <div class="mb-3">
+            <label>Business Type</label>
+            <input type="text" name="business_type" class="form-control" value="{{ old('business_type', $user->business_type) }}" placeholder="e.g. Retail, Manufacturing">
+            @error('business_type')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
 
         <div class="mb-3">
             <label>Products to be Stored</label>
@@ -66,11 +66,11 @@
             @error('product_details')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
 
-        <!--<div class="mb-3">-->
-        <!--    <label>Turnaround Time / Storage Duration</label>-->
-        <!--    <input type="text" name="turnaround_time" class="form-control" value="{{ old('turnaround_time', $user->turnaround_time) }}" placeholder="e.g. 3 months, weekly dispatch">-->
-        <!--    @error('turnaround_time')<div class="text-danger">{{ $message }}</div>@enderror-->
-        <!--</div>-->
+        <div class="mb-3">
+            <label>Turnaround Time / Storage Duration</label>
+            <input type="text" name="turnaround_time" class="form-control" value="{{ old('turnaround_time', $user->turnaround_time) }}" placeholder="e.g. 3 months, weekly dispatch">
+            @error('turnaround_time')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
 
         <!--<div class="mb-3">-->
         <!--    <label>Business Address</label>-->
@@ -86,7 +86,7 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label>Street Address</label>
-                    <input type="text" name="address_street" class="form-control" value="{{ old('address_street', $user->address_street) }}">
+                    <input type="text" name="address_street" class="form-control" data-google-address value="{{ old('address_street', $user->address_street) }}">
                     @error('address_street')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
             </div>
@@ -102,6 +102,13 @@
                     <label>State / Territory</label>
                     <input type="text" name="address_state" class="form-control" value="{{ old('address_state', $user->address_state) }}">
                     @error('address_state')<div class="text-danger">{{ $message }}</div>@enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label>Country</label>
+                    <input type="text" name="address_country" class="form-control" value="{{ old('address_country', $user->address_country) }}">
+                    @error('address_country')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
             </div>
             <div class="col-md-6">

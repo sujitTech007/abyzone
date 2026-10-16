@@ -1,5 +1,10 @@
 @include('owner.include.header')
 
+@php
+    $canCancelBooking = in_array($booking->status, ['pending', 'approved', 'meeting_scheduled'], true)
+        && (! $booking->start_date || ! $booking->start_date->isBefore(today()));
+@endphp
+
 <div class="page-content">
     
     <div class="welcome-header">
@@ -191,6 +196,94 @@
                 </div>
             </div>
 
+            @include('warehouses.booking-timeline', ['booking' => $booking])
+
+            @if($booking->warehousePayment)
+                @php($payment = $booking->warehousePayment)
+                <div class="card border-0 shadow-sm rounded-4 mt-4">
+                    <div class="card-header bg-white border-bottom p-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
+                        <div>
+                            <h5 class="fw-bold mb-1">Invoice & payment</h5>
+                            <small class="text-muted">Invoice {{ $payment->invoice_number }}</small>
+                        </div>
+                        <a href="{{ route('owner.warehouse-payments.invoice', $payment) }}"
+                           class="btn btn-primary rounded-3">
+                            <i class="fas fa-download me-2"></i>Download invoice PDF
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <small class="d-block text-muted">Payment status</small>
+                                <strong>{{ ucfirst(str_replace('_', ' ', $payment->status)) }}</strong>
+                            </div>
+                            <div class="col-sm-6">
+                                <small class="d-block text-muted">Invoice number</small>
+                                <strong>{{ $payment->invoice_number }}</strong>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle mb-3">
+                                <tbody>
+                                    <tr>
+                                        <th class="fw-normal text-muted">Subtotal</th>
+                                        <td class="text-end">{{ $payment->currency }} {{ number_format($payment->subtotal_cents / 100, 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-normal text-muted">Tax ({{ number_format((float) $payment->tax_rate, 2) }}%)</th>
+                                        <td class="text-end">{{ $payment->currency }} {{ number_format($payment->tax_cents / 100, 2) }}</td>
+                                    </tr>
+                                    <tr class="border-top">
+                                        <th>Total invoice amount</th>
+                                        <td class="text-end fw-bold">{{ $payment->currency }} {{ number_format($payment->total_cents / 100, 2) }}</td>
+                                    </tr>
+                                    @if($payment->paid_at)
+                                        <tr>
+                                            <th class="fw-normal text-muted">Paid at</th>
+                                            <td class="text-end">{{ $payment->paid_at->format('d M Y, h:i A') }}</td>
+                                        </tr>
+                                    @endif
+                                    @if($payment->refund_status)
+                                        <tr>
+                                            <th class="fw-normal text-muted">Refund status</th>
+                                            <td class="text-end">{{ ucfirst(str_replace('_', ' ', $payment->refund_status)) }}</td>
+                                        </tr>
+                                    @endif
+                                    @if($payment->refunded_cents > 0)
+                                        <tr>
+                                            <th class="fw-normal text-muted">Refunded</th>
+                                            <td class="text-end">{{ $payment->currency }} {{ number_format($payment->refunded_cents / 100, 2) }}</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                        <h6 class="fw-bold mb-2">Payment activity</h6>
+                        @forelse($payment->events as $paymentEvent)
+                            <div class="border-top py-2">
+                                <div class="d-flex flex-wrap justify-content-between gap-2">
+                                    <strong>{{ ucfirst(str_replace('_', ' ', $paymentEvent->event_type)) }}</strong>
+                                    <small class="text-muted">{{ $paymentEvent->created_at->format('d M Y, h:i A') }}</small>
+                                </div>
+                                @if($paymentEvent->amount_cents !== null)
+                                    <small class="d-block text-muted">
+                                        {{ $paymentEvent->currency }} {{ number_format($paymentEvent->amount_cents / 100, 2) }}
+                                    </small>
+                                @endif
+                                @if($paymentEvent->provider_reference)
+                                    <small class="d-block text-muted">Transaction reference: {{ $paymentEvent->provider_reference }}</small>
+                                @endif
+                                @if($paymentEvent->message)
+                                    <small class="d-block text-muted">{{ $paymentEvent->message }}</small>
+                                @endif
+                            </div>
+                        @empty
+                            <p class="text-muted mb-0">No payment activity has been recorded yet.</p>
+                        @endforelse
+                    </div>
+                </div>
+            @endif
+
         </div>
 
         {{-- Right Column: Update Status --}}
@@ -220,32 +313,34 @@
                             Current Status
                         </span>
 
-                        @php
-                            $statusStyles = [
-                                'approved' => 'success',
-                                'meeting_scheduled' => 'primary',
-                                'declined' => 'danger',
-                            ];
-
-                            $statusLabels = [
-                                'approved' => 'Approved',
-                                'meeting_scheduled' => 'Meeting Scheduled',
-                                'declined' => 'Declined',
-                                'pending' => 'Pending',
-                            ];
-
-                            $currentStatus = $booking->status ?? 'pending';
-                            $statusColor = $statusStyles[$currentStatus] ?? 'secondary';
-                        @endphp
+                        @php($currentStatus = $booking->status ?? 'pending')
+                        @php($statusColor = match ($currentStatus) {
+                            'approved' => 'success',
+                            'meeting_scheduled' => 'primary',
+                            'declined' => 'danger',
+                            default => 'secondary',
+                        })
+                        @php($statusLabel = match ($currentStatus) {
+                            'approved' => 'Approved',
+                            'meeting_scheduled' => 'Meeting Scheduled',
+                            'declined' => 'Declined',
+                            'pending' => 'Pending',
+                            default => ucwords(str_replace('_', ' ', $currentStatus)),
+                        })
 
                         <span class="badge rounded-pill bg-{{ $statusColor }}-subtle text-{{ $statusColor }} px-3 py-2">
-                            {{ $statusLabels[$currentStatus] ?? ucwords(str_replace('_', ' ', $currentStatus)) }}
+                            {{ $statusLabel }}
                         </span>
                     </div>
                 </div>
 
                 <div class="card-body p-4">
 
+                    @if($booking->status === 'cancelled')
+                        <div class="alert alert-secondary mb-0">
+                            This booking was cancelled and its dates are available again.
+                        </div>
+                    @else
                     <form method="POST"
                           action="{{ route('owner.warehouse-bookings.update', $booking) }}">
 
@@ -259,7 +354,6 @@
                             </label>
 
                             <select name="status"
-                                    id="status"
                                     class="form-select custom-input @error('status') is-invalid @enderror"
                                     required>
 
@@ -338,9 +432,29 @@
                         </button>
 
                     </form>
+                    @endif
 
                 </div>
             </div>
+
+            @if($canCancelBooking)
+                <div class="card border-0 shadow-sm rounded-4 mt-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-danger mb-2">Cancel this booking</h5>
+                        <p class="small text-muted">Cancellation is final and will release the requested dates.</p>
+                        <form method="POST"
+                              action="{{ route('owner.warehouse-bookings.cancel', $booking) }}"
+                              data-confirm-cancel="Cancel this booking? The customer will be notified and the dates will become available.">
+                            @csrf
+                            <label for="cancellation_reason" class="form-label">Note to customer (optional)</label>
+                            <textarea name="cancellation_reason" id="cancellation_reason" class="form-control mb-3" rows="3" maxlength="1000">{{ old('cancellation_reason') }}</textarea>
+                            @error('cancellation_reason')<div class="text-danger small mb-2">{{ $message }}</div>@enderror
+                            @error('booking')<div class="text-danger small mb-2">{{ $message }}</div>@enderror
+                            <button type="submit" class="btn btn-outline-danger w-100">Cancel booking</button>
+                        </form>
+                    </div>
+                </div>
+            @endif
 
             {{-- Helpful Note --}}
             <div class="alert alert-primary border-0 rounded-4 mt-4 mb-0">
@@ -357,11 +471,9 @@
             </div>
 
         </div>
-
     </div>
 </div>
 
 </div>
 
 @include('owner.include.footer')
-

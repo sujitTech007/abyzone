@@ -16,7 +16,7 @@
 
                 <h3 class="fw-bold mb-1">Confirmed Bookings</h3>
                 <p class="text-muted mb-0">
-                    Manage your confirmed warehouse bookings and completed reservations.
+                    Manage warehouse booking requests approved by you.
                 </p>
             </div>
             <div class="booking-header-badge">
@@ -68,12 +68,10 @@
             <div class="card-body">
                 <div class="d-flex align-items-start justify-content-between">
                     <div>
-                        <p class="stat-label mb-0">Current View</p>
-                        <h2 class="stat-number mb-0">
-                            {{ request('status') === 'completed' ? 'Completed' : 'All Bookings' }}
-                        </h2>
+                        <p class="stat-label mb-0">Booking Type</p>
+                        <h2 class="stat-number mb-0">Confirmed</h2>
                         <span class="stat-description">
-                            Selected booking filter
+                            Approved reservation requests
                         </span>
                     </div>
 
@@ -84,7 +82,7 @@
 
                 <div class="stat-footer">
                     <i class="fa-solid fa-filter me-1"></i>
-                    Current filter selection
+                    Approved bookings only
                 </div>
             </div>
         </div>
@@ -133,20 +131,26 @@
                         </p>
                     </div>
 
-                    <div class="booking-filter-tabs">
-                        <a href="{{ request()->fullUrlWithQuery(['status' => null]) }}"
-                           class="booking-filter-tab {{ !request('status') ? 'active' : '' }}">
-                            <i class="fa-solid fa-list me-1"></i>
-                            All Bookings
-                        </a>
-
-                        <a href="{{ request()->fullUrlWithQuery(['status' => 'completed']) }}"
-                           class="booking-filter-tab {{ request('status') === 'completed' ? 'active' : '' }}">
-                            <i class="fa-solid fa-circle-check me-1"></i>
-                            Completed
-                        </a>
-                    </div>
+                    <span class="text-muted small">Filter by customer or warehouse details</span>
                 </div>
+                <form method="GET" action="{{ route('owner.confirmed-booking.index') }}" class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label for="confirmed-customer-name" class="form-label">Customer name</label>
+                            <input id="confirmed-customer-name" type="search" name="customer_name" value="{{ $filters['customer_name'] }}"
+                                   class="form-control" placeholder="Customer name">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="confirmed-warehouse-name" class="form-label">Warehouse name</label>
+                            <input id="confirmed-warehouse-name" type="search" name="warehouse_name" value="{{ $filters['warehouse_name'] }}"
+                                   class="form-control" placeholder="Warehouse name">
+                        </div>
+                        <div class="col-md-1 mt-4">
+                        <button type="submit" class="btn theme_btn mt-2">Search</button>
+                        </div>
+                        <div class="col-md-1 mt-4">
+                        <a href="{{ route('owner.confirmed-booking.index') }}" class="btn btn-outline-secondary mt-2">Reset</a>
+                        </div>
+                </form>
 
                 {{-- Bookings Table --}}
                 <div class="table-responsive">
@@ -224,6 +228,7 @@
                                                 'confirmed' => 'status-confirmed',
                                                 'completed' => 'status-completed',
                                                 'declined' => 'status-declined',
+                                                'cancelled' => 'status-declined',
                                                 'meeting_scheduled' => 'status-meeting',
                                                 'pending' => 'status-pending',
                                                 default => 'status-default',
@@ -291,4 +296,3 @@
 
 
 @include('owner.include.footer')
-

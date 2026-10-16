@@ -4,13 +4,12 @@
 
     <div class="welcome-header">
             <div class="welcome-content">
-                <h4>Bookings & Calenda</h4>
+                <h4>Booking Requests</h4>
                 <p>Manage all customer enquiries in one place.</p>
             </div>
 
-            <a href="{{ url()->current() }}" class="btn theme_btn fw-bold">
-                
-                     <i class="fa-regular fa-calendar me-1"></i> View Calendar
+            <a href="{{ route('owner.confirmed-booking.index') }}" class="btn theme_btn fw-bold">
+                <i class="fa-regular fa-calendar-check me-1"></i> Confirmed Bookings
             </a>
         </div>
 
@@ -19,26 +18,43 @@
         @include('includes.alerts')
 
         <div class="booking-tabs mb-4">
-            <a href="{{ request()->fullUrlWithQuery(['status' => null]) }}"
-               class="booking-tab {{ !request('status') ? 'active' : '' }}">
+            <a href="{{ request()->fullUrlWithQuery(['tab' => 'all', 'page' => null]) }}"
+               class="booking-tab {{ $tab === 'all' ? 'active' : '' }}">
                 <i class="ri-list-check me-1"></i> All Bookings
             </a>
-
-            <a href="{{ request()->fullUrlWithQuery(['status' => 'upcoming']) }}"
-               class="booking-tab {{ request('status') === 'upcoming' ? 'active' : '' }}">
+            <a href="{{ request()->fullUrlWithQuery(['tab' => 'upcoming', 'page' => null]) }}"
+               class="booking-tab {{ $tab === 'upcoming' ? 'active' : '' }}">
                 <i class="ri-calendar-event-line me-1"></i> Upcoming
             </a>
-
-            <a href="{{ request()->fullUrlWithQuery(['status' => 'pending']) }}"
-               class="booking-tab {{ request('status') === 'pending' ? 'active' : '' }}">
+            <a href="{{ request()->fullUrlWithQuery(['tab' => 'pending', 'page' => null]) }}"
+               class="booking-tab {{ $tab === 'pending' ? 'active' : '' }}">
                 <i class="ri-time-line me-1"></i> Pending
             </a>
-
-            <a href="{{ request()->fullUrlWithQuery(['status' => 'completed']) }}"
-               class="booking-tab {{ request('status') === 'completed' ? 'active' : '' }}">
+            <a href="{{ request()->fullUrlWithQuery(['tab' => 'completed', 'page' => null]) }}"
+               class="booking-tab {{ $tab === 'completed' ? 'active' : '' }}">
                 <i class="ri-checkbox-circle-line me-1"></i> Completed
             </a>
         </div>
+
+        <form method="GET" action="{{ route('owner.warehouse-bookings.index') }}" class="row g-3 mb-4">
+            <input type="hidden" name="tab" value="{{ $tab }}">
+            <div class="col-md-4">
+                <label for="booking-customer-name" class="form-label">Customer name</label>
+                <input id="booking-customer-name" type="search" name="customer_name" value="{{ $filters['customer_name'] }}"
+                       class="form-control" placeholder="Customer name">
+            </div>
+            <div class="col-md-4">
+                <label for="booking-warehouse-name" class="form-label">Warehouse name</label>
+                <input id="booking-warehouse-name" type="search" name="warehouse_name" value="{{ $filters['warehouse_name'] }}"
+                       class="form-control" placeholder="Warehouse name">
+            </div>
+           <div class="col-md-1 mt-4">
+                <button type="submit" class="btn theme_btn mt-2">Search</button>
+            </div>
+            <div class="col-md-1 mt-4">
+                <a href="{{ route('owner.warehouse-bookings.index', ['tab' => $tab]) }}" class="btn btn-outline-secondary mt-2">Reset</a>
+            </div>
+        </form>
 
         <div class="card booking-card">
             <div class="card-body p-0">
@@ -64,13 +80,13 @@
 
                                     <td>
                                         <div class="customer-name">
-                                            {{ $booking->customer->name }}
+                                            {{ $booking->customer->name ?? 'Customer unavailable' }}
                                         </div>
                                     </td>
 
                                     <td>
                                         <div class="warehouse-name">
-                                            {{ $booking->warehouse->name }}
+                                            {{ $booking->warehouse->name ?? 'Warehouse unavailable' }}
                                         </div>
                                     </td>
 
@@ -94,6 +110,7 @@
                                                 'approved' => 'status-approved',
                                                 'confirmed' => 'status-confirmed',
                                                 'declined' => 'status-declined',
+                                                'cancelled' => 'status-declined',
                                                 'meeting_scheduled' => 'status-meeting',
                                                 'pending' => 'status-pending',
                                                 default => 'status-default',
@@ -137,4 +154,3 @@
 
 
 @include('owner.include.footer')
-

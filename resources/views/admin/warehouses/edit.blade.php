@@ -184,7 +184,7 @@ Maximum 3 images allowed. Each image must be less than 200KB.
 
             <div class="col-md-12">
                 <label class="form-label">Street Address</label>
-                <input type="text" name="address_street" class="form-control" value="{{ old('address_street', $warehouse->address_street) }}">
+                <input type="text" name="address_street" class="form-control" data-google-address value="{{ old('address_street', $warehouse->address_street) }}">
                 @error('address_street')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
@@ -198,6 +198,12 @@ Maximum 3 images allowed. Each image must be less than 200KB.
                 <label class="form-label">State/ Territory</label>
                 <input type="text" name="address_state" class="form-control" value="{{ old('address_state', $warehouse->address_state) }}">
                 @error('address_state')<div class="text-danger small">{{ $message }}</div>@enderror
+            </div>
+
+            <div class="col">
+                <label class="form-label">Country</label>
+                <input type="text" name="address_country" class="form-control" value="{{ old('address_country', $warehouse->address_country) }}">
+                @error('address_country')<div class="text-danger small">{{ $message }}</div>@enderror
             </div>
 
             <div class="col">
@@ -310,7 +316,7 @@ document.addEventListener("change", function(e){
 
         // MAX 3 IMAGES
         if(totalImages > 3){
-            alert("Maximum 3 images allowed.");
+            window.showAppToast("error", "Maximum 3 images allowed.");
             e.target.value = "";
             return;
         }
@@ -319,7 +325,7 @@ document.addEventListener("change", function(e){
         let file = e.target.files[0];
 
         if(file && file.size > 200 * 1024){
-            alert("Image must be less than 200KB.");
+            window.showAppToast("error", "Image must be less than 200KB.");
             e.target.value = "";
             return;
         }
@@ -379,4 +385,3 @@ window.onload = toggleWarehouseOther;
 
 
 @include('admin.include.footer')
-

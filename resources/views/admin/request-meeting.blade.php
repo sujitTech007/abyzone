@@ -12,22 +12,25 @@
                 </p>
             </div>
 
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <input
-                    type="search"
-                    id="category-search"
-                    placeholder="Search meeting requests..."
-                    aria-label="Search meeting requests"
-                    class="form-control"
-                    style="width: 240px;"
-                >
-
-                <a href="{{ route('admin.meeting.request') }}"
-                   class="btn btn-outline-secondary">
-                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
-                </a>
-            </div>
         </div>
+
+        <form method="GET" action="{{ route('admin.meeting.request') }}" class="row g-2 align-items-end mb-3">
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="full_name" value="{{ request('full_name') }}" placeholder="Full name" aria-label="Filter by full name" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="email" value="{{ request('email') }}" placeholder="Email" aria-label="Filter by email" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="phone" value="{{ request('phone') }}" placeholder="Phone" aria-label="Filter by phone" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass me-1"></i> Search</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('admin.meeting.request') }}" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-1"></i> Reset</a>
+            </div>
+        </form>
 
         @include('includes.alerts')
 
@@ -113,20 +116,5 @@
     </div>
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
 
 @include('admin.include.footer')

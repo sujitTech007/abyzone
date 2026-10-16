@@ -41,18 +41,19 @@
                  {{ Str::limit($warehouse->location, 30) }}
               </span>
 
-              <span class="text-warning">
-                <i class="fa-solid fa-star"></i>
-                <span class="text-white fw-semibold">4.8</span>
-                <small class="text-white"> ({{ $warehouse->reviews_count ?? 0 }})</small>
+              <span class="text-white">
+                <i class="fa-solid fa-calendar-check me-1"></i>
+                Available
+                {{ $warehouse->available_from
+                    ? 'from ' . $warehouse->available_from->format('M j, Y')
+                    : 'now' }}
               </span>
 
             </div>
 
             <!-- Description -->
             <p class="text-white mb-0">
-              Modern, secure and strategically located warehouse facility
-              with flexible storage solutions for businesses of all sizes.
+              {{ $warehouse->description ?: 'Explore the warehouse details, available capacity, pricing, and facilities below.' }}
             </p>
 
                
@@ -210,7 +211,7 @@
 
                                     <div class="h3 fw-bold text-dark mb-1">
 
-                                        @if($warehouse->price_value)
+                                        @if($warehouse->price_value !== null && $warehouse->price_unit)
 
                                             ${{ number_format($warehouse->price_value, 0) }}
 
@@ -218,14 +219,16 @@
                                                 /{{ Str::afterLast($warehouse->price_unit, '/') }}
                                             </small>
 
-                                        @else
+                                        @elseif($warehouse->price_per_month !== null)
 
-                                            ${{ number_format($warehouse->price_per_month ?? 0, 0) }}
+                                            ${{ number_format($warehouse->price_per_month, 0) }}
 
                                             <small class="fs-6 fw-normal text-muted">
                                                 /month
                                             </small>
 
+                                        @else
+                                            <span class="fs-5">Contact owner for pricing</span>
                                         @endif
 
                                     </div>
@@ -255,30 +258,20 @@
                                     </button>
 
 
-                                    {{-- SMALL FEATURES --}}
-                                    <div class="mt-3">
-
-                                        <div class="small text-muted mb-2">
-                                            <i class="fas fa-shield-alt primary-text-color me-2"></i>
-                                            24/7 Security
+                                    @if(!empty($warehouse->infra_amenities) || $warehouse->infra_amenities_others)
+                                        <div class="mt-3">
+                                            @foreach(collect($warehouse->infra_amenities ?? [])->take(4) as $amenity)
+                                                <div class="small text-muted mb-2">
+                                                    <i class="fas fa-check text-success me-2"></i>{{ $amenity }}
+                                                </div>
+                                            @endforeach
+                                            @if($warehouse->infra_amenities_others)
+                                                <div class="small text-muted">
+                                                    <i class="fas fa-plus text-primary me-2"></i>{{ $warehouse->infra_amenities_others }}
+                                                </div>
+                                            @endif
                                         </div>
-
-                                        <div class="small text-muted mb-2">
-                                            <i class="fas fa-temperature-low primary-text-color me-2"></i>
-                                            Climate Control
-                                        </div>
-
-                                        <div class="small text-muted mb-2">
-                                            <i class="fas fa-dolly primary-text-color me-2"></i>
-                                            Forklift Access
-                                        </div>
-
-                                        <div class="small text-muted">
-                                            <i class="fas fa-truck-loading primary-text-color me-2"></i>
-                                            Loading Dock
-                                        </div>
-
-                                    </div>
+                                    @endif
 
                                 </div>
 
@@ -424,6 +417,11 @@
 
                 </div>
 
+                @include('warehouses.booking-calendar', [
+                    'bookedDateRanges' => $bookedDateRanges,
+                    'startInputId' => 'warehouse-move-in-date',
+                    'endInputId' => null,
+                ])
 
                 {{-- =================================================
                     CONTENT TABS
@@ -708,20 +706,11 @@
 
                                     <div class="mb-2">
 
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-
+                                        No reviews available
                                     </div>
 
-                                    <h4 class="fw-bold">
-                                        4.9 / 5
-                                    </h4>
-
-                                    <p class="text-muted">
-                                        Customer reviews for this warehouse
+                                        <p class="text-muted">
+                                            Reviews have not been provided for this warehouse yet.
                                     </p>
 
                                 </div>
@@ -941,6 +930,7 @@
                                     </label>
 
                                     <input type="date"
+                                           id="warehouse-move-in-date"
                                            name="move_in_date"
                                            class="form-control">
 
@@ -1142,141 +1132,6 @@
             </div>
 
         </div>
-        <div class="container-fluid py-2">
-  <div class="reviews-section">
-
-    <div class="row align-items-center g-4">
-
-      <!-- Overall Rating -->
-      <div class="col-lg-2 col-md-3">
-        <div class="section-title mb-4">
-          What Our Customers Say
-        </div>
-
-        <div class="rating-box">
-          <div class="rating">
-            4.8 <span class="fs-6">/ 5</span>
-          </div>
-
-          <div class="stars mt-2">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-
-          <div class="review-count">
-            Based on 24 reviews
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Review 1 -->
-      <div class="col-lg-3 col-md-3">
-        <div class="review-card">
-
-          <div class="review-text">
-            “Excellent facility with great<br>
-            customer service. The booking<br>
-            process was smooth and easy.”
-          </div>
-
-          <div class="reviewer">
-            <img src="https://i.pravatar.cc/100?img=47"
-                 class="avatar"
-                 alt="Sarah Mitchell">
-
-            <div>
-              <div class="reviewer-name">Sarah Mitchell</div>
-              <div class="reviewer-role">Operations Manager</div>
-
-              <div class="small-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Review 2 -->
-      <div class="col-lg-3 col-md-3">
-        <div class="review-card">
-
-          <div class="review-text">
-            <span class="quote">“</span>
-            Clean, secure and well-maintained.<br>
-            Perfect for our growing business.”
-          </div>
-
-          <div class="reviewer">
-            <img src="https://i.pravatar.cc/100?img=12"
-                 class="avatar"
-                 alt="James Carter">
-
-            <div>
-              <div class="reviewer-name">James Carter</div>
-              <div class="reviewer-role">Business Owner</div>
-
-              <div class="small-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Review 3 -->
-      <div class="col-lg-3 col-md-3">
-        <div class="review-card">
-
-          <div class="review-text">
-            <span class="quote">“</span>
-            “ABYzone made it simple to find<br>
-            the right space. Highly recommend<br>
-            their platform.”
-          </div>
-
-          <div class="reviewer">
-            <img src="https://i.pravatar.cc/100?img=44"
-                 class="avatar"
-                 alt="Emily Roberts">
-
-            <div>
-              <div class="reviewer-name">Emily Roberts</div>
-              <div class="reviewer-role">Logistics Coordinator</div>
-
-              <div class="small-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
     </div>
 </section>
 

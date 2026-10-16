@@ -32,9 +32,23 @@ return [
     ],
     
     'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => env('GOOGLE_REDIRECT_URI'),
-],
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
+        'maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
+    ],
+
+    'googlemap' => [
+        'maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
+    ],
+
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
+
+    'tax' => [
+        'rate' => env('TAX_RATE', 0),
+    ],
 
 ];

@@ -30,11 +30,21 @@
                     </span>
                 </div>
 
+                <div class="warehouse-meta mb-2">
+                    <span>
+                        <i class="far fa-calendar-check"></i>
+                        Available
+                        {{ $warehouse->available_from
+                            ? 'from ' . $warehouse->available_from->format('M j, Y')
+                            : 'now' }}
+                    </span>
+                </div>
+
                 <div class="row g-2 warehouse-info">
                     <div class="col-6">
                         <span>
                             <i class="fas fa-cube"></i>
-                            {{ $warehouse->storage_type ?? 'Dry Storage' }}
+                            {{ $warehouse->storage_type ?? $warehouse->warehouse_type ?? 'Storage type not specified' }}
                         </span>
                     </div>
                     <div class="col-6">
@@ -42,6 +52,8 @@
                             <i class="fas fa-expand-arrows-alt"></i>
                             @if($warehouse->size_sqft)
                                 {{ number_format($warehouse->size_sqft, 0) }} sq ft
+                            @elseif($warehouse->capacity_quantity)
+                                {{ number_format($warehouse->capacity_quantity) }} {{ $warehouse->capacity_unit }}
                             @elseif($warehouse->capacity_units)
                                 {{ number_format($warehouse->capacity_units) }} units
                             @else
@@ -53,26 +65,29 @@
 
                 <div class="d-flex justify-content-between align-items-center mt-2">
                     <div class="warehouse-price">
-                        @if($warehouse->price_value)
+                        @if($warehouse->price_value !== null && $warehouse->price_unit)
                             ${{ number_format($warehouse->price_value, 2) }}
                             <small>/{{ Str::afterLast($warehouse->price_unit, '/') }}</small>
-                        @else
-                            ${{ number_format($warehouse->price_per_month ?? 0, 0) }}
+                        @elseif($warehouse->price_per_month !== null)
+                            ${{ number_format($warehouse->price_per_month, 0) }}
                             <small>/month</small>
+                        @else
+                            Contact owner
                         @endif
                     </div>
 
                     <div class="warehouse-rating">
-                        <i class="fas fa-star"></i>
-                        <strong>4.9</strong>
-                        <small>({{ $warehouse->reviews_count ?? 0 }})</small>
+                        <i class="fas fa-check-circle text-success"></i>
+                        <strong>Available</strong>
                     </div>
                 </div>
 
                 <div class="warehouse-features mt-3">
-                    <span><i class="fas fa-shield-alt"></i> 24/7 Security</span>
-                    <span><i class="fas fa-truck-loading"></i> Loading Dock</span>
-                    <span><i class="fas fa-forklift"></i> Forklift Access</span>
+                    @forelse(collect($warehouse->infra_amenities ?? [])->take(3) as $amenity)
+                        <span><i class="fas fa-check"></i> {{ $amenity }}</span>
+                    @empty
+                        <span class="text-muted">No facility details provided</span>
+                    @endforelse
                 </div>
 
                 <div class="mt-3">

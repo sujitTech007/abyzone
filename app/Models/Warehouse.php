@@ -33,4 +33,20 @@ class Warehouse extends Model
     {
         return $this->hasMany(WarehouseBooking::class);
     }
+
+    public function confirmedBookings(): HasMany
+    {
+        return $this->bookings()
+            ->where('status', WarehouseBooking::STATUS_APPROVED);
+    }
+
+    public function hasConfirmedBookingConflict(string $startDate, string $endDate, ?int $exceptBookingId = null): bool
+    {
+        return $this->confirmedBookings()
+            ->whereNotNull('start_date')
+            ->when($exceptBookingId !== null, fn ($query) => $query->where('warehouse_bookings.id', '<>', $exceptBookingId))
+            ->whereDate('start_date', '<=', $endDate)
+            ->whereRaw('COALESCE(end_date, start_date) >= ?', [$startDate])
+            ->exists();
+    }
 }

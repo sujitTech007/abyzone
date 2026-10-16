@@ -42,9 +42,9 @@
                 <label for="warehouse-type">Storage Type</label>
                 <select id="warehouse-type" name="type" class="form-select">
                     <option value="">All Types</option>
-                    @foreach($warehouses->pluck('warehouse_type')->filter()->unique() as $type)
+                    @foreach($warehouseTypes as $type)
                         <option value="{{ $type }}"
-                            {{ request('type') == $type ? 'selected' : '' }}>
+                            {{ ($filters['type'] ?? '') === $type ? 'selected' : '' }}>
                             {{ $type }}
                         </option>
                     @endforeach
@@ -52,16 +52,29 @@
             </div>
 
             <div class="filter-field">
+                <label for="warehouse-availability">Availability</label>
+                <select id="warehouse-availability" name="availability" class="form-select">
+                    <option value="">Any availability</option>
+                    <option value="now" {{ ($filters['availability'] ?? '') === 'now' ? 'selected' : '' }}>
+                        Available now
+                    </option>
+                    <option value="upcoming" {{ ($filters['availability'] ?? '') === 'upcoming' ? 'selected' : '' }}>
+                        Upcoming availability
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-field">
                 <label for="warehouse-size">Size / Capacity</label>
                 <select id="warehouse-size" name="size" class="form-select">
                     <option value="">Any Size</option>
-                    <option value="small" {{ request('size') == 'small' ? 'selected' : '' }}>
+                    <option value="small" {{ ($filters['size'] ?? '') === 'small' ? 'selected' : '' }}>
                         Small
                     </option>
-                    <option value="medium" {{ request('size') == 'medium' ? 'selected' : '' }}>
+                    <option value="medium" {{ ($filters['size'] ?? '') === 'medium' ? 'selected' : '' }}>
                         Medium
                     </option>
-                    <option value="large" {{ request('size') == 'large' ? 'selected' : '' }}>
+                    <option value="large" {{ ($filters['size'] ?? '') === 'large' ? 'selected' : '' }}>
                         Large
                     </option>
                 </select>
@@ -178,6 +191,16 @@
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
                                 @endif
+                            </div>
+
+                            <div class="warehouse-meta">
+                                <i class="far fa-calendar-check"></i>
+                                <span>
+                                    Available
+                                    {{ $warehouse->available_from
+                                        ? 'from ' . $warehouse->available_from->format('M j, Y')
+                                        : 'now' }}
+                                </span>
                             </div>
 
                             <div class="warehouse-meta">

@@ -12,21 +12,22 @@
                 </p>
             </div>
 
-            {{-- Search and Reset --}}
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <input type="search"
-                       id="category-search"
-                       placeholder="Type a keyword..."
-                       aria-label="Type a keyword..."
-                       class="form-control"
-                       style="width: 220px;">
-
-                <a href="{{ route('admin.warehouse-bookings.index') }}"
-                   class="btn btn-success">
-                    <i class="fas fa-redo-alt me-1"></i> Reset
-                </a>
-            </div>
         </div>
+
+        <form method="GET" action="{{ route('admin.warehouse-bookings.index') }}" class="row g-2 align-items-end mb-3">
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="warehouse" value="{{ request('warehouse') }}" placeholder="Warehouse" aria-label="Filter by warehouse" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="customer" value="{{ request('customer') }}" placeholder="Customer" aria-label="Filter by customer" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i> Search</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('admin.warehouse-bookings.index') }}" class="btn btn-outline-secondary"><i class="fas fa-redo-alt me-1"></i> Reset</a>
+            </div>
+        </form>
 
         @include('includes.alerts')
 
@@ -132,20 +133,4 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
-
 @include('admin.include.footer')
-

@@ -58,7 +58,7 @@
 
                     <a href="{{ route('admin.reviews.show', $r->id) }}" class="btn btn-sm btn-info">View</a>
 
-                    <form action="{{ route('admin.reviews.destroy', $r->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete review?');">
+                    <form action="{{ route('admin.reviews.destroy', $r->id) }}" method="POST" style="display:inline-block;" data-confirm-delete="Delete this review?">
 
                         @csrf
 
@@ -85,4 +85,3 @@
 
 
 @include('admin.include.footer')
-

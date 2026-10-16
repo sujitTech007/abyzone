@@ -70,10 +70,11 @@
                                 <i class="fa-solid fa-map-location-dot me-2"></i>Address
                             </span>
                             <div class="warehouse-info-value">
-                                @if($warehouse->address_street||$warehouse->address_city||$warehouse->address_state||$warehouse->address_postal)
+                                @if($warehouse->address_street||$warehouse->address_city||$warehouse->address_state||$warehouse->address_country||$warehouse->address_postal)
                                     {{ $warehouse->address_street ?? '' }}
                                     {{ $warehouse->address_city ?? '' }}
                                     {{ $warehouse->address_state ?? '' }}
+                                    {{ $warehouse->address_country ?? '' }}
                                     {{ $warehouse->address_postal ?? '' }}
                                 @elseif($warehouse->address)
                                     {{ $warehouse->address }}
@@ -308,4 +309,3 @@
 </div>
 
 @include('admin.include.footer')
-

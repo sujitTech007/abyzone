@@ -45,7 +45,7 @@
 
     </div>
 
-    <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete this review?');">
+    <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST" style="display:inline-block;" data-confirm-delete="Delete this review?">
 
         @csrf
 
@@ -69,4 +69,3 @@
 
 
 @include('admin.include.footer')
-

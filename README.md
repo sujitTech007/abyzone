@@ -64,3 +64,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Warehouse booking payments
+
+Configure the following environment variables before enabling invoice payments:
+
+```dotenv
+STRIPE_SECRET=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+TAX_RATE=0
+```
+
+`TAX_RATE` is a percentage (for example, `5` means 5%) and must be set to the applicable rate for the business. Register the Stripe webhook URL as `{APP_URL}/api/stripe/webhook` for `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `refund.created`, `refund.updated`, and `charge.refunded`.
+
+Invoices use the warehouse's configured CAD/USD price per chargeable unit per day or month and the booking's requested capacity. Daily rates are charged for each booked calendar day. Monthly rates are prorated by the booked days in each calendar month. Invoices are snapshotted at approval; payment, Stripe references, refund states, and transaction events are persisted separately from booking records.

@@ -1,33 +1,28 @@
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@once
+    <link rel="stylesheet" href="{{ asset('assets/css/flash-toasts.css') }}">
+    <script src="{{ asset('assets/js/flash-toasts.js') }}"></script>
+@endonce
 
-@if (session('success'))
+@if ($errors->any() || session()->has('success') || session()->has('error') || session()->has('warning') || session()->has('info'))
     <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            if (typeof toastr !== 'undefined') {
-                toastr.success("{!! addslashes(session('success')) !!}");
-            } else {
-                alert("{!! addslashes(session('success')) !!}");
-            }
-        });
-    </script>
-@endif
+        @foreach ($errors->all() as $error)
+            window.showAppToast('error', @json($error));
+        @endforeach
 
-@if (session('error'))
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            if (typeof toastr !== 'undefined') {
-                toastr.error("{!! addslashes(session('error')) !!}");
-            } else {
-                alert("{!! addslashes(session('error')) !!}");
-            }
-        });
+        @if (session()->has('success'))
+            window.showAppToast('success', @json(session('success')));
+        @endif
+
+        @if (session()->has('error'))
+            window.showAppToast('error', @json(session('error')));
+        @endif
+
+        @if (session()->has('warning'))
+            window.showAppToast('warning', @json(session('warning')));
+        @endif
+
+        @if (session()->has('info'))
+            window.showAppToast('info', @json(session('info')));
+        @endif
     </script>
 @endif

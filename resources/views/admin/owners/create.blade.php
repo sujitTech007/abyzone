@@ -59,10 +59,36 @@
 
             <label>Address</label>
 
-            <textarea name="address" class="form-control">{{ old('address') }}</textarea>
+            <textarea name="address" class="form-control" data-google-address>{{ old('address') }}</textarea>
 
             @error('address')<div class="text-danger">{{ $message }}</div>@enderror
 
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label>Street Address</label>
+            <input type="text" name="address_street" class="form-control" data-google-address value="{{ old('address_street') }}">
+            @error('address_street')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>City</label>
+            <input type="text" name="address_city" class="form-control" value="{{ old('address_city') }}">
+            @error('address_city')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>State / Province</label>
+            <input type="text" name="address_state" class="form-control" value="{{ old('address_state') }}">
+            @error('address_state')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Country</label>
+            <input type="text" name="address_country" class="form-control" value="{{ old('address_country') }}">
+            @error('address_country')<div class="text-danger">{{ $message }}</div>@enderror
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Postal Code</label>
+            <input type="text" name="address_postal" class="form-control" value="{{ old('address_postal') }}">
+            @error('address_postal')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
 
         <div class="col-md-12 mb-3">
@@ -87,4 +113,3 @@
 
 
 @include('admin.include.footer')
-

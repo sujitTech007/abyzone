@@ -23,24 +23,22 @@
                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                     <h5 class="mb-0">Services List</h5>
 
-                    <div class="d-flex align-items-center flex-wrap gap-2">
-                        <input
-                            type="search"
-                            id="category-search"
-                            placeholder="Search services..."
-                            aria-label="Search services"
-                            class="form-control"
-                            style="width: 240px;"
-                        >
-
-                        <a href="{{ route('admin.services') }}" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-rotate-left me-1"></i> Reset
-                        </a>
-                    </div>
                 </div>
             </div>
 
             <div class="card-body">
+                <form method="GET" action="{{ route('admin.services') }}" class="row g-2 align-items-end mb-3">
+                    <div class="col-6 col-md-4 col-xl">
+                        <input type="search" name="title" value="{{ request('title') }}" placeholder="Title" aria-label="Filter by title" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass me-1"></i> Search</button>
+                    </div>
+                    <div class="col-auto">
+                        <a href="{{ route('admin.services') }}" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-1"></i> Reset</a>
+                    </div>
+                </form>
+
                 <div class="table-responsive">
                     <table id="basic-datatable" class="table table-striped align-middle w-100">
                         <thead class="table-light">
@@ -113,7 +111,7 @@
                                             <form
                                                 action="{{ route('admin.services.destroy', $s->id) }}"
                                                 method="POST"
-                                                onsubmit="return confirm('Delete service?');"
+                                                data-confirm-delete="Delete service?"
                                             >
                                                 @csrf
                                                 @method('DELETE')
@@ -151,20 +149,4 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
-
 @include('admin.include.footer')
-

@@ -79,7 +79,7 @@
                     <a href="{{ route('admin.category.edit', $c->id) }}" class="btn btn-sm btn-warning w-50"><i
                                                             class="ri-pencil-line"></i></a>
 
-                    <form action="{{ route('admin.category.destroy', $c->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete category?');">
+                    <form action="{{ route('admin.category.destroy', $c->id) }}" method="POST" style="display:inline-block;" data-confirm-delete="Delete this category?">
                         @csrf
 
                         @method('DELETE')
@@ -125,4 +125,3 @@ $(document).ready(function() {
 
 
 @include('admin.include.footer')
-

@@ -207,25 +207,6 @@
             <!-- Login Form -->
             <div class="login-body">
 
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show rounded-3"
-                         role="alert">
-                        <strong>
-                            <i class="fa-solid fa-circle-xmark input-icon text-danger"></i>
-                            Login Failed!
-                        </strong>
-
-                        @foreach ($errors->all() as $error)
-                            <div class="small mt-1">{{ $error }}</div>
-                        @endforeach
-
-                        <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                    </div>
-                @endif
-
                 <form method="POST" action="{{ route('admin.login.post') }}">
                     @csrf
 

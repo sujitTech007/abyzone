@@ -80,7 +80,7 @@
                                                     <form action="{{ route('user.reviews.destroy', $r->id) }}"
                                                         method="POST"
                                                         class="d-inline"
-                                                        onsubmit="return confirm('Are you sure you want to delete this review?');">
+                                                        data-confirm-delete="Delete this review?">
                                                         @csrf
                                                         @method('DELETE')
 
@@ -133,4 +133,3 @@
 
 
 @include('user.include.footer')
-

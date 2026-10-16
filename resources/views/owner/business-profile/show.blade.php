@@ -427,6 +427,7 @@
                         <textarea name="business_address"
                                   class="form-control"
                                   rows="3"
+                                  data-google-address
                                   placeholder="Enter your complete business address">{{ old('business_address', $owner->business_address) }}</textarea>
 
                         @error('business_address')
@@ -440,6 +441,7 @@
                         <input type="text"
                                name="address_street"
                                class="form-control"
+                               data-google-address
                                value="{{ old('address_street', $owner->address_street) }}">
 
                         @error('address_street')
@@ -469,6 +471,19 @@
                                value="{{ old('address_state', $owner->address_state) }}">
 
                         @error('address_state')
+                            <div class="text-danger small mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Country</label>
+
+                        <input type="text"
+                               name="address_country"
+                               class="form-control"
+                               value="{{ old('address_country', $owner->address_country) }}">
+
+                        @error('address_country')
                             <div class="text-danger small mt-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -580,4 +595,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 @include('owner.include.footer')
-

@@ -1,4 +1,5 @@
 @include('include.header')
+@include('includes.alerts')
 
 <section class="login-page">
 
@@ -127,12 +128,6 @@ $masked = substr($email,0,3) . '******' . strstr($email,'@');
 @endphp
 
 <p>OTP sent to {{ $masked }}</p>
-
-@if(session('success'))
-<div class="alert alert-success text-center">
-{{ session('success') }}
-</div>
-@endif
 
 <form method="POST" action="{{ route('auth.forgot.otp.post') }}" id="otpFormForgot">
 @csrf

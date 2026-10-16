@@ -26,6 +26,11 @@ class OwnerController extends Controller
             'email' => 'nullable|email|unique:vendors,email',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
+            'address_street' => 'nullable|string|max:255',
+            'address_city' => 'nullable|string|max:255',
+            'address_state' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
+            'address_postal' => 'nullable|string|max:50',
             'status' => 'nullable|boolean',
         ]);
 
@@ -56,6 +61,11 @@ class OwnerController extends Controller
             'email' => 'nullable|email|unique:vendors,email,'.$owner->id,
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
+            'address_street' => 'nullable|string|max:255',
+            'address_city' => 'nullable|string|max:255',
+            'address_state' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
+            'address_postal' => 'nullable|string|max:50',
             'status' => 'nullable|boolean',
         ]);
 

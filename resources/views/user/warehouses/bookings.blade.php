@@ -9,6 +9,9 @@
         </div>
 
     @include('includes.alerts')
+    @error('booking')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
     <div class="card shadow-sm border-0">
                     <div class="card-header bg-color-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
@@ -29,6 +32,7 @@
                         <th>Dates</th>
                         <th>Status</th>
                         <th>Meeting</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +51,7 @@
                                 @endif
                             </td>
                             <td>
-                                <span class="badge bg-{{ $booking->status === 'approved' ? 'success' : ($booking->status === 'declined' ? 'secondary' : ($booking->status === 'meeting_scheduled' ? 'info' : 'warning text-dark')) }}">
+                                <span class="badge bg-{{ $booking->status === 'approved' ? 'success' : ($booking->status === 'declined' ? 'secondary' : ($booking->status === 'cancelled' ? 'dark' : ($booking->status === 'meeting_scheduled' ? 'info' : 'warning text-dark'))) }}">
                                     {{ str_replace('_', ' ', ucfirst($booking->status)) }}
                                 </span>
                             </td>
@@ -61,10 +65,37 @@
                                     —
                                 @endif
                             </td>
+                            <td>
+                                @if(in_array($booking->status, ['pending', 'approved', 'meeting_scheduled'], true)
+                                    && (! $booking->start_date || ! $booking->start_date->isBefore(today())))
+                                    <form method="POST"
+                                          action="{{ route('user.warehouses.requests.cancel', $booking) }}"
+                                          data-confirm-cancel="Cancel this booking? The warehouse owner will be notified and the dates will become available.">
+                                        @csrf
+                                        <input type="text" name="cancellation_reason" class="form-control form-control-sm mb-2" maxlength="1000" placeholder="Optional cancellation note">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button>
+                                    </form>
+                                @else
+                                    <span class="text-muted">—</span>
+                                @endif
+                                @if($booking->warehousePayment)
+                                    <a href="{{ route('user.warehouse-payments.show', $booking->warehousePayment) }}" class="btn btn-sm btn-outline-primary mt-2">
+                                        Invoice · {{ ucfirst(str_replace('_', ' ', $booking->warehousePayment->status)) }}
+                                    </a>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="bg-light">
+                                <details>
+                                    <summary class="text-primary">View booking timeline</summary>
+                                    @include('warehouses.booking-timeline', ['booking' => $booking])
+                                </details>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted py-4">You have not requested a warehouse yet.</td>
+                            <td colspan="6" class="text-center text-muted py-4">You have not requested a warehouse yet.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -79,4 +110,3 @@
 </div>
 
 @include('user.include.footer')
-

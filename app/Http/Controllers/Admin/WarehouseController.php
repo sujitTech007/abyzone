@@ -12,13 +12,28 @@ use Illuminate\View\View;
 
 class WarehouseController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-    
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
 
         $warehouses = Warehouse::query()
+            ->with('owner')
+            ->when(isset($filters['name']), fn ($query) => $query->where('name', 'like', "%{$filters['name']}%"))
+            ->when(isset($filters['location']), function ($query) use ($filters) {
+                $query->where(function ($query) use ($filters) {
+                    $query->where('location', 'like', "%{$filters['location']}%")
+                        ->orWhere('address_city', 'like', "%{$filters['location']}%")
+                        ->orWhere('address_state', 'like', "%{$filters['location']}%")
+                        ->orWhere('address_postal', 'like', "%{$filters['location']}%");
+                });
+            })
             ->orderByDesc('id')
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
         $users = User::where('role', 'vendor')->get();
 
         return view('admin.warehouses.index', compact('warehouses', 'users'));
@@ -240,6 +255,7 @@ class WarehouseController extends Controller
             'address_street' => 'nullable|string|max:255',
             'address_city' => 'nullable|string|max:255',
             'address_state' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
             'address_postal' => 'nullable|string|max:50',
 
             'available_from' => 'nullable|date',

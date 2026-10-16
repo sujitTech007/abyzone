@@ -18,7 +18,7 @@
                 <td>
                     <a href="{{ route('owner.services.show', $s->id) }}" class="btn btn-sm btn-info">View</a>
                     <a href="{{ route('owner.services.edit', $s->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                    <form action="{{ route('owner.services.destroy', $s->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete service?');">
+                    <form action="{{ route('owner.services.destroy', $s->id) }}" method="POST" style="display:inline-block;" data-confirm-delete="Delete this service?">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger">Delete</button>

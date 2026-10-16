@@ -154,7 +154,7 @@
 
                 <div class="col-md-12">
                     <label class="form-label">Street Address</label>
-                    <input type="text" name="address_street" class="form-control" value="{{ old('address_street') }}">
+                    <input type="text" name="address_street" class="form-control" data-google-address value="{{ old('address_street') }}">
                     @error('address_street')<div class="text-danger small">{{ $message }}</div>@enderror
                 </div>
 
@@ -168,6 +168,12 @@
                     <label class="form-label">State/ Territory</label>
                     <input type="text" name="address_state" class="form-control" value="{{ old('address_state') }}">
                     @error('address_state')<div class="text-danger small">{{ $message }}</div>@enderror
+                </div>
+
+                <div class="col">
+                    <label class="form-label">Country</label>
+                    <input type="text" name="address_country" class="form-control" value="{{ old('address_country') }}">
+                    @error('address_country')<div class="text-danger small">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="col">
@@ -274,7 +280,7 @@ document.addEventListener("change", function(e){
 
         // LIMIT IMAGE COUNT
         if(inputs.length > 3){
-            alert("You can upload maximum 3 images.");
+            window.showAppToast("error", "You can upload maximum 3 images.");
             e.target.value = "";
             return;
         }
@@ -283,7 +289,7 @@ document.addEventListener("change", function(e){
         let file = e.target.files[0];
 
         if(file && file.size > 200 * 1024){
-            alert("Image must be less than 200KB");
+            window.showAppToast("error", "Image must be less than 200KB");
             e.target.value = "";
             return;
         }
@@ -342,6 +348,4 @@ window.onload = toggleWarehouseOther;
 
 
 @include('owner.include.footer')
-
-
 

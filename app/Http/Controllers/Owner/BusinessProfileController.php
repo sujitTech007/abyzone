@@ -40,6 +40,7 @@ class BusinessProfileController extends Controller
             'address_street' => 'nullable|string|max:255',
             'address_city' => 'nullable|string|max:255',
             'address_state' => 'nullable|string|max:255',
+            'address_country' => 'nullable|string|max:255',
             'address_postal' => 'nullable|string|max:50',
         ]);
 

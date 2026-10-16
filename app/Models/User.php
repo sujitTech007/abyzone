@@ -35,7 +35,9 @@ class User extends Authenticatable
         'address_street',
         'address_city',
         'address_state',
+        'address_country',
         'address_postal',
+        'business_documents',
     ];
 
     /**
@@ -57,6 +59,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'warehouse_types' => 'array',
+        'business_documents' => 'array',
     ];
     public function warehouses()
     {

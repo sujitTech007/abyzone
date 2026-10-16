@@ -1,4 +1,5 @@
 @include('include.header')
+@include('includes.alerts')
 <section class="hero inner-hero">
 
         <div class="container">
@@ -367,13 +368,7 @@ $(document).ready(function () {
 
             error: function () {
 
-                blogContainer.html(`
-                    <div class="col-12">
-                        <div class="alert alert-danger">
-                            Something went wrong. Please try again.
-                        </div>
-                    </div>
-                `);
+                window.showAppToast('error', 'Something went wrong. Please try again.');
             }
         });
     });

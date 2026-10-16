@@ -26,25 +26,35 @@
                     <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h4 class="header-title mb-0">User Data Table</h4>
 
-                        <div class="d-flex align-items-center flex-wrap gap-2">
-                            <input type="search"
-                                   id="category-search"
-                                   placeholder="Type a keyword..."
-                                   aria-label="Type a keyword..."
-                                   class="form-control"
-                                   style="width: 220px;">
-
-                            <a href="{{ route('admin.users') }}"
-                               class="btn btn-success">
-                                <i class="fas fa-redo-alt me-1"></i> Reset
-                            </a>
-
-                            <a href="{{ route('admin.users.create') }}"
-                               class="btn btn-primary">
-                                <i class="fas fa-plus me-1"></i> Create User
-                            </a>
-                        </div>
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-1"></i> Create User
+                        </a>
                     </div>
+
+                    <form method="GET" action="{{ route('admin.users') }}" class="row g-2 align-items-end mt-2">
+                        <div class="col-6 col-md-4 col-xl">
+                            <input type="search" name="name" value="{{ request('name') }}" placeholder="Name" aria-label="Filter by name" class="form-control">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                            <input type="search" name="email" value="{{ request('email') }}" placeholder="Email" aria-label="Filter by email" class="form-control">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                            <input type="search" name="phone" value="{{ request('phone') }}" placeholder="Phone" aria-label="Filter by phone" class="form-control">
+                        </div>
+                        <div class="col-6 col-md-4 col-xl">
+                            <select name="role" aria-label="Filter by user type" class="form-select">
+                                <option value="">All user types</option>
+                                <option value="customer" @selected(request('role') === 'customer')>Customer</option>
+                                <option value="vendor" @selected(request('role') === 'vendor')>Vendor</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i> Search</button>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{{ route('admin.users') }}" class="btn btn-outline-secondary"><i class="fas fa-redo-alt me-1"></i> Reset</a>
+                        </div>
+                    </form>
 
                     @include('includes.alerts')
                 </div>
@@ -60,6 +70,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th class="text-center" width="150">Actions</th>
@@ -80,6 +91,7 @@
                                         </td>
 
                                         <td>{{ $u->email }}</td>
+                                        <td>{{ $u->phone ?: '—' }}</td>
 
                                         <td>
                                             <span class="badge bg-info-subtle text-info p-1">
@@ -111,7 +123,7 @@
                                                 <form action="{{ route('admin.users.destroy', $u->id) }}"
                                                       method="POST"
                                                       class="d-inline-block"
-                                                      onsubmit="return confirm('Delete user?');">
+                                                      data-confirm-delete="Delete user?">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -127,7 +139,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6"
+                                        <td colspan="7"
                                             class="text-center text-muted py-4">
                                             No users found yet.
                                         </td>
@@ -227,7 +239,7 @@
 
                                                     <form action="{{ route('admin.users.destroy', $u->id) }}"
                                                         method="POST" style="display:inline-block;"
-                                                        onsubmit="return confirm('Delete user?');">
+                                                        data-confirm-delete="Delete user?">
 
                                                         @csrf
 
@@ -257,20 +269,4 @@
         </div>
     </div>
 </div> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
-
-
 @include('admin.include.footer')

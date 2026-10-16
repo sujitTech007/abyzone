@@ -13,13 +13,20 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-    
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'category' => 'nullable|in:Logistics,Green Practices,Scalability,Warehouse,AI Warehouse',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
 
         $blogs = Blog::query()
+            ->when(isset($filters['title']), fn ($query) => $query->where('title', 'like', "%{$filters['title']}%"))
+            ->when(isset($filters['category']), fn ($query) => $query->where('category', $filters['category']))
             ->orderByDesc('id')
-            ->paginate('10');
+            ->paginate(10)
+            ->withQueryString();
 
         return view('admin.blog.index', compact('blogs'));
     }

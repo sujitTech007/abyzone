@@ -10,26 +10,30 @@
                 <p class="text-muted mb-0">Manage your blog posts and content.</p>
             </div>
 
-            {{-- Search and Actions --}}
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <input type="search"
-                       id="category-search"
-                       placeholder="Type a keyword..."
-                       aria-label="Type a keyword..."
-                       class="form-control"
-                       style="width: 220px;">
-
-                <a href="{{ route('admin.blog') }}"
-                   class="btn btn-success">
-                    <i class="fas fa-redo-alt me-1"></i> Reset
-                </a>
-
-                <a href="{{ route('admin.blog.create') }}"
-                   class="btn btn-primary">
+            <a href="{{ route('admin.blog.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus me-1"></i> Add Blog
-                </a>
-            </div>
+            </a>
         </div>
+
+        <form method="GET" action="{{ route('admin.blog') }}" class="row g-2 align-items-end mb-3">
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="title" value="{{ request('title') }}" placeholder="Title" aria-label="Filter by title" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <select name="category" aria-label="Filter by category" class="form-select">
+                    <option value="">All categories</option>
+                    @foreach (['Logistics', 'Green Practices', 'Scalability', 'Warehouse', 'AI Warehouse'] as $category)
+                        <option value="{{ $category }}" @selected(request('category') === $category)>{{ $category }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i> Search</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('admin.blog') }}" class="btn btn-outline-secondary"><i class="fas fa-redo-alt me-1"></i> Reset</a>
+            </div>
+        </form>
 
         @include('includes.alerts')
 
@@ -119,7 +123,7 @@
                                             <form action="{{ route('admin.blog.destroy', $blog) }}"
                                                   method="POST"
                                                   class="d-inline-block"
-                                                  onsubmit="return confirm('Delete this warehouse?');">
+                                                  data-confirm-delete="Delete this blog post?">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -158,21 +162,4 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
-
-
 @include('owner.include.footer')
-

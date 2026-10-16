@@ -9,9 +9,20 @@ use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service::orderBy('id', 'desc')->paginate(15);
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+        $filters = array_filter($validated, fn ($value) => filled($value));
+
+        $services = Service::query()
+            ->when(isset($filters['title']), fn ($query) => $query->where('title', 'like', "%{$filters['title']}%"))
+            ->when(isset($filters['description']), fn ($query) => $query->where('description', 'like', "%{$filters['description']}%"))
+            ->orderByDesc('id')
+            ->paginate(15)
+            ->withQueryString();
         return view('admin.services.index', compact('services'));
     }
 

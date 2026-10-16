@@ -28,8 +28,15 @@ class BookingStatusMail extends Mailable
      */
     public function build()
     {
-        $subject = "Your booking request has been {$this->status}";
+        $subject = match ($this->status) {
+            'approved' => "Booking confirmed | ABYzone #{$this->booking->id}",
+            'declined' => "Booking request update | ABYzone #{$this->booking->id}",
+            'meeting_scheduled' => "Meeting details | ABYzone #{$this->booking->id}",
+            'cancelled' => "Booking cancelled | ABYzone #{$this->booking->id}",
+            default => "Booking status update | ABYzone #{$this->booking->id}",
+        };
+
         return $this->subject($subject)
-                    ->view('emails.booking-status');
+            ->view('emails.booking-status');
     }
 }

@@ -85,7 +85,7 @@
 
                     <a href="{{ route('admin.owners.edit', $o->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                    <form action="{{ route('admin.owners.destroy', $o->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete owner?');">
+                    <form action="{{ route('admin.owners.destroy', $o->id) }}" method="POST" style="display:inline-block;" data-confirm-delete="Delete this owner?">
 
                         @csrf
 
@@ -120,4 +120,3 @@
 
 
 @include('admin.include.footer')
-

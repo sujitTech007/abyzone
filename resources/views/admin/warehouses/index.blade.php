@@ -7,25 +7,25 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
             <h4 class="fs-18 fw-bold mb-0">Warehouses</h4>
 
-            <div class="d-flex align-items-center flex-wrap gap-2">
-                <input type="search"
-                       id="category-search"
-                       placeholder="Type a keyword..."
-                       aria-label="Type a keyword..."
-                       class="form-control"
-                       style="width: 220px;">
-
-                <a href="{{ route('admin.warehouses') }}"
-                   class="btn btn-success">
-                    <i class="fas fa-redo-alt me-1"></i> Reset
-                </a>
-
-                <a href="{{ route('admin.warehouses.create') }}"
-                   class="btn btn-primary">
+            <a href="{{ route('admin.warehouses.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus me-1"></i> Add Warehouse
-                </a>
-            </div>
+            </a>
         </div>
+
+        <form method="GET" action="{{ route('admin.warehouses') }}" class="row g-2 align-items-end mb-3">
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="name" value="{{ request('name') }}" placeholder="Warehouse name" aria-label="Filter by warehouse name" class="form-control">
+            </div>
+            <div class="col-6 col-md-4 col-xl">
+                <input type="search" name="location" value="{{ request('location') }}" placeholder="Location" aria-label="Filter by location" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search me-1"></i> Search</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('admin.warehouses') }}" class="btn btn-outline-secondary"><i class="fas fa-redo-alt me-1"></i> Reset</a>
+            </div>
+        </form>
 
         @include('includes.alerts')
 
@@ -93,10 +93,11 @@
 
                                     {{-- Address --}}
                                     <td>
-                                        @if($warehouse->address_street || $warehouse->address_city || $warehouse->address_state || $warehouse->address_postal)
+                                        @if($warehouse->address_street || $warehouse->address_city || $warehouse->address_state || $warehouse->address_country || $warehouse->address_postal)
                                             {{ $warehouse->address_street ?? '' }}
                                             {{ $warehouse->address_city ?? '' }}
                                             {{ $warehouse->address_state ?? '' }}
+                                            {{ $warehouse->address_country ?? '' }}
                                             {{ $warehouse->address_postal ?? '' }}
                                         @else
                                             {{ Str::limit($warehouse->address ?? '—', 50) }}
@@ -151,7 +152,7 @@
                                             <form action="{{ route('admin.warehouses.destroy', $warehouse) }}"
                                                   method="POST"
                                                   class="d-inline-block"
-                                                  onsubmit="return confirm('Delete this warehouse?');">
+                                                  data-confirm-delete="Delete this warehouse?">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -189,20 +190,4 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#category-search').on('keyup', function() {
-        var value = $(this).val().toLowerCase();
-
-        $('#basic-datatable tbody tr').filter(function() {
-            $(this).toggle(
-                $(this).text().toLowerCase().indexOf(value) > -1
-            );
-        });
-    });
-});
-</script>
-
 @include('owner.include.footer')
-

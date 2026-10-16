@@ -16,18 +16,15 @@
 
 
     <div class="container">
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
+        @include('includes.alerts')
 
         @yield('content')
     </div>
 
 <!-- Bootstrap JS (CDN) -->
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
+<script src="{{ asset('assets/js/delete-confirmations.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

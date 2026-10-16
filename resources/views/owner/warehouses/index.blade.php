@@ -35,9 +35,39 @@
         <div class="card shadow-sm border-0">
             <div class="card-header bg-color-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div>
-                    <h5 class="mb-0">Recent Booking Requests</h5>
-                    <small class="text-muted">Track status and meeting schedules.</small>
+                    <h5 class="mb-0">Your Warehouses</h5>
+                    <small class="text-muted">Filter your warehouses by name, location, and availability.</small>
                 </div>
+            </div>
+            <div class="card-body">
+                <form method="GET" action="{{ route('owner.warehouses.index') }}" class="row g-2 mb-3">
+                    <div class="col-md-3">
+                        <label for="warehouse-name" class="form-label">Warehouse name</label>
+                        <input id="warehouse-name" type="search" name="name" value="{{ $filters['name'] }}"
+                               class="form-control" placeholder="Warehouse name">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="warehouse-location" class="form-label">Location</label>
+                        <input id="warehouse-location" type="search" name="location" value="{{ $filters['location'] }}"
+                               class="form-control" placeholder="Location">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="warehouse-availability" class="form-label">Availability</label>
+                        <select id="warehouse-availability" name="availability" class="form-select">
+                            <option value="">All availability</option>
+                            <option value="available" @selected($filters['availability'] === 'available')>Available</option>
+                            <option value="unavailable" @selected($filters['availability'] === 'unavailable')>Unavailable</option>
+                            <option value="draft" @selected($filters['availability'] === 'draft')>Draft</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-1 mt-4">
+                        <button type="submit" class="btn theme_btn">Search</button>
+                    </div>
+                    <div class="col-md-1 mt-4">
+                        <a href="{{ route('owner.warehouses.index') }}" class="btn btn-outline-secondary">Reset</a>
+                    </div>
+                </form>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -102,7 +132,7 @@
                                             <form action="{{ route('owner.warehouses.destroy', $warehouse) }}"
                                                 method="POST"
                                                 class="d-inline-block"
-                                                onsubmit="return confirm('Delete this warehouse?');">
+                                                data-confirm-delete="Delete this warehouse?">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -135,4 +165,3 @@
 </div>
 
 @include('owner.include.footer')
-

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class WarehouseBooking extends Model
 {
@@ -14,6 +15,7 @@ class WarehouseBooking extends Model
     public const STATUS_APPROVED = 'approved';
     public const STATUS_DECLINED = 'declined';
     public const STATUS_MEETING = 'meeting_scheduled';
+    public const STATUS_CANCELLED = 'cancelled';
 
     protected $guarded = [];
 
@@ -37,5 +39,18 @@ class WarehouseBooking extends Model
     {
         return $this->belongsTo(User::class, 'customer_id');
     }
-}
 
+    public function timelineEvents(): HasMany
+    {
+        return $this->hasMany(WarehouseBookingEvent::class)
+            ->with('actor')
+            ->orderBy('created_at')
+            ->orderBy('id');
+    }
+
+    public function warehousePayment(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(WarehousePayment::class);
+    }
+
+}

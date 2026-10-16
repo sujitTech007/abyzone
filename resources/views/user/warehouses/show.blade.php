@@ -26,15 +26,15 @@
                                     {{ $warehouse->location ?? 'Location not provided' }}
                                 </p>
 
-                                @if($warehouse->user)
+                                @if($warehouse->owner)
                                     <div class="small text-muted">
                                         <span class="me-3">
                                             <i class="fa-solid fa-user me-1"></i>
-                                            {{ $warehouse->user->name }}
+                                            {{ $warehouse->owner->name }}
                                         </span>
                                         <span>
                                             <i class="fa-solid fa-building me-1"></i>
-                                            {{ $warehouse->user->business_name ?? 'N/A' }}
+                                            {{ $warehouse->owner->business_name ?? 'N/A' }}
                                         </span>
                                     </div>
                                 @endif
@@ -263,6 +263,12 @@
                     </div>
                 </div>
 
+                @include('warehouses.booking-calendar', [
+                    'bookedDateRanges' => $bookedDateRanges,
+                    'startInputId' => 'booking-start-date',
+                    'endInputId' => 'booking-end-date',
+                ])
+
                 {{-- Service template --}}
                 @if($warehouse->service_template)
                     <div class="card border-0 shadow-sm mb-4">
@@ -312,7 +318,7 @@
 
                                 <div class="mb-2">
                                     <label class="form-label fw-semibold">Start Date <span class="text-danger">*</span></label>
-                                    <input type="date" name="start_date"
+                                    <input type="date" id="booking-start-date" name="start_date"
                                            class="form-control form-field"
                                            value="{{ old('start_date') }}" required>
                                     @error('start_date')
@@ -322,7 +328,7 @@
 
                                 <div class="mb-2">
                                     <label class="form-label fw-semibold">End Date</label>
-                                    <input type="date" name="end_date"
+                                    <input type="date" id="booking-end-date" name="end_date"
                                            class="form-control form-field"
                                            value="{{ old('end_date') }}">
                                     @error('end_date')
@@ -454,4 +460,3 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 @endif
 @include('user.include.footer')
-

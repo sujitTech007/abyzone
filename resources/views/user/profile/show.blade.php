@@ -52,13 +52,16 @@
 
                         <div class="profile-summary-item">
                             <span class="profile-summary-label">
-                                <i class="fa-solid fa-location-dot me-2"></i>City / Province
+                                <i class="fa-solid fa-location-dot me-2"></i>Business Address
                             </span>
                             <div class="profile-summary-value">
-                                {{ $user->address_city ?? 'Not provided' }}
-                                @if($user->address_state)
-                                    , {{ $user->address_state }}
-                                @endif
+                                {{ collect([
+                                    $user->address_street,
+                                    $user->address_city,
+                                    $user->address_state,
+                                    $user->address_postal,
+                                    $user->address_country,
+                                ])->filter()->implode(', ') ?: 'Not provided' }}
                             </div>
                         </div>
 
@@ -84,6 +87,14 @@
                                 {!! nl2br(e($user->product_details ?: 'No product details added.')) !!}
                             </div>
                         </div>
+                        <div class="mt-3 p-3 bg-white rounded-3 border">
+                            <div class="small text-muted mb-1">Business Type</div>
+                            <div class="fw-medium">{{ $user->business_type ?: 'Not added' }}</div>
+                        </div>
+                        <div class="mt-3 p-3 bg-white rounded-3 border">
+                            <div class="small text-muted mb-1">Storage Duration</div>
+                            <div class="fw-medium">{{ $user->turnaround_time ?: 'Not added' }}</div>
+                        </div>
 
                     </div>
                 </div>
@@ -100,15 +111,28 @@
                         role="tablist">
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active"
+                            <button class="nav-link {{ old('profile_tab') === 'documents' ? '' : 'active' }}"
                                     id="update-profile-tab"
                                     data-bs-toggle="tab"
                                     data-bs-target="#update-profile"
                                     type="button"
                                     role="tab"
                                     aria-controls="update-profile"
-                                    aria-selected="true">
+                                    aria-selected="{{ old('profile_tab') === 'documents' ? 'false' : 'true' }}">
                                 <i class="fa-solid fa-user-pen me-2"></i>Update Profile
+                            </button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ old('profile_tab') === 'documents' ? 'active' : '' }}"
+                                    id="business-documents-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#business-documents"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="business-documents"
+                                    aria-selected="{{ old('profile_tab') === 'documents' ? 'true' : 'false' }}">
+                                <i class="fa-solid fa-file-shield me-2"></i>Business Documents
                             </button>
                         </li>
 
@@ -142,7 +166,7 @@
                     <div class="tab-content" id="profileTabsContent">
 
                         {{-- UPDATE PROFILE TAB --}}
-                        <div class="tab-pane fade show active"
+                        <div class="tab-pane fade {{ old('profile_tab') === 'documents' ? '' : 'show active' }}"
                              id="update-profile"
                              role="tabpanel"
                              aria-labelledby="update-profile-tab">
@@ -237,6 +261,30 @@
                                                 @enderror
                                             </div>
 
+                                            <div class="col-md-6">
+                                                <label class="form-label">Business Type</label>
+                                                <input type="text"
+                                                       name="business_type"
+                                                       class="form-control"
+                                                       value="{{ old('business_type', $user->business_type) }}"
+                                                       placeholder="e.g. Retail, Manufacturing">
+                                                @error('business_type')
+                                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="form-label">Storage Duration</label>
+                                                <input type="text"
+                                                       name="turnaround_time"
+                                                       class="form-control"
+                                                       value="{{ old('turnaround_time', $user->turnaround_time) }}"
+                                                       placeholder="e.g. 3 months, weekly dispatch">
+                                                @error('turnaround_time')
+                                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
                                             <div class="col-12">
                                                 <label class="form-label">Products to be Stored</label>
                                                 <textarea name="product_details"
@@ -272,6 +320,7 @@
                                                 <input type="text"
                                                        name="address_street"
                                                        class="form-control"
+                                                       data-google-address
                                                        value="{{ old('address_street', $user->address_street) }}">
                                                 @error('address_street')
                                                     <div class="text-danger small mt-1">{{ $message }}</div>
@@ -296,6 +345,17 @@
                                                        class="form-control"
                                                        value="{{ old('address_state', $user->address_state) }}">
                                                 @error('address_state')
+                                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Country</label>
+                                                <input type="text"
+                                                       name="address_country"
+                                                       class="form-control"
+                                                       value="{{ old('address_country', $user->address_country) }}">
+                                                @error('address_country')
                                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -366,6 +426,96 @@
                                 </div>
 
                             </form>
+                        </div>
+
+                        {{-- BUSINESS DOCUMENTS TAB --}}
+                        <div class="tab-pane fade {{ old('profile_tab') === 'documents' ? 'show active' : '' }}"
+                             id="business-documents"
+                             role="tabpanel"
+                             aria-labelledby="business-documents-tab">
+
+                            <div class="mb-3">
+                                <h4 class="fw-semibold mb-1">Business Documents</h4>
+                                <p class="text-muted small">
+                                    Upload and manage private business documents. Only you can download or remove these files.
+                                    Accepted formats: PDF, JPG, PNG, WEBP, DOC, DOCX; up to 10 MB each.
+                                </p>
+                            </div>
+
+                            <div class="card profile-form-card border-0 shadow-sm mb-4">
+                                <div class="card-body p-3 p-md-4">
+                                    <form method="POST"
+                                          action="{{ route('user.profile.documents.store') }}"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="profile_tab" value="documents">
+                                        <label for="business-documents-upload" class="form-label">Choose documents</label>
+                                        <input id="business-documents-upload"
+                                               type="file"
+                                               name="documents[]"
+                                               class="form-control"
+                                               accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx"
+                                               multiple
+                                               required>
+                                        <div class="form-text">You can upload up to 5 documents at a time.</div>
+                                        @error('documents')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                        @foreach($errors->get('documents.*') as $documentErrors)
+                                            @foreach($documentErrors as $message)
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            @endforeach
+                                        @endforeach
+                                        <button type="submit" class="btn theme_btn mt-3">
+                                            <i class="fa-solid fa-upload me-2"></i>Upload Documents
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card profile-form-card border-0 shadow-sm">
+                                <div class="card-body p-3 p-md-4">
+                                    <h6 class="section-heading mb-3">Your Documents</h6>
+                                    @forelse($user->business_documents ?? [] as $documentId => $document)
+                                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 py-3 border-bottom">
+                                            <div class="text-break">
+                                                <div class="fw-semibold">{{ $document['name'] }}</div>
+                                                <small class="text-muted">
+                                                    {{ number_format(($document['size'] ?? 0) / 1024, 1) }} KB
+                                                    @if(!empty($document['uploaded_at']))
+                                                        · Uploaded {{ \Illuminate\Support\Carbon::parse($document['uploaded_at'])->format('d M Y') }}
+                                                    @endif
+                                                </small>
+                                            </div>
+                                            <div class="d-flex gap-2">
+                                                @if(in_array($document['mime_type'] ?? '', ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'], true))
+                                                    <a href="{{ route('user.profile.documents.view', $documentId) }}"
+                                                       class="btn btn-sm btn-outline-primary"
+                                                       target="_blank"
+                                                       rel="noopener">
+                                                        <i class="fa-solid fa-eye me-1"></i>View
+                                                    </a>
+                                                @endif
+                                                <a href="{{ route('user.profile.documents.download', $documentId) }}"
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fa-solid fa-download me-1"></i>Download
+                                                </a>
+                                                <form method="POST"
+                                                      action="{{ route('user.profile.documents.destroy', $documentId) }}"
+                                                      data-confirm-delete="Delete this business document?">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="fa-solid fa-trash me-1"></i>Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <p class="text-muted mb-0">No business documents uploaded yet.</p>
+                                    @endforelse
+                                </div>
+                            </div>
                         </div>
 
                         {{-- BILLING INFO TAB --}}
@@ -460,4 +610,3 @@
 </div>
 
 @include('user.include.footer')
-

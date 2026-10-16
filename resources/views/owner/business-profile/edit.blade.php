@@ -40,7 +40,8 @@
 
         <div class="mb-3">
             <label class="form-label">Full Name</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name', $owner->name) }}" required>
+            <input type="text" name="name"             class="form-control"
+            value="{{ old('name', $owner->name) }}" required>
             @error('name')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
 
@@ -76,7 +77,7 @@
 
         <div class="mb-3">
             <label class="form-label">Business Address</label>
-            <textarea name="business_address" class="form-control" rows="3">{{ old('business_address', $owner->business_address) }}</textarea>
+            <textarea name="business_address" class="form-control" rows="3" data-google-address>{{ old('business_address', $owner->business_address) }}</textarea>
             @error('business_address')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
         
@@ -163,7 +164,7 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label">Street Address</label>
-                    <input type="text" name="address_street" class="form-control" value="{{ old('address_street', $owner->address_street) }}">
+                    <input type="text" name="address_street" class="form-control" data-google-address value="{{ old('address_street', $owner->address_street) }}">
                     @error('address_street')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
             </div>
@@ -179,6 +180,13 @@
                     <label class="form-label">State / Territory</label>
                     <input type="text" name="address_state" class="form-control" value="{{ old('address_state', $owner->address_state) }}">
                     @error('address_state')<div class="text-danger">{{ $message }}</div>@enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Country</label>
+                    <input type="text" name="address_country" class="form-control" value="{{ old('address_country', $owner->address_country) }}">
+                    @error('address_country')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -227,4 +235,3 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 @include('owner.include.footer')
-

@@ -1,4 +1,5 @@
 @include('include.header')
+@include('includes.alerts')
     <section class="hero inner-hero">
 
         <div class="container">
@@ -39,7 +40,7 @@
             <div class="col-xl-3 col-lg-4">
                 <aside class="warehouse-filter">
 
-                    <form id="warehouseFilterForm">
+                    <form id="warehouseFilterForm" method="GET" action="{{ route('explore') }}">
                         @if(is_string(request('location')) && request('location') !== '')
                             <input type="hidden" name="home_location" id="homeLocationFilter" value="{{ request('location') }}">
                         @endif
@@ -56,6 +57,32 @@
                             <h5 class="mb-0 fw-bold fs-6 text-dark">Filter Results</h5>
                         </div>
 
+                        <div class="filter-group">
+                            <label class="filter-title" for="warehouseSearch">
+                                <i class="fas fa-search"></i>
+                                Warehouse name
+                            </label>
+                            <input type="search"
+                                   class="form-control form-control-sm"
+                                   name="search"
+                                   id="warehouseSearch"
+                                   placeholder="Search by name or location"
+                                   value="{{ request('search') }}">
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-title" for="warehouseAvailability">
+                                <i class="fas fa-calendar-check"></i>
+                                Availability
+                            </label>
+                            <select class="form-select form-select-sm"
+                                    name="availability"
+                                    id="warehouseAvailability">
+                                <option value="">Any availability</option>
+                                <option value="now" @selected(request('availability') === 'now')>Available now</option>
+                                <option value="upcoming" @selected(request('availability') === 'upcoming')>Upcoming availability</option>
+                            </select>
+                        </div>
 
                         {{-- ================= LOCATION ================= --}}
                         <div class="filter-group">
@@ -190,12 +217,11 @@
 
                             <select class="form-select form-select-sm mb-3"
                                     name="size_select">
-                                <option value="">0 - 500 sq ft</option>
-                                <option value="">500 - 50,000 sq ft</option>
-                                <option value="500-1000">500 - 1,000 sq ft</option>
-                                <option value="1000-5000">1,000 - 5,000 sq ft</option>
-                                <option value="5000-10000">5,000 - 10,000 sq ft</option>
-                                <option value="10000-50000">10,000 - 50,000 sq ft</option>
+                                <option value="">Any size</option>
+                                <option value="500-1000" @selected(request('size_select') === '500-1000')>500 - 1,000 sq ft</option>
+                                <option value="1000-5000" @selected(request('size_select') === '1000-5000')>1,000 - 5,000 sq ft</option>
+                                <option value="5000-10000" @selected(request('size_select') === '5000-10000')>5,000 - 10,000 sq ft</option>
+                                <option value="10000-50000" @selected(request('size_select') === '10000-50000')>10,000 - 50,000 sq ft</option>
 
                             </select>
 
@@ -318,14 +344,13 @@
                         </div>
 
 
-                        {{-- CLEAR FILTER --}}
-                        <a href="{{ route('explore') }}"
-                            
-                                class="btn theme_btn w-100 rounded-pill mt-2">
-
+                        <button type="submit" class="btn theme_btn w-100 rounded-pill mt-2">
+                            <i class="fas fa-search me-1"></i>
+                            Apply Filters
+                        </button>
+                        <a href="{{ route('explore') }}" class="btn btn-outline-secondary w-100 rounded-pill mt-2">
                             <i class="fas fa-sync-alt me-1"></i>
                             Clear Filters
-
                         </a>
 
                     </form>
@@ -380,8 +405,8 @@
                                 Price: High to Low
                             </option>
 
-                            <option value="rating">
-                                Highest Rated
+                            <option value="name">
+                                Name
                             </option>
 
                         </select>
@@ -464,6 +489,16 @@
 
                                     </div>
 
+                                    <div class="warehouse-meta mb-2">
+                                        <span>
+                                            <i class="far fa-calendar-check"></i>
+                                            Available
+                                            {{ $warehouse->available_from
+                                                ? 'from ' . $warehouse->available_from->format('M j, Y')
+                                                : 'now' }}
+                                        </span>
+                                    </div>
+
 
                                     {{-- TYPE + SIZE --}}
                                     <div class="row g-2 warehouse-info">
@@ -473,7 +508,7 @@
                                             <span>
                                                 <i class="fas fa-cube"></i>
 
-                                                {{ $warehouse->storage_type ?? 'Dry Storage' }}
+                                                {{ $warehouse->storage_type ?? $warehouse->warehouse_type ?? 'Storage type not specified' }}
 
                                             </span>
 
@@ -488,6 +523,10 @@
 
                                                     {{ number_format($warehouse->size_sqft, 0) }}
                                                     sq ft
+
+                                                @elseif($warehouse->capacity_quantity)
+                                                    {{ number_format($warehouse->capacity_quantity, 0) }}
+                                                    {{ $warehouse->capacity_unit }}
 
                                                 @elseif($warehouse->capacity_units)
 
@@ -513,7 +552,7 @@
                                         <div class="warehouse-price">
 
 
-                                            @if($warehouse->price_value)
+                                            @if($warehouse->price_value !== null && $warehouse->price_unit)
 
                                                 ${{ number_format($warehouse->price_value, 2) }}
 
@@ -521,12 +560,14 @@
                                                     /{{ Str::afterLast($warehouse->price_unit, '/') }}
                                                 </small>
 
-                                            @else
+                                            @elseif($warehouse->price_per_month !== null)
 
-                                                ${{ number_format($warehouse->price_per_month ?? 0, 0) }}
+                                                ${{ number_format($warehouse->price_per_month, 0) }}
 
                                                 <small>/month</small>
 
+                                            @else
+                                                Contact owner
                                             @endif
 
                                         </div>
@@ -534,15 +575,8 @@
 
                                         <div class="warehouse-rating">
 
-                                            <i class="fas fa-star"></i>
-
-                                            <strong>
-                                                4.9
-                                            </strong>
-
-                                            <small>
-                                                ({{ $warehouse->reviews_count ?? 0 }})
-                                            </small>
+                                            <i class="fas fa-check-circle text-success"></i>
+                                            <strong>Available</strong>
 
                                         </div>
 
@@ -552,20 +586,11 @@
                                     {{-- AMENITIES --}}
                                     <div class="warehouse-features mt-3">
 
-                                        <span>
-                                            <i class="fas fa-shield-alt"></i>
-                                            24/7 Security
-                                        </span>
-
-                                        <span>
-                                            <i class="fas fa-truck-loading"></i>
-                                            Loading Dock
-                                        </span>
-
-                                        <span>
-                                            <i class="fas fa-forklift"></i>
-                                            Forklift Access
-                                        </span>
+                                        @forelse(collect($warehouse->infra_amenities ?? [])->take(3) as $amenity)
+                                            <span><i class="fas fa-check"></i> {{ $amenity }}</span>
+                                        @empty
+                                            <span class="text-muted">No facility details provided</span>
+                                        @endforelse
 
                                     </div>
 
@@ -659,6 +684,7 @@
 ========================================================= --}}
 
 
+@push('scripts')
 <script>
 
 $(document).ready(function () {
@@ -669,6 +695,12 @@ $(document).ready(function () {
     ========================================= */
 
     let warehouseRequest;
+    let warehouseSearchTimer;
+
+    $('#warehouseFilterForm').on('submit', function (event) {
+        event.preventDefault();
+        fetchWarehouses();
+    });
 
     $('#warehouseFilterForm').on('change', 'input, select', function () {
         if (this.name === 'location_select') {
@@ -694,33 +726,28 @@ $(document).ready(function () {
         fetchWarehouses();
     });
 
+    $('#warehouseSearch').on('input', function () {
+        window.clearTimeout(warehouseSearchTimer);
+        warehouseSearchTimer = window.setTimeout(fetchWarehouses, 300);
+    });
+
 
     /* =========================================
        LOCATION SEARCH
     ========================================= */
 
-    $('#locationSearch').on('keyup', function () {
-
-        let value = $(this).val().toLowerCase();
+    $('#locationSearch').on('input', function () {
+        const value = $(this).val().toLowerCase().trim();
+        let visibleCount = 0;
 
         $('#locationFilters .warehouse-check').each(function () {
-
-            let text = $(this).text().toLowerCase();
-
-            $(this).toggle(text.indexOf(value) > -1);
-
+            const matches = $(this).text().toLowerCase().includes(value);
+            $(this).toggle(matches);
+            if (matches) visibleCount++;
         });
 
+        $('#locationFilters').toggle(value !== '' && visibleCount > 0);
     });
-
-
-    /* =========================================
-       LOCATION SELECT
-    ========================================= */
-
-    /* =========================================
-       AJAX FILTER
-    ========================================= */
 
     function fetchWarehouses() {
 
@@ -761,7 +788,8 @@ $(document).ready(function () {
 
                     $('#warehouseResults').html(response.html);
                     $('#warehouseResultCount').text(response.count);
-
+                } else {
+                    window.showAppToast('error', 'Warehouse results could not be loaded. Please try again.');
                 }
 
             },
@@ -771,14 +799,7 @@ $(document).ready(function () {
                     return;
                 }
 
-                $('#warehouseResults').html(`
-                    <div class="col-12">
-                        <div class="alert alert-danger text-center">
-                            Unable to load warehouses.
-                            Please try again.
-                        </div>
-                    </div>
-                `);
+                window.showAppToast('error', 'Unable to load warehouses. Please try again.');
 
             }
 
@@ -787,67 +808,9 @@ $(document).ready(function () {
     }
 
     $('#warehouseSort').on('change', fetchWarehouses);
-
-
-    /* =========================================
-       CLEAR FILTERS
-    ========================================= */
-
-    $('#clearWarehouseFilters').on('click', function () {
-
-        $('#warehouseFilterForm')[0].reset();
-        $('#warehouseSort').val('relevant');
-
-        $('#locationFilters .warehouse-check').show();
-
-        fetchWarehouses();
-
-    });
-
-
 });
 
 </script>
-<script>
-    const searchInput = document.getElementById('locationSearch');
-    const locationFilters = document.getElementById('locationFilters');
-    const locations = document.querySelectorAll('.warehouse-check');
-
-    searchInput.addEventListener('input', function () {
-
-        const searchValue = this.value.toLowerCase().trim();
-        let hasMatch = false;
-
-        // Search empty hai to dropdown hide
-        if (searchValue === '') {
-            locationFilters.style.display = 'none';
-            return;
-        }
-
-        locations.forEach(function (item) {
-
-            const locationName = item
-                .querySelector('.form-check-label')
-                .textContent
-                .toLowerCase();
-
-            if (locationName.includes(searchValue)) {
-                item.style.display = 'block';
-                hasMatch = true;
-            } else {
-                item.style.display = 'none';
-            }
-        });
-
-        // Match mila to dropdown show
-        if (hasMatch) {
-            locationFilters.style.display = 'block';
-        } else {
-            locationFilters.style.display = 'none';
-        }
-    });
-</script>
-
-
+@endpush
 
      @include('include.footer')
