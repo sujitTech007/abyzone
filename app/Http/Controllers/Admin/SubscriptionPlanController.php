@@ -15,6 +15,7 @@ class SubscriptionPlanController extends Controller
     {
         $plans = SubscriptionPlan::query()
             ->orderBy('sort_order')
+            ->orderBy('name')
             ->paginate(15);
 
         return view('admin.subscription-plans.index', compact('plans'));
