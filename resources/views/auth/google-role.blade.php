@@ -21,6 +21,12 @@
                     Vendor
                 </label>
             </div>
+             <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="role" value="channel_partner" id="channel_partner">
+                <label class="form-check-label" for="channel_partner">
+                    Channel Partner
+                </label>
+            </div>
             </div>
 
             @error('role')

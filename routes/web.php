@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\WarehouseBookingController as AdminWarehouseBooki
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\OwnerController as AdminOwnerController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\SubscriptionPlanController as AdminSubscriptionPlanController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
@@ -27,7 +28,10 @@ use App\Http\Controllers\Owner\PaymentController as OwnerPaymentController;
 use App\Http\Controllers\Owner\WarehouseController as OwnerWarehouseController;
 use App\Http\Controllers\User\WarehouseController as UserWarehouseController; 
 use App\Http\Controllers\Owner\ConfirmedBookingController as OwnerConfirmedBookingController; 
+use App\Http\Controllers\Owner\WarehousePaymentController as OwnerWarehousePaymentController;
 use App\Http\Controllers\User\WarehousePaymentController as UserWarehousePaymentController;
+use App\Http\Controllers\ChannelPartner\ChannelPartnerController;
+use App\Http\Controllers\ServiceRequirementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +50,7 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/services', [PagesController::class, 'services'])->name('services');
+Route::get('/plans', [PagesController::class, 'plans'])->name('plans');
 Route::view('/terms-and-conditions', 'terms-and-conditions')->name('terms');
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 Route::post('/subscribe/store', [PagesController::class, 'subscribeStore'])->name('subscribe.store');
@@ -153,6 +158,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
         'update' => 'services.update',
         'destroy' => 'services.destroy',
     ]);
+    Route::resource('subscription-plans', AdminSubscriptionPlanController::class)->names([
+        'index' => 'subscription-plans.index',
+        'create' => 'subscription-plans.create',
+        'store' => 'subscription-plans.store',
+        'show' => 'subscription-plans.show',
+        'edit' => 'subscription-plans.edit',
+        'update' => 'subscription-plans.update',
+        'destroy' => 'subscription-plans.destroy',
+    ]);
 
     // Admin categories resource routes
     Route::resource('category', AdminCategoryController::class)->names([
@@ -217,6 +231,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
 // ============================================================
 Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->group(function () {
     Route::get('/dashboard', [UserPagesController::class, 'index'])->name('dashboard');
+    Route::get('/service-requirements', [ServiceRequirementController::class, 'index'])->name('service-requirements.index');
+    Route::get('/service-requirements/create', [ServiceRequirementController::class, 'create'])->name('service-requirements.create');
+    Route::post('/service-requirements', [ServiceRequirementController::class, 'store'])->name('service-requirements.store');
+    Route::get('/service-requirements/{serviceRequirement}', [ServiceRequirementController::class, 'show'])->name('service-requirements.show');
+    Route::post('/service-requirements/{serviceRequirement}/offers/{offer}/accept', [ServiceRequirementController::class, 'acceptOffer'])->name('service-requirements.offers.accept');
     
     // User profile routes
     Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
@@ -275,6 +294,7 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
     Route::get('/warehouse-requests', [UserWarehouseBookingController::class, 'index'])->name('warehouses.requests');
     Route::post('/warehouse-requests/{warehouseBooking}/cancel', [UserWarehouseBookingController::class, 'cancel'])
         ->name('warehouses.requests.cancel');
+    Route::get('/warehouse-payments', [UserWarehousePaymentController::class, 'index'])->name('warehouse-payments.index');
     Route::get('/warehouse-payments/{payment}', [UserWarehousePaymentController::class, 'show'])->name('warehouse-payments.show');
     Route::get('/warehouse-payments/{payment}/invoice', [UserWarehousePaymentController::class, 'invoice'])->name('warehouse-payments.invoice');
     Route::post('/warehouse-payments/{payment}/checkout', [UserWarehousePaymentController::class, 'checkout'])->name('warehouse-payments.checkout');
@@ -287,7 +307,15 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
 // ============================================================
 Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/dashboard', [OwnerPagesController::class, 'index'])->name('dashboard');
+    Route::get('/service-requirements', [ServiceRequirementController::class, 'index'])->name('service-requirements.index');
+    Route::get('/service-requirements/create', [ServiceRequirementController::class, 'create'])->name('service-requirements.create');
+    Route::post('/service-requirements', [ServiceRequirementController::class, 'store'])->name('service-requirements.store');
+    Route::get('/service-requirements/{serviceRequirement}', [ServiceRequirementController::class, 'show'])->name('service-requirements.show');
+    Route::post('/service-requirements/{serviceRequirement}/offers/{offer}/accept', [ServiceRequirementController::class, 'acceptOffer'])->name('service-requirements.offers.accept');
     Route::get('/reports', [OwnerPagesController::class, 'reports'])->name('reports');
+    Route::get('/warehouse-payments', [OwnerWarehousePaymentController::class, 'index'])->name('warehouse-payments.index');
+    Route::get('/warehouse-payments/{payment}', [OwnerWarehousePaymentController::class, 'show'])->name('warehouse-payments.show');
+    Route::get('/warehouse-payments/{payment}/invoice', [OwnerWarehousePaymentController::class, 'invoice'])->name('warehouse-payments.invoice');
     
     // Owner business profile routes
     Route::get('/business-profile', [OwnerBusinessProfileController::class, 'show'])->name('business.profile');
@@ -320,8 +348,6 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
         'show' => 'warehouse-bookings.show',
         'update' => 'warehouse-bookings.update',
     ]);
-    Route::get('/warehouse-payments/{payment}/invoice', [OwnerWarehouseBookingController::class, 'invoice'])
-        ->name('warehouse-payments.invoice');
     Route::post('/warehouse-bookings/{warehouseBooking}/cancel', [OwnerWarehouseBookingController::class, 'cancel'])
         ->name('warehouse-bookings.cancel');
 
@@ -354,4 +380,14 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
     })->name('notifications.mark-all-read');
     Route::post('/notifications/{id}/mark-read', [OwnerPagesController::class, 'markAsRead'])->name('notifications.mark-read');
     Route::delete('/notifications/{id}', [OwnerPagesController::class, 'deleteNotification'])->name('notifications.delete');
+});
+
+Route::prefix('channel-partner')->name('channel-partner.')->middleware(['auth', 'role:channel_partner'])->group(function () {
+    Route::get('/dashboard', [ChannelPartnerController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profile', [ChannelPartnerController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [ChannelPartnerController::class, 'editProfile'])->name('profile.edit');
+    Route::put('/profile', [ChannelPartnerController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/opportunities', [ServiceRequirementController::class, 'opportunities'])->name('opportunities.index');
+    Route::get('/opportunities/{serviceRequirement}', [ServiceRequirementController::class, 'opportunity'])->name('opportunities.show');
+    Route::post('/opportunities/{serviceRequirement}/offer', [ServiceRequirementController::class, 'offer'])->name('opportunities.offer');
 });

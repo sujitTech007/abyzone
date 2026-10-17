@@ -160,6 +160,10 @@
                                             {{ old('role') == 'vendor' ? 'selected' : '' }}>
                                             Vendor
                                         </option>
+                                        <option value="channel_partner"
+                                            {{ old('role') == 'channel_partner' ? 'selected' : '' }}>
+                                            Channel Partner
+                                        </option>
                                     </select>
                                     @error('role')
                                         <div class="invalid-feedback">{{ $message }}</div>

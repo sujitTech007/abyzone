@@ -46,6 +46,7 @@
                                 <option value="">All user types</option>
                                 <option value="customer" @selected(request('role') === 'customer')>Customer</option>
                                 <option value="vendor" @selected(request('role') === 'vendor')>Vendor</option>
+                                <option value="channel_partner" @selected(request('role') === 'channel_partner')>Channel Partner</option>
                             </select>
                         </div>
                         <div class="col-auto">

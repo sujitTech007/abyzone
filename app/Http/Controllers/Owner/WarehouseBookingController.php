@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\WarehouseBooking;
-use App\Models\WarehousePayment;
 use App\Helpers\NotificationHelper;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -74,17 +72,6 @@ class WarehouseBookingController extends Controller
                 'warehousePayment.events' => fn ($query) => $query->latest(),
             ]),
         ]);
-    }
-
-    public function invoice(WarehousePayment $payment)
-    {
-        abort_if($payment->booking()->value('owner_id') !== auth()->id(), 404);
-        $payment->load('booking');
-
-        return Pdf::loadView('invoices.warehouse-booking', [
-            'payment' => $payment,
-            'snapshot' => $payment->invoice_snapshot,
-        ])->download($payment->invoice_number . '.pdf');
     }
 
     public function update(

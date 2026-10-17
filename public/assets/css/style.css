@@ -4403,7 +4403,7 @@ flex: none;}
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 220px;
+    max-width: 390px;
     padding: 0;
     background: transparent;
     border: 1px solid var(--primary-color);
@@ -4421,7 +4421,7 @@ flex: none;}
     position: absolute;
     top: 4px;
     left: 4px;
-    width: calc(50% - 4px);
+    width: calc(33.333% - 4px);
     height: calc(100% - 8px);
     background: #ffffff;
     border-radius: 20px;
@@ -4441,12 +4441,13 @@ flex: none;}
     gap: 8px;
     margin: 0;
     cursor: pointer;
-        font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--primary-color);
     transition: color 0.3s ease;
-    padding: 12px;
+    padding: 10px 5px;
     border-radius: 40px;
+    white-space: nowrap;
 }
 
 /* Active Customer */
@@ -4460,21 +4461,55 @@ flex: none;}
 
 /* Active Vendor */
 #vendor:checked ~ .role-toggle-slider {
-    left: calc(50% + 0px);
+    left: 33.333%;
 }
 
 #vendor:checked ~ .role-option[for="vendor"] {
     color: #111827;
 }
 
+#channel_partner:checked ~ .role-toggle-slider {
+    left: 66.666%;
+}
+
+#channel_partner:checked ~ .role-option[for="channel_partner"] {
+    color: #111827;
+}
+
 #customer:checked ~ .role-toggle-slider,
-#vendor:checked ~ .role-toggle-slider {
+#vendor:checked ~ .role-toggle-slider,
+#channel_partner:checked ~ .role-toggle-slider {
     background: var(--secondary-color);
     color: var(--black-color);
 }
 
 .role-option i {
     font-size: 14px;
+}
+
+@media (max-width: 575.98px) {
+    .register-page .register-role-selector {
+        align-items: flex-start !important;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .register-page .register-role-selector > .form-label {
+        border: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 0;
+        padding-right: 0 !important;
+    }
+
+    .register-page .register-role-selector .role-toggle {
+        max-width: 100%;
+    }
+
+    .register-page .register-role-selector .role-option {
+        gap: 4px;
+        padding: 10px 4px;
+        font-size: 11px;
+    }
 }
 
 
@@ -4560,4 +4595,3 @@ section.services__details-area .tab-content .bg-primary-subtle {
     font-size: 12px;
     line-height: 0;
 }
-

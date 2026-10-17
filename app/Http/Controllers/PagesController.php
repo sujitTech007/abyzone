@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Service;
 use App\Models\Warehouse;
 use App\Models\terms;
+use App\Models\SubscriptionPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUsMail;
@@ -44,6 +45,18 @@ class PagesController extends Controller
     {
         $services = Service::where('status', 1)->get();
         return view('service', compact('services'));
+    }
+
+    public function plans()
+    {
+        $plans = SubscriptionPlan::query()
+            ->where('is_active', true)
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->orderBy('price')
+            ->get();
+
+        return view('plans', compact('plans'));
     }
 
     public function warehousingDetail()

@@ -139,6 +139,16 @@
             </a>
         </li>
 
+        <li class="side-nav-item">
+            <a href="{{ route('admin.subscription-plans.index') }}"
+               class="side-nav-link {{ request()->routeIs('admin.subscription-plans.*') ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="fa-solid fa-tags"></i>
+                </span>
+                <span class="menu-text">Subscription Plans</span>
+            </a>
+        </li>
+
         {{-- Inquiries --}}
         <li class="side-nav-item">
             <a href="{{ route('admin.inquiry') }}"

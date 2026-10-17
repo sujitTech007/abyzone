@@ -106,6 +106,14 @@
             </a>
         </li>
 
+        <li class="side-nav-item">
+            <a href="{{ route('owner.service-requirements.index') }}"
+               class="side-nav-link {{ request()->routeIs('owner.service-requirements.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                <span class="menu-text">Service Requirements</span>
+            </a>
+        </li>
+
         {{-- Booking Requests --}}
         <li class="side-nav-item">
             <a href="{{ route('owner.confirmed-booking.index') }}"
@@ -124,6 +132,16 @@
                     <i class="fa-solid fa-chart-line"></i>
                 </span>
                 <span class="menu-text">Booking Reports</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('owner.warehouse-payments.index') }}"
+               class="side-nav-link {{ request()->routeIs('owner.warehouse-payments.*') ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </span>
+                <span class="menu-text">Warehouse Payments</span>
             </a>
         </li>
 

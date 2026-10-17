@@ -134,7 +134,7 @@ class PagesController extends Controller
         $warehouses = Warehouse::query()
             ->where('user_id', $ownerId)
             ->where('status', 'available')
-            ->with(['bookings' => function (Builder $query) use ($periodStart, $periodEnd) {
+            ->with(['bookings' => function ($query) use ($periodStart, $periodEnd) {
                 $query->where('status', WarehouseBooking::STATUS_APPROVED)
                     ->whereNotNull('start_date')
                     ->whereDate('start_date', '<=', $periodEnd->toDateString())
@@ -144,7 +144,7 @@ class PagesController extends Controller
             ->get();
 
         $bookedWarehouseDays = 0;
-        $warehouseUtilization = $warehouses->map(function (Warehouse $warehouse) use ($periodStart, $periodEnd, &$bookedWarehouseDays) {
+        $warehouseUtilization = $warehouses->map(function (Warehouse $warehouse) use ($periodStart, $periodEnd, $periodDays, &$bookedWarehouseDays) {
             $intervals = $warehouse->bookings->map(function (WarehouseBooking $booking) use ($periodStart, $periodEnd) {
                 $start = Carbon::parse($booking->start_date)->startOfDay();
                 $end = $booking->end_date

@@ -12,9 +12,35 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Builder;
 
 class WarehousePaymentController extends Controller
 {
+    public function index(Request $request): View
+    {
+        $filters = $request->validate([
+            'search' => ['nullable', 'string', 'max:100'],
+            'status' => ['nullable', 'in:invoice_due,checkout_pending,paid,void,refund_pending,refund_failed,refunded'],
+        ]);
+
+        $payments = WarehousePayment::query()
+            ->with(['booking.warehouse'])
+            ->whereHas('booking', fn (Builder $query) => $query->where('customer_id', $request->user()->id))
+            ->when($filters['status'] ?? null, fn (Builder $query, string $status) => $query->where('status', $status))
+            ->when(trim($filters['search'] ?? '') !== '', function (Builder $query) use ($filters) {
+                $search = trim($filters['search']);
+                $query->where(function (Builder $query) use ($search) {
+                    $query->where('invoice_number', 'like', "%{$search}%")
+                        ->orWhereHas('booking.warehouse', fn (Builder $warehouse) => $warehouse->where('name', 'like', "%{$search}%"));
+                });
+            })
+            ->latest()
+            ->paginate(15)
+            ->withQueryString();
+
+        return view('user.warehouse-payments.index', compact('payments', 'filters'));
+    }
+
     public function show(Request $request, WarehousePayment $payment): View
     {
         $this->authorizePayment($payment, $request);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Controllers\ChannelPartner\ChannelPartnerController;
 use App\Helpers\NotificationHelper;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,7 @@ class UserController extends Controller
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
-            'role' => 'nullable|in:customer,vendor,admin,super_admin',
+            'role' => 'nullable|in:customer,vendor,channel_partner,admin,super_admin',
         ]);
         $filters = array_filter($validated, fn ($value) => filled($value));
 
@@ -44,7 +45,7 @@ class UserController extends Controller
             'email' => 'nullable|email|unique:users,email',
             'phone' => 'nullable|string|max:15',
             'password' => 'nullable|string|min:6|confirmed',
-            'role' => 'required|in:customer,vendor,admin,super_admin',
+            'role' => 'required|in:customer,vendor,channel_partner,admin,super_admin',
             'status' => 'nullable|boolean',
         ]);
 
@@ -67,7 +68,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.users.show', compact('user'));
+        $partnerServices = $user->role === 'channel_partner'
+            ? array_values(array_intersect(
+                ChannelPartnerController::SERVICE_TYPES,
+                $user->partner_service_types ?? []
+            ))
+            : collect();
+
+        return view('admin.users.show', compact('user', 'partnerServices'));
     }
 
     public function edit($id)

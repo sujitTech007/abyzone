@@ -180,6 +180,41 @@
                     </div>
                 </div>
 
+                @if($user->role === 'channel_partner')
+                    <div class="card border-0 shadow-sm mt-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0 fw-bold">
+                                <i class="fas fa-handshake text-primary me-2"></i>
+                                Channel Partner Service Profile
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <small class="text-muted d-block mb-2">Services provided</small>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        @forelse($partnerServices as $service)
+                                            <span class="badge bg-primary-subtle text-primary">{{ $service }}</span>
+                                        @empty
+                                            <span class="text-muted">Not completed</span>
+                                        @endforelse
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <small class="text-muted d-block">Address</small>
+                                    <span class="fw-semibold">
+                                        {{ $user->address_street ?: '—' }},
+                                        {{ $user->address_city ?: '—' }},
+                                        {{ $user->address_state ?: '—' }},
+                                        {{ $user->address_country ?: '—' }},
+                                        {{ $user->address_postal ?: '—' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
@@ -189,4 +224,3 @@
 
 
 @include('admin.include.footer')
-

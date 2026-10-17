@@ -106,6 +106,8 @@
 
                 <option value="vendor" {{ $user->role=='vendor'?'selected':'' }}>Vendor</option>
 
+                <option value="channel_partner" {{ $user->role=='channel_partner'?'selected':'' }}>Channel Partner</option>
+
               
 
             </select>
@@ -137,4 +139,3 @@
 
 
 @include('admin.include.footer')
-

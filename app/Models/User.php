@@ -38,6 +38,9 @@ class User extends Authenticatable
         'address_country',
         'address_postal',
         'business_documents',
+        'partner_service_type',
+        'partner_service_area',
+        'partner_service_types',
     ];
 
     /**
@@ -60,6 +63,7 @@ class User extends Authenticatable
         'password' => 'hashed',
         'warehouse_types' => 'array',
         'business_documents' => 'array',
+        'partner_service_types' => 'array',
     ];
     public function warehouses()
     {

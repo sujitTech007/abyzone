@@ -85,6 +85,22 @@
         </li>
 
         <li class="side-nav-item">
+            <a href="{{ route('user.service-requirements.index') }}"
+                class="side-nav-link {{ request()->routeIs('user.service-requirements.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                <span class="menu-text">Service Requirements</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('user.warehouse-payments.index') }}"
+                class="side-nav-link {{ request()->routeIs('user.warehouse-payments.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                <span class="menu-text">My Warehouse Payments</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
             <a href="{{ route('user.orders') }}"
                 class="side-nav-link {{ request()->routeIs('user.orders*') ? 'active' : '' }}">
                 <span class="menu-icon"><i class="fa-solid fa-calendar-check"></i></span>

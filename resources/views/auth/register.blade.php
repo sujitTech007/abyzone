@@ -92,7 +92,7 @@
 
                         {{-- REGISTER AS --}}
 
-                        <div class="mb-4 d-flex align-items-center">
+                        <div class="mb-4 d-flex align-items-center register-role-selector">
 
     <label class="form-label d-block me-4 border-end  pe-4 flex-none">
         REGISTER AS
@@ -116,6 +116,14 @@
             {{ old('role') == 'vendor' ? 'checked' : '' }}
         >
 
+        <input
+            type="radio"
+            name="role"
+            id="channel_partner"
+            value="channel_partner"
+            {{ old('role') == 'channel_partner' ? 'checked' : '' }}
+        >
+
         <div class="role-toggle-slider"></div>
 
         <label for="customer" class="role-option">
@@ -126,6 +134,11 @@
         <label for="vendor" class="role-option">
             <i class="fa-solid fa-store"></i>
             Vendor
+        </label>
+
+        <label for="channel_partner" class="role-option">
+            <i class="fa-solid fa-handshake"></i>
+            Channel Partner
         </label>
 
     </div>

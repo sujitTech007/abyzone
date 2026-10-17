@@ -69,7 +69,7 @@
                 <td class="amount">{{ $payment->currency }} {{ number_format($payment->tax_cents / 100, 2) }}</td>
             </tr>
             <tr>
-                <td class="total">Total due</td>
+                <td class="total">{{ $payment->status === 'paid' || $payment->status === 'refunded' ? 'Amount paid' : 'Total due' }}</td>
                 <td class="amount total">{{ $payment->currency }} {{ number_format($payment->total_cents / 100, 2) }}</td>
             </tr>
         </tbody>

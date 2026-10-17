@@ -69,7 +69,7 @@ class AuthController extends Controller
             'phone_code' => ['required', 'string', 'regex:/^\+[1-9]\d{0,2}$/'],
             'password' => 'required|string|min:6|confirmed',
 
-            'role' => 'nullable|in:customer,vendor',
+            'role' => 'required|in:customer,vendor,channel_partner',
 
         ]);
 
@@ -116,6 +116,25 @@ class AuthController extends Controller
             'is_read' => 0,
 
         ]);
+
+        if ($user->role === 'channel_partner') {
+            Otp::where('email', $user->email)->delete();
+            $otp = random_int(1000, 9999);
+            Otp::create([
+                'email' => $user->email,
+                'otp' => $otp,
+                'expires_at' => now()->addMinutes(5),
+            ]);
+            Mail::to($user->email)->send(new OtpMail($otp));
+
+            session([
+                'auth_otp_user_id' => $user->id,
+                'auth_otp_email' => $user->email,
+            ]);
+
+            return redirect()->route('auth.otp')
+                ->with('success', 'Registration successful. Verify your email to set up your Channel Partner profile.');
+        }
 
         return redirect()->route('login')->with('success', 'Registration successful.');
 
@@ -468,8 +487,12 @@ public function postOtp(Request $request)
 
     session()->forget(['auth_otp_user_id','auth_otp_email']);
 
-    if($user->role == 'vendor'){
+    if ($user->role === 'vendor') {
         return redirect()->route('owner.dashboard');
+    }
+
+    if ($user->role === 'channel_partner') {
+        return redirect()->route('channel-partner.dashboard');
     }
 
     return redirect()->route('user.dashboard');
@@ -971,6 +994,10 @@ public function resendOtp()
             }
 
             Auth::login($user);
+            if ($user->role === 'channel_partner') {
+                return redirect()->route('channel-partner.dashboard');
+            }
+
             return redirect()->route('home');
         }
 
@@ -1014,7 +1041,7 @@ public function resendOtp()
 
         request()->validate([
 
-            'role' => 'required|in:customer,vendor',
+            'role' => 'required|in:customer,vendor,channel_partner',
 
         ]);
 
@@ -1048,11 +1075,15 @@ public function resendOtp()
 
 
 
-        return $user->role === 'vendor'
+        if ($user->role === 'vendor') {
+            return redirect()->route('owner.dashboard');
+        }
 
-        ? redirect()->route('owner.dashboard')
+        if ($user->role === 'channel_partner') {
+            return redirect()->route('channel-partner.profile.edit');
+        }
 
-        : redirect()->route('user.dashboard');
+        return redirect()->route('user.dashboard');
 
     }
 
