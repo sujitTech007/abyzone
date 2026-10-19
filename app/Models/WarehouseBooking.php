@@ -53,4 +53,9 @@ class WarehouseBooking extends Model
         return $this->hasOne(WarehousePayment::class);
     }
 
+    public function customerReviews(): HasMany
+    {
+        return $this->hasMany(CustomerReview::class);
+    }
+
 }

@@ -41,6 +41,7 @@
                                 <h4 class="fw-bold mb-1">
                                     {{ $user->name }}
                                 </h4>
+                                <x-verification-badge :user="$user" />
 
                                 <p class="text-muted mb-2">
                                     <i class="fas fa-envelope me-1"></i>

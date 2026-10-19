@@ -17,9 +17,10 @@ use Illuminate\Validation\ValidationException;
 
 class WarehousePaymentService
 {
-    public function __construct(private StripeGateway $stripe)
-    {
-    }
+    public function __construct(
+        private StripeGateway $stripe,
+        private WarehouseCommissionCalculator $commissionCalculator
+    ) {}
 
     public function checkout(WarehousePayment $payment, User $customer): string
     {
@@ -277,12 +278,19 @@ class WarehousePaymentService
 
             $lockedPayment = WarehousePayment::whereKey($payment->id)->lockForUpdate()->firstOrFail();
             $wasPaid = in_array($lockedPayment->status, ['paid', 'refund_pending', 'refund_failed', 'refunded'], true);
+            $revenueShare = ! $wasPaid
+                ? $this->commissionCalculator->calculate(
+                    $lockedPayment->subtotal_cents,
+                    (float) $lockedPayment->commission_percent
+                )
+                : [];
             $lockedPayment->update([
                 'status' => in_array($lockedPayment->status, ['refund_pending', 'refund_failed', 'refunded'], true)
                     ? $lockedPayment->status
                     : 'paid',
                 'stripe_payment_intent_id' => $session['payment_intent'] ?? $lockedPayment->stripe_payment_intent_id,
                 'paid_at' => $lockedPayment->paid_at ?? now(),
+                ...$revenueShare,
             ]);
             $event = $this->recordEvent(
                 $lockedPayment,
@@ -345,6 +353,7 @@ class WarehousePaymentService
                 'stripe_refund_id' => $refundId ?: $lockedPayment->stripe_refund_id,
                 'refunded_cents' => $amount ?? $lockedPayment->refunded_cents,
                 'refunded_at' => $succeeded ? ($lockedPayment->refunded_at ?? now()) : null,
+                ...($succeeded ? ['commission_cents' => 0, 'owner_net_cents' => 0] : []),
             ]);
 
             $event = $existingEvent ?: $this->recordEvent(

@@ -45,9 +45,36 @@
 
                             <div class="row">
                                 <div class="col-md-7 mb-3">
-                                    <label for="service_location" class="form-label">Service location <span class="text-danger">*</span></label>
-                                    <input id="service_location" name="service_location" type="text" class="form-control @error('service_location') is-invalid @enderror" maxlength="255" value="{{ old('service_location') }}" placeholder="City, province/state, country" required>
-                                    @error('service_location')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                    <label for="warehouse_id" class="form-label">Warehouse for this service <span class="text-danger">*</span></label>
+                                    <select id="warehouse_id" name="warehouse_id" class="form-select @error('warehouse_id') is-invalid @enderror" required>
+                                        <option value="">Choose a warehouse</option>
+                                        @foreach($warehouses as $warehouse)
+                                            @php
+                                                $warehouseLocation = collect([
+                                                    $warehouse->address_street,
+                                                    $warehouse->address_city,
+                                                    $warehouse->address_state,
+                                                    $warehouse->address_country,
+                                                    $warehouse->address_postal,
+                                                    $warehouse->location,
+                                                ])->filter(fn ($value) => filled($value))->unique()->implode(', ');
+                                            @endphp
+                                            <option value="{{ $warehouse->id }}" @selected((string) old('warehouse_id') === (string) $warehouse->id)>
+                                                {{ $warehouse->name }}{{ $warehouseLocation ? ' — '.$warehouseLocation : '' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('warehouse_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                    @if($warehouses->isEmpty())
+                                        <small class="text-danger">
+                                            {{ auth()->user()->role === 'vendor' ? 'You have no warehouses yet. Create a warehouse first to post a service requirement.' : 'You have no approved warehouse bookings yet. A warehouse will appear here after its owner approves your booking.' }}
+                                        </small>
+                                    @else
+                                        <small class="text-muted">
+                                            {{ auth()->user()->role === 'vendor' ? 'Only your own warehouses are listed.' : 'Only warehouses with an approved booking for your account are listed.' }}
+                                            The service location will use the selected warehouse address.
+                                        </small>
+                                    @endif
                                 </div>
                                 <div class="col-md-5 mb-3">
                                     <label for="needed_by" class="form-label">Needed by</label>
@@ -58,7 +85,7 @@
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route(auth()->user()->role === 'vendor' ? 'owner.service-requirements.index' : 'user.service-requirements.index') }}" class="btn btn-outline-secondary">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Publish Requirement</button>
+                                <button type="submit" class="btn btn-primary" @disabled($warehouses->isEmpty())>Publish Requirement</button>
                             </div>
                         </form>
                     </div>

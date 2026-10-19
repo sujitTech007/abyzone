@@ -21,11 +21,12 @@
                     <div>
                         <span class="badge bg-primary-subtle text-primary mb-2">{{ $serviceRequirement->service_type }}</span>
                         <p class="mb-2">{{ $serviceRequirement->description }}</p>
+                        <div class="fw-semibold"><i class="fa-solid fa-warehouse me-1 text-primary"></i>{{ $serviceRequirement->warehouse?->name ?? 'Warehouse unavailable' }}</div>
                         <div class="text-muted"><i class="fa-solid fa-location-dot me-1"></i>{{ $serviceRequirement->service_location }}</div>
                         @if($serviceRequirement->needed_by)
                             <div class="text-muted mt-1"><i class="fa-regular fa-calendar me-1"></i>Needed by {{ $serviceRequirement->needed_by->format('M j, Y') }}</div>
                         @endif
-                        @if($serviceRequirement->status === 'awarded')
+                        @if(in_array($serviceRequirement->status, ['awarded', 'completed'], true))
                             @php($acceptedOffer = $serviceRequirement->offers->firstWhere('status', 'accepted'))
                             @if($acceptedOffer)
                                 <div class="alert alert-success mt-3 mb-0">
@@ -34,11 +35,29 @@
                                     @if($acceptedOffer->channelPartner->phone)
                                         · {{ $acceptedOffer->channelPartner->phone_code }} {{ $acceptedOffer->channelPartner->phone }}
                                     @endif
+                                    @if(in_array($serviceRequirement->status, ['awarded', 'completed'], true))
+                                        <div class="alert alert-info mt-3 mb-0">
+                                            <strong>Service completion:</strong>
+                                            Channel Partner: {{ $serviceRequirement->partner_completed_at ? 'Done' : 'Waiting' }}
+                                            · Your confirmation: {{ $serviceRequirement->requester_completed_at ? 'Done' : 'Waiting' }}
+                                        </div>
+                                        @if(! $serviceRequirement->requester_completed_at)
+                                            <form method="POST" action="{{ route(auth()->user()->role === 'vendor' ? 'owner.service-requirements.complete' : 'user.service-requirements.complete', $serviceRequirement) }}" class="mt-2">
+                                                @csrf
+                                                <button class="btn btn-outline-success">Confirm service is done</button>
+                                            </form>
+                                        @endif
+                                        @if($serviceRequirement->payment)
+                                            <a href="{{ route(auth()->user()->role === 'vendor' ? 'owner.service-payments.show' : 'user.service-payments.show', $serviceRequirement->payment) }}" class="btn btn-primary mt-2">
+                                                {{ $serviceRequirement->payment->status === 'paid' ? 'View service payment' : 'Pay for completed service' }}
+                                            </a>
+                                        @endif
+                                    @endif
                                 </div>
                             @endif
                         @endif
                     </div>
-                    <div><span class="badge bg-{{ $serviceRequirement->status === 'awarded' ? 'success' : 'warning text-dark' }}">{{ ucfirst($serviceRequirement->status) }}</span></div>
+                    <div><span class="badge bg-{{ in_array($serviceRequirement->status, ['awarded', 'completed'], true) ? 'success' : ($serviceRequirement->status === 'open' ? 'warning text-dark' : 'secondary') }}">{{ ucfirst($serviceRequirement->status) }}</span></div>
                 </div>
             </div>
         </div>
@@ -65,7 +84,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge bg-{{ $offer->status === 'accepted' ? 'success' : ($offer->status === 'pending' ? 'warning text-dark' : 'secondary') }}">{{ ucfirst(str_replace('_', ' ', $offer->status)) }}</span>
                                 @if($serviceRequirement->status === 'open' && $offer->status === 'pending')
-                                    <form method="POST" action="{{ route(auth()->user()->role === 'vendor' ? 'owner.service-requirements.offers.accept' : 'user.service-requirements.offers.accept', [$serviceRequirement, $offer]) }}" onsubmit="return confirm('Select this partner and close other offers?')">
+                                    <form method="POST" action="{{ route(auth()->user()->role === 'vendor' ? 'owner.service-requirements.offers.accept' : 'user.service-requirements.offers.accept', [$serviceRequirement, $offer]) }}" class="select-offer-form">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-success">Select this offer</button>
                                     </form>
@@ -80,6 +99,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.select-offer-form').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            if (!window.Swal) {
+                console.error('SweetAlert2 is required to confirm offer selection.');
+                return;
+            }
+
+            window.Swal.fire({
+                title: 'Select this offer?',
+                text: 'This will select this Channel Partner and close the other offers.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, select offer',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#198754',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
 
 @if(auth()->user()->role === 'vendor')
     @include('owner.include.footer')

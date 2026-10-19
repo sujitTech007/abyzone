@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Services\WarehousePaymentService;
+use App\Services\ServiceRequirementPaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class StripeWebhookController extends Controller
 {
-    public function handle(Request $request, WarehousePaymentService $paymentService): Response
+    public function handle(
+        Request $request,
+        WarehousePaymentService $paymentService,
+        ServiceRequirementPaymentService $servicePaymentService
+    ): Response
     {
         $secret = config('services.stripe.webhook_secret');
         if (! is_string($secret) || $secret === '') {
@@ -55,7 +60,11 @@ class StripeWebhookController extends Controller
             return response('Invalid webhook payload.', 400);
         }
 
-        $paymentService->handleWebhook($event);
+        if (isset($event['data']['object']['metadata']['service_requirement_payment_id'])) {
+            $servicePaymentService->handleWebhook($event);
+        } else {
+            $paymentService->handleWebhook($event);
+        }
 
         return response('ok', 200);
     }

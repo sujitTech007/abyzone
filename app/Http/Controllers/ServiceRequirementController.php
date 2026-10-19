@@ -6,6 +6,10 @@ use App\Helpers\NotificationHelper;
 use App\Http\Controllers\ChannelPartner\ChannelPartnerController;
 use App\Models\ServiceRequirement;
 use App\Models\ServiceRequirementOffer;
+use App\Models\User;
+use App\Models\Warehouse;
+use App\Models\WarehouseBooking;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +23,7 @@ class ServiceRequirementController extends Controller
         $requirements = ServiceRequirement::query()
             ->where('requester_id', $request->user()->id)
             ->where('requester_role', $request->user()->role)
+            ->with('warehouse:id,name,location,address_street,address_city,address_state,address_country,address_postal')
             ->withCount('offers')
             ->latest()
             ->paginate(12);
@@ -26,10 +31,24 @@ class ServiceRequirementController extends Controller
         return view('service-requirements.index', compact('requirements'));
     }
 
-    public function create(): View
+    public function create(Request $request): View
     {
+        $warehouses = $this->eligibleWarehouses($request)
+            ->orderBy('name')
+            ->get([
+                'id',
+                'name',
+                'location',
+                'address_street',
+                'address_city',
+                'address_state',
+                'address_country',
+                'address_postal',
+            ]);
+
         return view('service-requirements.create', [
             'serviceTypes' => ChannelPartnerController::SERVICE_TYPES,
+            'warehouses' => $warehouses,
         ]);
     }
 
@@ -37,17 +56,36 @@ class ServiceRequirementController extends Controller
     {
         $data = $request->validate([
             'service_type' => ['required', 'string', Rule::in(ChannelPartnerController::SERVICE_TYPES)],
+            'warehouse_id' => ['required', 'integer', 'exists:warehouses,id'],
             'title' => ['required', 'string', 'max:180'],
             'description' => ['required', 'string', 'max:5000'],
-            'service_location' => ['required', 'string', 'max:255'],
             'needed_by' => ['nullable', 'date', 'after_or_equal:today'],
         ]);
+
+        $warehouse = $this->eligibleWarehouses($request)
+            ->findOrFail($data['warehouse_id']);
+        $data['service_location'] = $this->warehouseLocation($warehouse);
 
         $requirement = ServiceRequirement::create([
             ...$data,
             'requester_id' => $request->user()->id,
             'requester_role' => $request->user()->role,
         ]);
+
+        $matchingPartners = User::query()
+            ->where('role', 'channel_partner')
+            ->where('status', 1)
+            ->whereJsonContains('partner_service_types', $requirement->service_type)
+            ->get(['id']);
+
+        foreach ($matchingPartners as $partner) {
+            NotificationHelper::sendToUser(
+                $partner->id,
+                'service_requirement',
+                'New matching service request',
+                "{$request->user()->name} needs {$requirement->service_type} for {$warehouse->name}: \"{$requirement->title}\"."
+            );
+        }
 
         return redirect()->route($this->routeName($request, 'index'))
             ->with('success', "Service request #{$requirement->id} is now available to matching Channel Partners.");
@@ -58,6 +96,8 @@ class ServiceRequirementController extends Controller
         $this->authorizeRequester($request, $serviceRequirement);
 
         $serviceRequirement->load([
+            'warehouse:id,name,location,address_street,address_city,address_state,address_country,address_postal',
+            'payment',
             'offers.channelPartner' => fn ($query) => $query->where('role', 'channel_partner'),
         ]);
 
@@ -80,6 +120,7 @@ class ServiceRequirementController extends Controller
                     ->where('channel_partner_id', $request->user()->id));
             })
             ->with('requester:id,name,role')
+            ->with('warehouse:id,name,location,address_street,address_city,address_state,address_country,address_postal')
             ->with(['offers' => fn ($query) => $query->where('channel_partner_id', $request->user()->id)])
             ->latest()
             ->paginate(12);
@@ -106,6 +147,7 @@ class ServiceRequirementController extends Controller
 
         $serviceRequirement->load([
             'requester:id,name,role,email,phone,phone_code',
+            'warehouse:id,name,location,address_street,address_city,address_state,address_country,address_postal',
             'offers' => fn ($query) => $query->where('channel_partner_id', $request->user()->id),
         ]);
 
@@ -204,6 +246,34 @@ class ServiceRequirementController extends Controller
             && filled($partner->address_state)
             && filled($partner->address_country)
             && filled($partner->address_postal);
+    }
+
+    private function warehouseLocation(Warehouse $warehouse): string
+    {
+        $location = collect([
+            $warehouse->address_street,
+            $warehouse->address_city,
+            $warehouse->address_state,
+            $warehouse->address_country,
+            $warehouse->address_postal,
+            $warehouse->location,
+        ])->filter(fn ($value) => filled($value))
+            ->unique()
+            ->implode(', ');
+
+        return \Illuminate\Support\Str::limit($location, 255, '');
+    }
+
+    private function eligibleWarehouses(Request $request): Builder
+    {
+        return Warehouse::query()
+            ->when(
+                $request->user()->role === 'vendor',
+                fn ($query) => $query->where('user_id', $request->user()->id),
+                fn ($query) => $query->whereHas('bookings', fn ($bookings) => $bookings
+                    ->where('customer_id', $request->user()->id)
+                    ->where('status', WarehouseBooking::STATUS_APPROVED))
+            );
     }
 
     private function routeName(Request $request, string $action): string

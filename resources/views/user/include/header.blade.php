@@ -93,6 +93,14 @@
         </li>
 
         <li class="side-nav-item">
+            <a href="{{ route('user.service-payments.index') }}"
+                class="side-nav-link {{ request()->routeIs('user.service-payments.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                <span class="menu-text">Service Payments</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
             <a href="{{ route('user.warehouse-payments.index') }}"
                 class="side-nav-link {{ request()->routeIs('user.warehouse-payments.*') ? 'active' : '' }}">
                 <span class="menu-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
@@ -131,6 +139,22 @@
                 class="side-nav-link {{ request()->routeIs('user.reviews*') ? 'active' : '' }}">
                 <span class="menu-icon"><i class="fa-solid fa-star"></i></span>
                 <span class="menu-text">Reviews</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('user.feedback.index') }}"
+                class="side-nav-link {{ request()->routeIs('user.feedback.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-star-half-stroke"></i></span>
+                <span class="menu-text">Business Ratings</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('user.verification.index') }}"
+                class="side-nav-link {{ request()->routeIs('user.verification.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <span class="menu-text">Verification</span>
             </a>
         </li>
 

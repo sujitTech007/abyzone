@@ -11,14 +11,19 @@ use App\Http\Controllers\Admin\WarehouseBookingController as AdminWarehouseBooki
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\OwnerController as AdminOwnerController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
-use App\Http\Controllers\Admin\SubscriptionPlanController as AdminSubscriptionPlanController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
+use App\Http\Controllers\Admin\VerificationController as AdminVerificationController;
+use App\Http\Controllers\Admin\CustomerReviewController as AdminCustomerReviewController;
+use App\Http\Controllers\Admin\WarehousePaymentController as AdminWarehousePaymentController;
+use App\Http\Controllers\Admin\ServiceRequirementPaymentController as AdminServiceRequirementPaymentController;
 use App\Http\Controllers\User\PagesController as UserPagesController;
 use App\Http\Controllers\User\OrderController as UserOrderController;
 use App\Http\Controllers\User\ProfileController as UserProfileController;
 use App\Http\Controllers\User\ReviewController as UserReviewController;
+use App\Http\Controllers\User\CustomerReviewController as UserCustomerReviewController;
+use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\User\WarehouseBookingController as UserWarehouseBookingController;
 use App\Http\Controllers\Owner\PagesController as OwnerPagesController;
 use App\Http\Controllers\Owner\ServiceController as OwnerServiceController;
@@ -32,6 +37,8 @@ use App\Http\Controllers\Owner\WarehousePaymentController as OwnerWarehousePayme
 use App\Http\Controllers\User\WarehousePaymentController as UserWarehousePaymentController;
 use App\Http\Controllers\ChannelPartner\ChannelPartnerController;
 use App\Http\Controllers\ServiceRequirementController;
+use App\Http\Controllers\ServiceRequirementCompletionController;
+use App\Http\Controllers\ServiceRequirementPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +57,6 @@ Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/services', [PagesController::class, 'services'])->name('services');
-Route::get('/plans', [PagesController::class, 'plans'])->name('plans');
 Route::view('/terms-and-conditions', 'terms-and-conditions')->name('terms');
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 Route::post('/subscribe/store', [PagesController::class, 'subscribeStore'])->name('subscribe.store');
@@ -158,15 +164,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
         'update' => 'services.update',
         'destroy' => 'services.destroy',
     ]);
-    Route::resource('subscription-plans', AdminSubscriptionPlanController::class)->names([
-        'index' => 'subscription-plans.index',
-        'create' => 'subscription-plans.create',
-        'store' => 'subscription-plans.store',
-        'show' => 'subscription-plans.show',
-        'edit' => 'subscription-plans.edit',
-        'update' => 'subscription-plans.update',
-        'destroy' => 'subscription-plans.destroy',
-    ]);
 
     // Admin categories resource routes
     Route::resource('category', AdminCategoryController::class)->names([
@@ -207,6 +204,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
         'show' => 'warehouse-bookings.show',
         'update' => 'warehouse-bookings.update',
     ]);
+    Route::get('/warehouse-payments', [AdminWarehousePaymentController::class, 'index'])->name('warehouse-payments.index');
+    Route::put('/warehouse-payments/{payment}/commission', [AdminWarehousePaymentController::class, 'updateCommission'])->name('warehouse-payments.commission');
+    Route::get('/service-payments', [AdminServiceRequirementPaymentController::class, 'index'])->name('service-payments.index');
+    Route::put('/service-payments/{payment}/commission', [AdminServiceRequirementPaymentController::class, 'updateCommission'])->name('service-payments.commission');
     
     // Admin bookings resource routes  
     Route::resource('bookings', AdminBookingController::class)->only(['index', 'show', 'update', 'destroy'])->names([
@@ -221,6 +222,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
         'show' => 'reviews.show',
         'destroy' => 'reviews.destroy',
     ]);
+    Route::get('/verification', [AdminVerificationController::class, 'index'])->name('verification.index');
+    Route::get('/verification/types', [AdminVerificationController::class, 'types'])->name('verification.types');
+    Route::post('/verification/types', [AdminVerificationController::class, 'storeType'])->name('verification.types.store');
+    Route::put('/verification/types/{type}', [AdminVerificationController::class, 'updateType'])->name('verification.types.update');
+    Route::get('/verification/documents/{document}/file', [AdminVerificationController::class, 'document'])->name('verification.documents.file');
+    Route::post('/verification/documents/{document}/review', [AdminVerificationController::class, 'review'])->name('verification.documents.review');
+    Route::get('/customer-reviews', [AdminCustomerReviewController::class, 'index'])->name('customer-reviews.index');
+    Route::get('/customer-reviews/{customerReview}', [AdminCustomerReviewController::class, 'show'])->name('customer-reviews.show');
+    Route::post('/customer-reviews/{customerReview}/moderate', [AdminCustomerReviewController::class, 'moderate'])->name('customer-reviews.moderate');
     Route::get('/reports', [AdminPagesController::class, 'reports'])->name('reports');
     Route::get('/settings', [AdminPagesController::class, 'settings'])->name('settings');
     Route::post('/settings', [AdminPagesController::class, 'updateSettings'])->name('settings.update');
@@ -236,9 +246,17 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
     Route::post('/service-requirements', [ServiceRequirementController::class, 'store'])->name('service-requirements.store');
     Route::get('/service-requirements/{serviceRequirement}', [ServiceRequirementController::class, 'show'])->name('service-requirements.show');
     Route::post('/service-requirements/{serviceRequirement}/offers/{offer}/accept', [ServiceRequirementController::class, 'acceptOffer'])->name('service-requirements.offers.accept');
+    Route::post('/service-requirements/{serviceRequirement}/complete', [ServiceRequirementCompletionController::class, 'requesterComplete'])->name('service-requirements.complete');
+    Route::get('/service-payments', [ServiceRequirementPaymentController::class, 'index'])->name('service-payments.index');
+    Route::get('/service-payments/{payment}', [ServiceRequirementPaymentController::class, 'show'])->name('service-payments.show');
+    Route::post('/service-payments/{payment}/checkout', [ServiceRequirementPaymentController::class, 'checkout'])->name('service-payments.checkout');
+    Route::get('/service-payments/{payment}/success', [ServiceRequirementPaymentController::class, 'success'])->name('service-payments.success');
     
     // User profile routes
     Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
+    Route::get('/verification', [VerificationController::class, 'index'])->name('verification.index');
+    Route::post('/verification/documents', [VerificationController::class, 'store'])->name('verification.documents.store');
+    Route::get('/verification/documents/{document}/download', [VerificationController::class, 'download'])->name('verification.documents.download');
     Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [UserProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/documents', [UserProfileController::class, 'uploadDocuments'])->name('profile.documents.store');
@@ -264,6 +282,14 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'role:customer'])->gro
         'update' => 'reviews.update',
         'destroy' => 'reviews.destroy',
     ]);
+    Route::get('/feedback', [UserCustomerReviewController::class, 'index'])->name('feedback.index');
+    Route::get('/feedback/businesses', [UserCustomerReviewController::class, 'businesses'])->name('feedback.businesses');
+    Route::get('/feedback/businesses/{business}', [UserCustomerReviewController::class, 'business'])->name('feedback.business');
+    Route::post('/feedback/{customerReview}/resubmit', [UserCustomerReviewController::class, 'resubmit'])->name('feedback.resubmit');
+    Route::get('/feedback/warehouse-bookings/{warehouseBooking}', [UserCustomerReviewController::class, 'createBooking'])->name('feedback.booking.create');
+    Route::post('/feedback/warehouse-bookings/{warehouseBooking}', [UserCustomerReviewController::class, 'storeBooking'])->name('feedback.booking.store');
+    Route::get('/feedback/service-requirements/{serviceRequirement}', [UserCustomerReviewController::class, 'createService'])->name('feedback.service.create');
+    Route::post('/feedback/service-requirements/{serviceRequirement}', [UserCustomerReviewController::class, 'storeService'])->name('feedback.service.store');
     
     Route::get('/wishlist', [UserPagesController::class, 'wishlist'])->name('wishlist');
     Route::get('/notifications', [UserPagesController::class, 'notifications'])->name('notifications');
@@ -312,6 +338,11 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
     Route::post('/service-requirements', [ServiceRequirementController::class, 'store'])->name('service-requirements.store');
     Route::get('/service-requirements/{serviceRequirement}', [ServiceRequirementController::class, 'show'])->name('service-requirements.show');
     Route::post('/service-requirements/{serviceRequirement}/offers/{offer}/accept', [ServiceRequirementController::class, 'acceptOffer'])->name('service-requirements.offers.accept');
+    Route::post('/service-requirements/{serviceRequirement}/complete', [ServiceRequirementCompletionController::class, 'requesterComplete'])->name('service-requirements.complete');
+    Route::get('/service-payments', [ServiceRequirementPaymentController::class, 'index'])->name('service-payments.index');
+    Route::get('/service-payments/{payment}', [ServiceRequirementPaymentController::class, 'show'])->name('service-payments.show');
+    Route::post('/service-payments/{payment}/checkout', [ServiceRequirementPaymentController::class, 'checkout'])->name('service-payments.checkout');
+    Route::get('/service-payments/{payment}/success', [ServiceRequirementPaymentController::class, 'success'])->name('service-payments.success');
     Route::get('/reports', [OwnerPagesController::class, 'reports'])->name('reports');
     Route::get('/warehouse-payments', [OwnerWarehousePaymentController::class, 'index'])->name('warehouse-payments.index');
     Route::get('/warehouse-payments/{payment}', [OwnerWarehousePaymentController::class, 'show'])->name('warehouse-payments.show');
@@ -319,6 +350,9 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
     
     // Owner business profile routes
     Route::get('/business-profile', [OwnerBusinessProfileController::class, 'show'])->name('business.profile');
+    Route::get('/verification', [VerificationController::class, 'index'])->name('verification.index');
+    Route::post('/verification/documents', [VerificationController::class, 'store'])->name('verification.documents.store');
+    Route::get('/verification/documents/{document}/download', [VerificationController::class, 'download'])->name('verification.documents.download');
     Route::get('/business-profile/edit', [OwnerBusinessProfileController::class, 'edit'])->name('business.profile.edit');
     Route::put('/business-profile', [OwnerBusinessProfileController::class, 'update'])->name('business.profile.update');
     
@@ -384,10 +418,16 @@ Route::prefix('owner')->name('owner.')->middleware(['auth', 'role:vendor'])->gro
 
 Route::prefix('channel-partner')->name('channel-partner.')->middleware(['auth', 'role:channel_partner'])->group(function () {
     Route::get('/dashboard', [ChannelPartnerController::class, 'dashboard'])->name('dashboard');
+    Route::get('/verification', [VerificationController::class, 'index'])->name('verification.index');
+    Route::post('/verification/documents', [VerificationController::class, 'store'])->name('verification.documents.store');
+    Route::get('/verification/documents/{document}/download', [VerificationController::class, 'download'])->name('verification.documents.download');
     Route::get('/profile', [ChannelPartnerController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [ChannelPartnerController::class, 'editProfile'])->name('profile.edit');
     Route::put('/profile', [ChannelPartnerController::class, 'updateProfile'])->name('profile.update');
     Route::get('/opportunities', [ServiceRequirementController::class, 'opportunities'])->name('opportunities.index');
     Route::get('/opportunities/{serviceRequirement}', [ServiceRequirementController::class, 'opportunity'])->name('opportunities.show');
     Route::post('/opportunities/{serviceRequirement}/offer', [ServiceRequirementController::class, 'offer'])->name('opportunities.offer');
+    Route::post('/opportunities/{serviceRequirement}/complete', [ServiceRequirementCompletionController::class, 'partnerComplete'])->name('opportunities.complete');
+    Route::get('/service-payments', [ServiceRequirementPaymentController::class, 'index'])->name('service-payments.index');
+    Route::get('/service-payments/{payment}', [ServiceRequirementPaymentController::class, 'show'])->name('service-payments.show');
 });

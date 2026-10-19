@@ -106,6 +106,38 @@
             </a>
         </li>
 
+        <li class="side-nav-item">
+            <a href="{{ route('admin.warehouse-payments.index') }}"
+               class="side-nav-link {{ request()->routeIs('admin.warehouse-payments.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
+                <span class="menu-text">Warehouse Commissions</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('admin.service-payments.index') }}"
+               class="side-nav-link {{ request()->routeIs('admin.service-payments.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+                <span class="menu-text">Channel Partner Payments</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('admin.verification.index') }}"
+               class="side-nav-link {{ request()->routeIs('admin.verification.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-id-card-clip"></i></span>
+                <span class="menu-text">KYC Approval</span>
+            </a>
+        </li>
+
+        <li class="side-nav-item">
+            <a href="{{ route('admin.customer-reviews.index') }}"
+               class="side-nav-link {{ request()->routeIs('admin.customer-reviews.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-star-half-stroke"></i></span>
+                <span class="menu-text">Customer Reviews</span>
+            </a>
+        </li>
+
         {{-- Blogs --}}
         <li class="side-nav-item">
             <a href="{{ route('admin.blog') }}"
@@ -136,16 +168,6 @@
                     <i class="fa-solid fa-file-lines"></i>
                 </span>
                 <span class="menu-text">Services</span>
-            </a>
-        </li>
-
-        <li class="side-nav-item">
-            <a href="{{ route('admin.subscription-plans.index') }}"
-               class="side-nav-link {{ request()->routeIs('admin.subscription-plans.*') ? 'active' : '' }}">
-                <span class="menu-icon">
-                    <i class="fa-solid fa-tags"></i>
-                </span>
-                <span class="menu-text">Subscription Plans</span>
             </a>
         </li>
 

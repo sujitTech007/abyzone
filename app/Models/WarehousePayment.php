@@ -13,8 +13,10 @@ class WarehousePayment extends Model
     protected $casts = [
         'invoice_snapshot' => 'array',
         'tax_rate' => 'decimal:4',
+        'commission_percent' => 'decimal:2',
         'paid_at' => 'datetime',
         'refunded_at' => 'datetime',
+        'commission_set_at' => 'datetime',
     ];
 
     public function booking(): BelongsTo

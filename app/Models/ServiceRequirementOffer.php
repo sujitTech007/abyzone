@@ -28,4 +28,9 @@ class ServiceRequirementOffer extends Model
     {
         return $this->belongsTo(User::class, 'channel_partner_id');
     }
+
+    public function payment(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(ServiceRequirementPayment::class);
+    }
 }

@@ -28,6 +28,8 @@
                             </div>
 
                             <h5 class="fw-semibold mb-1">{{ $user->name }}</h5>
+                            <x-verification-badge :user="$user" />
+                            <x-user-rating-summary :user="$user" class="mt-2" />
                             <p class="text-muted mb-2">{{ $user->business_name ?? 'Business name not added' }}</p>
 
                             <span class="badge rounded-pill bg-success-subtle text-success px-3 py-2">
@@ -104,6 +106,14 @@
             <div class="col-lg-8">
 
                 <div class="profile-content">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <strong>Verification status:</strong>
+                            <x-verification-badge :user="$user" />
+                            @unless($user->isVerified())<span class="badge bg-secondary">Not verified</span>@endunless
+                        </div>
+                        <a href="{{ route('user.verification.index') }}" class="btn btn-outline-primary btn-sm">Manage verification</a>
+                    </div>
 
                     {{-- Tabs --}}
                     <ul class="nav nav-tabs profile-tabs mb-4"

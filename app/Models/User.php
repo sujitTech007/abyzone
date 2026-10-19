@@ -80,6 +80,36 @@ class User extends Authenticatable
         return $this->hasMany(WarehouseBooking::class, 'owner_id');
     }
 
+    public function verificationDocuments()
+    {
+        return $this->hasMany(VerificationDocument::class);
+    }
+
+    public function customerReviewsReceived()
+    {
+        return $this->hasMany(CustomerReview::class, 'target_user_id');
+    }
+
+    public function approvedCustomerReviews()
+    {
+        return $this->customerReviewsReceived()->where('status', 'approved');
+    }
+
+    public function isVerified(): bool
+    {
+        $requiredTypeIds = VerificationDocumentType::query()
+            ->where('role', $this->role)
+            ->where('is_active', true)
+            ->where('is_required', true)
+            ->pluck('id');
+
+        return $requiredTypeIds->isNotEmpty()
+            && $this->verificationDocuments()
+                ->whereIn('document_type_id', $requiredTypeIds)
+                ->where('status', 'approved')
+                ->count() === $requiredTypeIds->count();
+    }
+
     public function notifications()
     {
         $userType = ($this->role === 'vendor') ? 'owner' : 'user';

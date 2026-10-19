@@ -30,6 +30,8 @@
                             </div>
 
                             <h5 class="fw-semibold mb-1">{{ $owner->name }}</h5>
+                            <x-verification-badge :user="$owner" />
+                            <x-user-rating-summary :user="$owner" class="mt-2" />
                              <small class="text-muted">
                             Vendor Account
                         </small>
@@ -147,7 +149,7 @@
 
             {{-- RIGHT: Tabs and Forms --}}
             <div class="col-lg-8">
-
+                @include('includes.business-reviews', ['business' => $owner])
                 <div class="profile-content">
 
                     {{-- Tabs --}}

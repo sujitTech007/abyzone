@@ -23,6 +23,8 @@
                             <i class="fa-solid fa-user"></i>
                         </div>
                         <h5 class="fw-bold mb-1">{{ $partner->name }}</h5>
+                        <x-verification-badge :user="$partner" />
+                        <x-user-rating-summary :user="$partner" class="mt-2" />
                         <span class="badge bg-primary-subtle text-primary">Channel Partner</span>
                         <hr class="my-4">
                         <div class="text-start">
@@ -42,6 +44,7 @@
             </div>
 
             <div class="col-lg-8">
+                @include('includes.business-reviews', ['business' => $partner])
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-header bg-white py-3">
                         <h5 class="mb-0 fw-bold">

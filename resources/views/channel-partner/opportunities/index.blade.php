@@ -27,12 +27,13 @@
                             <h5 class="fw-bold">{{ $requirement->title }}</h5>
                             <p class="text-muted">{{ \Illuminate\Support\Str::limit($requirement->description, 180) }}</p>
                             <div class="small text-muted mb-3">
+                                <div class="fw-semibold"><i class="fa-solid fa-warehouse me-1"></i>{{ $requirement->warehouse?->name ?? 'Warehouse unavailable' }}</div>
                                 <div><i class="fa-solid fa-location-dot me-1"></i>{{ $requirement->service_location }}</div>
                                 <div class="mt-1">Requested by {{ $requirement->requester->name }}</div>
                                 @if($requirement->needed_by)<div class="mt-1">Needed by {{ $requirement->needed_by->format('M j, Y') }}</div>@endif
                             </div>
                             <a href="{{ route('channel-partner.opportunities.show', $requirement) }}" class="btn btn-outline-primary">
-                                {{ $myOffer ? 'View / Update Offer' : 'View & Send Offer' }}
+                                {{ $myOffer ? 'View Offer' : 'View & Send Offer' }}
                             </a>
                         </div>
                     </div>

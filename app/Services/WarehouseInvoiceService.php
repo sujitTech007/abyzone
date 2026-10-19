@@ -76,6 +76,7 @@ class WarehouseInvoiceService
                 'tax_rate' => $amounts['tax_rate'],
                 'tax_cents' => $amounts['tax_cents'],
                 'total_cents' => $amounts['total_cents'],
+                'commission_percent' => 30,
                 'invoice_snapshot' => $snapshot,
             ]);
 

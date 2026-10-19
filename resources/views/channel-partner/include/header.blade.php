@@ -46,11 +46,23 @@
                     <span class="menu-text">Service Opportunities</span>
                 </a>
             </li>
+            <li class="side-nav-item">
+                <a href="{{ route('channel-partner.service-payments.index') }}" class="side-nav-link {{ request()->routeIs('channel-partner.service-payments.*') ? 'active' : '' }}">
+                    <span class="menu-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                    <span class="menu-text">Service Payments</span>
+                </a>
+            </li>
             <li class="side-nav-title">ACCOUNT</li>
             <li class="side-nav-item">
                 <a href="{{ route('channel-partner.profile') }}" class="side-nav-link {{ request()->routeIs('channel-partner.profile*') ? 'active' : '' }}">
                     <span class="menu-icon"><i class="fa-solid fa-user"></i></span>
                     <span class="menu-text">Service Profile</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('channel-partner.verification.index') }}" class="side-nav-link {{ request()->routeIs('channel-partner.verification.*') ? 'active' : '' }}">
+                    <span class="menu-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span class="menu-text">Verification</span>
                 </a>
             </li>
             <li class="side-nav-item">
@@ -121,6 +133,11 @@
                                 </div>
                             @endforelse
                         </div>
+                        <a href="{{ route('channel-partner.opportunities.index') }}"
+                           class="dropdown-item text-center py-3 fw-semibold border-top text-primary">
+                            View service opportunities
+                            <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
                     </div>
                 </div>
 

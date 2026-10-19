@@ -135,13 +135,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link px-3 {{ request()->routeIs('plans') ? 'active' : '' }}"
-                           href="{{ route('plans') }}">
-                            Plans
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link px-3 {{ request()->routeIs('explore') ? 'active' : '' }}"
                            href="{{ route('explore') }}">
                             Explore

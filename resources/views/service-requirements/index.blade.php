@@ -24,7 +24,7 @@
                         <tr>
                             <th>Service</th>
                             <th>Requirement</th>
-                            <th>Location</th>
+                            <th>Warehouse</th>
                             <th>Offers</th>
                             <th>Status</th>
                             <th></th>
@@ -38,9 +38,12 @@
                                     <div class="fw-semibold">{{ $requirement->title }}</div>
                                     <small class="text-muted">Posted {{ $requirement->created_at->format('M j, Y') }}</small>
                                 </td>
-                                <td>{{ $requirement->service_location }}</td>
+                                <td>
+                                    <div class="fw-semibold">{{ $requirement->warehouse?->name ?? 'Warehouse unavailable' }}</div>
+                                    <small class="text-muted">{{ $requirement->service_location }}</small>
+                                </td>
                                 <td>{{ $requirement->offers_count }}</td>
-                                <td><span class="badge bg-{{ $requirement->status === 'awarded' ? 'success' : ($requirement->status === 'open' ? 'warning text-dark' : 'secondary') }}">{{ ucfirst($requirement->status) }}</span></td>
+                                <td><span class="badge bg-{{ in_array($requirement->status, ['awarded', 'completed'], true) ? 'success' : ($requirement->status === 'open' ? 'warning text-dark' : 'secondary') }}">{{ ucfirst($requirement->status) }}</span></td>
                                 <td class="text-end">
                                     <a href="{{ route(auth()->user()->role === 'vendor' ? 'owner.service-requirements.show' : 'user.service-requirements.show', $requirement) }}" class="btn btn-sm btn-outline-primary">View offers</a>
                                 </td>

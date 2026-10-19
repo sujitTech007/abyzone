@@ -153,6 +153,14 @@
                             <span>Invoice total</span>
                             <span>{{ $payment->currency }} {{ number_format($payment->total_cents / 100, 2) }}</span>
                         </div>
+                        @if($payment->status === 'paid' && $payment->owner_net_cents !== null)
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold text-success">
+                                <span>Your revenue share (pre-tax)</span>
+                                <span>{{ $payment->currency }} {{ number_format($payment->owner_net_cents / 100, 2) }}</span>
+                            </div>
+                            <small class="d-block text-muted mt-1">Your share is calculated from the pre-tax warehouse sale.</small>
+                        @endif
                         @if($payment->refunded_cents > 0)
                             <div class="d-flex justify-content-between mt-3 text-success">
                                 <span>Refunded</span>

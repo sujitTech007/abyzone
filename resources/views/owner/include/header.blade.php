@@ -114,6 +114,14 @@
             </a>
         </li>
 
+        <li class="side-nav-item">
+            <a href="{{ route('owner.service-payments.index') }}"
+               class="side-nav-link {{ request()->routeIs('owner.service-payments.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                <span class="menu-text">Service Payments</span>
+            </a>
+        </li>
+
         {{-- Booking Requests --}}
         <li class="side-nav-item">
             <a href="{{ route('owner.confirmed-booking.index') }}"
@@ -164,12 +172,12 @@
 
         {{-- Notifications --}}
         <li class="side-nav-item">
-            <a href="#"
-               class="side-nav-link {{ request()->routeIs('owner.notifications') ? 'active' : '' }}">
+            <a href="{{ route('owner.business.profile').'#customer-reviews' }}"
+               class="side-nav-link {{ request()->routeIs('owner.business.profile') ? 'active' : '' }}">
                 <span class="menu-icon">
                     <i class="fa-solid fa-bell"></i>
                 </span>
-                <span class="menu-text">Reviews</span>
+                <span class="menu-text">Customer Reviews</span>
             </a>
         </li>
         <li class="side-nav-item">
@@ -188,6 +196,13 @@
                     <i class="fa-solid fa-building-user"></i>
                 </span>
                 <span class="menu-text">Profile</span>
+            </a>
+        </li>
+        <li class="side-nav-item">
+            <a href="{{ route('owner.verification.index') }}"
+               class="side-nav-link {{ request()->routeIs('owner.verification.*') ? 'active' : '' }}">
+                <span class="menu-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <span class="menu-text">Verification</span>
             </a>
         </li>
 

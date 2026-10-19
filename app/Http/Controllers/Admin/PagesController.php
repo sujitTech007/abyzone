@@ -10,6 +10,9 @@ use App\Models\Contact;
 use App\Models\WarehouseBooking;
 use App\Models\Warehouse;
 use App\Models\Notification;
+use App\Models\VerificationDocument;
+use App\Models\CustomerReview;
+use App\Models\ServiceRequirementPayment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -42,6 +45,11 @@ class PagesController extends Controller
     $approvedBookingsCount = WarehouseBooking::where('status', 'approved')->count();
     $declinedBookingsCount = WarehouseBooking::where('status', 'declined')->count();
     $meetingScheduledBookingsCount = WarehouseBooking::where('status', 'meeting_scheduled')->count();
+    $pendingVerificationDocumentsCount = VerificationDocument::where('status', 'pending')->count();
+    $pendingCustomerReviewsCount = CustomerReview::where('status', 'pending')->count();
+    $servicePaymentsAwaitingCommissionCount = ServiceRequirementPayment::where('status', 'paid')
+        ->whereNull('commission_percent')
+        ->count();
 
     return view('admin.index', compact(
         'admin',
@@ -59,7 +67,10 @@ class PagesController extends Controller
         'pendingBookingsCount',
         'approvedBookingsCount',
         'declinedBookingsCount',
-        'meetingScheduledBookingsCount'
+        'meetingScheduledBookingsCount',
+        'pendingVerificationDocumentsCount',
+        'pendingCustomerReviewsCount',
+        'servicePaymentsAwaitingCommissionCount'
     ));
 }
 

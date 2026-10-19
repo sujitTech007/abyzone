@@ -32,6 +32,41 @@
         
     @include('includes.alerts')
 
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <a href="{{ route('admin.warehouse-payments.index', ['status' => 'paid']) }}" class="card border-0 shadow-sm text-decoration-none h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h5 class="mb-1 text-body">Warehouse commission records</h5><span class="text-muted">Review paid invoices and owner revenue shares</span></div>
+                    <i class="fa-solid fa-money-bill-transfer fs-3 text-primary"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ route('admin.service-payments.index', ['commission' => 'pending']) }}" class="card border-0 shadow-sm text-decoration-none h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h5 class="mb-1 text-body">Service commissions to set</h5><span class="text-muted">Set 5–10% after Stripe confirms payment</span></div>
+                    <span class="badge bg-warning text-dark fs-5">{{ $servicePaymentsAwaitingCommissionCount }}</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ route('admin.verification.index', ['status' => 'pending']) }}" class="card border-0 shadow-sm text-decoration-none h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h5 class="mb-1 text-body">KYC documents awaiting approval</h5><span class="text-muted">Review submitted identity and business documents</span></div>
+                    <span class="badge bg-warning text-dark fs-5">{{ $pendingVerificationDocumentsCount }}</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ route('admin.customer-reviews.index', ['status' => 'pending']) }}" class="card border-0 shadow-sm text-decoration-none h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h5 class="mb-1 text-body">Customer reviews awaiting moderation</h5><span class="text-muted">Approve or reject reviews before publication</span></div>
+                    <span class="badge bg-warning text-dark fs-5">{{ $pendingCustomerReviewsCount }}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-header bg-color-primary">
         <h5 class="fs-4 text-white m-0">Users Overview</h5>
@@ -984,6 +1019,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     @include('admin.include.footer')
-
-
-
