@@ -16811,7 +16811,32 @@ html[data-bs-theme=dark] #light-dark-mode .dark-mode-icon {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 4px
+    gap: 4px;
+        height: calc(100vh - 70px);
+    overflow: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 30px;
+    scrollbar-width: thin;
+}
+
+.side-nav {
+  /* Modern Standard (Chrome, Firefox, Safari, Edge) */
+  scrollbar-width: thin;
+  
+  /* Fallback & Fine-Control for Older WebKit Browsers */
+  &::-webkit-scrollbar {
+    width: 8px;     /* Thickness of vertical scrollbar */
+    height: 8px;    /* Thickness of horizontal scrollbar */
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #faa31b; 
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #faa31b; 
+    border-radius: 4px;
+  }
 }
 
 .side-nav .side-nav-item .side-nav-link {
