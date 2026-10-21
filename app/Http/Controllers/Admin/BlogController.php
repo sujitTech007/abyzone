@@ -129,7 +129,7 @@ class BlogController extends Controller
     {
         $warehouese = Warehouse::findOrFail($warehouse->id);
 
-        $warehouse->delete();
+        $warehouese->delete();
 
         return redirect()
             ->route('admin.warehouses')
