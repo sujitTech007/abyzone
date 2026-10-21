@@ -55,10 +55,10 @@
                                     </form>
                                 @endif
                                 @if($document->status !== 'rejected')
-                                    <form method="POST" action="{{ route('admin.verification.documents.review', $document) }}" class="mt-2">
+                                    <form method="POST" action="{{ route('admin.verification.documents.review', $document) }}" class="mt-2 d-flex align-items-center gap-2">
                                         @csrf
                                         <input type="hidden" name="decision" value="rejected">
-                                        <input class="form-control form-control-sm mb-1" name="admin_note" maxlength="2000" placeholder="Reason required to reject" required>
+                                        <input class="form-control form-control-sm" name="admin_note" maxlength="2000" placeholder="Reason required to reject" required>
                                         <button class="btn btn-sm btn-outline-danger">Reject</button>
                                     </form>
                                 @elseif($document->admin_note)

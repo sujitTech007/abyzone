@@ -101,7 +101,7 @@
 
                                             <a
                                                 href="{{ route('admin.services.edit', $s->id) }}"
-                                                class="btn btn-sm btn-warning text-dark"
+                                                class="btn btn-sm btn-warning"
                                                 title="Edit Service"
                                                 aria-label="Edit Service"
                                             >

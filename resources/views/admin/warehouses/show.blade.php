@@ -28,7 +28,7 @@
                     <div class="warehouse-image-gallery mb-4">
                         @foreach($warehouse->images as $img)
                             <img src="{{ asset($img) }}"
-                                 class="warehouse-detail-image rounded-3 shadow-sm me-2 mb-2"
+                                 class="warehouse-detail-image rounded-3 shadow-sm me-2 mb-2 w-100"
                                  alt="Warehouse Image">
                         @endforeach
                     </div>
