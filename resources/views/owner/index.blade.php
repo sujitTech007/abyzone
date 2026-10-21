@@ -53,7 +53,7 @@
 
         {{-- Pending Requests --}}
         <div class="col-md-3">
-            <div class="card customer-stat-card stat-orange">
+            <div class="card customer-stat-card stat-orange h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
@@ -79,7 +79,7 @@
 
         {{-- Approved Bookings --}}
         <div class="col-md-3">
-            <div class="card customer-stat-card stat-green">
+            <div class="card customer-stat-card stat-green h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
@@ -105,7 +105,7 @@
 
         {{-- Meetings Scheduled --}}
         <div class="col-md-3">
-            <div class="card customer-stat-card stat-purple">
+            <div class="card customer-stat-card stat-purple h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>

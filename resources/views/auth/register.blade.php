@@ -10,48 +10,60 @@
 
                 <div class="login-form-width d-flex align-items-center h-100">
 
-                    
+
                     <div class="hero-content">
 
                         <div class="section-title">
                             <span class="sub_title text-white">JOIN ABYZONE</span>
                             <h2 class="text-white">
-                            Find Space.
-                            Store <span>Smarter.</span><br>
-                            Grow <strong>Faster.</strong>
-                        </h2>
-                           <p>
-                            Create your ABYzone account and connect with
-                            flexible warehousing and fulfillment solutions
-                            built for Canadian businesses.
-                        </p>
+                                Find Space.
+                                Store <span>Smarter.</span><br>
+                                Grow <strong>Faster.</strong>
+                            </h2>
+                            <p>
+                                Create your ABYzone account and connect with
+                                flexible warehousing and fulfillment solutions
+                                built for Canadian businesses.
+                            </p>
                         </div>
 
-                        
 
-                     
 
-                        {{-- Feature 1 --}} <div class="feature-item">
 
-                        <div class="feature-icon"> <i class="fa-solid fa-warehouse"></i> </div>
 
-                        <div> <h5 class="fs-14">Verified Warehouses</h5> <p class="fs-12"> Find trusted warehouse providers for your business. </p> </div>
+                        {{-- Feature 1 --}}
+                        <div class="feature-item">
 
-                        </div>
+                            <div class="feature-icon"> <i class="fa-solid fa-warehouse"></i> </div>
 
-                        {{-- Feature 2 --}} <div class="feature-item">
-
-                        <div class="feature-icon"> <i class="fa-solid fa-boxes-stacked"></i> </div>
-
-                        <div> <h5 class="fs-14">Flexible Storage</h5> <p class="fs-12"> Choose storage solutions that fit your business needs. </p> </div>
+                            <div>
+                                <h5 class="fs-14">Verified Warehouses</h5>
+                                <p class="fs-12"> Find trusted warehouse providers for your business. </p>
+                            </div>
 
                         </div>
 
-                        {{-- Feature 3 --}} <div class="feature-item">
+                        {{-- Feature 2 --}}
+                        <div class="feature-item">
 
-                        <div class="feature-icon"> <i class="fa-solid fa-list-check"></i> </div>
+                            <div class="feature-icon"> <i class="fa-solid fa-boxes-stacked"></i> </div>
 
-                        <div> <h5 class="fs-14">Easy Booking & Management</h5> <p class="fs-12"> Manage your warehouse operations from one secure platform. </p> </div>
+                            <div>
+                                <h5 class="fs-14">Flexible Storage</h5>
+                                <p class="fs-12"> Choose storage solutions that fit your business needs. </p>
+                            </div>
+
+                        </div>
+
+                        {{-- Feature 3 --}}
+                        <div class="feature-item">
+
+                            <div class="feature-icon"> <i class="fa-solid fa-list-check"></i> </div>
+
+                            <div>
+                                <h5 class="fs-14">Easy Booking & Management</h5>
+                                <p class="fs-12"> Manage your warehouse operations from one secure platform. </p>
+                            </div>
 
                         </div>
                     </div>
@@ -64,22 +76,22 @@
             {{-- ================= RIGHT SIDE ================= --}}
             <div class="col-lg-6 login-right">
 
-               
+
 
 
                 <div class="login-form-width p-3 p-md-5">
 
-                <div class="section-title">
-                      <span class="sub_title">CREATE ACCOUNT</span>            
+                    <div class="section-title">
+                        <span class="sub_title">CREATE ACCOUNT</span>
 
-                    <h2>
-                        Register
-                    </h2>
+                        <h2>
+                            Register
+                        </h2>
 
-                    <p>
-                        Create your ABYzone account to get started.
-                    </p>
-                </div>
+                        <p>
+                            Create your ABYzone account to get started.
+                        </p>
+                    </div>
 
                     {{-- =====================================================
                          KEEP YOUR EXISTING FORM FUNCTIONALITY
@@ -92,64 +104,61 @@
 
                         {{-- REGISTER AS --}}
 
-                        <div class="mb-4 d-flex align-items-center register-role-selector">
+                        <div class="mb-4 register-role-selector">
 
-    <label class="form-label d-block me-4 border-end  pe-4 flex-none">
-        REGISTER AS
-    </label>
+                            <label class="form-label d-block me-4   pe-4 flex-none">
+                                REGISTER AS
+                            </label>
 
-    <div class="role-toggle">
+                            <div class="role-toggle">
 
-        <input
-            type="radio"
-            name="role"
-            id="customer"
-            value="customer"
-            {{ old('role', 'customer') == 'customer' ? 'checked' : '' }}
-        >
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="customer"
+                                    value="customer"
+                                    {{ old('role', 'customer') == 'customer' ? 'checked' : '' }}>
 
-        <input
-            type="radio"
-            name="role"
-            id="vendor"
-            value="vendor"
-            {{ old('role') == 'vendor' ? 'checked' : '' }}
-        >
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="vendor"
+                                    value="vendor"
+                                    {{ old('role') == 'vendor' ? 'checked' : '' }}>
 
-        <input
-            type="radio"
-            name="role"
-            id="channel_partner"
-            value="channel_partner"
-            {{ old('role') == 'channel_partner' ? 'checked' : '' }}
-        >
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    id="channel_partner"
+                                    value="channel_partner"
+                                    {{ old('role') == 'channel_partner' ? 'checked' : '' }}>
 
-        <div class="role-toggle-slider"></div>
+                                <div class="role-toggle-slider"></div>
 
-        <label for="customer" class="role-option">
-            <i class="fa-solid fa-user"></i>
-            Customer
-        </label>
+                                <label for="customer" class="role-option">
+                                    <i class="fa-solid fa-user"></i>
+                                    Customer
+                                </label>
 
-        <label for="vendor" class="role-option">
-            <i class="fa-solid fa-store"></i>
-            Vendor
-        </label>
+                                <label for="vendor" class="role-option">
+                                    <i class="fa-solid fa-store"></i>
+                                    Vendor
+                                </label>
 
-        <label for="channel_partner" class="role-option">
-            <i class="fa-solid fa-handshake"></i>
-            Channel Partner
-        </label>
+                                <label for="channel_partner" class="role-option">
+                                    <i class="fa-solid fa-handshake"></i>
+                                    Channel Partner
+                                </label>
 
-    </div>
+                            </div>
 
-    @error('role')
-        <div class="text-danger small mt-1">
-            {{ $message }}
-        </div>
-    @enderror
+                            @error('role')
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
+                            @enderror
 
-</div>
+                        </div>
 
 
                         {{-- NAME --}}
@@ -168,13 +177,12 @@
                                 id="name"
                                 name="name"
                                 value="{{ old('name') }}"
-                                required
-                            >
+                                required>
 
                             @error('name')
-                                <div class="text-danger small mt-1">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -196,12 +204,12 @@
                                 id="email"
                                 name="email"
                                 value="{{ old('email') }}"
-                            required>
+                                required>
 
                             @error('email')
-                                <div class="text-danger small mt-1">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -230,26 +238,24 @@
                                     value="{{ old('phone') }}"
                                     inputmode="numeric"
                                     autocomplete="tel"
-                                    required
-                                >
+                                    required>
                             </div>
                             <input
                                 type="hidden"
                                 name="phone_code"
                                 id="country_code"
-                                value="{{ old('phone_code', '+1') }}"
-                            >
+                                value="{{ old('phone_code', '+1') }}">
                             <div id="phone-validation-error" class="text-danger small mt-1" role="alert" hidden></div>
 
                             @error('phone')
-                                <div class="text-danger small mt-1">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
                             @enderror
                             @error('phone_code')
-                                <div class="text-danger small mt-1">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -257,7 +263,7 @@
 
                         {{-- PASSWORD --}}
 
-                       <div class="row h-auto">
+                        <div class="row h-auto">
                             <div class="col-md-6">
 
                                 <label
@@ -271,13 +277,12 @@
                                     class="form-control"
                                     id="password"
                                     name="password"
-                                    required
-                                >
+                                    required>
 
                                 @error('password')
-                                    <div class="text-danger small mt-1">
-                                        {{ $message }}
-                                    </div>
+                                <div class="text-danger small mt-1">
+                                    {{ $message }}
+                                </div>
                                 @enderror
 
                             </div>
@@ -298,14 +303,13 @@
                                     class="form-control"
                                     id="password_confirmation"
                                     name="password_confirmation"
-                                    required
-                                >
+                                    required>
 
                             </div>
-                       </div>
+                        </div>
 
 
-                       
+
 
                         {{-- REGISTER --}}
 
@@ -364,74 +368,76 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
 
-    const phoneInput = document.querySelector('#phone');
-    const countryCodeInput = document.querySelector('#country_code');
-    const phoneError = document.querySelector('#phone-validation-error');
+        const phoneInput = document.querySelector('#phone');
+        const countryCodeInput = document.querySelector('#country_code');
+        const phoneError = document.querySelector('#phone-validation-error');
 
-    if (!phoneInput) return;
+        if (!phoneInput) return;
 
-    if (typeof window.intlTelInput !== 'function') {
-        phoneError.textContent = 'The phone country selector could not be loaded. Please refresh the page and try again.';
-        phoneError.hidden = false;
-        phoneInput.setAttribute('aria-describedby', 'phone-validation-error');
-        return;
-    }
-
-    const iti = window.intlTelInput(phoneInput, {
-        initialCountry: "ca",
-        separateDialCode: true,
-        nationalMode: true,
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/utils.js"
-    });
-
-    function updateCountryCode() {
-        const countryData = iti.getSelectedCountryData();
-        if (countryData.dialCode) {
-            countryCodeInput.value = '+' + countryData.dialCode;
+        if (typeof window.intlTelInput !== 'function') {
+            phoneError.textContent = 'The phone country selector could not be loaded. Please refresh the page and try again.';
+            phoneError.hidden = false;
+            phoneInput.setAttribute('aria-describedby', 'phone-validation-error');
+            return;
         }
-    }
 
-    updateCountryCode();
-    phoneInput.addEventListener('countrychange', updateCountryCode);
-    phoneInput.addEventListener('input', function () {
-        phoneInput.classList.remove('is-invalid');
-        phoneError.hidden = true;
-    });
+        const iti = window.intlTelInput(phoneInput, {
+            initialCountry: "ca",
+            separateDialCode: true,
+            nationalMode: true,
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/utils.js"
+        });
 
-    const form = phoneInput.closest('form');
-
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            updateCountryCode();
-
-            const enteredPhone = phoneInput.value.trim();
-            const phoneDigits = enteredPhone.replace(/\D/g, '');
-            const isInternational = enteredPhone.startsWith('+');
-            const dialCode = iti.getSelectedCountryData().dialCode;
-            const nationalDigits = isInternational && phoneDigits.startsWith(dialCode)
-                ? phoneDigits.slice(dialCode.length)
-                : phoneDigits;
-            const internationalLength = nationalDigits.length + dialCode.length;
-
-            if (!dialCode || internationalLength < 7 || internationalLength > 15 || !nationalDigits) {
-                phoneInput.classList.add('is-invalid');
-                phoneError.textContent = 'Enter a phone number with 7 to 15 digits, including the country code.';
-                phoneError.hidden = false;
-                phoneInput.focus();
-                return;
+        function updateCountryCode() {
+            const countryData = iti.getSelectedCountryData();
+            if (countryData.dialCode) {
+                countryCodeInput.value = '+' + countryData.dialCode;
             }
+        }
 
+        updateCountryCode();
+        phoneInput.addEventListener('countrychange', updateCountryCode);
+        phoneInput.addEventListener('input', function() {
             phoneInput.classList.remove('is-invalid');
             phoneError.hidden = true;
-            phoneInput.value = nationalDigits;
-            form.submit();
         });
-    }
 
-});
+        const form = phoneInput.closest('form');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateCountryCode();
+
+                const enteredPhone = phoneInput.value.trim();
+                const phoneDigits = enteredPhone.replace(/\D/g, '');
+                const isInternational = enteredPhone.startsWith('+');
+                const dialCode = iti.getSelectedCountryData().dialCode;
+                const nationalDigits = isInternational && phoneDigits.startsWith(dialCode) ?
+                    phoneDigits.slice(dialCode.length) :
+                    phoneDigits;
+                const internationalLength = nationalDigits.length + dialCode.length;
+
+                if (!dialCode || internationalLength < 7 || internationalLength > 15 || !nationalDigits) {
+                    phoneInput.classList.add('is-invalid');
+                    phoneError.textContent = 'Enter a phone number with 7 to 15 digits, including the country code.';
+                    phoneError.hidden = false;
+                    phoneInput.focus();
+                    return;
+                }
+
+                phoneInput.classList.remove('is-invalid');
+                phoneError.hidden = true;
+                phoneInput.value = nationalDigits;
+                form.submit();
+            });
+        }
+
+    });
 </script>
 
-<script>document.querySelector('.register-page')?.closest('body')?.classList.add('register-page-body');</script>
+<script>
+    document.querySelector('.register-page')?.closest('body')?.classList.add('register-page-body');
+</script>

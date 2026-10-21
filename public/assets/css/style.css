@@ -4403,7 +4403,7 @@ flex: none;}
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 390px;
+    max-width: 450px;
     padding: 0;
     background: transparent;
     border: 1px solid var(--primary-color);
