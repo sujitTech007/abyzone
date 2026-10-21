@@ -16850,10 +16850,9 @@ html[data-bs-theme=dark] #light-dark-mode .dark-mode-icon {
     position: relative;
     white-space: nowrap;
     color: #fff;
+    font-size: 14px;
     -webkit-transition: all .25s ease-in-out;
     transition: all .25s ease-in-out;
-    line-height: var(--abstack-menu-item-font-size);
-    font-size: var(--abstack-menu-item-font-size);
     padding: var(--abstack-menu-item-padding-y) var(--abstack-menu-item-padding-x)
 }
 
@@ -20343,14 +20342,14 @@ th {
     z-index: 9999
 }
 
-#status {
+/* #status {
     width: 80px;
     height: 80px;
     position: absolute;
     left: 50%;
     top: 50%;
     margin: -40px 0 0 -40px
-}
+} */
 
 @-webkit-keyframes bouncing-loader {
     to {
