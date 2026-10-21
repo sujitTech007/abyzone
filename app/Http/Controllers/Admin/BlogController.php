@@ -127,9 +127,9 @@ class BlogController extends Controller
 
     public function destroy(Warehouse $warehouse): RedirectResponse
     {
-        $warehouese = Warehouse::findOrFail($warehouse->id);
+        $delWarehouse = Warehouse::findOrFail($warehouse);
 
-        $warehouese->delete();
+        $delWarehouse->delete();
 
         return redirect()
             ->route('admin.warehouses')
