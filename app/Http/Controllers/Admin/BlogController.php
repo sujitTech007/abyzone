@@ -125,15 +125,13 @@ class BlogController extends Controller
             ->with('success', 'Blog updated successfully.');
     }
 
-    public function destroy(Warehouse $warehouse): RedirectResponse
+    public function destroy(Blog $blog): RedirectResponse
     {
-        $delWarehouse = Warehouse::findOrFail($warehouse);
-
-        $delWarehouse->delete();
+        $blog->delete();
 
         return redirect()
-            ->route('admin.warehouses')
-            ->with('success', 'Warehouse deleted successfully.');
+            ->route('admin.blog')
+            ->with('success', 'Blog deleted successfully.');
     }
 
     protected function validatedData(Request $request): array
