@@ -515,17 +515,17 @@
                                 {{-- BADGES --}}
                                 <div class="d-flex flex-wrap gap-2 mb-4">
 
-                                    <span class="badge bg-primary-subtle primary-text-color px-3 py-2">
+                                    <span class="badge  primary-text-color px-3 py-2">
                                         <i class="fas fa-check me-1"></i>
                                         Flexible space options
                                     </span>
 
-                                    <span class="badge bg-primary-subtle primary-text-color px-3 py-2">
+                                    <span class="badge  primary-text-color px-3 py-2">
                                         <i class="fas fa-check me-1"></i>
                                         Short-term & long-term rentals
                                     </span>
 
-                                    <span class="badge bg-primary-subtle primary-text-color px-3 py-2">
+                                    <span class="badge  primary-text-color px-3 py-2">
                                         <i class="fas fa-check me-1"></i>
                                         24/7 facility access
                                     </span>
